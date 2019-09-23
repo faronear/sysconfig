@@ -11,7 +11,7 @@
 (package-initialize)
 
 ;; Tell emacs where is your personal elisp lib dir
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.lisp/")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Run as server ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; run emacs in server mode so as emacsclient can connect to:
