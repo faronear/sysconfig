@@ -13,4 +13,4 @@ fi
 curl https://www.mongodb.org/static/pgp/server-$Version.asc | sudo apt-key add -
 echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$Version main" | sudo tee /etc/apt/sources.list.d/mongodb-org-$Version.list
 sudo apt update
-sudo apt install mongodb-org
+sudo apt install mongodb-org -y
