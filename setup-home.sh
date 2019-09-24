@@ -4,7 +4,7 @@ echo "Usage: setup.sh"
 echo "Example: setup.sh"
 
 echo "######## 安装 ##################"
-ln -s ~/home.config/.emacs ~/
-ln -s ~/home.config/.emacs.lisp ~/
-ln -s ~/home.config/.bashrc ~/
-ln -s ~/home.config/.bash_profile ~/
+ln -s ~/linux.config/.emacs ~/
+ln -s ~/linux.config/.emacs.lisp ~/
+ln -s ~/linux.config/.bashrc ~/
+ln -s ~/linux.config/.bash_profile ~/

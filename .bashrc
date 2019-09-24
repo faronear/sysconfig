@@ -33,7 +33,7 @@ export CVS_RSH=ssh
 
 # Define aliases:
 # Always list long directory and time.
-alias ll='ls -al' # --time-style=long-iso --color=auto'
+alias ll='ls -al --color=auto' # --time-style=long-iso --color=auto'
 # Think twice before deletion. Though troublesome but strongly recommended!
 alias rm='rm -i'
 # Request X tunneling for SSH:
