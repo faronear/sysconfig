@@ -1,9 +1,7 @@
 #!/bin/bash
 
-echo "Usage: setup.sh [VERSION]"
+echo "Usage: setup.sh"
 echo "Example: setup.sh"
-
-sudo apt update
 
 echo "######## 安装 ##################"
 ln -s ~/home.config/.emacs ~/

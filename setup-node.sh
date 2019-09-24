@@ -2,7 +2,6 @@
 
 echo "Usage: setup.sh [VERSION]"
 echo "Example: setup.sh 10"
-echo "Run as root user please."
 
 if [ v$1 != v ]
 then
