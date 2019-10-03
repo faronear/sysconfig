@@ -42,6 +42,8 @@ alias ssh='ssh -C -X'
 # Always use compression for CVS:
 alias cvs='cvs -z9'
 
+alias process='ps -elf'
+
 # Set default file permission mask:
 umask 022 # rwxr-xr-x
 
