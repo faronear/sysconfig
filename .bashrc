@@ -33,8 +33,8 @@ export CVS_RSH=ssh
 
 # Define aliases:
 # Always list long directory and time.
-alias ll='ls -al --color=auto' # --time-style=long-iso --color=auto'
-alias l='ll'
+alias ll='ls -l --color=auto' # --time-style=long-iso --color=auto'
+alias l='ls -Al --color=auto'
 # Think twice before deletion. Though troublesome but strongly recommended!
 alias rm='rm -i'
 # Request X tunneling for SSH:
@@ -42,7 +42,7 @@ alias ssh='ssh -C -X'
 # Always use compression for CVS:
 alias cvs='cvs -z9'
 
-alias process='ps -elf'
+alias ps='ps -elf'
 
 # Set default file permission mask:
 umask 022 # rwxr-xr-x
