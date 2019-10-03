@@ -8,3 +8,4 @@ ln -s ~/linux.config/.emacs ~/
 ln -s ~/linux.config/.emacs.lisp ~/
 ln -s ~/linux.config/.bashrc ~/
 ln -s ~/linux.config/.bash_profile ~/
+. ~/.bahrc
