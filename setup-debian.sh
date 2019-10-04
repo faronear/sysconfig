@@ -18,9 +18,9 @@ echo ">>> add a new user"
 useradd $User
 # usermod -a -G sudo $User # 不允许登录账号进行 sudo 来访问关键资源
 passwd $User
-emacs /etc/passwd
 mkdir /home/$User
 chown $User:$User /home/$User
+emacs /etc/passwd
 
 echo ">>> allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
