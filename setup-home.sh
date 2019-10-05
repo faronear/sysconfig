@@ -9,3 +9,4 @@ ln -s ~/linux.config/.emacs.lisp ~/
 ln -s ~/linux.config/.bashrc ~/
 ln -s ~/linux.config/.bash_profile ~/
 . ~/.bashrc
+echo "######## 完毕 ##################"
