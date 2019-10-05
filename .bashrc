@@ -43,6 +43,7 @@ alias ssh='ssh -C -X'
 alias cvs='cvs -z9'
 
 alias ps='ps -elf'
+alias emacs='emacs -nw'
 
 # Set default file permission mask:
 umask 022 # rwxr-xr-x

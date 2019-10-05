@@ -20,15 +20,18 @@ useradd $User
 passwd $User
 mkdir /home/$User
 chown $User:$User /home/$User
-emacs /etc/passwd
+# emacs /etc/passwd
+sed -i "s/\/home\/$User:/\/home\/$User:\/bin\/bash/g" /etc/passwd
 
 echo ">>> allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
-emacs /etc/sudoers
+# emacs /etc/sudoers
+sed -i "s/%sudo\s+ALL*/%sudo ALL=(ALL:ALL) NOPASSWD:ALL/g" /etc/sudoers
 chmod o-w /etc/sudoers
 
 echo ">>> disallow root login: #PermitRootLogin yes"
-emacs /etc/ssh/sshd_config
+sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
+# emacs /etc/ssh/sshd_config
 service sshd restart
 
 echo ">>> configure locales: install all-locales, default to zh-CN.UTF-8"
