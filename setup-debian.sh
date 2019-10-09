@@ -35,11 +35,11 @@ sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 service sshd restart
 
 echo ">>> set autostart"
+mv /etc/rc.local /etc/rc.local.backup
 touch /etc/rc.local
 chmod +x /etc/rc.local
-echo "#!/bin/bash"
-echo "exec /root/autostart.sh"
-echo "exit 0"
+echo '#!/bin/bash' > /etc/local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
+echo 'source /root/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
 touch /root/autostart.sh
 chmod +x /root/autostart.sh
 
