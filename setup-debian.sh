@@ -34,6 +34,15 @@ sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 # emacs /etc/ssh/sshd_config
 service sshd restart
 
+echo ">>> set autostart"
+touch /etc/rc.local
+chmod +x /etc/rc.local
+echo "#!/bin/bash"
+echo "exec /root/autostart.sh"
+echo "exit 0"
+touch /root/autostart.sh
+chmod +x /root/autostart.sh
+
 echo ">>> configure locales: install all-locales, default to zh-CN.UTF-8"
 dpkg-reconfigure locales
 
