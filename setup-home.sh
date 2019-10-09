@@ -10,5 +10,5 @@ ln -s ~/linux.config/.emacs.lisp ~/
 ln -s ~/linux.config/.bashrc ~/
 ln -s ~/linux.config/.bash_profile ~/
 . ~/.bashrc
-git config --global confidential.helper cache
+git config --global credential.helper cache
 echo "######## 完毕 ##################"
