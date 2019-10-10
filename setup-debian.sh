@@ -34,7 +34,7 @@ sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 # emacs /etc/ssh/sshd_config
 service sshd restart
 
-echo ">>> set autostart"
+echo ">>> config autostart"
 mv /etc/rc.local /etc/rc.local.backup
 touch /etc/rc.local
 chmod +x /etc/rc.local
@@ -42,6 +42,7 @@ echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 
 echo 'source /root/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
 touch /root/autostart.sh
 chmod +x /root/autostart.sh
+echo '<<< autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
 
 echo ">>> configure locales: install all-locales, default to zh-CN.UTF-8"
 dpkg-reconfigure locales
