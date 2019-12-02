@@ -33,8 +33,17 @@ export CVS_RSH=ssh
 
 # Define aliases:
 # Always list long directory and time.
-alias ll='ls -l --color=auto' # --time-style=long-iso --color=auto'
-alias l='ls -Al --color=auto'
+if uname | grep 'Darwin'; then
+  alias l='ls -l'
+	alias ll='ls -lA'
+else
+  alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
+  alias ll='ls -Al --color=auto'
+fi
+#export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
+#export CLICOLOR='Yes'            #是否输出颜色
+#export LSCOLORS='CxfxcxdxbxegedabagGxGx' #指定颜色
+
 # Think twice before deletion. Though troublesome but strongly recommended!
 alias rm='rm -i'
 # Request X tunneling for SSH:
@@ -43,7 +52,7 @@ alias ssh='ssh -C -X'
 alias cvs='cvs -z9'
 
 alias ps='ps -elf'
-alias emacs='emacs -nw'
+alias emacsnw='emacs -nw'
 
 # Set default file permission mask:
 umask 022 # rwxr-xr-x
