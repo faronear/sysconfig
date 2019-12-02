@@ -34,8 +34,8 @@ export CVS_RSH=ssh
 # Define aliases:
 # Always list long directory and time.
 if uname | grep 'Darwin'; then
-  alias l='ls -l'
-	alias ll='ls -lA'
+  alias l='ls -lG'
+  alias ll='ls -lGA'
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -Al --color=auto'
