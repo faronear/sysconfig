@@ -16,16 +16,19 @@ if [ ! -d "/faronear" ]
 then
   mkdir /faronear
 fi 
+
 echo "<<< Making dir /faronear/lib"
 if [ ! -d "/faronear/lib" ]
 then 
   mkdir /faronear/lib
 fi
+
 echo "<<< Git cloning to /faronear/lib/sysconfig"
 if [ ! -d "/faronear/lib/sysconfig" ]
 then
   git clone https://git.faronear.org/lib/sysconfig /faronear/lib/sysconfig
 fi
+
 echo "<<< Configure home"
 if [ ! -f "~/.bashrc.backup" ]
 then
@@ -72,7 +75,7 @@ chmod +x /faronear/autostart.sh
 echo '>>> Autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
 
 echo "<<< Configure locales: install all-locales, default to zh-CN.UTF-8"
-sudo dpkg-reconfigure locales
+dpkg-reconfigure locales
 
 echo "<<< Debian System Setup Completed >>>"
 
