@@ -11,8 +11,25 @@ fi
 apt update
 apt install -y emacs git curl screen sudo automake
 
-mkdir /faronear
-mkdir /faronear/lib
+if [ ! -d "/faronear" ]
+then
+  mkdir /faronear
+fi 
+
+if [ ! -d "/faronear/lib" ]
+then 
+  mkdir /faronear/lib
+fi
+
+if [ ! -d "/faronear/lib/sysconfig" ]
+then
+  git clone https://git.faronear.org/lib/sysconfig /faronear/lib/sysconfig
+fi
+
+if [ ! -f "~/.bashrc" ]
+then
+  . /faronear/lib/sysconfig/setup-home.sh
+fi
 
 echo ">>> Change root password"
 passwd
