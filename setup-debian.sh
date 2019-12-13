@@ -11,22 +11,23 @@ fi
 apt update
 apt install -y emacs git curl screen sudo automake
 
+echo ">>> Making dir /faronear"
 if [ ! -d "/faronear" ]
 then
   mkdir /faronear
 fi 
-
+echo ">>> Making dir /faronear/lib"
 if [ ! -d "/faronear/lib" ]
 then 
   mkdir /faronear/lib
 fi
-
+echo ">>> Git cloning to /faronear/lib/sysconfig"
 if [ ! -d "/faronear/lib/sysconfig" ]
 then
   git clone https://git.faronear.org/lib/sysconfig /faronear/lib/sysconfig
 fi
-
-if [ ! -f "~/.bashrc" ]
+echo ">>> Configure home"
+if [ ! -f "~/.bashrc.backup" ]
 then
   . /faronear/lib/sysconfig/setup-home.sh
 fi
@@ -34,7 +35,7 @@ fi
 echo ">>> Change root password"
 passwd
 
-echo ">>> add a new user"
+echo ">>> Add a new user"
 useradd $User
 # usermod -a -G sudo $User # 允许该账号进行 sudo 来访问关键资源
 passwd $User
@@ -46,30 +47,32 @@ sed -i "s/\/home\/$User:\/bin\/sh$/\/home\/$User:\/bin\/bash/g" /etc/passwd
 # Debian 9 默认为空。
 sed -i "s/\/home\/$User:$/\/home\/$User:\/bin\/bash/g" /etc/passwd
 
-
-echo ">>> allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
+echo ">>> Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
 # emacs /etc/sudoers
 sed -i "s/%sudo\s\+ALL=(ALL:ALL)\sALL/%sudo\tALL=(ALL:ALL) NOPASSWD:ALL/g" /etc/sudoers
 chmod o-w /etc/sudoers
 
-echo ">>> disallow root login: #PermitRootLogin yes"
+echo ">>> Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
 sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 service sshd restart
 
-echo ">>> config autostart"
-mv /etc/rc.local /etc/rc.local.backup
+echo ">>> Configure autostart"
+if [ -f /etc/rc.local ]
+then
+  mv /etc/rc.local /etc/rc.local.backup
+fi
 touch /etc/rc.local
 chmod +x /etc/rc.local
 echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
 echo 'source /faronear/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
 touch /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
-echo '<<< autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
+echo '<<< Autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
 
-echo ">>> configure locales: install all-locales, default to zh-CN.UTF-8"
-# dpkg-reconfigure locales
+echo ">>> Configure locales: install all-locales, default to zh-CN.UTF-8"
+dpkg-reconfigure locales
 
 echo "系统设置完毕。"
 echo "远程服务器使用策略："

@@ -33,12 +33,15 @@ export CVS_RSH=ssh
 
 # Define aliases:
 # Always list long directory and time.
-if uname | grep 'Darwin'; then
+if [ uname | grep 'Darwin' ]
+then
   alias l='ls -lG'
-  alias ll='ls -lGA'
+  alias ll='ls -lGA' # show .xxx 
+  alias lll='ls -lGa' # show .xxx and . and ..
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
-  alias ll='ls -Al --color=auto'
+  alias ll='ls -lA --color=auto'
+  alias lll='ls -la --color=auto'
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
 #export CLICOLOR='Yes'            #是否输出颜色
