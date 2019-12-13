@@ -1,0 +1,1 @@
+sed -i "s/\/home\/fon\//\/root\//g" `grep '/home/fon' -rl git.repo/*/*/hooks`

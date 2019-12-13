@@ -11,17 +11,24 @@ fi
 apt update
 apt install -y emacs git curl screen sudo automake
 
+mkdir /faronear
+mkdir /faronear/lib
+
 echo ">>> Change root password"
 passwd
 
 echo ">>> add a new user"
 useradd $User
-# usermod -a -G sudo $User # 不允许登录账号进行 sudo 来访问关键资源
+# usermod -a -G sudo $User # 允许该账号进行 sudo 来访问关键资源
 passwd $User
 mkdir /home/$User
 chown $User:$User /home/$User
 # emacs /etc/passwd
-sed -i "s/\/home\/$User:/\/home\/$User:\/bin\/bash/g" /etc/passwd
+# Debian 10 默认已经设了 /bin/sh
+sed -i "s/\/home\/$User:\/bin\/sh$/\/home\/$User:\/bin\/bash/g" /etc/passwd
+# Debian 9 默认为空。
+sed -i "s/\/home\/$User:$/\/home\/$User:\/bin\/bash/g" /etc/passwd
+
 
 echo ">>> allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
@@ -30,8 +37,8 @@ sed -i "s/%sudo\s\+ALL=(ALL:ALL)\sALL/%sudo\tALL=(ALL:ALL) NOPASSWD:ALL/g" /etc/
 chmod o-w /etc/sudoers
 
 echo ">>> disallow root login: #PermitRootLogin yes"
-sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 # emacs /etc/ssh/sshd_config
+sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 service sshd restart
 
 echo ">>> config autostart"
@@ -39,15 +46,18 @@ mv /etc/rc.local /etc/rc.local.backup
 touch /etc/rc.local
 chmod +x /etc/rc.local
 echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
-echo 'source /root/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
-touch /root/autostart.sh
-chmod +x /root/autostart.sh
+echo 'source /faronear/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
+touch /faronear/autostart.sh
+chmod +x /faronear/autostart.sh
 echo '<<< autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
 
 echo ">>> configure locales: install all-locales, default to zh-CN.UTF-8"
-dpkg-reconfigure locales
+# dpkg-reconfigure locales
 
+echo "系统设置完毕。"
 echo "远程服务器使用策略："
 echo "* 统一使用 debian 系统。"
-echo "* 禁止 root 用户远程登录，另建 adot 用户用于登录。"
-echo "* 管理员用 adot 账号登录后，su 到 /root 目录下安装、设置服务软件。"
+echo "* 禁止 root 用户远程登录，另建 adot (admin+root) 用户用于远程登录。"
+echo "* 软件、配置安装在 /faronear 目录下，尽量保持与 git 仓库的路径一致，例如 /faronear/tic/wallet/dist/"
+echo "* /faronear 允许 adot 访问，但必须把其中机密文件的权限设置到最小。"
+echo "* 用 adot 账号远程登录后，su 后启动软件。"
