@@ -37,14 +37,14 @@ passwd
 
 echo ">>> Add a new user"
 useradd $User
-# usermod -a -G sudo $User # 允许该账号进行 sudo 来访问关键资源
+# usermod -a -G sudo $User # Add to sudo group
 passwd $User
 mkdir /home/$User
 chown $User:$User /home/$User
 # emacs /etc/passwd
-# Debian 10 默认已经设了 /bin/sh
+# Debian 10 default to /bin/sh
 sed -i "s/\/home\/$User:\/bin\/sh$/\/home\/$User:\/bin\/bash/g" /etc/passwd
-# Debian 9 默认为空。
+# Debian 9 default to empty
 sed -i "s/\/home\/$User:$/\/home\/$User:\/bin\/bash/g" /etc/passwd
 
 echo ">>> Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"

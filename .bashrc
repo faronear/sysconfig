@@ -11,7 +11,8 @@
 # User specific aliases and functions
 
 # Execute system startup script:
-if [ -f /etc/bashrc ]; then
+if [ -f /etc/bashrc ]
+then
 	. /etc/bashrc
 fi
 
@@ -26,14 +27,13 @@ export CVS_RSH=ssh
 # 1. it is defined in startup script, so every shell gets it!
 # 2. only shell needs this variable, other programs normally don't need it.
 # Note 2: Add current directory to PATH is dangerous!
-#if [ -e ~/bin/addpath.sh ] 
-#  then 
+#if [ -e ~/bin/addpath.sh ]  then 
 #    . ~/bin/addpath.sh ~/bin
 #fi
 
 # Define aliases:
 # Always list long directory and time.
-if [ uname | grep 'Darwin' ]
+if uname | grep 'Darwin';
 then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
@@ -42,6 +42,7 @@ else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -lA --color=auto'
   alias lll='ls -la --color=auto'
+  alias emacs='emacs -nw'
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
 #export CLICOLOR='Yes'            #是否输出颜色
@@ -55,7 +56,6 @@ alias ssh='ssh -C -X'
 alias cvs='cvs -z9'
 
 alias ps='ps -elf'
-alias emacsnw='emacs -nw'
 
 # Set default file permission mask:
 umask 022 # rwxr-xr-x
