@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ $1 ]
+then
+  FONPATH=$1
+else
+  read -p "Enter path-to-faronear " FONPATH
+fi
+
+pushd $FONPATH
 for org in `ls .`
 do 
   if [ -d $org ]
@@ -18,3 +26,4 @@ do
       cd ..;
   fi
 done
+popd

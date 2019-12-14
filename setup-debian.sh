@@ -44,6 +44,7 @@ useradd $User
 passwd $User
 mkdir /home/$User
 chown $User:$User /home/$User
+chmod 700 /home/$User
 # emacs /etc/passwd
 # Debian 10 default to /bin/sh
 sed -i "s/\/home\/$User:\/bin\/sh$/\/home\/$User:\/bin\/bash/g" /etc/passwd
