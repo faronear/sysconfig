@@ -3,9 +3,9 @@ echo "Example: setup.sh alice"
 
 if [ v$1 != v ]
 then
-  export User=$1
+  NewUser=$1
 else
-  export User=adot
+  NewUser=adot
 fi
 
 apt update
@@ -39,17 +39,17 @@ echo "<<< Change root password"
 passwd
 
 echo "<<< Add a new user"
-useradd $User
-# usermod -a -G sudo $User # Add to sudo group
-passwd $User
-mkdir /home/$User
-chown $User:$User /home/$User
-chmod 700 /home/$User
+useradd $NewUser
+# usermod -a -G sudo $NewUser # Add to sudo group
+passwd $NewUser
+mkdir /home/$NewUser
+chown $NewUser:$NewUser /home/$NewUser
+chmod 700 /home/$NewUser
 # emacs /etc/passwd
 # Debian 10 default to /bin/sh
-sed -i "s/\/home\/$User:\/bin\/sh$/\/home\/$User:\/bin\/bash/g" /etc/passwd
+sed -i "s/\/home\/$NewUser:\/bin\/sh$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
 # Debian 9 default to empty
-sed -i "s/\/home\/$User:$/\/home\/$User:\/bin\/bash/g" /etc/passwd
+sed -i "s/\/home\/$NewUser:$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
 
 echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
