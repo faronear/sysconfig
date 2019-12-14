@@ -5,7 +5,7 @@ if [ v$1 != v ]
 then
   NewUser=$1
 else
-  read -p "Enter path-to-faronear " NewUser
+  read -p "Enter new user name: " NewUser
 fi
 
 echo "<<< Add a new user"

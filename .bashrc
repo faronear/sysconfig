@@ -11,9 +11,9 @@
 # User specific aliases and functions
 
 # Execute system startup script:
-if [ -f /etc/bashrc ]
+if [ -f /etc/profile ]
 then
-	. /etc/bashrc
+	. /etc/profile
 fi
 
 # Define primary prompt (default is '$'):
