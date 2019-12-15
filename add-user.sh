@@ -8,7 +8,7 @@ else
   read -p "Enter new user name: " NewUser
 fi
 
-echo "<<< Add a new user"
+echo "<<< Add a new user $NewUser"
 useradd $NewUser
 # usermod -a -G sudo $NewUser # Add to sudo group
 passwd $NewUser

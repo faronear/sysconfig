@@ -1,4 +1,4 @@
-echo "Usage: setup.sh [USER]"
+echo "Usage: setup.sh [NewUser]"
 echo "Example: setup.sh alice"
 
 if [ v$1 != v ]
@@ -38,7 +38,7 @@ fi
 echo "<<< Change root password"
 passwd
 
-echo "<<< Add a new user"
+echo "<<< Add a new user $NewUser"
 useradd $NewUser
 # usermod -a -G sudo $NewUser # Add to sudo group
 passwd $NewUser
