@@ -1,13 +1,18 @@
 #!/bin/bash
 
-echo "Usage: setup.sh [VERSION]"
-echo "Example: setup.sh 10"
+echo "Usage: setup.sh [VERSION(default to 10)]"
+echo "Example: setup.sh 12"
 
 if [ v$1 != v ]
 then
-  export nodeVersion=$1
+  nodeVersion=$1
 else
-  export nodeVersion=10
+  read -p "Enter node version : " nodeVersion
+  if [ ! $nodeVersion ]
+  then
+    echo Use default node version 10
+    nodeVersion=10
+  fi
 fi
 
 sudo apt update

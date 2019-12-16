@@ -5,13 +5,19 @@ echo "Example: setup.sh 4.2"
 
 if [ v$1 != v ]
 then
-  export Version=$1
+  mongoVersion=$1
 else
-  export Version=4.2
+  read -p "Enter mongo version (leave blank for default 4.2) : " mongoVersion
+  if [ ! $mongoVersion ]
+  then
+    echo Use default mongo version 4.2
+    mongoVersion=4.2
+  fi
 fi
 
-curl https://www.mongodb.org/static/pgp/server-$Version.asc | sudo apt-key add -
-echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$Version main" | sudo tee /etc/apt/sources.list.d/mongodb-org-$Version.list
+
+curl https://www.mongodb.org/static/pgp/server-$mongoVersion.asc | sudo apt-key add -
+echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/$mongoVersion main" | sudo tee /etc/apt/sources.list.d/mongodb-org-$mongoVersion.list
 sudo apt update
 sudo apt install mongodb-org -y
 echo "Enable as system service..."
