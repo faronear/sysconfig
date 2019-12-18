@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "Usage: setup.sh [VERSION(default to 10)]"
+echo "Usage: setup.sh [nodeVersion]"
 echo "Example: setup.sh 12"
 
 if [ v$1 != v ]
 then
   nodeVersion=$1
 else
-  read -p "Enter node version : " nodeVersion
+  read -p "Enter node version (leave blank for default 10) >> " nodeVersion
   if [ ! $nodeVersion ]
   then
     echo Use default node version 10

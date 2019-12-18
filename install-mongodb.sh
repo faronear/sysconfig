@@ -7,7 +7,7 @@ if [ v$1 != v ]
 then
   mongoVersion=$1
 else
-  read -p "Enter mongo version (leave blank for default 4.2) : " mongoVersion
+  read -p "Enter mongo version (leave blank for default 4.2) >> " mongoVersion
   if [ ! $mongoVersion ]
   then
     echo Use default mongo version 4.2

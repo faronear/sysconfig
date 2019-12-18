@@ -1,14 +1,13 @@
 #!/bin/bash
 
 echo "Usage: setup.sh [Source-Path-To-Config-Files]"
-echo "         (default to /faronear/lib/sysconfig)"
 echo "---------------------------------------------"
 
 if [ $1 ]
 then
   SourcePath=$1
 else
-  read -p "Enter config source path : " SourcePath
+  read -p "Enter config source path (leave blank for /faronear/lib/sysconfig) >> " SourcePath
   if [ ! $SourcePath ]
   then
     echo Use default source path: /faronear/lib/sysconfig

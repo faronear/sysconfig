@@ -4,7 +4,7 @@ if [ $1 ]
 then
   REMOTEHOST=$1
 else
-  read -p "Enter user@remotehost " REMOTEHOST
+  read -p "Enter user@remotehost >> " REMOTEHOST
 fi
 
 scp ~/.ssh/id_rsa.pub $REMOTEHOST:~/tmp.pub
