@@ -47,6 +47,7 @@ then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
   alias lll='ls -lGa' # show .xxx and . and ..
+  export HOMEBREW_NO_AUTO_UPDATE=true
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -lA --color=auto'
