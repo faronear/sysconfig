@@ -5,6 +5,7 @@ git clone https://github.com/teddysun/lamp.git
 cd lamp
 chmod 755 *.sh
 
+echo "Don't select php 7.2 or above, it fails due to lacking of freetype-config. Please use php 7.1"
 read -p "Enter root password of MySQL Server >> " DBPWD
 
-./lamp.sh --apache_option 1 --db_option 3 --php_option 4 --db_manage_modules --db_root_pwd $DBPWD phpmyadmin --kodexplorer_option 1
+screen ./lamp.sh --apache_option 1 --db_option 3 --php_option 3 --db_root_pwd $DBPWD --db_manage_modules phpmyadmin --kodexplorer_option 1
