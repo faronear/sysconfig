@@ -5,7 +5,12 @@ if [ v$1 != v ]
 then
   NewUser=$1
 else
-  read -p "Enter new user name >> " NewUser
+  read -p "Enter new user name (leave blank for default 'adot')>> " NewUser
+  if [ ! $NewUser ]
+  then
+    echo Use default new user: adot
+    NewUser=adot
+  fi
 fi
 
 echo "<<< Add a new user $NewUser"

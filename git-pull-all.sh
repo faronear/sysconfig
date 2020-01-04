@@ -4,11 +4,11 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  read -p "Enter path-to-faronear >> " FONPATH
+  read -p "Enter path-to-faronear (leave blank for default /faronear) >> " FONPATH
   if [ ! $FONPATH ]
   then
     echo Use default path: /faronear
-    SourcePath=/faronear
+    FONPATH=/faronear
   fi
 fi
 
