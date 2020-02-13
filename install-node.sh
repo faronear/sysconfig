@@ -7,11 +7,11 @@ if [ v$1 != v ]
 then
   nodeVersion=$1
 else
-  read -p "Enter node version (leave blank for default 10) >> " nodeVersion
+  read -p "Enter node version (leave blank for default 12) >> " nodeVersion
   if [ ! $nodeVersion ]
   then
-    echo Use default node version 10
-    nodeVersion=10
+    echo Use default node version 12
+    nodeVersion=12
   fi
 fi
 

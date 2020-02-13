@@ -62,6 +62,10 @@ echo "<<< Disallow root login: #PermitRootLogin yes"
 sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
 service sshd restart
 
+#echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
+#sed -i "s/^#autologin-user=$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
+#sed -i "s/^#autologin-user-timeout=0$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+
 echo "<<< Configure autostart"
 if [ -f /etc/rc.local ]
 then
