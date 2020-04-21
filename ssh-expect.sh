@@ -13,6 +13,6 @@ expect {
   "Password:"
   {send "[lindex $argv 3]\n"}
   "密码："
-  {send "[lindex $argv 3]\n"}
+  {send "[lindex $argv 3]\ncd /faronear\nll"}
 }
 interact
