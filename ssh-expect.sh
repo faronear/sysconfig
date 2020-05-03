@@ -1,3 +1,4 @@
+#!/usr/bin/expect
 
 ## Usage: expect this.sh [hostname] [port] [username] [password]
 
@@ -7,12 +8,12 @@ expect {
   "(yes/no)?"
   {send "yes\n";exp_continue}
   "password:"
-  {send "[lindex $argv 3]\n"}
+  {send "[lindex $argv 3]\n";exp_continue}
   ":~]"
   {send "su\n";exp_continue}
   "Password:"
   {send "[lindex $argv 3]\n"}
   "密码："
-  {send "[lindex $argv 3]\ncd /faronear\nll"}
+  {send "[lindex $argv 3]\ncd /faronear\n"}
 }
 interact
