@@ -79,7 +79,7 @@ touch /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
 echo '>>> Autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
 
-echo "<<< Configure locales: install all-locales, default to zh-CN.UTF-8"
+echo "<<< Configure locales: install all-locales and set default to none."
 dpkg-reconfigure locales
 
 echo "<<< Debian System Setup Completed >>>"

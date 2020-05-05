@@ -12,8 +12,8 @@ expect {
   ":~]"
   {send "su\n";exp_continue}
   "Password:"
-  {send "[lindex $argv 3]\n"}
-  "密码："
+#  {send "[lindex $argv 3]\ncd /faronear\n"}
+#  "密码："
   {send "[lindex $argv 3]\ncd /faronear\n"}
 }
 interact
