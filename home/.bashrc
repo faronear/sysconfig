@@ -42,12 +42,13 @@ alias cvs='cvs -z9'
 alias ps='ps -elf'
 
 # Always list long directory and time.
-if uname | grep 'Darwin';
+if  [[ "$(uname)" = "Darwin" ]];
 then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
   alias lll='ls -lGa' # show .xxx and . and ..
   export HOMEBREW_NO_AUTO_UPDATE=true
+  export BASH_SILENCE_DEPRECATION_WARNING=1
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -lA --color=auto'

@@ -7,11 +7,11 @@ if [ $1 ]
 then
   SourcePath=$1
 else
-  read -p "Enter config source path (leave blank for /faronear/lib/sysconfig) >> " SourcePath
+  read -p "Enter config source path (leave blank for /faronear/lib/sysconfig/home) >> " SourcePath
   if [ ! $SourcePath ]
   then
-    echo Use default source path: /faronear/lib/sysconfig
-    SourcePath=/faronear/lib/sysconfig
+    echo Use default source path: /faronear/lib/sysconfig/home
+    SourcePath=/faronear/lib/sysconfig/home
   fi
 fi
 
