@@ -12,5 +12,7 @@ rm -rf /usr/local/SSR-Bash-Python
 rm -rf /usr/local/shadowsocksr
 rm -rf /usr/local/shadowsocksr.zip
 rm -rf /usr/local/bin/ssr
-rm -rf ./ssr.zip
-rm -rf ./SSR-Bash-Python-The-Final
+
+rm -rf /faronear/ssr.zip
+rm -rf /faronear/SSR-Bash-Python-The-Final
+echo SSR is removed.

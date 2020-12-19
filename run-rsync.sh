@@ -12,4 +12,4 @@ else
   read -p "Enter user@remotehost:path >> " REMOTEPATH
 fi
 
-echo rsync -rvz -e ssh -p 22000 --progress $LOCALPATH $REMOTEHOST
+rsync -rvz -e ssh -p 22000 --progress $LOCALPATH $REMOTEHOST
