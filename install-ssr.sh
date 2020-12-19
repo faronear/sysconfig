@@ -1,5 +1,7 @@
 apt update && apt install -y zip
 cd /faronear/
+mkdir bin
+cd bin
 wget https://www.gigsgigscloud.com/cn/downloads/ssr.zip --no-check-certificate
 unzip ssr.zip
 cd SSR*
