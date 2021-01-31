@@ -9,7 +9,7 @@ if [ $2 ]
 then
   REMOTEPATH=$2
 else
-  read -p "Enter user@remotehost:path >> " REMOTEPATH
+  read -p "Enter remote path (user@remotehost:/root/to/path/) >> " REMOTEPATH
 fi
 
 rsync -rvz -e ssh -p 22000 --progress $LOCALPATH $REMOTEHOST
