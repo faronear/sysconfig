@@ -4,9 +4,6 @@ read -p "Enter old hook path: >> " OLDPATH
 read -p "Enter new hook path: >> " NEWPATH
 read -p "Enter repository root path: >> " REPOROOT
 
-echo '$REPOROOT'
-echo "$REPOROOT"
-
 sed -i "s:$OLDPATH:$NEWPATH:g" `grep "$OLDPATH" -rl $REPOROOT/*/*/hooks/`
 
 echo "Completed replacing $OLDPATH to $NEWPATH recursively in folder $REPOROOT"
