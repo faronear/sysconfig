@@ -17,13 +17,14 @@ fi
 
 if [ $nodeVersion == 'nvm' ]
 then
-  echo "######## 安装 nvm ############################"
+  echo "######## Installing nvm ############################"
 else
   sudo apt update
+  echo "######## Installing C++ build tools for Linux ########"
   sudo apt install curl gcc g++ make -y
 
-  echo "######## 安装 node v$nodeVersion ##################"
-  echo https://deb.nodesource.com/setup_$nodeVersion.x
+  echo "######## Installing node v$nodeVersion ########"
+  echo From https://deb.nodesource.com/setup_$nodeVersion.x
   curl -sL https://deb.nodesource.com/setup_$nodeVersion.x | sudo bash - && sudo apt install nodejs -y
-  echo "######## node v$nodeVersion 安装完毕！##################"
+  echo "######## node v$nodeVersion installed completely! ##################"
 fi
