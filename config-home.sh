@@ -19,7 +19,7 @@ if [ ! -d $SourcePath ]
 then
   echo "!!! Not existing $SourcePath, please try again"
 else
-  echo "Config home from $SourcePath"
+  echo "Copy home scripts from $SourcePath"
 
   echo "---------------------------------------------"
   if [ -e ~/.emacs ]

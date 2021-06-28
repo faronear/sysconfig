@@ -1,5 +1,7 @@
-echo "Usage: setup.sh [NewUser]"
-echo "Example: setup.sh alice"
+#!/bin/bash
+
+echo "Usage: this.sh [NewUser]"
+echo "Example: this.sh alice"
 
 if [ v$1 != v ]
 then
