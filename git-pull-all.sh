@@ -20,7 +20,7 @@ do
       cd $org;
       for repo in `ls .`
       do
-        if [ -d $repo ]
+        if [ -d $repo/.git ]
           then
             echo '>>>>>> git pull' $org/$repo
             cd $repo
