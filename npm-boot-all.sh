@@ -4,7 +4,7 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  read -p "Enter path to git pull (leave blank for default ./) >> " FONPATH
+  read -p "Enter path to npm boot (leave blank for default ./) >> " FONPATH
   if [ ! $FONPATH ]
   then
     echo Use default path: ./
@@ -20,11 +20,11 @@ do
       cd $org;
       for repo in `ls .`
       do
-        if [ -d $repo/.git ]
+        if [ -d $repo/package.json ]
           then
-            echo '>>>>>> git pulling: ' $org/$repo
+            echo '>>>>>> npm booting: ' $org/$repo
             cd $repo
-            git pull
+            npm run boot
             cd ..
         fi
       done

@@ -3,7 +3,7 @@
 @ IF "%1" == "" echo Using current folder as root folder
 
 pushd %1
-for /d %%d in (*) do pushd %%d & (for /d %%d in (*) do if exist %%d/.git (pushd %%d & echo [ Git Pulling %%d ... ] & git pull & popd)) & popd
+for /d %%d in (*) do pushd %%d & (for /d %%d in (*) do if exist %%d/.git (pushd %%d & echo --- git pulling: %%d ...  & git pull & popd)) & popd
 popd
 pause
 @GOTO END
