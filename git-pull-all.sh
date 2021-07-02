@@ -4,13 +4,14 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  read -p "Enter path to git pull (leave blank for default ./) >> " FONPATH
+  read -p "Enter path to git pull (leave blank for default ../..) >> " FONPATH
   if [ ! $FONPATH ]
   then
-    echo Use default path: ./
-    FONPATH=./
+    FONPATH=../..
   fi
 fi
+
+echo [ Goto $FONPATH as base directory ]
 
 pushd $FONPATH
 for org in `ls .`

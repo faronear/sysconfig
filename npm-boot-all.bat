@@ -1,8 +1,10 @@
 @echo off
 
-@ IF "%1" == "" echo Using current folder as root folder
+@ IF "%1" == "" (set BASEDIR=..\..) else (set BASEDIR=%1)
+echo [ Goto %BASEDIR% as base directory ]
 
-pushd %1
+pushd %BASEDIR%
+echo [ %CD% ]
 for /d %%d in (*) do pushd %%d & (for /d %%d in (*) do if exist %%d/package.json (pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd)) & popd
 popd
 pause

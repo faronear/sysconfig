@@ -34,7 +34,7 @@ fi
 echo "<<< Configure home"
 if [ ! -f "~/.bashrc.backup" ]
 then
-  . /faronear/lib/sysconfig/config-home.sh /faronear/lib/sysconfig
+  . /faronear/lib/sysconfig/config-home.sh /faronear/lib/sysconfig/home
 fi
 
 echo "<<< Change root password"
