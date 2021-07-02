@@ -10,10 +10,10 @@ else
     FONPATH=../..
   fi
 fi
-
-echo [ Goto $FONPATH as base directory ]
+echo ">> Goto $FONPATH as base directory"
 
 pushd $FONPATH
+echo ">> `pwd`"
 for org in `ls .`
 do 
   if [ -d $org ]
