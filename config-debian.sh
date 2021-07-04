@@ -55,7 +55,6 @@ sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash/g" /etc/passwd
 
 echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
-# emacs /etc/sudoers
 sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
 chmod o-w /etc/sudoers
 
