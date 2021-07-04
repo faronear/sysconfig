@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "in [RepoRoot]/*/*/hooks/post-receive & pre-receive, gogs is hard-coded with full path such as /faronear/git/gogs, you need to replace it if the path is changed."
 read -p "Enter old hook path: >> " OLDPATH
 read -p "Enter new hook path: >> " NEWPATH
 read -p "Enter repository root path: >> " REPOROOT

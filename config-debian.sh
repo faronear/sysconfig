@@ -49,14 +49,14 @@ chown $NewUser:$NewUser /home/$NewUser
 chmod 700 /home/$NewUser
 # emacs /etc/passwd
 # Debian 10 default to /bin/sh
-sed -i "s/\/home\/$NewUser:\/bin\/sh$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
+sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
-sed -i "s/\/home\/$NewUser:$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
+sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash/g" /etc/passwd
 
 echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 chmod o+w /etc/sudoers
 # emacs /etc/sudoers
-sed -i "s/%sudo\s\+ALL=(ALL:ALL)\sALL/%sudo\tALL=(ALL:ALL) NOPASSWD:ALL/g" /etc/sudoers
+sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
 chmod o-w /etc/sudoers
 
 echo "<<< Disallow root login: #PermitRootLogin yes"
