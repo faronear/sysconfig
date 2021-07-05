@@ -10,10 +10,4 @@ cd /faronear/git/gogs # 如果在 /faronear/git 中运行 ./gogs/gogs，导致�
 sudo pm2 start -x './gogs' --name git.gogs -- web
 cd /faronear/git
 
-echo '>>>> Starting http2https in pm2 ...'
-cd /faronear/git/git.faronear.org
-# sudo it so that pm2 list shows it as root
-sudo pm2 start ./node_modules/sol.webserver/server.js --name git.http2https
-cd /faronear/git
-
 echo '>>>> Started gogs.'
