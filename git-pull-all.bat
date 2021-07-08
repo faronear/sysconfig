@@ -1,6 +1,6 @@
 @echo off 
 
-@ IF "%1" == "" (set BASEDIR=..\..) else (set BASEDIR=%1)
+@ IF "%1" == "" (if exist D:\faronear (set BASEDIR=D:\faronear) else (set BASEDIR=..\..)) else (set BASEDIR=%1)
 echo [ Goto %BASEDIR% as base directory ]
 
 pushd %BASEDIR%
