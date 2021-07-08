@@ -11,10 +11,10 @@ else
   fi
 fi
 
-echo ">> Goto %FONPATH as base directory"
+echo ">> Goto $FONPATH as base directory"
 
 pushd $FONPATH
-echo ">> `pwd`"
+echo ">> Current path = `pwd`"
 for org in `ls .`
 do 
   if [ -d $org ]
@@ -22,7 +22,7 @@ do
       cd $org;
       for repo in `ls .`
       do
-        if [ -d $repo/package.json ]
+        if [ -f $repo/package.json ]
           then
             echo '>>>>>> npm booting: ' $org/$repo
             cd $repo
