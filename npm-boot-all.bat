@@ -1,17 +1,17 @@
 @echo off
 
 @ IF "%1" == "" (if exist D:\faronear (set BASEDIR=D:\faronear) else (set BASEDIR=..\..)) else (set BASEDIR=%1)
-echo [ Goto %BASEDIR% as base directory ]
+
+if not exist %BASEDIR% (
+  echo *** [%BASEDIR%] not exist! Exit now. ***
+  @ GOTO END
+)
 
 pushd %BASEDIR%
-echo [ %CD% ]
+echo *** Current path = [%CD%] ***
 for /d %%d in (*) do pushd %%d & (for /d %%d in (*) do if exist %%d/package.json (pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd)) & popd
 popd
-pause
-@GOTO END
 
-:EMPTY
-@ echo Empty target! Please assign a target path.
-@ GOTO END
+pause
 
 :END
