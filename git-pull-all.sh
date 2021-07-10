@@ -4,10 +4,20 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  read -p "Enter faronear path to git pull (leave blank for default ../..) >> " FONPATH
+  read -p "Enter faronear path to git pull (leave blank for default /faronear or ~/faronear or ../..) >> " FONPATH
   if [ ! $FONPATH ]
   then
-    FONPATH=../..
+    if [ -d /faronear ]
+    then 
+      FONPATH=/faronear
+    else
+      if [ -d ~/faronear ]
+      then
+        FONPATH=~/faronear
+      else
+        FONPATH=../..
+      fi
+    fi
   fi
 fi
 
