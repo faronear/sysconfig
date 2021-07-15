@@ -1,5 +1,7 @@
 @echo off
 
+echo *** Testing Path [%1]  [D:\faroenar]  [C:\faroenar]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..] 
+
 @ if not "%1" == "" (
   set BASEDIR=%1
 ) else (if exist D:\faronear (
