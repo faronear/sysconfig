@@ -1,6 +1,19 @@
 @echo off 
 
-@ IF "%1" == "" (if exist D:\faronear (set BASEDIR=D:\faronear) else (set BASEDIR=..\..)) else (set BASEDIR=%1)
+@ if not "%1" == "" (
+  set BASEDIR=%1
+) else (if exist D:\faronear (
+  set BASEDIR=D:\faronear
+) else (if exist C:\faronear (
+  set BASEDIR=C:\faronear
+) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
+  set BASEDIR=%HOMEDRIVE%%HOMEPATH%\faronear
+) else (
+  set BASEDIR=..\..
+))))
+
+echo basedir = %BASEDIR%
+@GOTO END
 
 if not exist %BASEDIR% (
   echo *** [%BASEDIR%] not exist! Exit now. ***
