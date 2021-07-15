@@ -12,9 +12,6 @@
   set BASEDIR=..\..
 ))))
 
-echo basedir = %BASEDIR%
-@GOTO END
-
 if not exist %BASEDIR% (
   echo *** [%BASEDIR%] not exist! Exit now. ***
   @ GOTO END
