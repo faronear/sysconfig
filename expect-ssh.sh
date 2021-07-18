@@ -1,19 +1,19 @@
 #!/usr/bin/expect
 
-# Usage: expect this.sh [hostname] [port] [username] [password]
+# Usage: expect this.sh [hostname] [username] [password]
 
 set timeout 30
-spawn ssh -p [lindex $argv 1] [lindex $argv 2]@[lindex $argv 0]
+spawn ssh [lindex $argv 1]@[lindex $argv 0] -p 22
 expect {
   "(yes/no)?"
   {send "yes\n";exp_continue}
   "password:"
-  {send "[lindex $argv 3]\n";exp_continue}
+  {send "[lindex $argv 2]\n";exp_continue}
   ":~"
   {send "su\n";exp_continue}
   "Password:"
 #  {send "[lindex $argv 3]\ncd /faronear\n"}
 #  "密码："
-  {send "[lindex $argv 3]\ncd /faronear\n"}
+  {send "[lindex $argv 2]\ncd /faronear\n"}
 }
 interact

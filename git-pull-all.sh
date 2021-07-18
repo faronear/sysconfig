@@ -4,7 +4,8 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  read -p "Enter faronear path to git pull (leave blank for default [/faronear] or [~/faronear] or [../..]) >> " FONPATH
+  echo Leave blank for default [/faronear], [~/faronear], [../..],
+  read -p "or enter faronear path to git pull >> " FONPATH
   if [ ! $FONPATH ]
   then
     if [ -d /faronear ]
