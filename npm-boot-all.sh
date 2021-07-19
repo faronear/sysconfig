@@ -5,7 +5,7 @@ then
   FONPATH=$1
 else
   echo Leave blank for default [/faronear], [~/faronear], [../..],
-  read -p "or enter faronear path to git pull >> " FONPATH
+  read -p "or enter faronear path to npm run boot >> " FONPATH
   if [ ! $FONPATH ]
   then
     if [ -d /faronear ]
