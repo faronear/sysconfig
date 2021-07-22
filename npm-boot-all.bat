@@ -21,7 +21,22 @@ if not exist %BASEDIR% (
 
 pushd %BASEDIR%
 echo *** Current path = [%CD%] ***
-for /d %%d in (*) do pushd %%d & (for /d %%d in (*) do if exist %%d/package.json (pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd)) & popd
+
+@REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
+
+for /d %%d in (*) do ( 
+  pushd %%d 
+  for /d %%d in (*) do (
+    if exist %%d/package.json (
+      pushd %%d 
+      echo --- npm booting: %%d ... 
+      npm run boot
+      popd 
+    ) 
+  ) 
+  popd 
+)
+
 popd
 
 pause

@@ -37,7 +37,7 @@ do
     cd $org;
     for repo in `ls .`
     do
-      if [ -f $repo/package.json ]
+      if ( [ -f $repo/package.json ] && grep -q '"boot"' $repo/package.json )
         then
           echo '>>>>>> npm booting: ' $org/$repo
           cd $repo
@@ -49,16 +49,3 @@ do
   fi
 done
 popd
-
-get_char()
-{
-  SAVEDSTTY=`stty -g`
-  stty -echo
-  stty cbreak
-  dd if=/dev/tty bs=1 count=1 2> /dev/null
-  stty -raw
-  stty echo
-  stty $SAVEDSTTY
-}
-echo "Press any key to exit!"
-char=`get_char`

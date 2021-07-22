@@ -27,10 +27,10 @@ echo *** Current path = [%CD%] ***
 for /d %%d in (*) do (
   pushd %%d
   for /d %%d in (*) do (
-    if exist %%d/.git (
+    if exist %%d/node_modules (
       pushd %%d
-      echo ---  git pulling: %%d ...
-      git pull
+      echo Deleting %%d/node_modules ...
+      rd /s /q node_modules
       popd
     )
   )
