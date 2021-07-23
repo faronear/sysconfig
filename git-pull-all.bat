@@ -40,6 +40,5 @@ for /d %%d in (*) do (
 popd
 
 pause
-@GOTO END
 
 :END
