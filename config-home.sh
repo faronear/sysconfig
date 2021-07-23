@@ -68,7 +68,7 @@ else
 
   echo "---------------------------------------------"
   echo Executing ~/.bashrc
-  . ~/.bashrc
+  source ~/.bashrc
 
   echo "^_^ Home Setting Complete"
 fi
