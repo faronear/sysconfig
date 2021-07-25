@@ -34,7 +34,7 @@ fi
 echo "<<< Configure home"
 if [ ! -f "~/.bashrc.backup" ]
 then
-  . /faronear/lib/sysconfig/config-home.sh /faronear/lib/sysconfig/home
+  source /faronear/lib/sysconfig/config-home.sh /faronear/lib/sysconfig/home
 fi
 
 echo "<<< Change root password"
@@ -42,7 +42,6 @@ passwd
 
 echo "<<< Add a new user $NewUser"
 useradd $NewUser
-# usermod -a -G sudo $NewUser # Add to sudo group
 passwd $NewUser
 mkdir /home/$NewUser
 chown $NewUser:$NewUser /home/$NewUser
@@ -53,10 +52,16 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash/g" /etc/passwd
 
-echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
-chmod o+w /etc/sudoers
-sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
-chmod o-w /etc/sudoers
+echo "<<< Allow the new user $NewUser to sudo without password"
+#echo "Option 1: Add the new user to %sudo group in /etc/sudoers file"
+#usermod -a -G sudo $NewUser # Add to sudo group
+#echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
+#chmod o+w /etc/sudoers
+#sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
+#chmod o-w /etc/sudoers
+echo "Option 2: Add a file for the new user in /etc/sudoers.d/ folder"
+echo 'adot ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/$NewUser
+chmod a-w /etc/sudoers.d/$NewUser
 
 echo "<<< Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
