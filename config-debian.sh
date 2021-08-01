@@ -60,6 +60,9 @@ echo "<<< Allow the new user $NewUser to sudo without password"
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
 #chmod o-w /etc/sudoers
 echo "Option 2: Add a file for the new user in /etc/sudoers.d/ folder"
+chmod o+w /etc/sudoers
+sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d" /etc/sudoers
+chmod o-w /etc/sudoers
 echo 'adot ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/$NewUser
 chmod a-w /etc/sudoers.d/$NewUser
 
