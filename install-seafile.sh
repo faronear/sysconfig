@@ -13,6 +13,8 @@ sudo tar -xzf seafile-server_*
 cd seafile-server-*
 sudo ./setup-seafile.sh
 
+ln -s seafile-server-8.0.6 sea
+
 sudo ./seafile.sh start
 
 # changed "127.0.0.1:8000" to "0.0.0.0:8000", otherwise it can only be accessed on the localhost.
