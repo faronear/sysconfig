@@ -1,6 +1,6 @@
 @echo off
 
-echo *** Testing Path [%1]  [D:\faroenar]  [C:\faroenar]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..] 
+echo *** Testing Path [%1]  [D:\faronear]  [C:\faronear]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..]
 
 @ if not "%1" == "" (
   set BASEDIR=%1
@@ -24,21 +24,23 @@ echo *** Current path = [%CD%] ***
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
 
-for /d %%d in (*) do ( 
-  pushd %%d 
-  for /d %%d in (*) do (
-    if exist %%d/package.json (
-      pushd %%d 
-      echo --- npm booting: %%d ... 
-      npm run boot
-      popd 
+for /d %%o in (*) do (
+  if not %%o == .vscode (
+    pushd %%o 
+    for /d %%g in (*) do (
+      if exist %%g/package.json (
+        pushd %%g 
+        echo --- npm booting: %%g ... 
+        npm run boot
+        popd 
+      ) 
     ) 
-  ) 
-  popd 
+    popd
+  )
 )
 
 popd
 
-pause
-
 :END
+
+pause
