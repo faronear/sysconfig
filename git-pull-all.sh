@@ -38,11 +38,11 @@ do
     for repo in `ls .`
     do
       if [ -d $repo/.git ]
-        then
-          echo "--- git pulling: $org/$repo"
-          cd $repo
-          git pull
-          cd ..
+      then
+        echo "--- git pulling: $org/$repo"
+        cd $repo
+        git pull
+        cd ..
       fi
     done
     cd ..;

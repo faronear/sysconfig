@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 
 ## Usage: expect this.sh [user@hostname] [filepath] [password]
-## Example: expect this.sh adot@server.log.yuanjin.net /faronear/tac.log/log.server.torm 密码
+## Example: expect this.sh adot@m1.bittic.net /faronear/tic/star.core.torm 密码
 
 set timeout 30
 spawn ssh [lindex $argv 0]

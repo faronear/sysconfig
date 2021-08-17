@@ -38,11 +38,11 @@ do
     for repo in `ls .`
     do
       if ( [ -f $repo/package.json ] && grep -q '"boot"' $repo/package.json )
-        then
-          echo '>>>>>> npm booting: ' $org/$repo
-          cd $repo
-          npm run boot
-          cd ..
+      then
+        echo '>>>>>> npm booting: ' $org/$repo
+        cd $repo
+        npm run boot
+        cd ..
       fi
     done
     cd ..;
