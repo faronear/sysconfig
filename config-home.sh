@@ -7,11 +7,21 @@ if [ $1 ]
 then
   SourcePath=$1
 else
-  read -p "Enter config source path (leave blank for /faronear/lib/sysconfig/home) >> " SourcePath
+  read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/home) >> " SourcePath
   if [ ! $SourcePath ]
   then
-    echo "Use default source path: /faronear/lib/sysconfig/home"
-    SourcePath=/faronear/lib/sysconfig/home
+    echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/home"
+    if [ -d /faronear/fon/sysconfig/home ]
+    then 
+      SourcePath=/faronear/fon/sysconfig/home
+    else
+      if [ -d /Users/luk.lu/faronear/fon/sysconfig/home ]
+      then
+        SourcePath=/Users/luk.lu/faronear/fon/sysconfig/home
+      else
+        SourcePath=`pwd`/home
+      fi
+    fi
   fi
 fi
 
