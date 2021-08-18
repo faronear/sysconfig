@@ -26,17 +26,19 @@ echo *** Current path = [%CD%] ***
 
 for /d %%o in (*) do (
   if not %%o == .vscode (
-    echo %%o | findstr "@cloud" && (
-      echo   omitting [%BASEDIR%\%%o]
+    echo %%o | findstr "@cloud" >NUL && (
+@REM      echo   omitting [%BASEDIR%\%%o]
     ) || (
       echo   entering [%BASEDIR%\%%o]
       pushd %%o 
       for /d %%g in (*) do (
-        if exist %%g/package.json (
-          pushd %%g 
-          echo     npm booting [%BASEDIR%\%%o\%%g] 
-          npm run boot
-          popd 
+        if exist %%g\package.json (
+          findstr "\"boot\"" %%g\package.json >NUL && (
+            pushd %%g 
+            echo     npm booting [%BASEDIR%\%%o\%%g] 
+            npm run boot
+            popd
+          )
         ) 
       ) 
       popd

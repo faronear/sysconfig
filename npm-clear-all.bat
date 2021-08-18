@@ -24,12 +24,12 @@ echo *** Current path = [%CD%] ***
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
-for /d %%d in (*) do (
-  pushd %%d
-  for /d %%d in (*) do (
-    if exist %%d/node_modules (
-      pushd %%d
-      echo Deleting %%d/node_modules ...
+for /d %%o in (*) do (
+  pushd %%o
+  for /d %%g in (*) do (
+    if exist %%g\node_modules (
+      pushd %%g
+      echo Deleting [%%g\node_modules]
       rd /s /q node_modules
       popd
     )
