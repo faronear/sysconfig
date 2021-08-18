@@ -30,7 +30,7 @@ fi
 
 pushd $FONPATH
 echo "*** Current path = [`pwd`] ***"
-for org in `ls .`
+for org in `ls | grep -v @cloud`
 do 
   if [ -d $org ]
   then
