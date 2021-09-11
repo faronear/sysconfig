@@ -45,3 +45,11 @@ then
     echo "File not exsit: $ExcludesFile"
   fi
 fi
+
+echo "---------------------------------------------"
+read -p "Set default branch since git 2.28 to master or main? (leave blank for no change) >> " DefaultBranch
+if [ $DefaultBranch ]
+then
+  echo "git config --global init.defaultbranch $DefaultBranch"
+  git config --global init.defaultbranch $DefaultBranch
+fi
