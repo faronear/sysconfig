@@ -29,7 +29,7 @@ for /d %%o in (*) do (
   if not %%o == .vscode (
     @REM 每次 git pull 都会造成 .git 目录下某些文件变化，导致云端不断自动同步。因此过滤掉 *@cloud 的目录不做更新。
     echo %%o | findstr "@cloud" >NUL && (
-@REM      echo   omitting [%BASEDIR%\%%o]
+      echo   !!! omitting [%BASEDIR%\%%o]
     ) || (
       echo   entering [%BASEDIR%\%%o]
       pushd %%o

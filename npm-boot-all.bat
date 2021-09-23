@@ -27,7 +27,7 @@ echo *** Current path = [%CD%] ***
 for /d %%o in (*) do (
   if not %%o == .vscode (
     echo %%o | findstr "@cloud" >NUL && (
-@REM      echo   omitting [%BASEDIR%\%%o]
+      echo   !!! omitting [%BASEDIR%\%%o]
     ) || (
       echo   entering [%BASEDIR%\%%o]
       pushd %%o 
