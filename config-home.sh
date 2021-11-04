@@ -30,7 +30,6 @@ then
 else
   HomePath=~
 fi
-echo My Home Path ========= $HomePath
 
 if [ ! -d $SourcePath ]
 then
@@ -47,10 +46,10 @@ else
       mv $homescript $homescript.backup
     fi
     ln -s $SourcePath/$homescript $HomePath
-    echo Linked $HomePath/$homescript to $SourcePath/$homescript
+    echo $HomePath/$homescript == $SourcePath/$homescript
   done
   echo "---------------------------------------------"
   source ~/.bashrc
   popd
-  echo "^_^ Home Setting Complete"
+  echo "Home Setting $HomePath Complete"
 fi
