@@ -31,6 +31,7 @@ then
 else
   HomePath=~
 fi
+echo My Home Path ========= $HomePath
 
 if [ ! -d $SourcePath ]
 then
@@ -39,21 +40,18 @@ else
   echo "Copy home scripts from $SourcePath"
   pushd $HomePath
   echo "---------------------------------------------"
-
-  for homescript in '.emacs .emacs.lisp .bashrc .bash_profile .gitignore'
+  homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
+  for homescript in $homescriptlist
   do
     if [ -f $homescript ]
     then
       mv $homescript $homescript.backup
     fi
-    rm -fr $homescript
     ln -s $SourcePath/$homescript $HomePath
     echo Linked $HomePath/$homescript to $SourcePath/$homescript
   done
-
   echo "---------------------------------------------"
-  echo Executing ~/.bashrc
   source ~/.bashrc
-
+  popd
   echo "^_^ Home Setting Complete"
 fi
