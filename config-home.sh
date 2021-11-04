@@ -42,7 +42,7 @@ else
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
   do
-    if [ -f $homescript ]
+    if [ -e $homescript ] # .emacs.lisp is a folder! Therefore use -e instead of -f
     then
       mv $homescript $homescript.backup
     fi
