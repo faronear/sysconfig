@@ -1,12 +1,11 @@
 #!/bin/bash
 
-echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
-echo "---------------------------------------------"
-
 if [ $1 ]
 then
   SourcePath=$1
 else
+  echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
+  echo "---------------------------------------------"
   read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/home) >> " SourcePath
   if [ ! $SourcePath ]
   then

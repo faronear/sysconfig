@@ -18,24 +18,29 @@ if [ ! -d "/faronear" ]
 then
   mkdir /faronear
 fi 
+echo
 
 echo "<<< Making dir /faronear/fon"
 if [ ! -d "/faronear/fon" ]
 then 
   mkdir /faronear/fon
 fi
+echo
 
 echo "<<< Git cloning to /faronear/fon/sysconfig"
 if [ ! -d "/faronear/fon/sysconfig" ]
 then
   git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
 fi
+echo
 
 echo "<<< Configure root home"
 source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home
+echo
 
 echo "<<< Change root password"
 passwd
+echo 
 
 echo "<<< Add a new user $NewUser"
 useradd $NewUser
@@ -43,9 +48,11 @@ passwd $NewUser
 mkdir /home/$NewUser
 chown $NewUser:$NewUser /home/$NewUser
 chmod 700 /home/$NewUser
+echo
 
 echo "<<< Configure $NewUser home"
 source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home /home/$NewUser
+echo
 
 # Debian 10 default to /bin/sh
 sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
@@ -53,23 +60,25 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash/g" /etc/passwd
 
 echo "<<< Allow the new user $NewUser to sudo without password"
-#echo "Option 1: Add the new user to %sudo group in /etc/sudoers file"
+#### Option 1: Add the new user to %sudo group in /etc/sudoers file
 #usermod -a -G sudo $NewUser # Add to sudo group
 #echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
 #chmod o+w /etc/sudoers
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
 #chmod o-w /etc/sudoers
-echo "Option 2: Add a file for the new user in /etc/sudoers.d/ folder"
+#### Option 2: Add a file for the new user in /etc/sudoers.d/ folder
 chmod o+w /etc/sudoers
-sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d" /etc/sudoers
+sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers
 chmod o-w /etc/sudoers
 echo 'adot ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/$NewUser
 chmod a-w /etc/sudoers.d/$NewUser
+echo
 
 echo "<<< Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
-sed -i "s/^PermitRootLogin yes/#PermitRootLogin yes/g" /etc/ssh/sshd_config
+sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
 service sshd restart
+echo
 
 #echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
 #sed -i "s/^#autologin-user=$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
@@ -86,10 +95,12 @@ echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 
 echo 'source /faronear/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
 touch /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
-echo '>>> Autostart is set. You can "systemctl start/stop/status rc-local" to manage it.'
+echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
+echo
 
 echo "<<< Configure locales: install all-locales and set default to none."
 dpkg-reconfigure locales
+echo
 
 echo "<<< Debian System Setup Completed >>>"
 
