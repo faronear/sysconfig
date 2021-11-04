@@ -31,11 +31,8 @@ then
   git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
 fi
 
-echo "<<< Configure home"
-if [ ! -f "~/.bashrc.backup" ]
-then
-  source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home
-fi
+echo "<<< Configure root home"
+source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home
 
 echo "<<< Change root password"
 passwd
@@ -46,7 +43,10 @@ passwd $NewUser
 mkdir /home/$NewUser
 chown $NewUser:$NewUser /home/$NewUser
 chmod 700 /home/$NewUser
-# emacs /etc/passwd
+
+echo "<<< Configure $NewUser home"
+source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home /home/$NewUser
+
 # Debian 10 default to /bin/sh
 sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty

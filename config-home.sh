@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Usage: setup.sh [Source-Path-To-Config-Files]"
+echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
 echo "---------------------------------------------"
 
 if [ $1 ]
@@ -25,56 +25,31 @@ else
   fi
 fi
 
+if [ $2 ]
+then
+  HomePath=$2
+else
+  HomePath=~
+fi
+
 if [ ! -d $SourcePath ]
 then
   echo "!!! Not existing $SourcePath, please try again"
 else
   echo "Copy home scripts from $SourcePath"
-
+  pushd $HomePath
   echo "---------------------------------------------"
-  if [ -e ~/.emacs ]
-  then
-    mv ~/.emacs ~/.emacs.backup
-  fi
-  rm -fr ~/.emacs
-  ln -s $SourcePath/.emacs ~/
-  echo Linked ~/.emacs to $SourcePath/.emacs
 
-  echo "---------------------------------------------"
-  if [ -e ~/.emacs.lisp ]
-  then
-    mv ~/.emacs.lisp ~/.emacs.lisp.backup
-  fi
-  rm -fr ~/.emacs.lisp
-  ln -s $SourcePath/.emacs.lisp ~/
-  echo Linked ~/.emacs.lisp to $SourcePath/.emacs.lisp
-
-  echo "---------------------------------------------"
-  if [ -e ~/.bashrc ]
-  then
-    mv ~/.bashrc ~/.bashrc.backup
-  fi
-  rm -fr ~/.bashrc
-  ln -s $SourcePath/.bashrc ~/
-  echo Linked ~/.bashrc to $SourcePath/.bashrc
-
-  echo "---------------------------------------------"
-  if [ -e ~/.bash_profile ]
-  then
-    mv ~/.bash_profile ~/.bash_profile.backup
-  fi
-  rm -fr ~/.bash_profile
-  ln -s $SourcePath/.bash_profile ~/
-  echo Linked ~/.bash_profile to $SourcePath/.bash_profile
-
-  echo "---------------------------------------------"
-  if [ -e ~/.gitignore ]
-  then
-    mv ~/.gitignore ~/.gitignore.backup
-  fi
-  rm -fr ~/.gitignore
-  ln -s $SourcePath/.gitignore ~/
-  echo Linked ~/.gitignore to $SourcePath/.gitignore
+  for homescript in '.emacs .emacs.lisp .bashrc .bash_profile .gitignore'
+  do
+    if [ -f $homescript ]
+    then
+      mv $homescript $homescript.backup
+    fi
+    rm -fr $homescript
+    ln -s $SourcePath/$homescript $HomePath
+    echo Linked $HomePath/$homescript to $SourcePath/$homescript
+  done
 
   echo "---------------------------------------------"
   echo Executing ~/.bashrc
