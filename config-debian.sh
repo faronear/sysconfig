@@ -19,22 +19,22 @@ then
   mkdir /faronear
 fi 
 
-echo "<<< Making dir /faronear/lib"
-if [ ! -d "/faronear/lib" ]
+echo "<<< Making dir /faronear/fon"
+if [ ! -d "/faronear/fon" ]
 then 
-  mkdir /faronear/lib
+  mkdir /faronear/fon
 fi
 
-echo "<<< Git cloning to /faronear/lib/sysconfig"
-if [ ! -d "/faronear/lib/sysconfig" ]
+echo "<<< Git cloning to /faronear/fon/sysconfig"
+if [ ! -d "/faronear/fon/sysconfig" ]
 then
-  git clone https://git.faronear.org/lib/sysconfig /faronear/lib/sysconfig
+  git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
 fi
 
 echo "<<< Configure home"
 if [ ! -f "~/.bashrc.backup" ]
 then
-  source /faronear/lib/sysconfig/config-home.sh /faronear/lib/sysconfig/home
+  source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home
 fi
 
 echo "<<< Change root password"
