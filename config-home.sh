@@ -50,5 +50,5 @@ else
   echo "Linked $SourcePath/* to $HomePath/"
 fi
 
-echo "Applying .$HomePath/.bashrc"
+echo "Applying $HomePath/.bashrc"
 source $HomePath/.bashrc
