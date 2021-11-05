@@ -28,6 +28,7 @@ fi
 echo
 
 echo "<<< Git cloning to /faronear/fon/sysconfig"
+git config --global credential.helper cache
 if [ ! -d "/faronear/fon/sysconfig" ]
 then
   git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
