@@ -35,9 +35,8 @@ if [ ! -d $SourcePath ]
 then
   echo "!!! Not existing $SourcePath, please try again"
 else
-  echo "Copy nixhome scripts from $SourcePath"
+  echo "Linking $SourcePath/* to $HomePath"
   pushd $HomePath
-  echo "---------------------------------------------"
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
   do
@@ -48,10 +47,9 @@ else
     ln -s $SourcePath/$homescript $HomePath
     echo $HomePath/$homescript == $SourcePath/$homescript
   done
-  echo "---------------------------------------------"
   popd
-  echo "Home Setting $HomePath Complete"
+  echo "Linked $SourcePath/* to $HomePath"
 fi
 
-echo "Applying home setting..."
+echo "Applying .$HomePath/.bashrc"
 source $HomePath/.bashrc
