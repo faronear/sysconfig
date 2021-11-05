@@ -10,8 +10,10 @@ else
   NewUser=adot
 fi
 
+echo "<<< Installing basic tools"
 apt update
 apt install -y emacs git curl screen sudo automake
+echo
 
 echo "<<< Making dir /faronear"
 if [ ! -d "/faronear" ]
