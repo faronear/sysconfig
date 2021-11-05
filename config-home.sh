@@ -5,7 +5,6 @@ then
   SourcePath=$1
 else
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
-  echo "---------------------------------------------"
   read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
   then
@@ -45,7 +44,6 @@ else
       mv $homescript $homescript.backup
     fi
     ln -s $SourcePath/$homescript $HomePath
-    echo $HomePath/$homescript == $SourcePath/$homescript
   done
   popd
   echo "Linked $SourcePath/* to $HomePath"
