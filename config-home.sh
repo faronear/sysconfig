@@ -34,19 +34,20 @@ if [ ! -d $SourcePath ]
 then
   echo "!!! Not existing $SourcePath, please try again"
 else
-  echo "Linking $SourcePath/* to $HomePath"
+  echo "Linking $SourcePath/* to $HomePath/"
   pushd $HomePath
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
   do
     if [ -e $homescript ] # .emacs.lisp is a folder! Therefore use -e instead of -f
     then
+      rm -fr $homescript.backup
       mv $homescript $homescript.backup
     fi
     ln -s $SourcePath/$homescript $HomePath
   done
   popd
-  echo "Linked $SourcePath/* to $HomePath"
+  echo "Linked $SourcePath/* to $HomePath/"
 fi
 
 echo "Applying .$HomePath/.bashrc"
