@@ -49,7 +49,9 @@ else
     echo $HomePath/$homescript == $SourcePath/$homescript
   done
   echo "---------------------------------------------"
-  source ~/.bashrc
   popd
   echo "Home Setting $HomePath Complete"
 fi
+
+echo "Applying home setting..."
+source $HomePath/.bashrc
