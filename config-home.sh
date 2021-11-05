@@ -6,19 +6,19 @@ then
 else
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
   echo "---------------------------------------------"
-  read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/home) >> " SourcePath
+  read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
   then
-    echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/home"
-    if [ -d /faronear/fon/sysconfig/home ]
+    echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/nixhome"
+    if [ -d /faronear/fon/sysconfig/nixhome ]
     then 
-      SourcePath=/faronear/fon/sysconfig/home
+      SourcePath=/faronear/fon/sysconfig/nixhome
     else
-      if [ -d /Users/luk.lu/faronear/fon/sysconfig/home ]
+      if [ -d /Users/luk.lu/faronear/fon/sysconfig/nixhome ]
       then
-        SourcePath=/Users/luk.lu/faronear/fon/sysconfig/home
+        SourcePath=/Users/luk.lu/faronear/fon/sysconfig/nixhome
       else
-        SourcePath=`pwd`/home
+        SourcePath=`pwd`/nixhome
       fi
     fi
   fi
@@ -35,7 +35,7 @@ if [ ! -d $SourcePath ]
 then
   echo "!!! Not existing $SourcePath, please try again"
 else
-  echo "Copy home scripts from $SourcePath"
+  echo "Copy nixhome scripts from $SourcePath"
   pushd $HomePath
   echo "---------------------------------------------"
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"

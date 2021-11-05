@@ -35,7 +35,7 @@ fi
 echo
 
 echo "<<< Configure root home"
-source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home
+source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/nixhome
 echo
 
 echo "<<< Change root password"
@@ -51,7 +51,7 @@ chmod 700 /home/$NewUser
 echo
 
 echo "<<< Configure $NewUser home"
-source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/home /home/$NewUser
+source /faronear/fon/sysconfig/config-home.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
 echo
 
 # Debian 10 default to /bin/sh

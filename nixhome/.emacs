@@ -96,10 +96,10 @@
 (setq scroll-conservatively 1)
 
 ;; destop auto-saving:
+(load "desktop")
 (desktop-load-default)
-
-;; desktop auto-reloading when startup:
-; (desktop-read)
+(desktop-read) ; desktop auto-reloading when startup
+(add-hook 'kill-emacs-hook '(lambda()(desktop-save "~/"))) ;当emacs退出时保存 ~/desktop 文件记录状态
 
 ;; set scroll-bar-mode:
 ;(hscroll-global-mode t)
