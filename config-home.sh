@@ -5,7 +5,7 @@ then
   SourcePath=$1
 else
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
-  read -p "Enter config source path (leave blank for [Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
+  read -p "Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
   then
     echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/nixhome"
@@ -39,11 +39,8 @@ else
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
   do
-    if [ -e $homescript ] # .emacs.lisp is a folder! Therefore use -e instead of -f
-    then
-      rm -fr $homescript.backup
-      mv $homescript $homescript.backup
-    fi
+    rm -fr $homescript.backup
+    mv $homescript $homescript.backup
     ln -s $SourcePath/$homescript $HomePath
   done
   popd

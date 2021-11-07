@@ -1,18 +1,15 @@
 #!/usr/bin/expect
 
-## Usage: expect this.sh [user@hostname] [filepath] [password]
-## Example: expect this.sh adot@m1.bittic.net /faronear/tic/star.core.torm 密码
+# Usage: expect this.sh [0:hostname] [1:username] [2:filepath] [3:pwdadot]
 
-set timeout 30
-spawn ssh [lindex $argv 0]
+set timeout 10
+spawn ssh [lindex $argv 1]@[lindex $argv 0] -p 22
 expect {
-  "(yes/no)?"
+  "yes/no"
   {send "yes\n";exp_continue}
   "password:"
-  {send "[lindex $argv 2]\n"}
+  {send "[lindex $argv 3]\n";exp_continue}
   ":~"
-  {send "su\n";exp_continue}
-  "Password:"
-  {send "[lindex $argv 2]\ncd [lindex $argv 1] && git pull && npx pm2 restart all && npx pm2 log\n"}
+  {send "cd [lindex $argv 2] && sudo git pull && sudo npx pm2 restart all && sudo npx pm2 log\n"}
 }
 interact
