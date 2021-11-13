@@ -12,7 +12,7 @@ fi
 
 echo "<<< Installing basic tools"
 apt update
-apt install -y emacs git curl screen sudo automake
+apt install -y emacs git curl screen sudo automake rsync
 echo
 
 echo "<<< Making dir /faronear"
