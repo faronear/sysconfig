@@ -29,6 +29,8 @@ alias ll ls -al --time-style=long-iso --color=auto
 alias rm rm -i
 # Request X tunneling for SSH:
 alias ssh ssh -C -X
+# Do not verify Host Key change:
+alias sshtrust ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 # Always use compression for CVS:
 alias cvs cvs -z9
 
