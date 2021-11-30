@@ -30,23 +30,27 @@ fi
 
 pushd $FONPATH
 echo "*** Current path = [`pwd`] ***"
+echo ""
+
 for org in `ls | grep -v @cloud`
 do 
   if [ -d $org ]
   then
-    echo "  entering [$FONPATH/$org]"
+    echo "entering [$FONPATH/$org]"
+    echo ""
     cd $org;
     for repo in `ls .`
     do
       if [ -d $repo/.git ]
       then
-        echo "    git pulling [$FONPATH/$org/$repo]"
+        echo "git pulling [$FONPATH/$org/$repo]"
         cd $repo
         git pull
+        echo ""
         cd ..
       fi
     done
-    cd ..;
+    cd ..
   fi
 done
 popd
