@@ -60,7 +60,7 @@ echo
 # Debian 10 default to /bin/sh
 sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
-sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash/g" /etc/passwd
+sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
 echo "<<< Allow the new user $NewUser to sudo without password"
 #### Option 1: Add the new user to %sudo group in /etc/sudoers file
@@ -83,9 +83,16 @@ sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
 service sshd restart
 echo
 
-#echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
-#sed -i "s/^#autologin-user=$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
-#sed -i "s/^#autologin-user-timeout=0$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
+read -p "<<< Enable xfce autologin as ($NewUser for autologin or anything else for no change): " XfceAutologinUsername
+if [ $XfceAutologinUsername = $NewUser ]
+then
+  sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
+  sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+  echo "Successfully configured autologin as $NewUser"
+else
+  echo 'Nothing changed >>>'
+fi
 
 echo "<<< Configure autostart"
 if [ -f /etc/rc.local ]
