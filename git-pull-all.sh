@@ -45,7 +45,7 @@ do
       then
         echo "git pulling [$FONPATH/$org/$repo]"
         cd $repo
-        git pull
+        git pull --all
         echo ""
         cd ..
       fi

@@ -40,7 +40,7 @@ for /d %%o in (*) do (
         if exist %%g\.git (
           pushd %%g
           echo git pulling [%BASEDIR%\%%o\%%g]
-          git pull
+          git pull --all
           echo;
           popd
         )
