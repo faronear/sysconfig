@@ -32,11 +32,11 @@ pushd $FONPATH
 echo "*** Current path = [`pwd`] ***"
 echo ""
 
-for org in `ls | grep -v ~cloud`
+for org in `ls | grep -v '~'`
 do 
   if [ -d $org ]
   then
-    echo "entering [$FONPATH/$org]"
+    echo "-------- entering [$FONPATH/$org] --------"
     echo ""
     cd $org;
     for repo in `ls .`
