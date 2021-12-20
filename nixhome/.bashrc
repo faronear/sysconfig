@@ -80,9 +80,9 @@ case "$TERM" in
 	;;
 esac
 
-if [ -f .bashrc-custom ]
+if [ -f ~/.bashrc-custom ]
 then
-	. .bashrc-custom
+	source ~/.bashrc-custom
 fi
 
 ################################################################################
