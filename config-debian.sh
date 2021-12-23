@@ -73,7 +73,7 @@ echo "<<< Allow the new user $NewUser to sudo without password"
 chmod o+w /etc/sudoers
 sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers
 chmod o-w /etc/sudoers
-echo 'adot ALL=(ALL:ALL) NOPASSWD:ALL' > /etc/sudoers.d/$NewUser
+echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$NewUser
 chmod a-w /etc/sudoers.d/$NewUser
 echo
 
@@ -82,6 +82,15 @@ echo "<<< Disallow root login: #PermitRootLogin yes"
 sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
 service sshd restart
 echo
+
+echo "<<< Set hostname or leave blank for no change"
+read -p "<<< Set hostname = " NewHostname
+if [ $NewHostname ]
+then
+  sudo hostnamectl set-hostname $NewHostname
+else
+  echo 'Nothing changed >>>'
+fi
 
 echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
 read -p "<<< Enable xfce autologin as ($NewUser for autologin or anything else for no change): " XfceAutologinUsername
