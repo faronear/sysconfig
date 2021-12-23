@@ -1,4 +1,4 @@
-cd /faronear/seafile/seafile-server-latest
+cd /faronear/bin.seafile/sea
 sudo ./seafile.sh start
 sudo ./seahub.sh start
 
