@@ -84,11 +84,11 @@ service sshd restart
 echo
 
 echo "<<< Set hostname or leave blank for no change"
-read -p "<<< Set hostname = " NewHostname
+read -p "hostname = " NewHostname
 if [ $NewHostname ]
 then
-  sudo hostnamectl set-hostname $NewHostname
-  echo "127.0.0.1 $NewHostName" >> /etc/hostname
+  hostnamectl set-hostname $NewHostname
+  echo "127.0.0.1 $NewHostName" >> /etc/hosts
 else
   echo 'Nothing changed >>>'
 fi
