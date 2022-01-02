@@ -88,9 +88,11 @@ read -p "<<< Set hostname = " NewHostname
 if [ $NewHostname ]
 then
   sudo hostnamectl set-hostname $NewHostname
+  echo "127.0.0.1 $NewHostName" >> /etc/hostname
 else
   echo 'Nothing changed >>>'
 fi
+echo
 
 echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
 read -p "<<< Enable xfce autologin as ($NewUser for autologin or anything else for no change): " XfceAutologinUsername
@@ -102,6 +104,7 @@ then
 else
   echo 'Nothing changed >>>'
 fi
+echo
 
 echo "<<< Configure autostart"
 if [ -f /etc/rc.local ]
