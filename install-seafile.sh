@@ -5,7 +5,7 @@ sudo apt-get update
 sudo apt-get install python3 python3-setuptools python3-pip python3-ldap sqlite3 -y
 sudo pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha
 ## for seafile 9.*: 
-# sudo pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0
+# sudo pip3 install --timeout=3600 django==3.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0
 
 pushd /faronear
 sudo mkdir bin-seafile
