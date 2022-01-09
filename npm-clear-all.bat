@@ -21,16 +21,20 @@ if not exist %BASEDIR% (
 
 pushd %BASEDIR%
 echo *** Current path = [%CD%] ***
+echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
+  echo ======== entering [%BASEDIR%\%%o] ========
+  echo;
   pushd %%o
   for /d %%g in (*) do (
     if exist %%g\node_modules (
       pushd %%g
-      echo Deleting [%%g\node_modules]
+      echo ---- Deleting [%%g\node_modules] ----
       rd /s /q node_modules
+      echo;
       popd
     )
   )

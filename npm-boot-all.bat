@@ -21,22 +21,26 @@ if not exist %BASEDIR% (
 
 pushd %BASEDIR%
 echo *** Current path = [%CD%] ***
+echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
 
 for /d %%o in (*) do (
   if not %%o == .vscode (
     echo %%o | findstr "~" >NUL && (
-      echo   !!! omitting [%BASEDIR%\%%o]
+      echo !!!!!!!! omitting [%BASEDIR%\%%o] !!!!!!!!
+      echo;
     ) || (
-      echo   entering [%BASEDIR%\%%o]
+      echo ======== entering [%BASEDIR%\%%o] ========
+      echo;
       pushd %%o 
       for /d %%g in (*) do (
         if exist %%g\package.json (
           findstr "\"boot\"" %%g\package.json >NUL && (
             pushd %%g 
-            echo     npm booting [%BASEDIR%\%%o\%%g] 
+            echo ---- npm booting [%BASEDIR%\%%o\%%g] ----
             npm run boot
+            echo;
             popd
           )
         ) 
