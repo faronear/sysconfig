@@ -27,7 +27,7 @@ echo;
 
 for /d %%o in (*) do (
   if not %%o == .vscode (
-    echo %%o | findstr "~" >NUL && (
+    echo %%o | findstr "=" >NUL && (
       echo !!!!!!!! omitting [%BASEDIR%\%%o] !!!!!!!!
       echo;
     ) || (
