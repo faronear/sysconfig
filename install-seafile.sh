@@ -1,9 +1,11 @@
 #!/bin/bash
 
-## seafile 7/8 requires python3
 sudo apt-get update
 sudo apt-get install python3 python3-setuptools python3-pip python3-ldap sqlite3 -y
-sudo pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha
+
+## 似乎用 sqlite3 数据库时不需要以下安装。只有用 MySQL 等数据库时才需要。
+## seafile 7/8:
+# sudo pip3 install --timeout=3600 django==2.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha
 ## for seafile 9.*: 
 # sudo pip3 install --timeout=3600 django==3.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0
 
@@ -11,6 +13,7 @@ pushd /faronear
 sudo mkdir bin-seafile
 cd bin-seafile
 sudo wget https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_8.0.8_x86-64.tar.gz
+## for seafile 9.*: https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_9.0.2_x86-64.tar.gz
 sudo tar -xzf seafile-server_*
 cd seafile-server-*
 sudo ./setup-seafile.sh
