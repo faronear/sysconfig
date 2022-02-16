@@ -19,8 +19,8 @@ mkdir fon
 pushd fon
 git clone https://git.faronear.org/fon/_fon
 git clone https://git.faronear.org/fon/sysconfig
-git clone https://git.faronear.org/fon/www.faronear.com
 git clone https://git.faronear.org/fon/dot.vscode
+git clone https://git.faronear.org/fon/www.faronear.com
 git clone https://git.faronear.org/fon/yapi.faronear.org
 git clone https://git.faronear.org/fon/git.faronear.org
 git clone https://git.faronear.org/fon/www.faronear.org
@@ -50,7 +50,6 @@ git clone https://git.faronear.org/npm/tic.crypto
 git clone https://git.faronear.org/npm/tic.tool4chain
 git clone https://git.faronear.org/npm/tic.traction
 
-git clone https://git.faronear.org/npm/user.i18n.uniapp
 git clone https://git.faronear.org/npm/user.part.uniapp
 git clone https://git.faronear.org/npm/user.style.scss
 git clone https://git.faronear.org/npm/user.tool.uniapp
@@ -59,7 +58,7 @@ popd
 
 mkdir sol
 pushd sol
-git clone https://git.faronear.org/sol/_sol.git
+git clone https://git.faronear.org/sol/_sol
 git clone https://git.faronear.org/sol/sol.ling
 git clone https://git.faronear.org/sol/sol.data
 git clone https://git.faronear.org/sol/sol.base
@@ -72,7 +71,6 @@ pushd tic
 git clone https://git.faronear.org/tic/_tic
 git clone https://git.faronear.org/tic/cloud
 git clone https://git.faronear.org/tic/cloud.server
-git clone https://git.faronear.org/tic/cloud.user.vue
 git clone https://git.faronear.org/tic/cloud.user.vue
 git clone https://git.faronear.org/tic/star
 git clone https://git.faronear.org/tic/star.core.torm
