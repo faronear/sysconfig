@@ -35,7 +35,7 @@ git clone https://git.faronear.org/npm/base.deployer
 git clone https://git.faronear.org/npm/base.enviconfig
 git clone https://git.faronear.org/npm/base.logger
 git clone https://git.faronear.org/npm/base.messenger
-git clone https://git.faronear.org/npm/base.nettool
+git clone https://git.faronear.org/npm/base.tool
 git clone https://git.faronear.org/npm/base.webserver
 git clone https://git.faronear.org/npm/base.websocket.server
 git clone https://git.faronear.org/npm/base.webtoken
