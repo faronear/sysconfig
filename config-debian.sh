@@ -88,7 +88,7 @@ read -p "hostname = " NewHostname
 if [ $NewHostname ]
 then
   hostnamectl set-hostname $NewHostname
-  echo "127.0.0.1 $NewHostName" >> /etc/hosts
+  echo "127.0.0.1 $NewHostname" >> /etc/hosts
 else
   echo 'Nothing changed >>>'
 fi
