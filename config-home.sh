@@ -59,6 +59,7 @@ then
   mv $Homepath/.ssh/authorized_keys $Homepath/.ssh/authorized_keys.backup
 fi
 ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
+echo "Linked authorized_keys"
 
 echo "Applying $HomePath/.bashrc"
 source $HomePath/.bashrc
