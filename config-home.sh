@@ -47,7 +47,7 @@ else
   echo "Linked $SourcePath/* to $HomePath/"
 fi
 
-if [ ! -d $HomePath/.ssh]
+if [ ! -d $HomePath/.ssh ]
 then
   echo "Creating $HomePath/.ssh"
   mkdir $HomePath/.ssh
