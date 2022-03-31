@@ -30,11 +30,9 @@ else
   HomePath=~
 fi
 
-if [ ! -d $SourcePath ]
+if [ -d $SourcePath ] && [ -d $HomePath ]
 then
-  echo "!!! Not existing $SourcePath, please try again"
-else
-  echo "Linking $SourcePath/* to $HomePath/"
+  echo "--- Linking $SourcePath/* to $HomePath/* ..."
   pushd $HomePath
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
@@ -44,22 +42,22 @@ else
     ln -s $SourcePath/$homescript $HomePath
   done
   popd
-  echo "Linked $SourcePath/* to $HomePath/"
+  if [ ! -d $HomePath/.ssh ]
+  then
+    echo "--- Creating $HomePath/.ssh ..."
+    mkdir $HomePath/.ssh
+    chmod 700 $HomePath/.ssh
+  fi
+  if [ -e $HomePath/.ssh/authorized_keys ]
+  then
+    echo "--- Removing $Homepath/.ssh/authorized_keys ..."
+    mv $Homepath/.ssh/authorized_keys $Homepath/.ssh/authorized_keys.backup
+  fi
+  echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+  ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
+else
+  echo "!!! Not existing $SourcePath or $HomePath, please try again."
 fi
 
-if [ ! -d $HomePath/.ssh ]
-then
-  echo "Creating $HomePath/.ssh"
-  mkdir $HomePath/.ssh
-  chmod 700 $HomePath/.ssh
-fi
-if [ -f $Homepath/.ssh/authorized_keys ]
-then
-  echo "Removing $Homepath/.ssh/authorized_keys"
-  mv $Homepath/.ssh/authorized_keys $Homepath/.ssh/authorized_keys.backup
-fi
-ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
-echo "Linked authorized_keys"
-
-echo "Applying $HomePath/.bashrc"
+echo "--- Sourcing $HomePath/.bashrc ..."
 source $HomePath/.bashrc
