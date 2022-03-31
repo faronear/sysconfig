@@ -50,8 +50,8 @@ then
   fi
   if [ -e $HomePath/.ssh/authorized_keys ]
   then
-    echo "--- Removing $Homepath/.ssh/authorized_keys ..."
-    mv $Homepath/.ssh/authorized_keys $Homepath/.ssh/authorized_keys.backup
+    echo "--- Removing $HomePath/.ssh/authorized_keys ..."
+    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
   fi
   echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
   ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
