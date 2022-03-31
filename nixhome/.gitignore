@@ -22,3 +22,5 @@ selenium-debug.log
 
 # seafile temporary files
 ._*
+
+.bashrc_custom

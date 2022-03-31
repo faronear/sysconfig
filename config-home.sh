@@ -47,5 +47,18 @@ else
   echo "Linked $SourcePath/* to $HomePath/"
 fi
 
+if [ ! -d $HomePath/.ssh]
+then
+  echo "Creating $HomePath/.ssh"
+  mkdir $HomePath/.ssh
+  chmod 700 $HomePath/.ssh
+fi
+if [ -f $Homepath/.ssh/authorized_keys ]
+then
+  echo "Removing $Homepath/.ssh/authorized_keys"
+  mv $Homepath/.ssh/authorized_keys $Homepath/.ssh/authorized_keys.backup
+fi
+ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
+
 echo "Applying $HomePath/.bashrc"
 source $HomePath/.bashrc
