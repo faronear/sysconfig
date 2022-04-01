@@ -81,17 +81,28 @@ case "$TERM" in
 esac
 
 # nvm settings
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -d $HOME/.nvm ]
+then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+# let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
+export USERPROFILE=$HOME
+
+# add sysconfig to path
+if [ -d /Users/luk.lu/faronear/fon/sysconfig ]
+then
+  export PATH=/Users/luk.lu/faronear/fon/sysconfig:$PATH
+else if [ -d /faronear/fon/sysconfig ]
+  export PATH=/faronear/fon/sysconfig:$PATH
+fi
 
 if [ -f ~/.bashrc_custom ]
 then
 	source ~/.bashrc_custom
 fi
-
-# align for vscode-sshfs in MacOS and windows
-export USERPROFILE=$HOME
 
 ################################################################################
 # End Of File: "~/.bashrc"

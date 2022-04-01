@@ -46,7 +46,7 @@ then
   chmod 700 $HomePath/.ssh
   if [ -e $HomePath/.ssh/authorized_keys ]
   then
-    echo "--- Removing $HomePath/.ssh/authorized_keys ..."
+    echo "--- Renaming $HomePath/.ssh/authorized_keys to authorized_keys.backup ..."
     mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
   fi
   echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
