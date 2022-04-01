@@ -32,6 +32,6 @@ popd
 
 sudo apt install nginx -y
 rm /etc/nginx/sites-enabled/default
-cp /faronear/fon/sysconfig/nginx-seafile-http.conf /faronear/bin-seafile/
-ln -s /faronear/bin-seafile/nginx-seafile-http.conf /etc/nginx/sites-enabled/
+cp /faronear/fon/sysconfig/seafile-nginx-http.conf /faronear/bin-seafile/
+ln -s /faronear/bin-seafile/seafile-nginx-http.conf /etc/nginx/sites-enabled/
 service nginx restart

@@ -90,6 +90,9 @@ then
 	source ~/.bashrc_custom
 fi
 
+# align for vscode-sshfs in MacOS and windows
+export USERPROFILE=$HOME
+
 ################################################################################
 # End Of File: "~/.bashrc"
 ################################################################################

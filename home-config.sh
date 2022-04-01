@@ -42,12 +42,8 @@ then
     ln -s $SourcePath/$homescript $HomePath
   done
   popd
-  if [ ! -d $HomePath/.ssh ]
-  then
-    echo "--- Creating $HomePath/.ssh ..."
-    mkdir $HomePath/.ssh
-    chmod 700 $HomePath/.ssh
-  fi
+  mkdir -p $HomePath/.ssh
+  chmod 700 $HomePath/.ssh
   if [ -e $HomePath/.ssh/authorized_keys ]
   then
     echo "--- Removing $HomePath/.ssh/authorized_keys ..."
