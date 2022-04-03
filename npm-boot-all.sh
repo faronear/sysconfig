@@ -40,9 +40,10 @@ do
   do
     if ( [ -f "$repo/package.json" ] && grep -q '"boot"' "$repo/package.json" )
     then
-      echo "---- npm booting: [$org/$repo] ----"
+      echo "<<<< npm booting: [$org/$repo] <<<<"
       cd "$repo"
       npm run boot
+      echo ">>>> npm bootted: [$org/$repo] >>>>"
       echo ""
       cd ..
     fi
