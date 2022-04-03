@@ -95,7 +95,7 @@ export USERPROFILE=$HOME
 if [ -d /Users/luk.lu/faronear/fon/sysconfig ]
 then
   export PATH=/Users/luk.lu/faronear/fon/sysconfig:$PATH
-else if [ -d /faronear/fon/sysconfig ]
+else [ -d /faronear/fon/sysconfig ]
   export PATH=/faronear/fon/sysconfig:$PATH
 fi
 
