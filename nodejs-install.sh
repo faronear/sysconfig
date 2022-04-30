@@ -12,7 +12,7 @@ else
   if [ ! $nodeVersion ]
   then
     nodeVersion=$defaultVersion
-    echo Use default node version $nodeVersion
+    echo Use default nodejs version $nodeVersion
   fi
 fi
 
