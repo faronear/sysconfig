@@ -44,13 +44,15 @@ then
   popd
   mkdir -p $HomePath/.ssh
   chmod 700 $HomePath/.ssh
-  if [ -e $HomePath/.ssh/authorized_keys ]
-  then
-    echo "--- Renaming $HomePath/.ssh/authorized_keys to authorized_keys.backup ..."
-    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
-  fi
-  echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-  ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
+  echo "--- Adding $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+  cat $SourcePath/authorized_keys >> $HomePath/.ssh/authorized_keys
+  # if [ -e $HomePath/.ssh/authorized_keys ]
+  # then
+  #   echo "--- Renaming $HomePath/.ssh/authorized_keys to authorized_keys.backup ..."
+  #   mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
+  # fi
+  # echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+  # ln -s $SourcePath/authorized_keys $HomePath/.ssh/authorized_keys
 else
   echo "!!! Not existing $SourcePath or $HomePath, please try again."
 fi
