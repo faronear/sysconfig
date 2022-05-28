@@ -18,7 +18,7 @@ fi
 
 sudo apt update
 echo "######## Installing C++ build tools for Linux ########"
-sudo apt install curl gcc g++ make python -y # Debian 11 has no python by default.
+sudo apt install wget curl gcc g++ make python -y # Debian 11 has no python by default.
 
 echo "######## Installing nodejs v$nodeVersion ########"
 echo From https://deb.nodesource.com/setup_$nodeVersion.x
