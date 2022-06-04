@@ -40,20 +40,20 @@ git clone https://git.faronear.org/npm/basend-webserver
 git clone https://git.faronear.org/npm/basend-websocket-server
 git clone https://git.faronear.org/npm/basend-webtoken
 
-git clone https://git.faronear.org/npm/core.i18n
-git clone https://git.faronear.org/npm/core.tool
-git clone https://git.faronear.org/npm/core.websocket.rpc
+git clone https://git.faronear.org/npm/corend-i18n
+git clone https://git.faronear.org/npm/corend-toolkit
+git clone https://git.faronear.org/npm/corend-rpcsocket
 
 git clone https://git.faronear.org/npm/template.user.uniapp
 
-git clone https://git.faronear.org/npm/tic.crypto
-git clone https://git.faronear.org/npm/tic.tool4chain
-git clone https://git.faronear.org/npm/tic.traction
+git clone https://git.faronear.org/npm/tic-crypto
+git clone https://git.faronear.org/npm/tic-chaintool
+git clone https://git.faronear.org/npm/tic-traction
 
-git clone https://git.faronear.org/npm/user.part.uniapp
-git clone https://git.faronear.org/npm/user.style.scss
-git clone https://git.faronear.org/npm/user.tool.uniapp
-git clone https://git.faronear.org/npm/user.websocket.uniapp
+git clone https://git.faronear.org/npm/usend-part-uniapp
+git clone https://git.faronear.org/npm/usend-style-scss
+git clone https://git.faronear.org/npm/usend-toolkit-uniapp
+git clone https://git.faronear.org/npm/usend-websocket-uniapp
 popd
 
 mkdir sol
