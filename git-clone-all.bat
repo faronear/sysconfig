@@ -32,11 +32,11 @@ pushd npm
 git clone https://git.faronear.org/npm/_npm
 git clone https://git.faronear.org/npm/base.FileTransfer.server
 git clone https://git.faronear.org/npm/base.deployer
-git clone https://git.faronear.org/npm/base.enviconfig
+git clone https://git.faronear.org/npm/basend-envar
 git clone https://git.faronear.org/npm/base.logger
 git clone https://git.faronear.org/npm/base.messenger
 git clone https://git.faronear.org/npm/base.tool
-git clone https://git.faronear.org/npm/base.webserver
+git clone https://git.faronear.org/npm/basend-webserver
 git clone https://git.faronear.org/npm/base.websocket.server
 git clone https://git.faronear.org/npm/base.webtoken
 
