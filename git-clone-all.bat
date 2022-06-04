@@ -33,7 +33,7 @@ git clone https://git.faronear.org/npm/_npm
 git clone https://git.faronear.org/npm/basend-fileload-server
 git clone https://git.faronear.org/npm/basend-deployer
 git clone https://git.faronear.org/npm/basend-envar
-git clone https://git.faronear.org/npm/corend-ColorConsole
+git clone https://git.faronear.org/npm/corend-cocon
 git clone https://git.faronear.org/npm/basend-messenger
 git clone https://git.faronear.org/npm/basend-netinfo
 git clone https://git.faronear.org/npm/basend-webserver
