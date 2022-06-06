@@ -108,9 +108,9 @@ popd
 mkdir tuc-ext
 pushd tuc-ext
 git clone https://git.faronear.org/tuc-ext/ext
-git clone https://git.faronear.org/tuc-ext/ext.blog.hexo
-git clone https://git.faronear.org/tuc-ext/ext.server.torm
-git clone https://git.faronear.org/tuc-ext/ext.user.uniapp
+git clone https://git.faronear.org/tuc-ext/ext-blog-hexo
+git clone https://git.faronear.org/tuc-ext/ext-server-torm
+git clone https://git.faronear.org/tuc-ext/ext-user-uniapp
 popd
 
 mkdir tuc-log

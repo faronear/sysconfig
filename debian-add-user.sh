@@ -20,8 +20,13 @@ passwd $NewUser
 mkdir /home/$NewUser
 chown $NewUser:$NewUser /home/$NewUser
 chmod 700 /home/$NewUser
-# emacs /etc/passwd
+
+# Set default shell in /etc/passwd
 # Debian 10 default to /bin/sh
 sed -i "s/\/home\/$NewUser:\/bin\/sh$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s/\/home\/$NewUser:$/\/home\/$NewUser:\/bin\/bash/g" /etc/passwd
+
+# Allow sudo
+echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$NewUser
+chmod a-w /etc/sudoers.d/$NewUser

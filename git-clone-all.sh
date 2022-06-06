@@ -46,8 +46,6 @@ git clone https://git.faronear.org/npm/corend-i18n
 git clone https://git.faronear.org/npm/corend-toolkit
 git clone https://git.faronear.org/npm/corend-rpcsocket
 
-git clone https://git.faronear.org/npm/template.user.uniapp
-
 git clone https://git.faronear.org/npm/tic-crypto
 git clone https://git.faronear.org/npm/tic-chaintool
 git clone https://git.faronear.org/npm/tic-traction
@@ -109,9 +107,9 @@ popd
 mkdir tuc-ext
 pushd tuc-ext
 git clone https://git.faronear.org/tuc-ext/ext
-git clone https://git.faronear.org/tuc-ext/ext.blog.hexo
-git clone https://git.faronear.org/tuc-ext/ext.server.torm
-git clone https://git.faronear.org/tuc-ext/ext.user.uniapp
+git clone https://git.faronear.org/tuc-ext/ext-blog-hexo
+git clone https://git.faronear.org/tuc-ext/ext-server-torm
+git clone https://git.faronear.org/tuc-ext/ext-user-uniapp
 popd
 
 mkdir tuc-log
