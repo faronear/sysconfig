@@ -45,38 +45,17 @@ echo "<<< Change root password"
 passwd
 echo 
 
-echo "<<< Add a new user $NewUser"
-useradd $NewUser
-passwd $NewUser
-mkdir /home/$NewUser
-chown $NewUser:$NewUser /home/$NewUser
-chmod 700 /home/$NewUser
-echo
-
-# 注意，在这里为新用户创建的配置文件，主人是 root.
-echo "<<< Configure $NewUser home"
-source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
-echo
-
-# Debian 10 default to /bin/sh
-sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
-# Debian 9 default to empty
-sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
-
-echo "<<< Allow the new user $NewUser to sudo without password"
-#### Option 1: Add the new user to %sudo group in /etc/sudoers file
-#usermod -a -G sudo $NewUser # Add to sudo group
-#echo "<<< Allow sudo without password: %sudo ALL=(ALL:ALL) NOPASSWD:ALL"
-#chmod o+w /etc/sudoers
-#sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers
-#chmod o-w /etc/sudoers
-#### Option 2: Add a file for the new user in /etc/sudoers.d/ folder
+echo "<<< Configure /etc/sudoers"
 chmod o+w /etc/sudoers
-sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers
+#sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
+sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
 chmod o-w /etc/sudoers
-echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/$NewUser
-chmod a-w /etc/sudoers.d/$NewUser
 echo
+
+echo "<<< Add a new user $NewUser"
+source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
+echo
+
 
 echo "<<< Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
