@@ -53,6 +53,7 @@ chown $NewUser:$NewUser /home/$NewUser
 chmod 700 /home/$NewUser
 echo
 
+# 注意，在这里为新用户创建的配置文件，主人是 root.
 echo "<<< Configure $NewUser home"
 source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
 echo
