@@ -1,6 +1,6 @@
 # https://docs.docker.com/engine/install/debian/
 
-read -p "Choose docker source (a: 阿里云, z: 中科大) >> " DOCKER_SOURCE
+read -p "Choose docker source (a: 阿里云, z: 中科大, leave blank for default) >> " DOCKER_SOURCE
 if [ $DOCKER_SOURCE = 'a' ]
 then
   GPG_URL=http://mirrors.aliyun.com/docker-ce/linux/debian/gpg

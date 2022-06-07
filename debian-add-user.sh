@@ -30,7 +30,7 @@ sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 echo "<<< Allow the new user $NewUser to sudo without password"
 #usermod -a -G sudo $NewUser # Add to sudo group # Option 1: add user to %sudo group
 echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${NewUser//./-} # Option 2: add a user file into /etc/sudoers.d/
-chmod a-w /etc/sudoers.d/$NewUser
+chmod a-w /etc/sudoers.d/${NewUser//./-}
 echo
 
 # 注意，在这里为新用户创建的配置文件，主人是 root，而不是新用户
