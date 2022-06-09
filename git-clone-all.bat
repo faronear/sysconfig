@@ -44,8 +44,6 @@ git clone https://git.faronear.org/npm/corend-i18n
 git clone https://git.faronear.org/npm/corend-toolkit
 git clone https://git.faronear.org/npm/corend-rpcsocket
 
-git clone https://git.faronear.org/npm/template.user.uniapp
-
 git clone https://git.faronear.org/npm/tic-crypto
 git clone https://git.faronear.org/npm/tic-chaintool
 git clone https://git.faronear.org/npm/tic-traction
