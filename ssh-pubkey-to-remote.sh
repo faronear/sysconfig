@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo You can also try ssh-copy-id user@remotehost
+
 if [ $1 ]
 then
   REMOTEHOST=$1
