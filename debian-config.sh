@@ -56,7 +56,6 @@ echo "<<< Add a new user $NewUser"
 source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
 echo
 
-
 echo "<<< Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
 sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config

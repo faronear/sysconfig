@@ -35,7 +35,7 @@ echo Install Docker-Compose ...
 sudo curl -L $COMPOSE_URL/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-read -p "配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大) >> " DOCKER_MIRROR
+read -p "配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大, leave blank for no mirror) >> " DOCKER_MIRROR
 if [ $DOCKER_MIRROR = 'd' ]
 then
   DOCKER_MIRROR=https://registry.docker-cn.com

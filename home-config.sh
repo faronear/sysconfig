@@ -4,6 +4,7 @@ if [ $1 ]
 then
   SourcePath=$1
 else
+  echo "Configure private home settings"
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
   read -p "Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
@@ -39,7 +40,7 @@ then
   do
     rm -fr $homescript.backup
     mv $homescript $homescript.backup
-    ln -s $SourcePath/$homescript $HomePath
+    cp -r $SourcePath/$homescript $HomePath
   done
   popd
 else
