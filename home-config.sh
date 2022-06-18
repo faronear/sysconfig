@@ -62,6 +62,7 @@ then
     fi
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
   elif [ $CopyOrLinkOrOmitAuthorizedKeys = 'a']
+  then
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
     cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
