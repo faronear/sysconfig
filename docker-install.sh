@@ -1,6 +1,7 @@
 # https://docs.docker.com/engine/install/debian/
 
-read -p "Choose docker source (a: 阿里云, z: 中科大, leave blank for default) >> " DOCKER_SOURCE
+echo "=== Choose docker source (a: 阿里云, z: 中科大, leave blank for default):" 
+read -p ">>> " DOCKER_SOURCE
 if [ $DOCKER_SOURCE = 'a' ]
 then
   GPG_URL=http://mirrors.aliyun.com/docker-ce/linux/debian/gpg
@@ -35,7 +36,8 @@ echo Install Docker-Compose ...
 sudo curl -L $COMPOSE_URL/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-read -p "配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大, leave blank for no mirror) >> " DOCKER_MIRROR
+echo "=== 配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大, leave blank for no mirror):"
+read -p ">>> "  DOCKER_MIRROR
 if [ $DOCKER_MIRROR = 'd' ]
 then
   DOCKER_MIRROR=https://registry.docker-cn.com

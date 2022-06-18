@@ -5,7 +5,8 @@ if [ v$1 != v ]
 then
   NewUser=$1
 else
-  read -p "Enter new user name (leave blank for default 'adot')>> " NewUser
+  echo "=== Enter new <<UserName>> (leave blank for default 'adot'):"
+  read -p ">>> " NewUser
   if [ ! $NewUser ]
   then
     echo Use default new user: adot
@@ -13,7 +14,7 @@ else
   fi
 fi
 
-echo "<<< Add a new user $NewUser"
+echo "=== Add a new user $NewUser"
 useradd $NewUser
 # usermod -a -G sudo $NewUser # Add to sudo group
 passwd $NewUser
@@ -27,19 +28,19 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
-echo "<<< Allow the new user $NewUser to sudo without password"
+echo "=== Allow the new user $NewUser to sudo without password"
 #usermod -a -G sudo $NewUser # Add to sudo group # Option 1: add user to %sudo group
 echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${NewUser//./-} # Option 2: add a user file into /etc/sudoers.d/
 chmod a-w /etc/sudoers.d/${NewUser//./-}
 echo
 
-# 注意，在这里为新用户创建的配置文件，主人是 root，而不是新用户
+# 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户
 if [ $NewUser = 'adot' ]
 then
   source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
 else
-  echo "<<< Configure $NewUser home with standard scripts? (注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户)"
-  read -p "y for yes, anything else for no >> " YesOrNo
+  echo "=== Configure $NewUser home with standard scripts? <y> for yes, <<anything else>> for no"
+  read -p ">>> " YesOrNo
   if [ $YesOrNo = 'y' ]
   then
     source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser

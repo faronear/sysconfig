@@ -10,26 +10,26 @@ else
   NewUser=adot
 fi
 
-echo "<<< Installing basic tools"
+echo "=== Installing basic tools"
 apt update
 apt install -y emacs git curl screen sudo automake rsync
 echo
 
-echo "<<< Making dir /faronear"
+echo "=== Making dir /faronear"
 if [ ! -d "/faronear" ]
 then
   mkdir /faronear
 fi 
 echo
 
-echo "<<< Making dir /faronear/fon"
+echo "=== Making dir /faronear/fon"
 if [ ! -d "/faronear/fon" ]
 then 
   mkdir /faronear/fon
 fi
 echo
 
-echo "<<< Git cloning to /faronear/fon/sysconfig"
+echo "=== Git cloning to /faronear/fon/sysconfig"
 git config --global credential.helper cache
 if [ ! -d "/faronear/fon/sysconfig" ]
 then
@@ -37,33 +37,29 @@ then
 fi
 echo
 
-echo "<<< Configure root home"
+echo "=== Configure root home"
 source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome
 echo
 
-echo "<<< Change root password"
+echo "=== Change root password"
 passwd
 echo 
 
-echo "<<< Configure /etc/sudoers"
+echo "=== Configure /etc/sudoers"
 chmod o+w /etc/sudoers
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
 sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
 chmod o-w /etc/sudoers
 echo
 
-echo "<<< Add a new user $NewUser"
-source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
-echo
-
-echo "<<< Disallow root login: #PermitRootLogin yes"
+echo "=== Disallow root login: #PermitRootLogin yes"
 # emacs /etc/ssh/sshd_config
 sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
 service sshd restart
 echo
 
-echo "<<< Set hostname or leave blank for no change"
-read -p ">> " NewHostname
+echo "=== Set <<hostname>> or leave blank for no change"
+read -p ">>> " NewHostname
 if [ $NewHostname ]
 then
   hostnamectl set-hostname $NewHostname
@@ -73,19 +69,7 @@ else
 fi
 echo
 
-echo "<<< Enable xfce autologin [/etc/lightdm/lightdm.conf] as ($NewUser for autologin or anything else for no change):"
-read -p ">> " XfceAutologinUsername
-if [ $XfceAutologinUsername = $NewUser ]
-then
-  sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
-  sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
-  echo "Successfully configured autologin as $NewUser"
-else
-  echo 'Nothing changed >>>'
-fi
-echo
-
-echo "<<< Configure autostart"
+echo "=== Configure autostart"
 if [ -f /etc/rc.local ]
 then
   mv /etc/rc.local /etc/rc.local.backup
@@ -99,9 +83,25 @@ chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
 
-echo "<<< Configure locales: install all-locales and set default to none."
+echo "=== Configure locales: install all-locales and set default to none."
 dpkg-reconfigure locales
 echo
 
-echo "<<< Debian System Setup Completed >>>"
+echo "=== Add a new user $NewUser"
+source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
+echo
+
+echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as <$NewUser> for autologin or <<anything else>> for no change):"
+read -p ">>> " XfceAutologinUsername
+if [ $XfceAutologinUsername = $NewUser ]
+then
+  sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
+  sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+  echo "Successfully configured autologin as $NewUser"
+else
+  echo 'Nothing changed >>>'
+fi
+echo
+
+echo "=== Debian System Setup Completed >>>"
 

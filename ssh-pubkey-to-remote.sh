@@ -6,7 +6,8 @@ if [ $1 ]
 then
   REMOTEHOST=$1
 else
-  read -p "Enter user@remotehost >> " REMOTEHOST
+  echo "=== Enter << user@remotehost >> to connect to:"
+  read -p ">>> " REMOTEHOST
 fi
 
 scp ~/.ssh/id_rsa.pub $REMOTEHOST:~/tmp.pub

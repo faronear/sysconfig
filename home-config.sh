@@ -7,7 +7,7 @@ else
   echo "Configure private home settings"
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path] [--AdotMode]"
   echo
-  echo "=== Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome):" 
+  echo "=== Enter config <<SourcePath>> (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome):" 
   read -p ">>> " SourcePath
   if [ ! $SourcePath ]
   then
@@ -39,7 +39,7 @@ then
   pushd $HomePath
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   echo
-  echo "=== Copy or link scripts? l for link, anything else for copy:"
+  echo "=== Copy or link scripts? <l> for link, <<anything else>> for copy:"
   read -p ">>> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
@@ -55,7 +55,7 @@ then
     fi
   done
   echo
-  echo "=== Append or link or omit [.ssh/authorized_keys]? a for append, l for link, anything else for omit:"
+  echo "=== Append or link or omit [.ssh/authorized_keys]? <a> for append, <l> for link, <<anything else>> for omit:"
   read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
   if [ $CopyOrLinkOrOmitAuthorizedKeys = 'l' ]
   then
