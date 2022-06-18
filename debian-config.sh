@@ -63,7 +63,7 @@ service sshd restart
 echo
 
 echo "<<< Set hostname or leave blank for no change"
-read -p "hostname = " NewHostname
+read -p ">> " NewHostname
 if [ $NewHostname ]
 then
   hostnamectl set-hostname $NewHostname
@@ -73,8 +73,8 @@ else
 fi
 echo
 
-echo "<<< autologin for Xfce: /etc/lightdm/lightdm.conf"
-read -p "<<< Enable xfce autologin as ($NewUser for autologin or anything else for no change): " XfceAutologinUsername
+echo "<<< Enable xfce autologin [/etc/lightdm/lightdm.conf] as ($NewUser for autologin or anything else for no change):"
+read -p ">> " XfceAutologinUsername
 if [ $XfceAutologinUsername = $NewUser ]
 then
   sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
