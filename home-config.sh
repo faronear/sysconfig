@@ -5,7 +5,7 @@ then
   SourcePath=$1
 else
   echo "Configure private home settings"
-  echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path]"
+  echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path] [--AdotMode]"
   read -p "Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
   then
@@ -37,13 +37,18 @@ then
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   for homescript in $homescriptlist
   do
-    echo "--- Copying $SourcePath/$homescript to $HomePath/$homescript ..."
     rm -fr $homescript.backup
     mv $homescript $homescript.backup
-    cp -r $SourcePath/$homescript $HomePath
+    if [ $3 = '--AdotMode' ] # $3 通常不输入，所以默认是拷贝模式
+    then
+      echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."
+      ln -s $SourcePath/$homescript $HomePath
+    else
+      echo "--- Copying $SourcePath/$homescript to $HomePath/$homescript ..."
+      cp -r $SourcePath/$homescript $HomePath
+    fi
   done
-  read -p "Linking .ssh/authorized_keys? Enter l to link or anything else to ignore >> " linkSshKeys
-  if [ $linkSshKeys == "l" ]
+  if [ $3 = '--AdotMode' ] # $3 通常不输入，所以默认是不给其他用户链接到 authorized_keys
   then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
     mkdir -p $HomePath/.ssh
