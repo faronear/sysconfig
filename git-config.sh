@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "---------------------------------------------"
-read -p "User Name to show in git log (leave blank for no change) >>> " UserName
+read -p "User Name (leave blank for no change) >>> " UserName
 if [ $UserName ]
 then
   echo "git config --global user.name $UserName"
@@ -9,7 +9,7 @@ then
 fi
 
 echo "---------------------------------------------"
-read -p "User Email to show in git log (leave blank for no change) >>> " UserEmail
+read -p "User Email (leave blank for no change) >>> " UserEmail
 if [ $UserEmail ]
 then
   echo "git config --global user.email $UserEmail"
@@ -18,7 +18,7 @@ fi
 
 echo "---------------------------------------------"
 echo "如果 git 远程服务器的 ssl 证书过期，或者使用了自颁发的证书，连接时会出现验证错误 Cannot verify local issuer"
-read -p "Force connect even if ssl failed verification? (true or false, blank for no change) >> " HttpSslVerify
+read -p "Verify ssl? (true or false, blank for no change) >> " HttpSslVerify
 if [ $HttpSslVerify ]
 then
   echo "git config --global http.sslVerify $HttpSslVerify"
