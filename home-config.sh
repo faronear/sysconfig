@@ -69,6 +69,10 @@ then
   then
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
+    if [ -L $HomePath/.ssh/authorized_keys ]
+    then
+      mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
+    fi
     cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
     chmod 600 $HomePath/.ssh/authorized_keys
   fi
