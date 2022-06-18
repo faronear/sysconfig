@@ -6,7 +6,7 @@ then
 else
   echo "Configure private home settings"
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path] [--AdotMode]"
-  read -p "Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
+  read -p ">> Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome) >> " SourcePath
   if [ ! $SourcePath ]
   then
     echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/nixhome"
@@ -35,7 +35,7 @@ if [ -d $SourcePath ] && [ -d $HomePath ]
 then
   pushd $HomePath
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
-  read -p "Copy or link scripts? l for link, anything else for copy >> " CopyOrLinkScripts
+  read -p ">> Copy or link scripts? l for link, anything else for copy >> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
     rm -fr $homescript.backup
@@ -49,7 +49,7 @@ then
       cp -r $SourcePath/$homescript $HomePath
     fi
   done
-  read -p "Append or link or omit [.ssh/authorized_keys]? a for append, l for link, anything else for omit >> " CopyOrLinkOrOmitAuthorizedKeys
+  read -p ">> Append or link or omit [.ssh/authorized_keys]? a for append, l for link, anything else for omit >> " CopyOrLinkOrOmitAuthorizedKeys
   if [ $CopyOrLinkOrOmitAuthorizedKeys = 'l' ]
   then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
