@@ -36,7 +36,7 @@ echo
 # 注意，在这里为新用户创建的配置文件，主人是 root，而不是新用户
 if [ $NewUser = 'adot' ]
 then
-  source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser --AdotMode
+  source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
 else
   echo "<<< Configure $NewUser home with standard scripts? (注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户)"
   read -p "y for yes, anything else for no >> " YesOrNo

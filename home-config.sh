@@ -35,11 +35,12 @@ if [ -d $SourcePath ] && [ -d $HomePath ]
 then
   pushd $HomePath
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
+  read -p "Copy or link scripts? l for link, anything else for copy >> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
     rm -fr $homescript.backup
     mv $homescript $homescript.backup
-    if [ $3 = '--AdotMode' ] # $3 通常不输入，所以默认是拷贝模式
+    if [ $CopyOrLinkScripts = 'l' ]
     then
       echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."
       ln -s $SourcePath/$homescript $HomePath
@@ -48,7 +49,8 @@ then
       cp -r $SourcePath/$homescript $HomePath
     fi
   done
-  if [ $3 = '--AdotMode' ] # $3 通常不输入，所以默认是不给其他用户链接到 authorized_keys
+  read -p "Append or link or omit [.ssh/authorized_keys]? a for append, l for link, anything else for omit >> " CopyOrLinkOrOmitAuthorizedKeys
+  if [ $CopyOrLinkOrOmitAuthorizedKeys = 'l' ]
   then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
     mkdir -p $HomePath/.ssh
@@ -59,6 +61,11 @@ then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
     fi
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
+  elif [ $CopyOrLinkOrOmitAuthorizedKeys = 'a']
+    mkdir -p $HomePath/.ssh
+    chmod 700 $HomePath/.ssh
+    cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
+    chmod 600 $HomePath/.ssh/authorized_keys
   fi
   popd
 else
