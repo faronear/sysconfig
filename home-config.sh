@@ -7,7 +7,7 @@ else
   echo "Configure private home settings"
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path] [--AdotMode]"
   echo
-  echo "=== Enter config <<SourcePath>> (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome):" 
+  echo "=== Enter config <<SourcePath>> or leave <<blank>> for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome):" 
   read -p ">>> " SourcePath
   if [ ! $SourcePath ]
   then
@@ -65,7 +65,7 @@ then
     rm -fr $HomePath/.ssh/authorized_keys.backup
     mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
-  elif [ $CopyOrLinkOrOmitAuthorizedKeys = 'a']
+  elif [ $CopyOrLinkOrOmitAuthorizedKeys = 'a' ]
   then
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
