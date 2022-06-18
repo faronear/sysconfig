@@ -8,7 +8,7 @@ else
   echo "Usage: setup.sh [Config-Source-Path] [User-Home-Path] [--AdotMode]"
   echo
   echo "=== Enter config source path (leave blank for [/Users/luk.lu]/faronear/fon/sysconfig/nixhome):" 
-  read -p ">> " SourcePath
+  read -p ">>> " SourcePath
   if [ ! $SourcePath ]
   then
     echo "Use default source path: [Users/luk.lu]/faronear/fon/sysconfig/nixhome"
@@ -40,7 +40,7 @@ then
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   echo
   echo "=== Copy or link scripts? l for link, anything else for copy:"
-  read -p ">> " CopyOrLinkScripts
+  read -p ">>> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
     rm -fr $homescript.backup
@@ -56,7 +56,7 @@ then
   done
   echo
   echo "=== Append or link or omit [.ssh/authorized_keys]? a for append, l for link, anything else for omit:"
-  read -p ">> " CopyOrLinkOrOmitAuthorizedKeys
+  read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
   if [ $CopyOrLinkOrOmitAuthorizedKeys = 'l' ]
   then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
@@ -72,6 +72,7 @@ then
     cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
     chmod 600 $HomePath/.ssh/authorized_keys
   fi
+  echo
   popd
 else
   echo "!!! Not existing $SourcePath or $HomePath, please try again."
