@@ -43,8 +43,7 @@ then
   read -p ">>> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
-    rm -fr $homescript.backup
-    mv $homescript $homescript.backup
+    mv $homescript $homescript.backup-[$(date +%Y%m%d-%H%M%S)]
     if [ $CopyOrLinkScripts = 'l' ]
     then
       echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."
@@ -62,8 +61,7 @@ then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
-    rm -fr $HomePath/.ssh/authorized_keys.backup
-    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
+    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-[$(date +%Y%m%d-%H%M%S)]
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
   elif [ $CopyOrLinkOrOmitAuthorizedKeys = 'a' ]
   then
