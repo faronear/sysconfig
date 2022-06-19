@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://docs.docker.com/engine/install/debian/
 
 echo "=== Choose docker source (a: 阿里云, z: 中科大, leave blank for default):" 
@@ -38,7 +40,10 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 echo "=== 配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大, leave blank for no mirror):"
 read -p ">>> "  DOCKER_MIRROR
-if [ $DOCKER_MIRROR = 'd' ]
+if [ ! $DOCKER_MIRROR ]
+then
+  echo "--- Docker mirror is not specified. Exit now."
+elif [ $DOCKER_MIRROR = 'd' ]
 then
   DOCKER_MIRROR=https://registry.docker-cn.com
 elif [ $DOCKER_MIRROR = 't' ]
