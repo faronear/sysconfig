@@ -41,7 +41,7 @@ then
 else
   echo "=== Configure $NewUser home with standard scripts? <y> for yes, <<anything else>> for no"
   read -p ">>> " YesOrNo
-  if [ $YesOrNo && $YesOrNo = 'y' ]
+  if [ !! $YesOrNo && $YesOrNo = 'y' ]
   then
     source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
   fi
