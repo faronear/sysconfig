@@ -44,5 +44,7 @@ else
   if [ $YesOrNo ] && [ $YesOrNo = 'y' ]
   then
     source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
+  else
+    echo "--- Nothing configured."
   fi
 fi
