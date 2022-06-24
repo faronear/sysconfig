@@ -21,8 +21,8 @@ sudo apt update
 if [ $nodeVersion != "tools" ]
 then
   echo "######## Installing nodejs v$nodeVersion ########"
-  echo From https://deb.nodesource.com/setup_$nodeVersion.x
   curl -sL https://deb.nodesource.com/setup_$nodeVersion.x | sudo bash - && sudo apt install nodejs -y
+  # for centos: curl --silent --location https://rpm.nodesource.com/setup_$nodeVersion.x | sudo bash
   echo "######## nodejs v$nodeVersion installed completely! ########"
 fi
 
