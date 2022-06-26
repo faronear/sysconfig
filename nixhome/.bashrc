@@ -13,7 +13,7 @@
 # Execute system startup script:
 if [ -f /etc/profile ]
 then
-	. /etc/profile
+  . /etc/profile
 fi
 
 # Define primary prompt (default is '$'):
@@ -28,23 +28,29 @@ export CVS_RSH=ssh
 # 2. only shell needs this variable, other programs normally don't need it.
 # Note 2: Add current directory to PATH is dangerous!
 #if [ -e ~/bin/addpath.sh ]  then 
-#    . ~/bin/addpath.sh ~/bin
+#  . ~/bin/addpath.sh ~/bin
 #fi
 
 # Define aliases:
+
 # Think twice before deletion. Though troublesome but strongly recommended!
 alias rm='rm -i'
+
 # Request X tunneling for SSH:
 alias ssh='ssh -C -X'
+
 # Do not verify Host Key change:
 alias sshtrust='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
 # Always use compression for CVS:
 alias cvs='cvs -z9'
 
 alias ps='ps -elf'
 
+alias emacs='emacs -nw'
+
 # Always list long directory and time.
-if  [[ "$(uname)" = "Darwin" ]];
+if [[ "$(uname)" = "Darwin" ]];
 then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
@@ -57,7 +63,7 @@ else
   alias ll='ls -lA --color=auto'
   alias dir='ls -lA --color=auto'
   alias lll='ls -la --color=auto'
-  alias emacs='emacs -nw'
+  export TIME_STYLE='+%Y-%m-%d--%H:%M:%S' 
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
 #export CLICOLOR='Yes'            #是否输出颜色
@@ -74,7 +80,6 @@ case "$TERM" in
 	PROMPT_COMMAND='echo -ne "\033]0;[${USER}@${HOSTNAME}:${PWD}]B\007"'
 	;;
     dumb*)
-	alias ll='ls -al --time-style=long-iso'
 	;;
     *)
 	;;
