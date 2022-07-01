@@ -2,6 +2,9 @@
 
 # https://docs.docker.com/engine/install/debian/
 
+
+# 安装自带版本 apt install docker.io && apt install docker-compose
+
 echo "=== Choose docker source (a: 阿里云, z: 中科大, leave blank for default):" 
 read -p ">>> " DOCKER_SOURCE
 if [ $DOCKER_SOURCE = 'a' ]
@@ -42,7 +45,7 @@ echo "=== 配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, 
 read -p ">>> "  DOCKER_MIRROR
 if [ ! $DOCKER_MIRROR ]
 then
-  echo "--- Docker mirror is not specified. Exit now."
+  echo "--- Docker mirror is not specified."
 elif [ $DOCKER_MIRROR = 'd' ]
 then
   DOCKER_MIRROR=https://registry.docker-cn.com
@@ -61,4 +64,14 @@ then
   echo "    \"$DOCKER_MIRROR\"" | sudo tee -a /etc/docker/daemon.json > /dev/null
   echo "  ]" | sudo tee -a /etc/docker/daemon.json > /dev/null
   echo "}" | sudo tee -a /etc/docker/daemon.json > /dev/null
+fi
+
+echo "=== 启动docker服务？y for yes, anything else for no"
+read -p ">>> " StartDockerDaemon
+if [ $StartDockerDaemon ] && [ $StartDockerDaemon = 'y' ]
+then
+  # 开机启动
+  sudo systemctl enable docker
+  # 当前启动
+  sudo systemctl start docker
 fi
