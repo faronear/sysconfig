@@ -13,3 +13,6 @@ get_char()
 
 echo "Press any key to exit!"
 char=`get_char`
+
+# read -p "press Enter to exit!"
+# echo "Bye!"
