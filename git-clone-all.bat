@@ -64,9 +64,8 @@ git clone https://git.faronear.org/sol/solet
 git clone https://git.faronear.org/sol/soweb
 popd
 
-
-mkdir sol
-pushd sol
+mkdir tex
+pushd tex
 git clone https://git.faronear.org/tex/tex.basebank.java
 git clone https://git.faronear.org/tex/tex.baserver.java
 git clone https://git.faronear.org/tex/tex.doc
