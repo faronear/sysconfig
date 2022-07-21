@@ -32,6 +32,13 @@ pushd %FONPATH%
 echo *** FONPATH = [%CD%] ***
 echo;
 
+echo === Enter [commit message] or leave blank for default to 'updated'
+set /p COMMIT_MESSAGE=">>> "
+@ if "" == "%COMMIT_MESSAGE%" (
+  set COMMIT_MESSAGE="updated"
+)
+echo;
+
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
@@ -49,7 +56,7 @@ for /d %%o in (*) do (
         if exist %%g\.git (
           pushd %%g
           echo ---- git add-commit-push [%FONPATH%\%%o\%%g] ----
-          git add . && git commit -m 'updated' && git push
+          git add . && git commit -m "%COMMIT_MESSAGE%" && git push
           echo;
           popd
         )
