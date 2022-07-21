@@ -39,7 +39,7 @@ for /d %%o in (*) do (
       for /d %%g in (*) do (
         if exist %%g\.git (
           pushd %%g
-          echo ---- git adding/commiting/pushing [%BASEDIR%\%%o\%%g] ----
+          echo ---- git add-commit-push [%BASEDIR%\%%o\%%g] ----
           git add . && git commit -m 'updated' && git push
           echo;
           popd

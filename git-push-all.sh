@@ -42,9 +42,9 @@ do
   do
     if [ -d "$repo/.git" ]
     then
-      echo "---- git pushing [`pwd`/$repo] ----"
+      echo "---- git add-commit-push [`pwd`/$repo] ----"
       cd "$repo"
-      git push
+      git add . && git commit -m 'updated' && git push
       echo ""
       cd ..
     fi
