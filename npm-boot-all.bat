@@ -1,26 +1,35 @@
 @echo off
 
-echo *** Testing Path [%1]  [D:\faronear]  [C:\faronear]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..]
+@REM 首先清楚可能残留的变量
+set FONPATH=
 
-@ if not "%1" == "" (
-  set BASEDIR=%1
-) else (if exist D:\faronear (
-  set BASEDIR=D:\faronear
-) else (if exist C:\faronear (
-  set BASEDIR=C:\faronear
-) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
-  set BASEDIR=%HOMEDRIVE%%HOMEPATH%\faronear
+@ if not "" == "%1" (
+  set FONPATH=%1
 ) else (
-  set BASEDIR=..\..
-))))
-
-if not exist %BASEDIR% (
-  echo *** [%BASEDIR%] not exist! Exit now. ***
-  @ GOTO END
+  echo === Enter [faronear root path] or leave blank for default to one of [D:\faronear], [C:\faronear], [%HOMEDRIVE%%HOMEPATH%\faronear], [.]
+  set /p FONPATH=">>> "
+  echo;
 )
 
-pushd %BASEDIR%
-echo *** Current path = [%CD%] ***
+@ if "" == "%FONPATH%" (
+  if exist D:\faronear (
+    set FONPATH=D:\faronear
+  ) else (if exist C:\faronear (
+    set FONPATH=C:\faronear
+  ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
+    set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
+  ) else (
+    set FONPATH=.
+  )))
+) else (
+  if not exist "%FONPATH%" (
+    echo *** [%FONPATH%] not exist! Exit now. ***
+    @ GOTO END
+  )
+)
+
+pushd %FONPATH%
+echo *** FONPATH = [%CD%] ***
 echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
@@ -28,17 +37,17 @@ echo;
 for /d %%o in (*) do (
   if not %%o == .vscode (
     echo %%o | findstr "=" >NUL && (
-      echo !!!!!!!! omitting [%BASEDIR%\%%o] !!!!!!!!
+      echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
       echo;
     ) || (
-      echo ======== entering [%BASEDIR%\%%o] ========
+      echo ======== entering [%FONPATH%\%%o] ========
       echo;
       pushd %%o 
       for /d %%g in (*) do (
         if exist %%g\package.json (
           findstr "\"boot\"" %%g\package.json >NUL && (
             pushd %%g 
-            echo ---- npm booting [%BASEDIR%\%%o\%%g] ----
+            echo ---- npm booting [%FONPATH%\%%o\%%g] ----
             npm run boot
             echo;
             popd

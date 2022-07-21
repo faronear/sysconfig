@@ -1,26 +1,35 @@
 @echo off 
 
-echo *** Testing Path [%1]  [D:\faronear]  [C:\faronear]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..]
+@REM 首先清楚可能残留的变量
+set FONPATH=
 
-@ if not "%1" == "" (
-  set BASEDIR=%1
-) else (if exist D:\faronear (
-  set BASEDIR=D:\faronear
-) else (if exist C:\faronear (
-  set BASEDIR=C:\faronear
-) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
-  set BASEDIR=%HOMEDRIVE%%HOMEPATH%\faronear
+@ if not "" == "%1" (
+  set FONPATH=%1
 ) else (
-  set BASEDIR=..\..
-))))
-
-if not exist %BASEDIR% (
-  echo *** [%BASEDIR%] not exist! Exit now. ***
-  @ GOTO END
+  echo === Enter [faronear root path] or leave blank for default to one of [D:\faronear], [C:\faronear], [%HOMEDRIVE%%HOMEPATH%\faronear], [.]
+  set /p FONPATH=">>> "
+  echo;
 )
 
-pushd %BASEDIR%
-echo *** Current path = [%CD%] ***
+@ if "" == "%FONPATH%" (
+  if exist D:\faronear (
+    set FONPATH=D:\faronear
+  ) else (if exist C:\faronear (
+    set FONPATH=C:\faronear
+  ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
+    set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
+  ) else (
+    set FONPATH=.
+  )))
+) else (
+  if not exist "%FONPATH%" (
+    echo *** [%FONPATH%] not exist! Exit now. ***
+    @ GOTO END
+  )
+)
+
+pushd %FONPATH%
+echo *** FONPATH = [%CD%] ***
 echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
@@ -30,16 +39,16 @@ for /d %%o in (*) do (
   if not %%o == .vscode (
     @REM 如果同时使用了 GIT 和 云盘进行管理，每次 git pull 都会造成 .git 目录下某些文件变化，导致云盘不断自动同步。因此过滤掉云盘的目录不做更新。
     echo %%o | findstr "=" >NUL && (
-      echo !!!!!!!! omitting [%BASEDIR%\%%o] !!!!!!!!
+      echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
       echo;
     ) || (
-      echo ======== entering [%BASEDIR%\%%o] ========
+      echo ======== entering [%FONPATH%\%%o] ========
       echo;
       pushd %%o
       for /d %%g in (*) do (
         if exist %%g\.git (
           pushd %%g
-          echo ---- git pulling [%BASEDIR%\%%o\%%g] ----
+          echo ---- git pulling [%FONPATH%\%%o\%%g] ----
           git pull --all
           echo;
           popd
