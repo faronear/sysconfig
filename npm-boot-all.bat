@@ -16,7 +16,7 @@ set FONPATH=
     set FONPATH=D:\faronear
   ) else (if exist C:\faronear (
     set FONPATH=C:\faronear
-  ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
+  ) else (if exist "%HOMEDRIVE%%HOMEPATH%\faronear" (
     set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
     set FONPATH=.
@@ -35,8 +35,8 @@ echo;
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
 
 for /d %%o in (*) do (
-  if not %%o == .vscode (
-    echo %%o | findstr "=" >NUL && (
+  @ if not "%%o" == ".vscode" (
+    @ echo %%o | findstr "=" >NUL && (
       echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
       echo;
     ) || (
@@ -44,7 +44,7 @@ for /d %%o in (*) do (
       echo;
       pushd %%o 
       for /d %%g in (*) do (
-        if exist %%g\package.json (
+        @ if exist "%%g\package.json" (
           findstr "\"boot\"" %%g\package.json >NUL && (
             pushd %%g 
             echo ---- npm booting [%FONPATH%\%%o\%%g] ----
