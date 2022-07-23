@@ -30,7 +30,7 @@ popd
 mkdir npm
 pushd npm
 git clone https://git.faronear.org/npm/_npm
-git clone https://git.faronear.org/npm/basend-fileload-server
+git clone https://git.faronear.org/npm/basend-fileloader
 git clone https://git.faronear.org/npm/basend-deployer
 git clone https://git.faronear.org/npm/basend-envar
 git clone https://git.faronear.org/npm/basend-cocon
