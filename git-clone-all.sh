@@ -80,20 +80,20 @@ mkdir tic
 pushd tic
 git clone https://git.faronear.org/tic/_tic
 git clone https://git.faronear.org/tic/cloud
-git clone https://git.faronear.org/tic/cloud.server
-git clone https://git.faronear.org/tic/cloud.user.vue
+git clone https://git.faronear.org/tic/cloud-server
+git clone https://git.faronear.org/tic/cloud-user-vue
 git clone https://git.faronear.org/tic/star
-git clone https://git.faronear.org/tic/star.core.torm
-git clone https://git.faronear.org/tic/star.lens.design
-git clone https://git.faronear.org/tic/star.lens.uniapp
-git clone https://git.faronear.org/tic/star.lens.vue
-git clone https://git.faronear.org/tic/tic.blog.hexo
-git clone https://git.faronear.org/tic/tic.webhome
-git clone https://git.faronear.org/tic/tic.webhome.design
-git clone https://git.faronear.org/tic/tic.webhome.vue
+git clone https://git.faronear.org/tic/star-core-torm
+git clone https://git.faronear.org/tic/star-lens-design
+git clone https://git.faronear.org/tic/star-lens-uniapp
+git clone https://git.faronear.org/tic/star-lens-vue
+git clone https://git.faronear.org/tic/tic-blog-hexo
+git clone https://git.faronear.org/tic/tic-webhome
+git clone https://git.faronear.org/tic/tic-webhome-design
+git clone https://git.faronear.org/tic/tic-webhome-vue
 git clone https://git.faronear.org/tic/wallet
-git clone https://git.faronear.org/tic/wallet.server
-git clone https://git.faronear.org/tic/wallet.web
+git clone https://git.faronear.org/tic/wallet-server-torm
+git clone https://git.faronear.org/tic/wallet-user-vue
 popd
 
 mkdir tuc

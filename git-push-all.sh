@@ -54,7 +54,7 @@ do
     then
       echo "---- git add-commit-push [`pwd`/$repo] ----"
       cd "$repo"
-      git add . && git commit -m $COMMIT_MESSAGE && git push
+      git add . && git commit -m "$COMMIT_MESSAGE" && git push
       echo ""
       cd ..
     fi

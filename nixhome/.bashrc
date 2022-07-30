@@ -49,6 +49,8 @@ alias ps='ps -elf'
 
 alias emacs='emacs -nw'
 
+alias myip='ifconfig | grep netmask'
+
 # Always list long directory and time.
 if [[ "$(uname)" = "Darwin" ]];
 then
