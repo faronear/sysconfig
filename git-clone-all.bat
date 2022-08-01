@@ -7,12 +7,8 @@ mkdir cup
 pushd cup
 git clone https://git.faronear.org/cup/code.gasj.allinone
 git clone https://git.faronear.org/cup/code.gd-thomas.jp
-popd
-
-mkdir cup-cmc
-pushd cup-cmc
-git clone https://git.faronear.org/cup-cmc/cmctoy.web.uniapp
-git clone https://git.faronear.org/cup-cmc/cmctoy.server.torm
+git clone https://git.faronear.org/cup/cmc-user-uniapp
+git clone https://git.faronear.org/cup/cmc-server-torm
 popd
 
 mkdir fon
@@ -113,14 +109,14 @@ popd
 mkdir tuc-log
 pushd tuc-log
 git clone https://git.faronear.org/tuc-log/log
-git clone https://git.faronear.org/tuc-log/log.manager.uniapp
+git clone https://git.faronear.org/tuc-log/log-team-uniapp
 git clone https://git.faronear.org/tuc-log/log.server.mongo
-git clone https://git.faronear.org/tuc-log/log.server.torm
-git clone https://git.faronear.org/tuc-log/log.user.design
+git clone https://git.faronear.org/tuc-log/log-server-torm
+git clone https://git.faronear.org/tuc-log/log-user-design
 git clone https://git.faronear.org/tuc-log/log.user.react
-git clone https://git.faronear.org/tuc-log/log.user.uniapp
-git clone https://git.faronear.org/tuc-log/log.user.vue
-git clone https://git.faronear.org/tuc-log/log.webhome.hexo
+git clone https://git.faronear.org/tuc-log/log-user-uniapp
+git clone https://git.faronear.org/tuc-log/log-user-vue
+git clone https://git.faronear.org/tuc-log/log-wehbome-hexo
 popd
 
 
