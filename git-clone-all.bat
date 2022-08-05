@@ -13,7 +13,6 @@ popd
 
 mkdir fon
 pushd fon
-git clone https://git.faronear.org/fon/_fon
 git clone https://git.faronear.org/fon/sysconfig
 git clone https://git.faronear.org/fon/dot.vscode
 git clone https://git.faronear.org/fon/www.faronear.com
@@ -25,7 +24,6 @@ popd
 
 mkdir npm
 pushd npm
-git clone https://git.faronear.org/npm/_npm
 git clone https://git.faronear.org/npm/basend-fileloader
 git clone https://git.faronear.org/npm/basend-deployer
 git clone https://git.faronear.org/npm/basend-envar
@@ -72,22 +70,13 @@ popd
 
 mkdir tic
 pushd tic
-git clone https://git.faronear.org/tic/_tic
-git clone https://git.faronear.org/tic/cloud
 git clone https://git.faronear.org/tic/cloud-server
 git clone https://git.faronear.org/tic/cloud-user-vue
-git clone https://git.faronear.org/tic/star
 git clone https://git.faronear.org/tic/star-core-torm
-git clone https://git.faronear.org/tic/star-lens-design
 git clone https://git.faronear.org/tic/star-lens-uniapp
 git clone https://git.faronear.org/tic/star-lens-vue
 git clone https://git.faronear.org/tic/tic-blog-hexo
-git clone https://git.faronear.org/tic/tic-webhome
-git clone https://git.faronear.org/tic/tic-webhome-design
 git clone https://git.faronear.org/tic/tic-webhome-vue
-git clone https://git.faronear.org/tic/wallet
-git clone https://git.faronear.org/tic/wallet-server-torm
-git clone https://git.faronear.org/tic/wallet-user-vue
 popd
 
 mkdir tuc
@@ -112,7 +101,6 @@ git clone https://git.faronear.org/tuc-log/log
 git clone https://git.faronear.org/tuc-log/log-team-uniapp
 git clone https://git.faronear.org/tuc-log/log.server.mongo
 git clone https://git.faronear.org/tuc-log/log-server-torm
-git clone https://git.faronear.org/tuc-log/log-user-design
 git clone https://git.faronear.org/tuc-log/log.user.react
 git clone https://git.faronear.org/tuc-log/log-user-uniapp
 git clone https://git.faronear.org/tuc-log/log-user-vue
