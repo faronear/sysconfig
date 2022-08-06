@@ -60,12 +60,12 @@ popd
 
 mkdir tex
 pushd tex
-git clone https://git.faronear.org/tex/tex.basebank.java
-git clone https://git.faronear.org/tex/tex.baserver.java
-git clone https://git.faronear.org/tex/tex.doc
-git clone https://git.faronear.org/tex/tex.team.vue
-git clone https://git.faronear.org/tex/tex.user.android
-git clone https://git.faronear.org/tex/tex.user.vue
+git clone https://git.faronear.org/tex/tex-basebank-java
+git clone https://git.faronear.org/tex/tex-baserver-java
+git clone https://git.faronear.org/tex/tex-doc
+git clone https://git.faronear.org/tex/tex-team-vue
+git clone https://git.faronear.org/tex/tex-user-android
+git clone https://git.faronear.org/tex/tex-user-vue
 popd
 
 mkdir tic
@@ -76,12 +76,11 @@ git clone https://git.faronear.org/tic/star-core-torm
 git clone https://git.faronear.org/tic/star-lens-uniapp
 git clone https://git.faronear.org/tic/star-lens-vue
 git clone https://git.faronear.org/tic/tic-blog-hexo
-git clone https://git.faronear.org/tic/tic-webhome-vue
+git clone https://git.faronear.org/tic/tic-www-vue
 popd
 
 mkdir tuc
 pushd tuc
-git clone https://git.faronear.org/tuc/_tuc
 git clone https://git.faronear.org/tuc/tisch
 git clone https://git.faronear.org/tuc/nesh
 git clone https://git.faronear.org/tuc/nbtc
@@ -104,7 +103,7 @@ git clone https://git.faronear.org/tuc-log/log-server-torm
 git clone https://git.faronear.org/tuc-log/log.user.react
 git clone https://git.faronear.org/tuc-log/log-user-uniapp
 git clone https://git.faronear.org/tuc-log/log-user-vue
-git clone https://git.faronear.org/tuc-log/log-wehbome-hexo
+git clone https://git.faronear.org/tuc-log/log-blog-hexo
 popd
 
 

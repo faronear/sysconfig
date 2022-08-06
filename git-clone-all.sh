@@ -79,12 +79,11 @@ git clone https://git.faronear.org/tic/star-core-torm
 git clone https://git.faronear.org/tic/star-lens-uniapp
 git clone https://git.faronear.org/tic/star-lens-vue
 git clone https://git.faronear.org/tic/tic-blog-hexo
-git clone https://git.faronear.org/tic/tic-webhome-vue
+git clone https://git.faronear.org/tic/tic-www-vue
 popd
 
 mkdir tuc
 pushd tuc
-git clone https://git.faronear.org/tuc/_tuc
 git clone https://git.faronear.org/tuc/tisch
 git clone https://git.faronear.org/tuc/nesh
 git clone https://git.faronear.org/tuc/nbtc
@@ -100,14 +99,13 @@ popd
 
 mkdir tuc-log
 pushd tuc-log
-git clone https://git.faronear.org/tuc-log/log
 git clone https://git.faronear.org/tuc-log/log-team-uniapp
 git clone https://git.faronear.org/tuc-log/log-server-mongo
 git clone https://git.faronear.org/tuc-log/log-server-torm
 git clone https://git.faronear.org/tuc-log/log-user-react
 git clone https://git.faronear.org/tuc-log/log-user-uniapp
 git clone https://git.faronear.org/tuc-log/log-user-vue
-git clone https://git.faronear.org/tuc-log/log-wehbome-hexo
+git clone https://git.faronear.org/tuc-log/log-blog-hexo
 popd
 
 
