@@ -53,9 +53,9 @@ popd
 mkdir sol
 pushd sol
 git clone https://git.faronear.org/sol/_sol
-git clone https://git.faronear.org/sol/sol.ling
-git clone https://git.faronear.org/sol/sol.data
-git clone https://git.faronear.org/sol/sol.base
+git clone https://git.faronear.org/sol/sol-ling
+git clone https://git.faronear.org/sol/sol-data
+git clone https://git.faronear.org/sol/sol-base
 git clone https://git.faronear.org/sol/solet
 git clone https://git.faronear.org/sol/soweb
 popd
