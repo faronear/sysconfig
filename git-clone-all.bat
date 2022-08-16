@@ -96,9 +96,9 @@ popd
 mkdir tuc-log
 pushd tuc-log
 git clone https://git.faronear.org/tuc-log/log-team-uniapp
-git clone https://git.faronear.org/tuc-log/log.server.mongo
+git clone https://git.faronear.org/tuc-log/log-server-mongo
 git clone https://git.faronear.org/tuc-log/log-server-torm
-git clone https://git.faronear.org/tuc-log/log.user.react
+git clone https://git.faronear.org/tuc-log/log-user-react
 git clone https://git.faronear.org/tuc-log/log-user-uniapp
 git clone https://git.faronear.org/tuc-log/log-user-vue
 git clone https://git.faronear.org/tuc-log/log-blog-hexo
