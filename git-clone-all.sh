@@ -40,14 +40,16 @@ git clone https://git.faronear.org/npm/wo-core-i18n
 git clone https://git.faronear.org/npm/wo-core-toolkit
 git clone https://git.faronear.org/npm/wo-core-rpcsocket
 
-git clone https://git.faronear.org/npm/tic-crypto
-git clone https://git.faronear.org/npm/tic-chaintool
-git clone https://git.faronear.org/npm/tic-traction
-
 git clone https://git.faronear.org/npm/wo-user-part-uniapp
 git clone https://git.faronear.org/npm/wo-user-style-scss
 git clone https://git.faronear.org/npm/wo-user-toolkit-uniapp
 git clone https://git.faronear.org/npm/wo-user-websocket-uniapp
+
+git clone https://git.faronear.org/npm/tic-crypto
+git clone https://git.faronear.org/npm/tic-chaintool
+git clone https://git.faronear.org/npm/tic-traction
+
+git clone https://git.faronear.org/npm/vue-cli-uniapp
 popd
 
 mkdir sol
