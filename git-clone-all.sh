@@ -26,28 +26,28 @@ popd
 
 mkdir npm
 pushd npm
-git clone https://git.faronear.org/npm/basend-fileloader
-git clone https://git.faronear.org/npm/basend-deployer
-git clone https://git.faronear.org/npm/basend-envar
-git clone https://git.faronear.org/npm/basend-cocon
-git clone https://git.faronear.org/npm/basend-messenger
-git clone https://git.faronear.org/npm/basend-netinfo
-git clone https://git.faronear.org/npm/basend-webserver
-git clone https://git.faronear.org/npm/basend-websocket-server
-git clone https://git.faronear.org/npm/basend-webtoken
+git clone https://git.faronear.org/npm/wo-base-fileloader
+git clone https://git.faronear.org/npm/wo-base-deployer
+git clone https://git.faronear.org/npm/wo-base-envar
+git clone https://git.faronear.org/npm/wo-base-cocon
+git clone https://git.faronear.org/npm/wo-base-messenger
+git clone https://git.faronear.org/npm/wo-base-netinfo
+git clone https://git.faronear.org/npm/wo-base-webserver
+git clone https://git.faronear.org/npm/wo-base-websocket-server
+git clone https://git.faronear.org/npm/wo-base-webtoken
 
-git clone https://git.faronear.org/npm/corend-i18n
-git clone https://git.faronear.org/npm/corend-toolkit
-git clone https://git.faronear.org/npm/corend-rpcsocket
+git clone https://git.faronear.org/npm/wo-core-i18n
+git clone https://git.faronear.org/npm/wo-core-toolkit
+git clone https://git.faronear.org/npm/wo-core-rpcsocket
 
 git clone https://git.faronear.org/npm/tic-crypto
 git clone https://git.faronear.org/npm/tic-chaintool
 git clone https://git.faronear.org/npm/tic-traction
 
-git clone https://git.faronear.org/npm/usend-part-uniapp
-git clone https://git.faronear.org/npm/usend-style-scss
-git clone https://git.faronear.org/npm/usend-toolkit-uniapp
-git clone https://git.faronear.org/npm/usend-websocket-uniapp
+git clone https://git.faronear.org/npm/wo-user-part-uniapp
+git clone https://git.faronear.org/npm/wo-user-style-scss
+git clone https://git.faronear.org/npm/wo-user-toolkit-uniapp
+git clone https://git.faronear.org/npm/wo-user-websocket-uniapp
 popd
 
 mkdir sol
