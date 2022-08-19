@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "---------------------------------------------"
-read -p "User Name (leave blank for no change) >>> " UserName
+echo "User Name (leave blank for no change)" 
+read -p ">>> " UserName
 if [ $UserName ]
 then
   echo "git config --global user.name $UserName"
@@ -9,7 +10,8 @@ then
 fi
 
 echo "---------------------------------------------"
-read -p "User Email (leave blank for no change) >>> " UserEmail
+echo "User Email (leave blank for no change)" 
+read -p ">>> " UserEmail
 if [ $UserEmail ]
 then
   echo "git config --global user.email $UserEmail"
@@ -18,7 +20,8 @@ fi
 
 echo "---------------------------------------------"
 echo "如果 git 远程服务器的 ssl 证书过期，或者使用了自颁发的证书，连接时会出现验证错误 Cannot verify local issuer"
-read -p "Verify ssl? (true or false, blank for no change) >> " HttpSslVerify
+echo "Verify ssl? (true or false, blank for no change)" 
+read -p ">>> " HttpSslVerify
 if [ $HttpSslVerify ]
 then
   echo "git config --global http.sslVerify $HttpSslVerify"
@@ -26,7 +29,8 @@ then
 fi
 
 echo "---------------------------------------------"
-read -p "Store credential in cache or store? (leave blank for no change) >> " CredentialHelper
+echo "Store credential in cache or store? (leave blank for no change)" 
+read -p ">>> " CredentialHelper
 if [ $CredentialHelper ]
 then
   echo "git config --global credential.helper $CredentialHelper"
@@ -34,20 +38,19 @@ then
 fi
 
 echo "---------------------------------------------"
-read -p "Path to global gitignore file? (For example ~/.gitignore, leave blank for no change) >> " ExcludesFile
+echo "Path to global gitignore file? (For example ~/.gitignore, leave blank for no change)"
+read -p ">>> " ExcludesFile
 if [ $ExcludesFile ]
 then
-  if [ -e $ExcludesFile ]
-  then
-    echo "git config --global core.excludesfile $ExcludesFile"
-    git config --global core.excludesfile $ExcludesFile
-  else
-    echo "File not exsit: $ExcludesFile"
-  fi
+  echo "git config --global core.excludesfile $ExcludesFile"
+  git config --global core.excludesfile $ExcludesFile
+else
+  echo "File not exsit: $ExcludesFile"
 fi
 
 echo "---------------------------------------------"
-read -p "Set default branch since git 2.28 to master or main? (leave blank for no change) >> " DefaultBranch
+echo "Set default branch since git 2.28 to master or main? (leave blank for no change)"
+read -p ">>> " DefaultBranch
 if [ $DefaultBranch ]
 then
   echo "git config --global init.defaultbranch $DefaultBranch"

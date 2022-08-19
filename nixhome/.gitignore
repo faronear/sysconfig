@@ -1,26 +1,58 @@
-.DS_Store
-Thumbs.db
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 node_modules/
+/test/unit/coverage/
+/test/e2e/reports/
+.svn/
+.idea/
+.sass-cache/
+.deploy_git/
+.gitattributes
+_desktop.ini
+.DS_Store
+.thumbnails
+Thumbs.db
+thumbs.db
+.umi
+.umi-production
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/test/unit/coverage/
-/test/e2e/reports/
 selenium-debug.log
-
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
+package-lock.json
+*.iml
 *.njsproj
+*.ntvs*
 *.sln
-/package-lock.json
-
-# Microsoft Office temporary files
+*.suo
+._*
+.$*
 ~$*
 
-# seafile temporary files
-._*
-
 .bashrc_custom
+
+# hexo
+db.json
+
+# 客户端 uniapp 项目
+/unpackage/dist
+/unpackage/release
+/unpackage/cache
+/_archive/*
+/_datastore/*
+/_logstore/*
+/_filestore/*
+*.apk
+/pages4loader.json5
+envar-web-custom.js
+envar-deploy-secret.js
+
+# hexo 项目
+public/
+
+# 服务端(server or uniapp-uniCloud)项目
+envar-base-custom.js
+envar-base-dynamic.js
+envar-base-secret.js
+
+!.gitkeep
