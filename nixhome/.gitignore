@@ -42,7 +42,12 @@ db.json
 /_datastore/*
 /_logstore/*
 /_filestore/*
+/_webroot/*
+/dist/
 *.apk
+*.min.js
+*.min.css
+*.min.html
 /pages4loader.json5
 envar-web-custom.js
 envar-deploy-secret.js

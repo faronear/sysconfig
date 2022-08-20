@@ -1,3 +1,63 @@
-nixhome/.bashrc-custom
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-\._*
+node_modules/
+/test/unit/coverage/
+/test/e2e/reports/
+.svn/
+.idea/
+.sass-cache/
+.deploy_git/
+.gitattributes
+_desktop.ini
+.DS_Store
+.thumbnails
+Thumbs.db
+thumbs.db
+.umi
+.umi-production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+selenium-debug.log
+package-lock.json
+*.iml
+*.njsproj
+*.ntvs*
+*.sln
+*.suo
+._*
+.$*
+~$*
+
+.bashrc_custom
+
+# hexo
+db.json
+
+# 客户端 uniapp 项目
+/unpackage/dist
+/unpackage/release
+/unpackage/cache
+/_archive/*
+/_datastore/*
+/_logstore/*
+/_filestore/*
+/_webroot/*
+/dist/
+*.apk
+*.min.js
+*.min.css
+*.min.html
+/pages4loader.json5
+envar-web-custom.js
+envar-deploy-secret.js
+
+# hexo 项目
+public/
+
+# 服务端(server or uniapp-uniCloud)项目
+envar-base-custom.js
+envar-base-dynamic.js
+envar-base-secret.js
+
+!.gitkeep
