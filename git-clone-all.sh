@@ -90,11 +90,11 @@ git clone https://git.faronear.org/tuc/nesh
 git clone https://git.faronear.org/tuc/nbtc
 popd
 
-mkdir tuc-ext
-pushd tuc-ext
-git clone https://git.faronear.org/tuc-ext/ext-blog-hexo
-git clone https://git.faronear.org/tuc-ext/ext-server-torm
-git clone https://git.faronear.org/tuc-ext/ext-user-uniapp
+mkdir tuc-pex
+pushd tuc-pex
+git clone https://git.faronear.org/tuc-pex/pex-blog-hexo
+git clone https://git.faronear.org/tuc-pex/pex-server-torm
+git clone https://git.faronear.org/tuc-pex/pex-user-uniapp
 popd
 
 mkdir tuc-log
