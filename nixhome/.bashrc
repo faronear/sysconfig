@@ -47,7 +47,7 @@ alias cvs='cvs -z9'
 
 alias ps='ps -elf'
 
-alias emacs='emacs -nw'
+alias emacst='emacs -nw'
 
 alias myip='ifconfig | grep netmask'
 

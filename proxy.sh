@@ -5,7 +5,7 @@ function proxy(){
     read -p ">>> " proxySwitch
     if [ $proxySwitch ] && [ $proxySwitch == "u" ]
     then
-        export ALL_PROXY=socks5://127.0.0.1:1090
+        export ALL_PROXY=socks5://127.0.0.1:8099
         export http_proxy=http://127.0.0.1:41091
         export https_proxy=https://127.0.0.1:41091
         echo -e "--- 已开启网络代理"
