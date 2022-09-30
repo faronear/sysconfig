@@ -4,13 +4,6 @@ if [ $1 ]
 then
   FONPATH=$1
 else
-  echo "=== Enter [faronear root path] or leave blank for default to one of [/faronear], [~/faronear], [.]"
-  read -p ">>> " FONPATH
-  echo ""
-fi
-
-if [ ! $FONPATH ]
-then
   if [ -d /faronear ]
   then 
     FONPATH=/faronear
@@ -19,15 +12,21 @@ then
     then
       FONPATH=~/faronear
     else
-      FONPATH=.
+      echo "=== Enter [faronear root path] or leave blank for default to [.]"
+      read -p ">>> " FONPATH
+      echo ""
+      if [ ! $FONPATH ]
+      then
+        FONPATH=.
+      fi
     fi
   fi
-else
-  if [ ! -d $FONPATH ]
-  then 
-    echo "*** [$FONPATH] not exist! Exit now. ***"
-    exit
-  fi
+fi
+
+if [ ! -d $FONPATH ]
+then 
+  echo "*** [$FONPATH] not exist! Exit now. ***"
+  exit
 fi
 
 pushd $FONPATH
