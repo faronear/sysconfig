@@ -35,9 +35,9 @@ package-lock.json
 db.json
 
 # 客户端 uniapp 项目
-/unpackage/dist
-/unpackage/release
-/unpackage/cache
+/unpackage/*
+!/unpackage/res/
+
 /_archive/*
 /_datastore/*
 /_logstore/*
