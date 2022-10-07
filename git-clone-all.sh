@@ -66,7 +66,7 @@ pushd tex
 git clone https://git.faronear.org/tex/tex-basebank-java
 git clone https://git.faronear.org/tex/tex-baserver-java
 git clone https://git.faronear.org/tex/tex-doc
-git clone https://git.faronear.org/tex/tex-team.vue
+git clone https://git.faronear.org/tex/tex-team-vue
 git clone https://git.faronear.org/tex/tex-user-android
 git clone https://git.faronear.org/tex/tex-user-ios
 git clone https://git.faronear.org/tex/tex-user-vue
@@ -113,7 +113,6 @@ mkdir tuc-vic
 pushd tuc-vic
 git clone https://git.faronear.org/tuc-vic/vic
 git clone https://git.faronear.org/tuc-vic/vic.server.mongo
-git clone https://git.faronear.org/tuc-vic/vic.user.design
 git clone https://git.faronear.org/tuc-vic/vic.user.react
 git clone https://git.faronear.org/tuc-vic/vic.webhome.hexo
 git clone https://git.faronear.org/tuc-vic/vic.market
@@ -126,5 +125,4 @@ git clone https://git.faronear.org/tuc-fiv/fiv
 git clone https://git.faronear.org/tuc-fiv/fiv.webhome.hexo
 git clone https://git.faronear.org/tuc-fiv/fiv.server.mongo
 git clone https://git.faronear.org/tuc-fiv/fiv.user.react
-git clone https://git.faronear.org/tuc-fiv/fiv.design
 popd
