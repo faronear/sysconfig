@@ -22,62 +22,23 @@ else
   echo "  de4 : $de4"
   echo "  sh  : $sh"
   echo "  wx  : $wx"
-  echo "  other : specify host/user/pwd"
   echo
-  read -p "Enter target (default to other)>> " TARGET
+  echo "=== Enter target (leave blank to specify host/user/pwd):"
+  read -p ">>> " TARGET
   if [ ! $TARGET ]
   then
     TARGET=other
   fi
 fi
 
-if [ $TARGET = "local" ]
+eval targetUrl=\$${TARGET}
+
+if [ $targetUrl ]
 then
   read -p "Enter adot password (ROAD) >>" PWD_ADOT
   read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $local adot $PWD_ADOT $PWD_ADOT
-elif [ $TARGET = 'us1' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $us1 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'us2' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $us2 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'de1' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $de1 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'de2' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $de2 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'de3' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $de3 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'de4' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $de4 adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'sh' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $sh adot $PWD_ADOT $PWD_ROOT
-elif [ $TARGET = 'wx' ]
-then
-  read -p "Enter adot password (ROAD) >>" PWD_ADOT
-  read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/fon/sysconfig/expect-ssh.sh $wx adot $PWD_ADOT $PWD_ROOT
+  expect ~/faronear/fon/sysconfig/expect-ssh.sh $targetUrl adot $PWD_ADOT $PWD_ADOT
 else
-  echo  Other target is selected. Please specify details of the target:
   while [ ! $HOST ]
   do
   read -p "host = " HOST
