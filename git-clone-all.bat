@@ -13,9 +13,10 @@ popd
 
 mkdir fon
 pushd fon
-git clone https://git.faronear.org/fon/sysconfig
+git clone https://git.faronear.org/npm/sysconfig
 git clone https://git.faronear.org/fon/dot.vscode
 git clone https://git.faronear.org/fon/www.faronear.com
+git clone https://git.faronear.org/fon/fon-www-uniapp-cli
 git clone https://git.faronear.org/fon/yapi.faronear.org
 git clone https://git.faronear.org/fon/git.faronear.org
 git clone https://git.faronear.org/fon/www.faronear.org
