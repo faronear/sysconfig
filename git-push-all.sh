@@ -3,23 +3,19 @@
 if [ $1 ]
 then
   FONPATH=$1
+elif [ -d /faronear ]
+then 
+  FONPATH=/faronear
+elif [ -d ~/faronear ]
+then
+  FONPATH=~/faronear
 else
-  if [ -d /faronear ]
-  then 
-    FONPATH=/faronear
-  else
-    if [ -d ~/faronear ]
-    then
-      FONPATH=~/faronear
-    else
-      echo "=== Enter [faronear root path] or leave blank for default to [.]"
-      read -p ">>> " FONPATH
-      echo ""
-      if [ ! $FONPATH ]
-      then
-        FONPATH=.
-      fi
-    fi
+  echo "=== Enter [faronear root path] or leave blank for default to [.]"
+  read -p ">>> " FONPATH
+  echo ""
+  if [ ! $FONPATH ]
+  then
+    FONPATH=.
   fi
 fi
 

@@ -11,13 +11,11 @@ else
     if [ -d /faronear ]
     then 
       FONPATH=/faronear
+    elif [ -d ~/faronear ]
+    then
+      FONPATH=~/faronear
     else
-      if [ -d ~/faronear ]
-      then
-        FONPATH=~/faronear
-      else
-        FONPATH=.
-      fi
+      FONPATH=.
     fi
   fi
 fi

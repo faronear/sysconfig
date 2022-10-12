@@ -102,8 +102,15 @@ export USERPROFILE=$HOME
 if [ -d /Users/luk.lu/faronear/fon/sysconfig ]
 then
   export PATH=/Users/luk.lu/faronear/fon/sysconfig:$PATH
-else [ -d /faronear/fon/sysconfig ]
+elif [ -d /Users/luk.lu/faronear/fon/sysconfig.git ]
+then 
+  export PATH=/Users/luk.lu/faronear/fon/sysconfig.git:$PATH
+elif [ -d /faronear/fon/sysconfig ]
+then
   export PATH=/faronear/fon/sysconfig:$PATH
+elif [ -d /faronear/fon/sysconfig.git ]
+then 
+  export PATH=/faronear/fon/sysconfig.git:$PATH
 fi
 
 if [ -f ~/.bashrc_custom ]

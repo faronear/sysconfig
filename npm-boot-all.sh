@@ -14,20 +14,16 @@ then
   if [ -d /faronear ]
   then 
     FONPATH=/faronear
+  elif [ -d ~/faronear ]
+  then
+    FONPATH=~/faronear
   else
-    if [ -d ~/faronear ]
-    then
-      FONPATH=~/faronear
-    else
-      FONPATH=.
-    fi
+    FONPATH=.
   fi
-else
-  if [ ! -d $FONPATH ]
-  then 
-    echo "*** [$FONPATH] not exist! Exit now. ***"
-    exit
-  fi
+elif [ ! -d $FONPATH ]
+then 
+  echo "*** [$FONPATH] not exist! Exit now. ***"
+  exit
 fi
 
 pushd $FONPATH
