@@ -13,7 +13,7 @@ set FONPATH=
   ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
     set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
-      echo === Enter [faronear root path] or leave blank for default to one of [.]
+      echo === Enter [target path] or leave [blank] for default to `.`
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
@@ -28,7 +28,7 @@ if not exist "%FONPATH%" (
 )
 
 pushd %FONPATH%
-echo *** FONPATH = [%CD%] ***
+echo *** Starting from [%CD%] ***
 echo;
 
 echo === Enter [commit message] or leave blank for default to 'updated'
@@ -44,10 +44,10 @@ for /d %%o in (*) do (
   @REM windows的链接文件会造成路径错误，从而终止该循环，从而导致下一轮乃至所有循环的工作目录错误。因此要过滤掉 .vscode 这个符号链接目录。
   if not "%%o" == ".vscode" (
     @REM 如果同时使用了 GIT 和 云盘进行管理，每次 git push 都会造成 .git 目录下某些文件变化，导致云盘不断自动同步。因此过滤掉云盘的目录不做更新。
-    echo %%o | findstr "=" >NUL && (
-      echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
-      echo;
-    ) || (
+    @REM echo %%o | findstr "=" >NUL && (
+    @REM   echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
+    @REM   echo;
+    @REM ) || (
       echo ======== entering [%FONPATH%\%%o] ========
       echo;
       pushd %%o
@@ -61,7 +61,7 @@ for /d %%o in (*) do (
         )
       )
       popd
-    )
+    @REM )
   )
 )
 

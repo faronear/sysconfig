@@ -10,7 +10,7 @@ elif [ -d ~/faronear ]
 then
   FONPATH=~/faronear
 else
-  echo "=== Enter [faronear root path] or leave blank for default to [.]"
+  echo "=== Enter [target path] or leave [blank] for default to `.`"
   read -p ">>> " FONPATH
   echo ""
   if [ ! $FONPATH ]
@@ -26,10 +26,10 @@ then
 fi
 
 pushd $FONPATH
-echo "*** FONPATH = [`pwd`] ***"
+echo "*** Starting from [`pwd`] ***"
 echo ""
 
-echo "=== Enter [commit message] or leave blank for default to 'updated'"
+echo "=== Enter [commit message] or leave [blank] for default to 'updated'"
 read -p ">>> " COMMIT_MESSAGE
 if [ ! $COMMIT_MESSAGE ]
 then

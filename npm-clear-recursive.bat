@@ -36,8 +36,8 @@ for /d /r %%r in (*) do (
   if not "%%r" == ".vscode" (
     if exist "%%r\.git" (
       pushd "%%r"
-      echo ---- git pulling [%FONPATH%\%%r] ----
-      git pull --all
+      echo ---- Deleting [%FONPATH%\%%r] ----
+      rd /s /q node_modules
       echo;
       popd
     )
@@ -46,7 +46,7 @@ for /d /r %%r in (*) do (
 
 popd
 
-:END
-
 pause
+@GOTO END
 
+:END

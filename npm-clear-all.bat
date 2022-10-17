@@ -1,32 +1,40 @@
 @echo off 
 
-echo *** Testing Path [%1]  [D:\faroenar]  [C:\faroenar]  [%HOMEDRIVE%%HOMEPATH%\faronear]  [../..] 
+@REM 首先清除可能残留的变量
+set FONPATH=
 
-@ if not "%1" == "" (
-  set BASEDIR=%1
-) else (if exist D:\faronear (
-  set BASEDIR=D:\faronear
-) else (if exist C:\faronear (
-  set BASEDIR=C:\faronear
-) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
-  set BASEDIR=%HOMEDRIVE%%HOMEPATH%\faronear
+@ if not "" == "%1" (
+  set FONPATH=%1
 ) else (
-  set BASEDIR=..\..
-))))
+  if exist D:\faronear (
+    set FONPATH=D:\faronear
+  ) else (if exist C:\faronear (
+    set FONPATH=C:\faronear
+  ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
+    set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
+  ) else (
+      echo === Enter [target path] or leave [blank] for default to `.`
+      set /p FONPATH=">>> "
+      echo;
+      if "" == "%FONPATH%" (
+        set FONPATH=.
+      )
+  )))
+)
 
-if not exist %BASEDIR% (
-  echo *** [%BASEDIR%] not exist! Exit now. ***
+if not exist "%FONPATH%" (
+  echo *** [%FONPATH%] not exist! Exit now. ***
   @ GOTO END
 )
 
-pushd %BASEDIR%
-echo *** Current path = [%CD%] ***
+pushd %FONPATH%
+echo *** Starting from [%CD%] ***
 echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
-  echo ======== entering [%BASEDIR%\%%o] ========
+  echo ======== entering [%FONPATH%\%%o] ========
   echo;
   pushd %%o
   for /d %%g in (*) do (

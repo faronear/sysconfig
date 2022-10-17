@@ -13,7 +13,7 @@ elif [ -d /mnt/d/faronear ]
 then
   FONPATH=/mnt/d/faronear
 else
-  echo "=== Enter [faronear root path] or leave blank for default to [.]"
+  echo "=== Enter [target path] or leave [blank] for default to `.`"
   read -p ">>> " FONPATH
   echo ""
   if [ ! $FONPATH ]
@@ -29,12 +29,10 @@ then
 fi
 
 pushd $FONPATH
-echo "*** FONPATH = [`pwd`] ***"
+echo "*** Starting from [`pwd`] ***"
 echo ""
 
-# for org in `ls -F | grep '/$' | grep -v '~'` ## 首先过滤出所有子目录，然后过滤出所有不含 ~ 的子目录。注意 for ??? in `ls ???` 是按照空行以及空格进行分割的，因此最后筛选出的目录名不能含有空格，否则就被分割成多个了。（for ??? in * 是分割成一个个目录名的，即使目录名含有空格。）
-# ls -F | grep '/$' | grep -v '=' | while read org ## 换用这种方法，可以成功过滤出含有空格的完整目录名
-find . -mindepth 2 -maxdepth 3 -type d -name '?*.git' | grep -v 'node_modules' | while read repo
+find . -mindepth 1 -maxdepth 3 -type d -name '?*.git' | grep -v 'node_modules' | while read repo
 do 
   if [ -d "$repo/.git" ]
   then

@@ -13,7 +13,7 @@ set FONPATH=
   ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
     set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
-      echo === Enter [faronear root path] or leave blank for default to one of [.]
+      echo === Enter [target path] or leave [blank] for default to `.`
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
@@ -28,7 +28,7 @@ if not exist "%FONPATH%" (
 )
 
 pushd %FONPATH%
-echo *** FONPATH = [%CD%] ***
+echo *** Starting from [%CD%] ***
 echo;
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
