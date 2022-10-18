@@ -31,30 +31,18 @@ pushd %FONPATH%
 echo *** Starting from [%CD%] ***
 echo;
 
-@REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
-
-for /d %%o in (*) do (
+for /d /r %%r in (*) do (
   @REM windows的链接文件会造成路径错误，从而终止该循环，从而导致下一轮乃至所有循环的工作目录错误。因此要过滤掉 .vscode 这个符号链接目录。
-  if not "%%o" == ".vscode" (
-    @REM 如果同时使用了 GIT 和 云盘进行管理，每次 git pull 都会造成 .git 目录下某些文件变化，导致云盘不断自动同步。因此过滤掉云盘的目录不做更新。
-    @REM echo %%o | findstr "=" >NUL && (
-    @REM   echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
-    @REM   echo;
-    @REM ) || (
-      echo ======== entering [%FONPATH%\%%o] ========
-      echo;
-      pushd %%o
-      for /d %%g in (*) do (
-        if exist "%%g\.git" (
-          pushd %%g
-          echo ---- git pulling [%FONPATH%\%%o\%%g] ----
-          git pull --all
-          echo;
-          popd
-        )
+  if not "%%r" == ".vscode" (
+    if exist "%%r\package.json" (
+      findstr "\"boot\"" "%%r\package.json" >NUL && (
+        pushd %%r
+        echo ---- npm booting [%FONPATH%\%%r] ----
+        npm run boot
+        echo;
+        popd
       )
-      popd
-    @REM )
+    )
   )
 )
 

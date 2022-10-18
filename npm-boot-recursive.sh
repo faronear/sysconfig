@@ -34,11 +34,12 @@ echo ""
 
 find . -mindepth 1 -maxdepth 3 -type d -name '?*' | grep -v 'node_modules' | while read repo
 do 
-  if [ -d "$repo/.git" ]
+  if ( [ -f "$repo/package.json" ] && grep -q '"boot"' "$repo/package.json" )
   then
-    echo "---- git pulling [`pwd`/$repo] ----"
+    echo "---- npm booting: [`pwd`/$repo] ----"
     pushd "$repo"
-    git pull --all
+    npm run boot
+    echo "---- npm booted: [`pwd`/$repo] ----"
     echo ""
     popd
   fi

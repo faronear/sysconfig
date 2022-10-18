@@ -42,7 +42,7 @@ do
       echo "<<<< npm booting: [$org/$repo] <<<<"
       cd "$repo"
       npm run boot
-      echo ">>>> npm bootted: [$org/$repo] >>>>"
+      echo ">>>> npm booted: [$org/$repo] >>>>"
       echo ""
       cd ..
     fi

@@ -34,19 +34,21 @@ echo;
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
-  echo ======== entering [%FONPATH%\%%o] ========
-  echo;
-  pushd %%o
-  for /d %%g in (*) do (
-    if exist %%g\node_modules (
-      pushd %%g
-      echo ---- Deleting [%%g\node_modules] ----
-      rd /s /q node_modules
-      echo;
-      popd
+  @ if not "%%o" == ".vscode" (
+    echo ======== entering [%FONPATH%\%%o] ========
+    echo;
+    pushd %%o
+    for /d %%g in (*) do (
+      if exist %%g\node_modules (
+        pushd %%g
+        echo ---- Deleting [%%g\node_modules] ----
+        rd /s /q node_modules
+        echo;
+        popd
+      )
     )
+    popd
   )
-  popd
 )
 
 popd
