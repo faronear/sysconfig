@@ -1,26 +1,32 @@
 #!/bin/bash
 
-if [ $1 ]
+testpath1=/faronear
+testpath2=~/faronear
+testpath3=/mnt/d/faronear
+
+if [ "$1" ]
 then
   FONPATH=$1
+elif [ -d $testpath1 ]
+then 
+  FONPATH=$testpath1
+elif [ -d $testpath2 ]
+then
+  FONPATH=$testpath2
+elif [ -d $testpath3 ]
+then
+  FONPATH=$testpath3
 else
-  echo Leave blank for default [/faronear], [~/faronear], [.],
-  read -p "or enter faronear path to git pull >> " FONPATH
-  if [ ! $FONPATH ]
+  echo "=== Enter [target path] or leave [blank] for default to `.`"
+  read -p ">>> " FONPATH
+  echo ""
+  if [ ! "$FONPATH" ]
   then
-    if [ -d /faronear ]
-    then 
-      FONPATH=/faronear
-    elif [ -d ~/faronear ]
-    then
-      FONPATH=~/faronear
-    else
-      FONPATH=.
-    fi
+    FONPATH=.
   fi
 fi
 
-if [ ! -d $FONPATH ]
+if [ ! -d "$FONPATH" ]
 then 
   echo "*** [$FONPATH] not exist! Exit now. ***"
   exit
@@ -28,31 +34,33 @@ fi
 
 pushd $FONPATH
 echo "*** Current path = [`pwd`] ***"
-for org in '*'
+echo ""
+
+# for org in `ls -F | grep '/$' | grep -v '~'` ## 首先过滤出所有子目录，然后过滤出所有不含 ~ 的子目录。注意 for ??? in `ls ???` 是按照空行以及空格进行分割的，因此最后筛选出的目录名不能含有空格，否则就被分割成多个了。
+ls -F | grep '/$' | grep -v '=' | while read org ## 换用这种方法，可以成功过滤出含有空格的完整目录名
 do 
-  if [ -d $org ]
-  then
-    echo "  entering [$FONPATH/$org]"
-    cd $org;
-    for repo in *
-    do
-      if [ -d $repo/.git ]
-      then
-        cd $repo
-          # echo "    changing repo url to [$FONPATH/$org/$repo]"
-          # git remote remove origin
-          # git remote add origin https://git.faronear.org/$org/$repo
-          # git pull
-          # git branch --set-upstream-to=origin/main main
-          # git pull
-          echo "    renaming master branch to main"
-          git branch -m master main
-          git push -u origin main
-          git push origin :master
-        cd ..
-      fi
-    done
-    cd ..;
-  fi
+  echo "======== entering [$FONPATH/$org] ========"
+  echo ""
+  cd "$org";
+  for repo in * ## for ??? in * 是分割成一个个目录名的，即使目录名含有空格
+  do
+    if [ -d "$repo/.git" ]
+    then
+      cd "$repo"
+      # echo "    changing repo url to [$FONPATH/$org/$repo]"
+      # git remote remove origin
+      # git remote add origin https://git.faronear.org/$org/$repo
+      # git pull
+      # git branch --set-upstream-to=origin/main main
+      # git pull
+      echo "---- renaming branch master to main for [`pwd`/$repo] ----"
+      git branch -m master main
+      git push -u origin main
+      git push origin :master
+      echo ""
+      cd ..
+    fi
+  done
+  cd ..
 done
 popd

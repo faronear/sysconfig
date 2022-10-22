@@ -99,18 +99,30 @@ fi
 export USERPROFILE=$HOME
 
 # add sysconfig to path
-if [ -d /Users/luk.lu/faronear/fon/sysconfig ]
+tp1=/Users/luk.lu/faronear/fon/sysconfig
+tp2=/Users/luk.lu/faronear/fon/sysconfig.git
+tp3=/faronear/fon/sysconfig
+tp4=/faronear/fon/sysconfig.git
+tp5=/mnt/c/faronear/fon/sysconfig.git
+tp6=/mnt/d/faronear/fon/sysconfig.git
+if [ -d $tp1 ]
 then
-  export PATH=/Users/luk.lu/faronear/fon/sysconfig:$PATH
-elif [ -d /Users/luk.lu/faronear/fon/sysconfig.git ]
+  export PATH=$tp1:$PATH
+elif [ -d $tp2 ]
 then 
-  export PATH=/Users/luk.lu/faronear/fon/sysconfig.git:$PATH
-elif [ -d /faronear/fon/sysconfig ]
+  export PATH=$tp2:$PATH
+elif [ -d $tp3 ]
 then
-  export PATH=/faronear/fon/sysconfig:$PATH
-elif [ -d /faronear/fon/sysconfig.git ]
+  export PATH=$tp3:$PATH
+elif [ -d $tp4 ]
 then 
-  export PATH=/faronear/fon/sysconfig.git:$PATH
+  export PATH=$tp4:$PATH
+elif [ -d $tp5 ]
+then
+  export PATH=$tp5:$PATH
+elif [ -d $tp6 ]
+then
+  export PATH=$tp6:$PATH
 fi
 
 if [ -f ~/.bashrc_custom ]

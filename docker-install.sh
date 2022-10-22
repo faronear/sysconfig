@@ -7,12 +7,12 @@
 
 echo "=== Choose docker source (a: 阿里云, z: 中科大, leave blank for default):" 
 read -p ">>> " DOCKER_SOURCE
-if [ $DOCKER_SOURCE = 'a' ]
+if [ "$DOCKER_SOURCE" = 'a' ]
 then
   GPG_URL=http://mirrors.aliyun.com/docker-ce/linux/debian/gpg
   DOCKER_URL=http://mirrors.aliyun.com/docker-ce/linux/debian
   COMPOSE_URL=https://get.daocloud.io/docker/compose/releases/download/1.29.2/
-elif [ $DOCKER_SOURCE = 'z' ]
+elif [ "$DOCKER_SOURCE" = 'z' ]
 then
   GPG_URL=https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg
   DOCKER_URL=https://mirrors.ustc.edu.cn/docker-ce/linux/debian
@@ -43,21 +43,21 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 echo "=== 配置中国加速镜像源 /etc/docker/daemon.json (d: Docker中国, t: 腾讯云, z: 中科大, leave blank for no mirror):"
 read -p ">>> "  DOCKER_MIRROR
-if [ ! $DOCKER_MIRROR ]
+if [ ! "$DOCKER_MIRROR" ]
 then
   echo "--- Docker mirror is not specified."
-elif [ $DOCKER_MIRROR = 'd' ]
+elif [ "$DOCKER_MIRROR" = 'd' ]
 then
   DOCKER_MIRROR=https://registry.docker-cn.com
-elif [ $DOCKER_MIRROR = 't' ]
+elif [ "$DOCKER_MIRROR" = 't' ]
 then
   DOCKER_MIRROR=https://mirror.ccs.tencentyun.com
-elif [ $DOCKER_MIRROR = 'z' ]
+elif [ "$DOCKER_MIRROR" = 'z' ]
 then
   DOCKER_MIRROR=https://docker.mirrors.ustc.edu.cn
 fi
 
-if [ $DOCKER_MIRROR ]
+if [ "$DOCKER_MIRROR" ]
 then
   echo "{" | sudo tee /etc/docker/daemon.json > /dev/null
   echo "  \"registry-mirrors\": [" | sudo tee -a /etc/docker/daemon.json > /dev/null
@@ -68,7 +68,7 @@ fi
 
 echo "=== 启动docker服务？y for yes, anything else for no"
 read -p ">>> " StartDockerDaemon
-if [ $StartDockerDaemon ] && [ $StartDockerDaemon = 'y' ]
+if [ "$StartDockerDaemon" = 'y' ]
 then
   # 开机启动
   sudo systemctl enable docker
