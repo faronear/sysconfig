@@ -54,11 +54,11 @@ do
   do
     if [ -d "$repo/.git" ]
     then
-      echo "---- git add-commit-push [`pwd`/$repo] ----"
-      cd "$repo"
+      echo "---- git commit & push [`pwd`/$repo] ----"
+      pushd "$repo"
       git add . && git commit -m "$COMMIT_MESSAGE" && git push
       echo ""
-      cd ..
+      popd
     fi
   done
   cd ..
