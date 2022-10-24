@@ -44,11 +44,11 @@ then
 fi
 echo ""
 
-find . -mindepth 1 -maxdepth 3 -type d -name '?*' | grep -v 'node_modules' | while read repo
+find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -v 'node_modules' | while read repo
 do 
   if [ -d "$repo/.git" ]
   then
-    echo "---- git commit & push [`pwd`/$repo] ----"
+    echo "---- git commit & push [$repo] ----"
     pushd "$repo"
     git add . && git commit -m "$COMMIT_MESSAGE" && git push
     echo ""

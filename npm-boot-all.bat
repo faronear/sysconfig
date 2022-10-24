@@ -35,7 +35,7 @@ echo;
 
 for /d %%o in (*) do (
   @ if not "%%o" == ".vscode" (
-    @REM @ echo %%o | findstr "=" >NUL && (
+    @REM @ echo "%%o" | findstr "=" >NUL && (
     @REM   echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
     @REM   echo;
     @REM ) || (

@@ -36,11 +36,11 @@ pushd $FONPATH
 echo "*** Starting from [`pwd`] ***"
 echo ""
 
-find . -mindepth 1 -maxdepth 3 -type d -name '?*' | grep -v 'node_modules' | while read repo
+find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -v 'node_modules' | while read repo
 do 
   if [ -d "$repo/.git" ]
   then
-    echo "---- git pulling [`pwd`/$repo] ----"
+    echo "---- git pulling [$repo] ----"
     pushd "$repo"
     git pull --all
     echo ""
