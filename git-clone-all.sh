@@ -77,9 +77,9 @@ popd
 mkdir tuc
 pushd tuc
 
-git clone https://git.faronear.org/tuc/tisch fork/tisch.git
-git clone https://git.faronear.org/tuc/nesh fork/nesh.git
-git clone https://git.faronear.org/tuc/nbtc fork/nbtc.git
+git clone https://git.faronear.org/tuc/fork-tisch fork/tisch.git
+git clone https://git.faronear.org/tuc/fork-nesh fork/nesh.git
+git clone https://git.faronear.org/tuc/fork-nbtc fork/nbtc.git
 
 git clone https://git.faronear.org/tuc-pex/pex-blog-hexo pex/pex-blog-hexo.git
 git clone https://git.faronear.org/tuc-pex/pex-chain-geth pex/pex-chain-geth.git
