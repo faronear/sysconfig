@@ -95,6 +95,12 @@ then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+# acme.sh settings
+if [ -f $HOME/.acme.sh/acme.sh.env ]
+then
+  . "/root/.acme.sh/acme.sh.env"
+fi
+
 # let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
 export USERPROFILE=$HOME
 
