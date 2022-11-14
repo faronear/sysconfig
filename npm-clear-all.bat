@@ -34,6 +34,7 @@ echo;
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
+@REM windows的链接文件会造成路径错误，从而终止该循环，从而导致下一轮乃至所有循环的工作目录错误。因此要过滤掉 .vscode 这个符号链接目录。
   @ if not "%%o" == ".vscode" (
     echo ======== entering [%FONPATH%\%%o] ========
     echo;

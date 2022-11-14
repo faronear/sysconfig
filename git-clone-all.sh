@@ -42,8 +42,6 @@ git clone https://git.faronear.org/npm/wo-user-websocket-uniapp wo-user-websocke
 git clone https://git.faronear.org/npm/tic-crypto tic-crypto.git
 git clone https://git.faronear.org/npm/tic-chaintool tic-chaintool.git
 git clone https://git.faronear.org/npm/tic-traction tic-traction.git
-
-git clone https://git.faronear.org/npm/vue-cli-uniapp vue-cli-uniapp.git
 popd
 
 mkdir sol
@@ -85,6 +83,7 @@ git clone https://git.faronear.org/tuc-pex/pex-blog-hexo pex/pex-blog-hexo.git
 git clone https://git.faronear.org/tuc-pex/pex-chain-geth pex/pex-chain-geth.git
 git clone https://git.faronear.org/tuc-pex/pex-contract-hardhat pex/pex-contract-hardhat.git
 git clone https://git.faronear.org/tuc-pex/pex-server-torm pex/pex-server-torm.git
+git clone https://git.faronear.org/tuc-pex/pex-scan-html pex/pex-scan-html.git
 git clone https://git.faronear.org/tuc-pex/pex-user-uniapp pex/pex-user-uniapp.git
 
 git clone https://git.faronear.org/tuc-log/log-team-uniapp log/log-team-uniapp.git
