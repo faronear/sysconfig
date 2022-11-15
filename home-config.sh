@@ -34,7 +34,7 @@ fi
 
 if [ "$2" ]
 then
-  HomePath=$2
+  HomePath=/home/$2
 else
   HomePath=~
 fi
@@ -48,14 +48,14 @@ then
   read -p ">>> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
-    mv $homescript $homescript.backup-[$(date +%Y%m%d-%H%M%S)]
+    mv $homescript $homescript.backup-$(date +%Y%m%d%H%M%S)
     if [ "$CopyOrLinkScripts" = 'l' ]
     then
       echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."
-      ln -s $SourcePath/$homescript $HomePath
+      ln -s $SourcePath/$homescript ./
     else
       echo "--- Copying $SourcePath/$homescript to $HomePath/$homescript ..."
-      cp -r $SourcePath/$homescript $HomePath
+      cp -r $SourcePath/$homescript ./
     fi
   done
   echo
@@ -66,12 +66,17 @@ then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
-    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-[$(date +%Y%m%d-%H%M%S)]
+    chown adot:adot .ssh
+    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
   elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
   then
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
+    if [ "$2" ]
+    then
+      chown $2:$2 $HomePath
+    fi
     if [ -L '$HomePath/.ssh/authorized_keys' ]
     then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup

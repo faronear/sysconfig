@@ -10,7 +10,7 @@ popd
 
 mkdir fon
 pushd fon
-git clone https://git.faronear.org/npm/sysconfig sysconfig.git
+git clone https://git.faronear.org/fon/sysconfig sysconfig.git
 git clone https://git.faronear.org/fon/www.faronear.com www.faronear.com.git
 git clone https://git.faronear.org/fon/yapi.faronear.org yapi.faronear.org.git
 git clone https://git.faronear.org/fon/git.faronear.org git.faronear.org.git

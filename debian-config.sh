@@ -91,7 +91,7 @@ echo "=== Add a new user $NewUser"
 source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
 echo
 
-echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as <$NewUser> for autologin or <<anything else>> for no change):"
+echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <<anything else>> for no change):"
 read -p ">>> " XfceAutologinUsername
 if [ $XfceAutologinUsername = $NewUser ]
 then

@@ -30,7 +30,7 @@ sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
 echo "=== Allow the new user $NewUser to sudo without password? <y> for yes, <<anything else>> for no"
 read -p ">>> " AllowSudo
-if [ $AllowSudo ] && [ $AllowSudo == "y" ]
+if [ "$AllowSudo" == "y" ]
 then
   #usermod -a -G sudo $NewUser # Add to sudo group # Option 1: add user to %sudo group
   echo "$NewUser ALL=(ALL:ALL) NOPASSWD:ALL" > /etc/sudoers.d/${NewUser//./-} # Option 2: add a user file into /etc/sudoers.d/
@@ -44,13 +44,13 @@ echo
 # 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户
 if [ $NewUser = 'adot' ]
 then
-  source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
+  source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome $NewUser
 else
   echo "=== Configure $NewUser home with standard scripts? <y> for yes, <<anything else>> for no"
   read -p ">>> " ConfigHome
   if [ $ConfigHome ] && [ $ConfigHome = 'y' ]
   then
-    source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome /home/$NewUser
+    source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome $NewUser
   else
     echo "--- Nothing configured."
   fi
