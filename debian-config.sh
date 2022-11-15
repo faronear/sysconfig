@@ -41,14 +41,18 @@ echo "=== Configure root home"
 source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome
 echo
 
-echo "=== Change root password"
-passwd
+echo "=== Change root password? <y> for yes, anything else for omit:"
+read -p ">>> " ChangeRootPassword
+if [ "$ChangeRootPassword" == 'y' ]
+then
+  passwd
+fi
 echo 
 
 echo "=== Configure /etc/sudoers"
 chmod o+w /etc/sudoers
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
-sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
+sed -i "s|#includedir /etc/sudoers.d|@includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
 chmod o-w /etc/sudoers
 echo
 

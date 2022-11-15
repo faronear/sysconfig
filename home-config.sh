@@ -61,26 +61,25 @@ then
   echo
   echo "=== Append or link or omit [.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <<anything else>> for omit:"
   read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
+
+  mkdir -p $HomePath/.ssh
+  chmod 700 $HomePath/.ssh
+  if [ "$2" ] # 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
+  then
+    chown $2:$2 $HomePath
+  fi
+  if [ -e '$HomePath/.ssh/authorized_keys' ]
+  then
+    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
+  fi
+
   if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
   then
     echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-    mkdir -p $HomePath/.ssh
-    chmod 700 $HomePath/.ssh
-    chown adot:adot .ssh
-    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
     ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
   elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
   then
-    mkdir -p $HomePath/.ssh
-    chmod 700 $HomePath/.ssh
-    if [ "$2" ]
-    then
-      chown $2:$2 $HomePath
-    fi
-    if [ -L '$HomePath/.ssh/authorized_keys' ]
-    then
-      mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup
-    fi
+    echo "--- Copying $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
     cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
     chmod 600 $HomePath/.ssh/authorized_keys
   fi
