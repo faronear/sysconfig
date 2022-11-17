@@ -1,0 +1,16 @@
+if [ $1 ]
+then
+  NewHostname=$1
+else
+  echo "=== Set <<hostname>> or leave blank for no change"
+  read -p ">>> " NewHostname
+fi
+
+if [ $NewHostname ]
+then
+  hostnamectl set-hostname $NewHostname
+  echo "127.0.0.1 $NewHostname" >> /etc/hosts
+else
+  echo 'Nothing changed >>>'
+fi
+echo
