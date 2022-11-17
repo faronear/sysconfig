@@ -10,7 +10,7 @@ if [ $NewHostname ]
 then
   OldHostname=`hostname`
   hostnamectl set-hostname $NewHostname
-  sed -i "s|\b$OldHostname$\b|$NewHostname|g" /etc/hosts
+  sed -i "s|\b$OldHostname\b|$NewHostname|g" /etc/hosts
   # echo "127.0.0.1 $NewHostname" >> /etc/hosts
 else
   echo 'Nothing changed >>>'
