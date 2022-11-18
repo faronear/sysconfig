@@ -4,8 +4,8 @@ echo "Example: setup.sh alice"
 NewUser=$1
 while [ ! "$NewUser" ]
 do
-echo "=== To add a new user of name:"
-read -p ">>> " NewUser
+  echo "=== To add a new user of name:"
+  read -p ">>> " NewUser
 done
 
 echo "=== Add a new user $NewUser"
