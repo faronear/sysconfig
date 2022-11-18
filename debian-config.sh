@@ -42,7 +42,7 @@ echo "=== Configure root home"
 source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome
 echo
 
-echo "=== Change root password? <y> for yes, anything else for omit:"
+echo "=== Change root password? <y> for yes, <anything else> for omit:"
 read -p ">>> " ChangeRootPassword
 if [ "$ChangeRootPassword" == 'y' ]
 then
@@ -51,10 +51,15 @@ fi
 echo 
 
 echo "=== Configure /etc/sudoers: includedir /etc/sudoers.d"
-chmod o+w /etc/sudoers
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
-sed -i "s|#includedir /etc/sudoers.d|@includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
-chmod o-w /etc/sudoers
+DebianVersionMain=`cat /etc/debian_version | sed -r 's/^([0-9]+)\..*$/\1/'`
+if [ "$DebianVersionMain" == '10' ]
+then
+  chmod o+w /etc/sudoers
+  ## Debian 10 上，不存在 @includedir，需要自己添加。而 Debian 11.1 上，已经存在 @includedir
+  sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
+  chmod o-w /etc/sudoers
+fi
 echo
 
 echo "=== Disallow root login: #PermitRootLogin yes"
@@ -96,7 +101,7 @@ read -p ">>> " ConfigLocales
 if [ "$ConfigLocales" == 'y' ]
 then
   dpkg-reconfigure locales
-else
+fi
 echo
 
 echo "=== Add a new user $NewUser"
