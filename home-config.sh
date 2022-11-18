@@ -35,11 +35,15 @@ fi
 if [ "$2" == 'root' ]
 then
   HomePath=/root
+  TheUser=root
 elif [ "$2" ]
 then
   HomePath=/home/$2
+  TheUser=$2
 else
+  # 可能是 root 或其他
   HomePath=~
+  TheUser=`whoami`
 fi
 
 if [ -d "$HomePath" ]
@@ -66,29 +70,34 @@ then
   done
   echo
 
-  mkdir -p $HomePath/.ssh
-  chmod 700 $HomePath/.ssh
-  # 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
-  chown $2:$2 $HomePath
-  if [ -e '$HomePath/.ssh/authorized_keys' ]
+  if [ "$TheUser" != 'root' ]
   then
-    mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
-  fi
 
-  echo "=== Append or link or omit [$HomePath/.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <<anything else>> for omit:"
-  read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
+    mkdir -p $HomePath/.ssh
+    chmod 700 $HomePath/.ssh
+    # 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
+    chown $2:$2 $HomePath
+    if [ -e '$HomePath/.ssh/authorized_keys' ]
+    then
+      mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
+    fi
 
-  if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
-  then
-    echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-    ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
-  elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
-  then
-    echo "--- Copying $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-    cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
-    chmod 600 $HomePath/.ssh/authorized_keys
+    echo "=== Append or link or omit [$HomePath/.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <<anything else>> for omit:"
+    read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
+
+    if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
+    then
+      echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
+    elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
+    then
+      echo "--- Copying $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
+      chmod 600 $HomePath/.ssh/authorized_keys
+    fi
+    echo
+    
   fi
-  echo
 
   popd
 else
