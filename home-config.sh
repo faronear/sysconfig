@@ -76,7 +76,7 @@ then
     mkdir -p $HomePath/.ssh
     chmod 700 $HomePath/.ssh
     # 注意，由 root 为新用户创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
-    chown $2:$2 $HomePath
+    chown $TheUser:$TheUser $HomePath/.ssh
     if [ -e '$HomePath/.ssh/authorized_keys' ]
     then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
@@ -96,7 +96,7 @@ then
       chmod 600 $HomePath/.ssh/authorized_keys
     fi
     echo
-    
+
   fi
 
   popd
