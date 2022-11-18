@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh | sudo bash"
+echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh > ~/debian-config.sh && sudo bash ~/debian-config.sh"
 
 if [ v$1 != v ]
 then
@@ -16,18 +16,8 @@ apt update
 apt install -y emacs git curl screen sudo automake rsync
 echo
 
-echo "=== Making dir /faronear"
-if [ ! -d "/faronear" ]
-then
-  mkdir /faronear
-fi 
-echo
-
 echo "=== Making dir /faronear/fon"
-if [ ! -d "/faronear/fon" ]
-then 
-  mkdir /faronear/fon
-fi
+mkdir -p /faronear/fon
 echo
 
 echo "=== Git cloning to /faronear/fon/sysconfig"
@@ -39,7 +29,7 @@ fi
 echo
 
 echo "=== Configure root home"
-source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome
+source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome root
 echo
 
 echo "=== Change root password? <y> for yes, <anything else> for omit:"
