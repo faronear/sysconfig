@@ -1,18 +1,12 @@
 echo "Usage: setup.sh [USER]"
 echo "Example: setup.sh alice"
 
-if [ v$1 != v ]
-then
-  NewUser=$1
-else
-  echo "=== Enter new <<UserName>> (leave blank for default 'adot'):"
-  read -p ">>> " NewUser
-  if [ ! $NewUser ]
-  then
-    echo Use default new user: adot
-    NewUser=adot
-  fi
-fi
+NewUser=$1
+while [ ! "$NewUser" ]
+do
+echo "=== To add a new user of name:"
+read -p ">>> " NewUser
+done
 
 echo "=== Add a new user $NewUser"
 useradd $NewUser
@@ -28,7 +22,7 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
-echo "=== Allow the new user $NewUser to sudo without password? <y> for yes, <<anything else>> for no"
+echo "=== Allow the new user $NewUser to sudo without password? <y> for yes, <anything else> for no"
 read -p ">>> " AllowSudo
 if [ "$AllowSudo" == "y" ]
 then
@@ -41,16 +35,11 @@ else
 fi
 echo
 
-if [ $NewUser = 'adot' ]
+echo "=== Configure $NewUser home with standard scripts? <y> for yes, <anything else> for no"
+read -p ">>> " ConfigHome
+if [ "$ConfigHome" == 'y' ]
 then
   source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome $NewUser
 else
-  echo "=== Configure $NewUser home with standard scripts? <y> for yes, <<anything else>> for no"
-  read -p ">>> " ConfigHome
-  if [ $ConfigHome ] && [ $ConfigHome = 'y' ]
-  then
-    source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome $NewUser
-  else
-    echo "--- Nothing configured."
-  fi
+  echo "--- Nothing configured."
 fi

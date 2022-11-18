@@ -2,6 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
+echo " curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh | bash"
 
 if [ v$1 != v ]
 then
@@ -62,14 +63,14 @@ sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
 service sshd restart
 echo
 
-echo "=== Set <<hostname>> or leave blank for no change"
+echo "=== Set <hostname> or <leave blank> for no change"
 read -p ">>> " NewHostname
 if [ $NewHostname ]
 then
+  sed -i "s|\b`hostname`\b|$NewHostname|g" /etc/hosts # echo "127.0.0.1 $NewHostname" >> /etc/hosts
   hostnamectl set-hostname $NewHostname
-  echo "127.0.0.1 $NewHostname" >> /etc/hosts
 else
-  echo 'Nothing changed >>>'
+  echo 'Nothing changed.'
 fi
 echo
 
@@ -95,7 +96,7 @@ echo "=== Add a new user $NewUser"
 source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
 echo
 
-echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <<anything else>> for no change):"
+echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <anything else> for no change):"
 read -p ">>> " XfceAutologinUsername
 if [ $XfceAutologinUsername = $NewUser ]
 then
@@ -103,8 +104,8 @@ then
   sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
   echo "Successfully configured autologin as $NewUser"
 else
-  echo 'Nothing changed >>>'
+  echo 'Nothing changed.'
 fi
 echo
 
-echo "=== Debian System Setup Completed >>>"
+echo "=== Debian System Setup Completed."
