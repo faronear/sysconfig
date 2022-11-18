@@ -70,41 +70,48 @@ then
   sed -i "s|\b`hostname`\b|$NewHostname|g" /etc/hosts # echo "127.0.0.1 $NewHostname" >> /etc/hosts
   hostnamectl set-hostname $NewHostname
 else
-  echo 'Nothing changed.'
+  echo '--- Nothing changed.'
 fi
 echo
 
 echo "=== Configure autostart"
-if [ ! -f /etc/rc.local ]
+if [ -f /etc/rc.local ]
 then
+  # 在腾讯云的 Debian 11.1 里，/etc/rc.local 第一行是 "#!bin/bash"，应当是错误的。
+  sed -i "s|!bin/bash|!/bin/bash|" /etc/rc.local
+else
   echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
+  chmod +x /etc/rc.local
 fi
-chmod +x /etc/rc.local
-
-echo 'source /faronear/autostart.sh' >> /etc/rc.local
+echo "# make sure to sudo autostart.sh, otherwise for example pm2 list can't find it as root." >> /etc/rc.local
+echo 'sudo bash /faronear/autostart.sh' >> /etc/rc.local
 touch /faronear/autostart.sh
 echo "# make sure to sudo in autostart.sh, otherwise for example pm2 list can't find it as root." >> /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
 
-echo "=== Configure locales: install all-locales and set default to none."
-dpkg-reconfigure locales
+echo "=== Configure locales: <y> for yes, <anything else> for no change:"
+read -p ">>> " ConfigLocales
+if [ "$ConfigLocales" == 'y' ]
+then
+  dpkg-reconfigure locales
+else
 echo
 
 echo "=== Add a new user $NewUser"
 source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
 echo
 
-echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <anything else> for no change):"
+echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <anything else> for no change:"
 read -p ">>> " XfceAutologinUsername
-if [ $XfceAutologinUsername = $NewUser ]
+if [ "$XfceAutologinUsername" == "$NewUser" ]
 then
   sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
   sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
-  echo "Successfully configured autologin as $NewUser"
+  echo "--- Successfully configured autologin as $NewUser"
 else
-  echo 'Nothing changed.'
+  echo '--- Nothing changed.'
 fi
 echo
 

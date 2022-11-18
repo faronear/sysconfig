@@ -96,6 +96,3 @@ then
 else
   echo "!!! Not existing $HomePath, please try again."
 fi
-
-echo "=== Sourcing $HomePath/.bashrc ..."
-source $HomePath/.bashrc
