@@ -36,7 +36,7 @@ if [ "$2" ]
 then
   HomePath=/home/$2
 else
-  HomePath=~
+  HomePath=/root
 fi
 
 if [ -d "$HomePath" ]
@@ -48,7 +48,10 @@ then
   read -p ">>> " CopyOrLinkScripts
   for homescript in $homescriptlist
   do
-    mv $homescript $homescript.backup-$(date +%Y%m%d%H%M%S)
+    if [ -e "$homescript" ]
+    then
+      mv $homescript $homescript.backup-$(date +%Y%m%d%H%M%S)
+    fi
     if [ "$CopyOrLinkScripts" = 'l' ]
     then
       echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."

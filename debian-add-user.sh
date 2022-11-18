@@ -1,5 +1,6 @@
 echo "Usage: setup.sh [USER]"
 echo "Example: setup.sh alice"
+echo
 
 NewUser=$1
 while [ ! "$NewUser" ]
@@ -22,7 +23,7 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
-echo "=== Allow the new user $NewUser to sudo without password? <y> for yes, <anything else> for no"
+echo "=== Allow the new user [$NewUser] to sudo without password? <y> for yes, <anything else> for no"
 read -p ">>> " AllowSudo
 if [ "$AllowSudo" == "y" ]
 then
@@ -35,7 +36,7 @@ else
 fi
 echo
 
-echo "=== Configure $NewUser home with standard scripts? <y> for yes, <anything else> for no"
+echo "=== Configure $NewUser's home with standard scripts? <y> for yes, <anything else> for no"
 read -p ">>> " ConfigHome
 if [ "$ConfigHome" == 'y' ]
 then

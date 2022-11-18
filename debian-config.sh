@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo " curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh | bash"
+echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh | sudo bash"
 
 if [ v$1 != v ]
 then
@@ -50,7 +50,7 @@ then
 fi
 echo 
 
-echo "=== Configure /etc/sudoers"
+echo "=== Configure /etc/sudoers: includedir /etc/sudoers.d"
 chmod o+w /etc/sudoers
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
 sed -i "s|#includedir /etc/sudoers.d|@includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
@@ -75,15 +75,15 @@ fi
 echo
 
 echo "=== Configure autostart"
-if [ -f /etc/rc.local ]
+if [ ! -f /etc/rc.local ]
 then
-  mv /etc/rc.local /etc/rc.local.backup
+  echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
 fi
-touch /etc/rc.local
 chmod +x /etc/rc.local
-echo '#!/bin/bash' > /etc/rc.local # can't omit, otherwise you can't launch pm2 in autostart.sh. Don't use double quote here, otherwise error.
-echo 'source /faronear/autostart.sh' >> /etc/rc.local # make sure to sudo pm2 in autostart.sh, otherwise pm2 list can't find it as root.
+
+echo 'source /faronear/autostart.sh' >> /etc/rc.local
 touch /faronear/autostart.sh
+echo "# make sure to sudo in autostart.sh, otherwise for example pm2 list can't find it as root." >> /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo

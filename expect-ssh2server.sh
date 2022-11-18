@@ -39,22 +39,22 @@ then
   read -p "Enter root password (YU) >>" PWD_ROOT
   expect ~/faronear/fon/sysconfig/expect-ssh.sh $targetUrl adot $PWD_ADOT $PWD_ADOT
 else
-  while [ "$HOST" ]
+  while [ ! "$HOST" ]
   do
   read -p "host = " HOST
   done
 
-  while [ "$USER" ]
+  while [ ! "$USER" ]
   do
     read -p "user = " USER
   done
   
-  while [ "$PWD_USER" ]
+  while [ ! "$PWD_USER" ]
   do
     read -p "user password = " PWD_USER
   done
 
-  while [ "$PWD_SU" ]
+  while [ ! "$PWD_SU" ]
   do
     read -p "root password = " ROOT_SU
   done
