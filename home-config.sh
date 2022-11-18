@@ -72,7 +72,7 @@ then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%d%H%M%S)
     fi
 
-    echo "=== Append or link or omit [.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <<anything else>> for omit:"
+    echo "=== Append or link or omit [$HomePath/.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <<anything else>> for omit:"
     read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
 
     if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
