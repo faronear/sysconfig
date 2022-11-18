@@ -18,7 +18,7 @@ echo
 
 echo "=== Making dir /faronear/fon"
 mkdir -p /faronear/fon
-chmod 755 /faronear
+chmod 755 /faronear # 确保其他用户能够读取 /faronear/fon/nixhome/*
 echo
 
 echo "=== Git cloning to /faronear/fon/sysconfig"

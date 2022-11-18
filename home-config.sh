@@ -89,6 +89,7 @@ then
     then
       echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
       ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
+      sudo chmod 644 $HomePath/.ssh/authorized_keys # 确保其他用户能读取 nixhome/.ssh/authorized_keys
     elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
     then
       echo "--- Copying $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
