@@ -18,6 +18,7 @@ echo
 
 echo "=== Making dir /faronear/fon"
 mkdir -p /faronear/fon
+chmod 755 /faronear
 echo
 
 echo "=== Git cloning to /faronear/fon/sysconfig"
@@ -94,13 +95,13 @@ then
 fi
 echo
 
-echo "=== Add a new user $NewUser"
+echo "=== Add a new user [$NewUser]"
 source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
 echo
 
-echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf] as user <$NewUser> for autologin or <anything else> for no change:"
-read -p ">>> " XfceAutologinUsername
-if [ "$XfceAutologinUsername" == "$NewUser" ]
+echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
+read -p ">>> " XfceAutologin
+if [ "$XfceAutologin" == "y" ]
 then
   sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
   sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
