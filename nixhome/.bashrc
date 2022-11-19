@@ -99,6 +99,7 @@ fi
 if [ -f $HOME/.acme.sh/acme.sh.env ]
 then
   . "$HOME/.acme.sh/acme.sh.env"
+  alias acme=$HOME/.acme.sh/acme.sh
 fi
 
 # let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
