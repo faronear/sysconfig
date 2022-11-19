@@ -4,7 +4,7 @@ echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
 echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh > ~/debian-config.sh && sudo bash ~/debian-config.sh"
 
-if [ v$1 != v ]
+if [ "$1" ]
 then
   NewUser=$1
 else
@@ -18,7 +18,6 @@ echo
 
 echo "=== Making dir /faronear/fon"
 mkdir -p /faronear/fon
-chmod 755 /faronear # 确保其他用户能够读取 /faronear/fon/nixhome/*
 echo
 
 echo "=== Git cloning to /faronear/fon/sysconfig"
@@ -26,6 +25,7 @@ git config --global credential.helper cache
 if [ ! -d "/faronear/fon/sysconfig" ]
 then
   git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
+  chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/fon/sysconfig/nixhome/*
 fi
 echo
 
