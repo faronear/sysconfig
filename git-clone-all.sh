@@ -89,9 +89,7 @@ git clone https://git.faronear.org/tuc-pex/pex-user-uniapp pex/pex-user-uniapp.g
 git clone https://git.faronear.org/tuc-log/log-team-uniapp log/log-team-uniapp.git
 git clone https://git.faronear.org/tuc-log/log-server-mongo log/log-server-mongo.git
 git clone https://git.faronear.org/tuc-log/log-server-torm log/log-server-torm.git
-git clone https://git.faronear.org/tuc-log/log-user-react log/log-user-react.git
 git clone https://git.faronear.org/tuc-log/log-user-uniapp log/log-user-uniapp.git
-git clone https://git.faronear.org/tuc-log/log-user-vue log/log-user-vue.git
 git clone https://git.faronear.org/tuc-log/log-blog-hexo log/log-blog-hexo.git
 
 git clone https://git.faronear.org/tuc-vic/vic.server.mongo vic/vic.server.mongo.git
