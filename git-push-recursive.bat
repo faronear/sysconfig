@@ -39,7 +39,7 @@ set /p COMMIT_MESSAGE=">>> "
 echo;
 
 for /d /r %%r in (*) do (
-  echo "%%r" | findstr "node_modules" >NUL && ( echo; ) || (
+  echo "%%r" | findstr "node_modules" >NUL || (
     if exist "%%r\.git" (
       pushd "%%r"
       echo ---- git commit and push [%%r] ----

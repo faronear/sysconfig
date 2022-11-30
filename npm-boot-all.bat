@@ -35,26 +35,21 @@ echo;
 
 for /d %%o in (*) do (
   @ if not "%%o" == ".vscode" (
-    @REM @ echo "%%o" | findstr "=" >NUL && (
-    @REM   echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
-    @REM   echo;
-    @REM ) || (
-      echo ======== entering [%FONPATH%\%%o] ========
-      echo;
-      pushd %%o 
-      for /d %%g in (*) do (
-        @ if exist "%%g\package.json" (
-          findstr "\"boot\"" %%g\package.json >NUL && (
-            pushd %%g 
-            echo ---- npm booting [%FONPATH%\%%o\%%g] ----
-            npm run boot
-            echo;
-            popd
-          )
-        ) 
+    echo ======== entering [%FONPATH%\%%o] ========
+    echo;
+    pushd %%o 
+    for /d %%g in (*) do (
+      @ if exist "%%g\package.json" (
+        findstr "\"boot\"" %%g\package.json >NUL && (
+          pushd %%g 
+          echo ---- npm booting [%FONPATH%\%%o\%%g] ----
+          npm run boot
+          echo;
+          popd
+        )
       ) 
-      popd
-    @REM )
+    ) 
+    popd
   )
 )
 
