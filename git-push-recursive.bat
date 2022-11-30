@@ -38,23 +38,18 @@ set /p COMMIT_MESSAGE=">>> "
 )
 echo;
 
-@REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
-
-for /d %%o in (*) do (
-  echo ======== entering [%FONPATH%\%%o] ========
-  echo;
-  pushd "%%o"
-  for /d %%g in (*) do (
-    if exist %%g\.git (
-      pushd "%%g"
-      echo ---- git commit and push [%FONPATH%\%%o\%%g] ----
+for /d /r %%r in (*) do (
+  echo "%%r" | findstr "node_modules" >NUL && ( echo; ) || (
+    if exist "%%r\.git" (
+      pushd "%%r"
+      echo ---- git commit and push [%%r] ----
       git add . && git commit -m "%COMMIT_MESSAGE%" && git push
       echo;
       popd
     )
   )
-  popd
 )
+
 
 popd
 

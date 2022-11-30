@@ -34,24 +34,19 @@ echo;
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
-  @REM echo "%%o" | findstr "node_modules" >NUL && (
-  @REM   echo !!!!!!!! omitting [%FONPATH%\%%o] !!!!!!!!
-  @REM   echo;
-  @REM ) || (
-    echo ======== entering [%FONPATH%\%%o] ========
-    echo;
-    pushd %%o
-    for /d %%g in (*) do (
-      if exist "%%g\.git" (
-        pushd %%g
-        echo ---- git pulling [%FONPATH%\%%o\%%g] ----
-        git pull --all
-        echo;
-        popd
-      )
+  echo ======== entering [%FONPATH%\%%o] ========
+  echo;
+  pushd %%o
+  for /d %%g in (*) do (
+    if exist "%%g\.git" (
+      pushd %%g
+      echo ---- git pulling [%FONPATH%\%%o\%%g] ----
+      git pull --all
+      echo;
+      popd
     )
-    popd
-  @REM )
+  )
+  popd
 )
 
 popd

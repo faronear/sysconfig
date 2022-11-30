@@ -32,7 +32,7 @@ echo *** Starting from [%CD%] ***
 echo;
 
 for /d /r %%r in (*) do (
-  echo "%%r" | findstr "node_modules" >NUL || (
+  echo "%%r" | findstr "node_modules" >NUL && ( echo; ) || (
     if exist "%%r\.git" (
       pushd "%%r"
       echo ---- git pulling [%%r] ----
