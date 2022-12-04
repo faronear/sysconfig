@@ -40,6 +40,9 @@ echo Install Docker Engine ...
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
+docker -v
+docker compose version
+
 # 或者手动安装 compose https://docs.docker.com/compose/install/linux/
 # echo Install Docker-Compose ...
 # sudo curl -L $COMPOSE_URL/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose

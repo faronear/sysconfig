@@ -25,8 +25,7 @@ then
   npm run boot
   cd ..
   echo
-  echo *** `npm run serve` to start
-  echo
+  npm run serve
 fi
 
 ## 如果 vue create 选择默认模板，生成的 package.json 其实和 Hello 版一摸一样，只是 devDependencies 缺少了 sass ^1.49.8 和 sass-loader ^8.0.2。
