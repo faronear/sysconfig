@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh > ~/debian-config.sh && sudo bash ~/debian-config.sh"
+echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh > ~/debian-config.sh && bash ~/debian-config.sh"
 
 if [ "$1" ]
 then
@@ -95,8 +95,12 @@ then
 fi
 echo
 
-echo "=== Add a new user [$NewUser]"
-source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
+echo "=== Add a new user [$NewUser]? <y> for yes, <anything else> for no change:"
+read -p ">>> " AddNewUser
+if [ "$AddNewUser" == 'y' ]
+then
+  source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
+fi
 echo
 
 echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"

@@ -32,7 +32,8 @@ echo *** Starting from [%CD%] ***
 echo;
 
 for /d /r %%r in (*) do (
-  if not "%%r" == "node_modules" (
+  @REM if not "%%r" == "node_modules" (
+  echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
     if exist "%%r\node_modules" (
       pushd "%%r"
       echo ---- Deleting [%FONPATH%\%%r] ----

@@ -32,7 +32,8 @@ echo *** Starting from [%CD%] ***
 echo;
 
 for /d /r %%r in (*) do (
-  echo "%%r" | findstr "node_modules" >NUL || (
+  @REM @ if not "%%r" == "node_modules" (
+  echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
     if exist "%%r\package.json" (
       findstr "\"boot\"" "%%r\package.json" >NUL && (
         pushd %%r

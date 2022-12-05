@@ -44,7 +44,7 @@ then
 fi
 echo ""
 
-find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -v 'node_modules' | while read repo
+find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl' | while read repo
 do 
   if [ -d "$repo/.git" ]
   then
