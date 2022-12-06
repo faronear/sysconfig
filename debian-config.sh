@@ -53,11 +53,13 @@ then
 fi
 echo
 
-echo "=== Disallow root login: #PermitRootLogin yes"
-# emacs /etc/ssh/sshd_config
-sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
-service sshd restart
-echo
+if [ -e /etc/ssh/sshd_config ]
+then
+  echo "=== Disallow root login: #PermitRootLogin yes"
+  sed -i "s|^PermitRootLogin yes|#PermitRootLogin yes|g" /etc/ssh/sshd_config
+  service sshd restart
+  echo
+fi
 
 echo "=== Set <hostname> or <leave blank> for no change"
 read -p ">>> " NewHostname
@@ -100,18 +102,18 @@ read -p ">>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
   source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
-fi
-echo
 
-echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
-read -p ">>> " XfceAutologin
-if [ "$XfceAutologin" == "y" ]
-then
-  sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
-  sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
-  echo "--- Successfully configured autologin as $NewUser"
-else
-  echo '--- Nothing changed.'
+  echo
+  echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
+  read -p ">>> " XfceAutologin
+  if [ "$XfceAutologin" == "y" ]
+  then
+    sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
+    sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+    echo "--- Successfully configured autologin as $NewUser"
+  else
+    echo '--- Nothing changed.'
+  fi
 fi
 echo
 
