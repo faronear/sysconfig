@@ -73,7 +73,7 @@ fi
 echo "*** Issue Certificate:"
 echo "*** ~/.acme.sh/acme.sh --issue -d $TARGET_HOSTNAME $ISSUEPARM $DNSAPI"
 echo "***"
-#~/.acme.sh/acme.sh --issue -d $TARGET_HOSTNAME $ISSUEPARM $DNSAPI
+~/.acme.sh/acme.sh --issue -d $TARGET_HOSTNAME $ISSUEPARM $DNSAPI
 echo
 
 echo "=== Install certificates? <n> for no, <anything else> to install: "
@@ -81,11 +81,17 @@ read -p ">>> " INSTALL_CERT
 if [ "$INSTALL_CERT" != 'n' ]
 then
   echo
-  echo "=== Deploy key file to: "
-  read -p ">>> " KEY_FILE_PATH
+  while [ ! "$KEY_FILE_PATH" ]
+  do
+    echo "=== Deploy key file to: "
+    read -p ">>> " KEY_FILE_PATH
+  done
   echo
-  echo "=== Deploy fullchain file to: "
-  read -p ">>> " FULLCHAIN_FILE_PATH
+  while [ ! "$FULLCHAIN_FILE_PATH" ]
+  do
+    echo "=== Deploy fullchain file to: "
+    read -p ">>> " FULLCHAIN_FILE_PATH
+  done
   echo 
   echo "=== Set reload command, <leave blank> for default to 'service nginx force-reload'"
   read -p ">>> " RELOADCMD
