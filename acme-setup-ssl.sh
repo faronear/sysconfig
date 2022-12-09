@@ -100,10 +100,10 @@ then
     RELOADCMD="service nginx force-reload"
   fi
   echo
+  
+  echo "*** Install Certificate:"
+  echo "~/.acme.sh/acme.sh --install-cert -d $TARGET_HOSTNAME --key-file $KEY_FILE_PATH --fullchain-file $FULLCHAIN_FILE_PATH --reloadcmd \"$RELOADCMD\""
+  echo "***"
+  ~/.acme.sh/acme.sh --install-cert -d $TARGET_HOSTNAME --key-file $KEY_FILE_PATH --fullchain-file $FULLCHAIN_FILE_PATH --reloadcmd "$RELOADCMD"
+  echo
 fi
-
-echo "*** Install Certificate:"
-echo "~/.acme.sh/acme.sh --install-cert -d $TARGET_HOSTNAME --key-file $KEY_FILE_PATH --fullchain-file $FULLCHAIN_FILE_PATH --reloadcmd \"$RELOADCMD\""
-echo "***"
-~/.acme.sh/acme.sh --install-cert -d $TARGET_HOSTNAME --key-file $KEY_FILE_PATH --fullchain-file $FULLCHAIN_FILE_PATH --reloadcmd "$RELOADCMD"
-echo
