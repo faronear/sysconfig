@@ -107,11 +107,11 @@ export USERPROFILE=$HOME
 
 # add sysconfig to path
 tp1=/Users/luk.lu/faronear/fon/sysconfig
-tp2=/Users/luk.lu/faronear/fon/sysconfig.git
+tp2=/Users/luk.lu/faronear/fon.git/sysconfig
 tp3=/faronear/fon/sysconfig
-tp4=/faronear/fon/sysconfig.git
-tp5=/mnt/c/faronear/fon/sysconfig.git
-tp6=/mnt/d/faronear/fon/sysconfig.git
+tp4=/faronear/fon.git/sysconfig
+tp5=/mnt/c/faronear/fon.git/sysconfig
+tp6=/mnt/d/faronear/fon.git/sysconfig
 if [ -d $tp1 ]
 then
   export PATH=$tp1:$PATH

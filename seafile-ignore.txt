@@ -1,0 +1,55 @@
+# https://help.seafile.com/syncing_client/excluding_files/
+# 注释。通配符：* 匹配0到若干个字符，包括代表目录的/。? 匹配1个字符，包括/。
+# seafile-ignore.txt 只能控制在客户端需要忽略哪些文件。你依然可以在 seahub 的 web 界面创建这些被客户端忽略的文件。
+# 在这种情况下，
+# 这些文件会被同步到客户端，但是用户在客户端对这些文件的后续修改会被忽略，不会被同步回服务器。
+# 文件在服务器端的后续更改会被同步到客户端，如果客户端也同时修改了这些文件，系统会生成冲突文件。
+# seafile-ignore.txt 只能忽略还没有被同步的文件。对于已经被同步的文件，如果后来把它添加到 seafile-ignore.txt 中，系统只会忽略后续更改，已经上传的版本不会受影响。
+
+# 自定义的后缀名，凡有 sfignore 后缀的都不进行同步
+*.sfignore
+*.sfignore/
+
+.DS_Store
+*/.DS_Store
+
+.thumbnails
+*/.thumbnails
+
+Thumbs.db
+*/Thumbs.db
+thumbs.db
+*/thumbs.db
+
+_desktop.ini
+*/_desktop.ini
+
+._*
+*/._*
+
+.$*
+*/.$*
+
+~$*
+*/~$*
+
+node_modules/
+*/node_modules/
+
+.svn/
+*/.svn/
+
+.deploy_git/
+*/.deploy_git/
+
+unpackage/dist/
+*/unpackage/dist/
+
+unpackage/release/
+*/unpackage/release/
+
+unpackage/cache/
+*/unpackage/cache/
+
+Icon
+OneDrive/Icon

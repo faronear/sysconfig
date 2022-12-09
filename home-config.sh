@@ -2,7 +2,7 @@
 
 testpath1=/faronear/fon/sysconfig/nixhome
 testpath2=~/faronear/fon/sysconfig/nixhome
-testpath3=~/faronear/fon/sysconfig.git/nixhome
+testpath3=~/faronear/fon.git/sysconfig/nixhome
 testpath4=`pwd`/nixhome
 
 if [ "$1" ]
