@@ -58,7 +58,6 @@ git clone https://git.faronear.org/tic/cloud-server
 git clone https://git.faronear.org/tic/cloud-user-vue
 git clone https://git.faronear.org/tic/star-core-torm
 git clone https://git.faronear.org/tic/star-lens-uniapp
-git clone https://git.faronear.org/tic/star-lens-vue
 git clone https://git.faronear.org/tic/tic-blog-hexo
 git clone https://git.faronear.org/tic/tic-www-vue
 

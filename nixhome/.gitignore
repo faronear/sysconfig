@@ -1,63 +1,97 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-node_modules/
+### 目录 #################################################################
+
+# wo-服务端
+/_archive/*
+/_datastore/*
+/_filestore/*
+/_logstore/*
+/_webroot/*
+/_ssl/*
+
 /test/unit/coverage/
 /test/e2e/reports/
-.svn/
-.idea/
-.sass-cache/
-.deploy_git/
-.gitattributes
-_desktop.ini
-.DS_Store
-.thumbnails
-Thumbs.db
-thumbs.db
-.umi
-.umi-production
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-selenium-debug.log
-package-lock.json
-*.iml
-*.njsproj
-*.ntvs*
-*.sln
-*.suo
-._*
-.$*
-~$*
 
-.bashrc_custom
-
-# hexo
-db.json
-
-# 客户端 uniapp 项目
+# uniapp 项目
 /unpackage/*
 !/unpackage/res/
 
-/_archive/*
-/_datastore/*
-/_logstore/*
-/_filestore/*
-/_webroot/*
+# vue-cli 项目
 /dist/
+
+# hexo
+/public/
+
+.svn/
+.deploy_git/
+.idea/
+.sass-cache/
+
+node_modules/
+
+
+### 文件 ###################################################################
+
+# seafile 临时文件
+._*
+
+.$*
+
+# office 暂存文件
+~$*
+
 *.apk
 *.min.js
 *.min.css
 *.min.html
-/pages4loader.json5
-envar-web-custom.js
-envar-deploy-secret.js
+*.iml
+*.njsproj
+*.ntvs*
+*.sw*
+*.sln
+*.suo
 
-# hexo 项目
-public/
+.bashrc_custom
 
-# 服务端(server or uniapp-uniCloud)项目
-envar-base-custom.js
-envar-base-dynamic.js
-envar-base-secret.js
+# 苹果系统临时文件
+.DS_Store
+
+.gitattributes
+
+# 来自 vue-cli 创建项目的 .gitignore
+.project
+
+# 安卓缓存文件夹
+.thumbnails
+
+.umi
+.umi-production
+
+# local env files
+.env.local
+.env.*.local
+
+_desktop.ini
+
+# hexo
+/db.json
+
+# wo-客户端环境配置，wo-服务端环境配置(server or uniapp-uniCloud)
+envar-*.gitignore.js
+
+npm-debug.log*
+
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+
+package-lock.json
+pages4loader.json5
+
+selenium-debug.log
+
+Thumbs.db
+thumbs.db
 
 !.gitkeep
