@@ -2,45 +2,14 @@
 
 ### 目录 #################################################################
 
-# wo-服务端
-/_archive/*
-/_datastore/*
-/_filestore/*
-/_logstore/*
-/_webroot/*
-/_ssl/*
-
-/test/unit/coverage/
-/test/e2e/reports/
-
-# uniapp 项目
-/unpackage/*
-!/unpackage/res/
-
-# vue-cli 项目
-/dist/
-
-# hexo
-/public/
-
+# 通用
 .svn/
 .deploy_git/
 .idea/
 .sass-cache/
-
+/test/unit/coverage/
+/test/e2e/reports/
 node_modules/
-
-
-### 文件 ###################################################################
-
-# seafile 临时文件
-._*
-
-.$*
-
-# office 暂存文件
-~$*
-
 *.apk
 *.min.js
 *.min.css
@@ -51,47 +20,69 @@ node_modules/
 *.sw*
 *.sln
 *.suo
+.gitattributes
+.umi
+.umi-production
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+selenium-debug.log
+Thumbs.db
+thumbs.db
+_desktop.ini
 
+# vue-cli 项目
+/dist/
+
+# 来自 vue-cli 创建项目的 .gitignore
+.project
+
+# hexo
+/public/
+
+# Hardhat
+/artifacts/
+/cache/
+
+# seafile 临时文件
+._*
+
+.$*
+
+# office 暂存文件
+~$*
+
+# 用户shell配置脚本
 .bashrc_custom
 
 # 苹果系统临时文件
 .DS_Store
 
-.gitattributes
-
-# 来自 vue-cli 创建项目的 .gitignore
-.project
-
 # 安卓缓存文件夹
 .thumbnails
-
-.umi
-.umi-production
 
 # local env files
 .env.local
 .env.*.local
 
-_desktop.ini
-
 # hexo
 /db.json
 
-# wo-客户端环境配置，wo-服务端环境配置(server or uniapp-uniCloud)
+# wo
 envar-*.gitignore.js
-
-npm-debug.log*
-
-yarn-debug.log*
-yarn-error.log*
-yarn.lock
-
+# 服务端
+/_archive/*
+/_datastore/*
+/_filestore/*
+/_logstore/*
+/_webroot/*
+/_ssl/*
+# uniapp 客户端
+/unpackage/*
+!/unpackage/res/
 package-lock.json
 pages4loader.json5
 
-selenium-debug.log
-
-Thumbs.db
-thumbs.db
-
+# 保留
 !.gitkeep
