@@ -17,7 +17,7 @@ elif [ -d $testpath3 ]
 then
   FONPATH=$testpath3
 else
-  echo "=== Enter [target path] or leave [blank] for default to `.`"
+  echo "=== Enter [target path] or leave [blank] for default to '.'"
   read -p ">>> " FONPATH
   echo ""
   if [ ! "$FONPATH" ]

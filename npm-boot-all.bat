@@ -13,7 +13,7 @@ set FONPATH=
   ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
     set FONPATH=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
-      echo === Enter [target path] or leave [blank] for default to `.`
+      echo === Enter [target path] or leave [blank] for default to '.'
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
