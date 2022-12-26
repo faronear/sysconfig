@@ -6,4 +6,4 @@ else
   read -p ">>> " PORT
 fi
 
-netstat -tunlp | grep $PORT
+lsof -i tcp:$PORT

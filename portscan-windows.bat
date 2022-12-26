@@ -8,5 +8,7 @@
 
 netstat -aon |findstr %PORT%
 
+@echo;
+
 @echo "tasklist |findstr [PID]": to find the process, 
 @echo "taskkill /T /F /PID [PID]": to kill the process.

@@ -1,29 +1,30 @@
 #!/bin/bash
 
-echo "Usage: this-script.sh [nodeVersion]"
+echo "Usage: this-script.sh [VERSION]"
 
-defaultVersion=16
+defaultVERSION=18
 
 if [ $1 ]
 then
-  nodeVersion=$1
+  VERSION=$1
 else
-  read -p "Enter nodejs version (leave blank for default $defaultVersion) or 'tools' >> " nodeVersion
-  if [ ! $nodeVersion ]
+  echo "=== Enter nodejs version (leave blank for default $defaultVERSION) or 'tools'" 
+  read -p ">>> " VERSION
+  if [ ! $VERSION ]
   then
-    nodeVersion=$defaultVersion
-    echo Use default nodejs version $defaultVersion
+    VERSION=$defaultVERSION
+    echo Use default nodejs version $defaultVERSION
   fi
 fi
 
 sudo apt update
 
-if [ $nodeVersion != "tools" ]
+if [ $VERSION != "tools" ]
 then
-  echo "######## Installing nodejs v$nodeVersion ########"
-  curl -sL https://deb.nodesource.com/setup_$nodeVersion.x | sudo bash - && sudo apt install nodejs -y
-  # for centos: curl --silent --location https://rpm.nodesource.com/setup_$nodeVersion.x | sudo bash
-  echo "######## nodejs v$nodeVersion installed completely! ########"
+  echo "######## Installing nodejs v$VERSION ########"
+  curl -sL https://deb.nodesource.com/setup_$VERSION.x | sudo bash - && sudo apt install nodejs -y
+  # for centos: curl --silent --location https://rpm.nodesource.com/setup_$VERSION.x | sudo bash
+  echo "######## nodejs v$VERSION installed completely! ########"
 fi
 
 echo "######## Installing C++ build tools for Linux ########"

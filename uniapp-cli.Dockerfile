@@ -9,9 +9,8 @@ EXPOSE 8080
 
 CMD cd /uniapp-cli && npm run serve
 
-# docker commit [container-id] [new-image-name]
-# docker build -t [image-name] .
-# docker tag [image-name] anolaxy/uniapp-cli:node16.18-alpine3.16
+# docker build -t uniapp-cli .
+# docker tag uniapp-cli anolaxy/uniapp-cli:node16.18-debian11.5 // alpine3.16
 # docker login
-# docker push anolaxy/uniapp-cli:node16.18-alpine3.16
-# docker run -d -p 8080:8080 -v /home/adot/pex-user-uniapp:/uniapp-cli/src anolaxy/uniapp-cli:node16.18-alpine3.16
+# docker push anolaxy/uniapp-cli:node16.18-debian11.5 // alpine3.16
+# docker run -d -p 8080:8080 -v /home/adot/pex-user-uniapp:/uniapp-cli/src anolaxy/uniapp-cli:node16.18-debian11.5 // alpine3.16
