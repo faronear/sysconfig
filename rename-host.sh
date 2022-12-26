@@ -2,7 +2,7 @@ if [ $1 ]
 then
   NewHostname=$1
 else
-  echo "=== Set <<hostname>> or leave blank for no change"
+  echo "=== Set <hostname> or <leave blank> for no change"
   read -p ">>> " NewHostname
 fi
 
