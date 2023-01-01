@@ -90,6 +90,7 @@ esac
 # nvm settings
 if [ -d $HOME/.nvm ]
 then
+  # 注意，这句 export 导致 `su` 会继承原用户的环境变量 NVM_DIR=/home/原用户/.nvm，可能导致不符合预期的行为。因此要 `su -` 更安全。
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -13,8 +13,8 @@ else
   fi
 fi
 
-curl https://dist.ipfs.tech/kubo/v$VERSION/kubo_$VERSION_linux-amd64.tar.gz -o kubo.tgz
-tar xzf kubo.tgz
+curl https://dist.ipfs.tech/kubo/v$VERSION/kubo_v$VERSION_linux-amd64.tar.gz -o kubo_v$VERSION.tgz
+tar xzf kubo_v$VERSION.tgz
 ## install ./kubo/ipfs to /usr/local/bin/ipfs
 cd kubo && sudo bash install.sh
 
