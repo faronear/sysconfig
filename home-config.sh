@@ -1,11 +1,16 @@
 #!/bin/bash
 
+testpath0=/faronear/sysconfig/nixhome
 testpath1=/faronear/fon/sysconfig/nixhome
 testpath2=~/faronear/fon/sysconfig/nixhome
 testpath3=~/faronear/fon.git/sysconfig/nixhome
-testpath4=`pwd`/nixhome
+testpath4=~/faronear.git/fon.git/sysconfig/nixhome
+testpath5=`pwd`/nixhome
 
 if [ "$1" ]
+then
+  SourcePath=$0
+elif [ -d $testpath0 ]
 then
   SourcePath=$1
 elif [ -d $testpath1 ]
@@ -20,13 +25,16 @@ then
 elif [ -d $testpath4 ]
 then
   SourcePath=$testpath4
+elif [ -d $testpath5 ]
+then
+  SourcePath=$testpath5
 else
-  echo "=== Enter [target path] or leave [blank] to exit"
+  echo "=== Enter [nixhome path] or leave [blank] to exit"
   read -p ">>> " SourcePath
   echo ""
   if [ ! -d "$SourcePath" ]
   then 
-    echo "*** Source path [$SourcePath] not available! Exit now. ***"
+    echo "*** nixhome path [$SourcePath] not available! Exit now. ***"
     exit
   fi
 fi

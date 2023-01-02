@@ -16,21 +16,21 @@ apt update
 apt install -y emacs git curl screen sudo automake rsync
 echo
 
-echo "=== Making dir /faronear/fon"
-mkdir -p /faronear/fon
+echo "=== Making dir /faronear/"
+mkdir -p /faronear/
 echo
 
-echo "=== Git cloning to /faronear/fon/sysconfig"
+echo "=== Git cloning to /faronear/sysconfig"
 git config --global credential.helper cache
-if [ ! -d "/faronear/fon/sysconfig" ]
+if [ ! -d "/faronear/sysconfig" ]
 then
-  git clone https://git.faronear.org/fon/sysconfig /faronear/fon/sysconfig
-  chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/fon/sysconfig/nixhome/*
+  git clone https://git.faronear.org/fon/sysconfig /faronear/sysconfig
+  chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/sysconfig/nixhome/*
 fi
 echo
 
 echo "=== Configure root home"
-source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome root
+source /faronear/sysconfig/home-config.sh /faronear/sysconfig/nixhome root
 echo
 
 echo "=== Change root password? <y> for yes, <anything else> for omit:"
@@ -101,7 +101,7 @@ echo "=== Add a new user [$NewUser]? <y> for yes, <anything else> for no change:
 read -p ">>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
-  source /faronear/fon/sysconfig/debian-add-user.sh $NewUser
+  source /faronear/sysconfig/debian-add-user.sh $NewUser
 
   echo
   echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"

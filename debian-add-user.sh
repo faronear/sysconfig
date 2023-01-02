@@ -35,11 +35,46 @@ else
 fi
 echo
 
+testpath0=/faronear/sysconfig
+testpath1=/faronear/fon/sysconfig
+testpath2=~/faronear/fon/sysconfig
+testpath3=~/faronear/fon.git/sysconfig
+testpath4=~/faronear.git/fon.git/sysconfig
+
+if [ -d $testpath0 ]
+then
+  SourcePath=$1
+elif [ -d $testpath1 ]
+then 
+  SourcePath=$testpath1
+elif [ -d $testpath2 ]
+then
+  SourcePath=$testpath2
+elif [ -d $testpath3 ]
+then
+  SourcePath=$testpath3
+elif [ -d $testpath4 ]
+then
+  SourcePath=$testpath4
+elif [ -d $testpath5 ]
+then
+  SourcePath=$testpath5
+else
+  echo "=== Enter [nixhome path] or leave [blank] to exit"
+  read -p ">>> " SourcePath
+  echo ""
+  if [ ! -d "$SourcePath" ]
+  then 
+    echo "*** nixhome path [$SourcePath] not available! Exit now. ***"
+    exit
+  fi
+fi
+
 echo "=== Configure $NewUser's home with standard scripts? <y> for yes, <anything else> for no"
 read -p ">>> " ConfigHome
 if [ "$ConfigHome" == 'y' ]
 then
-  source /faronear/fon/sysconfig/home-config.sh /faronear/fon/sysconfig/nixhome $NewUser
+  source $SourcePath/home-config.sh $SourcePath/nixhome $NewUser
 else
   echo "--- Nothing configured."
 fi
