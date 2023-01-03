@@ -1,8 +1,9 @@
 #!/bin/bash
 
 testpath1=/faronear
-testpath2=~/faronear
-testpath3=/mnt/d/faronear
+testpath2=~/faronear.git
+testpath3=~/faronear
+testpath4=/mnt/d/faronear
 
 if [ "$1" ]
 then
@@ -16,6 +17,9 @@ then
 elif [ -d $testpath3 ]
 then
   FONPATH=$testpath3
+elif [ -d $testpath4 ]
+then
+  FONPATH=$testpath4
 else
   echo "=== Enter [target path] or leave [blank] for default to '.'"
   read -p ">>> " FONPATH
