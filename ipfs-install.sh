@@ -9,11 +9,11 @@ else
   if [ ! $VERSION ]
   then
     VERSION=$defaultVERSION
-    echo Use default version $defaultVERSION
   fi
 fi
 
-curl https://dist.ipfs.tech/kubo/v$VERSION/kubo_v$VERSION_linux-amd64.tar.gz -o kubo_v$VERSION.tgz
+echo Download https://dist.ipfs.tech/kubo/v$VERSION/kubo_v${VERSION}_linux-amd64.tar.gz
+curl https://dist.ipfs.tech/kubo/v$VERSION/kubo_v${VERSION}_linux-amd64.tar.gz -o kubo_v$VERSION.tgz
 tar xzf kubo_v$VERSION.tgz
 ## install ./kubo/ipfs to /usr/local/bin/ipfs
 cd kubo && sudo bash install.sh

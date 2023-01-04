@@ -9,10 +9,10 @@ testpath5=`pwd`/nixhome
 
 if [ "$1" ]
 then
-  SourcePath=$0
+  SourcePath=$1
 elif [ -d $testpath0 ]
 then
-  SourcePath=$1
+  SourcePath=$testpath0
 elif [ -d $testpath1 ]
 then 
   SourcePath=$testpath1

@@ -43,7 +43,7 @@ testpath4=~/faronear.git/fon.git/sysconfig
 
 if [ -d $testpath0 ]
 then
-  SourcePath=$1
+  SourcePath=$0
 elif [ -d $testpath1 ]
 then 
   SourcePath=$testpath1
