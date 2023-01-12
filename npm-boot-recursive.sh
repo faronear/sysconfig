@@ -5,6 +5,7 @@ FONPATH2=~/faronear.git
 FONPATH3=~/faronear
 FONPATH4=/mnt/d/faronear
 
+echo "*** Testing [$1] [$FONPATH1] [$FONPATH2] [$FONPATH3] [$FONPATH4]"
 if [ "$1" ]
 then
   FONPATH=$1
@@ -21,6 +22,8 @@ elif [ -d $FONPATH4 ]
 then
   FONPATH=$FONPATH4
 else
+  echo "××× All testing path failed."
+  echo ""
   echo "=== Enter [fonpath] or leave [blank] for default to '.'"
   read -p ">>> " FONPATH
   echo ""

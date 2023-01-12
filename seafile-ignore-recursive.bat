@@ -18,7 +18,8 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else if exist "%FONPATH3%" (
     set FONPATH=%FONPATH3%
   ) else (
-    echo === none of the testing path is valid.
+    echo ××× none of the testing path is valid.
+    echo;
     echo === Enter [fonpath] or leave [blank] for default to '.'
     set /p FONPATH=">>> "
     echo;
@@ -51,7 +52,8 @@ if exist "%SCRIPTHOME1%" (
 ) else if exist "%SCRIPTHOME5%" (
   set SCRIPTHOME=%SCRIPTHOME5%
 ) else (
-  echo === none of the testing path is valid.
+  echo ××× none of the testing path is valid.
+  echo;
   echo === Enter [nixhome path] or leave [blank] for default to '.'
   set /p SCRIPTHOME=">>> "
   echo;
