@@ -74,11 +74,9 @@ for /d /r %%r in (*) do (
   @REM @ if not "%%r" == ".vscode" (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
     if exist "%%r\.git" (
-      pushd "%%r"
       echo ---- updating seafile-ignore.txt in [%%r] ----
       copy %SCRIPTHOME%\seafile-ignore.txt %%r\
       echo;
-      popd
     )
   )
 )

@@ -102,6 +102,7 @@ read -p ">>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
   source /faronear/sysconfig/debian-add-user.sh $NewUser
+  source /faronear/sysconfig/home-config.sh /faronear/sysconfig/nixhome $NewUser
 
   echo
   echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
