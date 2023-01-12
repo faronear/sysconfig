@@ -28,10 +28,10 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   )
 )
 if not exist "%FONPATH%" (
-  echo *** [%FONPATH%] not exist! Exit now. ***
+  echo ××× [%FONPATH%] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo === FONPATH=%FONPATH%
+  echo √√√ FONPATH = %FONPATH%
 )
 
 set NIXHOME1=%FONPATH%\fon\sysconfig\nixhome
@@ -59,11 +59,11 @@ if exist "%NIXHOME1%" (
     set NIXHOME=.
   )
 )
-if not exist "NIXHOME%" (
-  echo *** [%NIXHOME%] not exist! Exit now. ***
+if not exist "%NIXHOME%" (
+  echo ××× [%NIXHOME%] not exist! Exit now. ***
   @ GOTO END
-)else (
-  echo === NIXHOME=%NIXHOME%
+) else (
+  echo √√√ NIXHOME = %NIXHOME%
 )
 
 pushd %FONPATH%
@@ -73,7 +73,7 @@ echo;
 for /d /r %%r in (*) do (
   @REM @ if not "%%r" == ".vscode" (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\.git" (
+    if exist "%%r\.gitignore" (
       pushd "%%r"
       echo ---- updating .gitignore in [%%r] ----
       copy %NIXHOME%\.gitignore %%r\

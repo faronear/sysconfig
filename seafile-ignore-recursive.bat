@@ -28,10 +28,10 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   )
 )
 if not exist "%FONPATH%" (
-  echo *** [%FONPATH%] not exist! Exit now. ***
+  echo ××× [%FONPATH%] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo === FONPATH=%FONPATH%
+  echo √√√ FONPATH = %FONPATH%
 )
 
 set SCRIPTHOME1=%FONPATH%\fon\sysconfig\nixhome
@@ -59,11 +59,11 @@ if exist "%SCRIPTHOME1%" (
     set SCRIPTHOME=.
   )
 )
-if not exist "SCRIPTHOME%" (
-  echo *** [%SCRIPTHOME%] not exist! Exit now. ***
+if not exist "%SCRIPTHOME%" (
+  echo ××× [%SCRIPTHOME%] not exist! Exit now. ***
   @ GOTO END
-)else (
-  echo === SCRIPTHOME=%SCRIPTHOME%
+) else (
+  echo √√√ SCRIPTHOME = %SCRIPTHOME%
 )
 
 pushd %FONPATH%

@@ -34,7 +34,7 @@ else
   echo ""
   if [ ! -d "$NIXHOME" ]
   then 
-    echo "*** nixhome path [$NIXHOME] not available! Exit now. ***"
+    echo "××× nixhome path [$NIXHOME] not available! Exit now. ×××"
     exit
   fi
 fi

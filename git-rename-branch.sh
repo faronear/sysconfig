@@ -33,8 +33,10 @@ fi
 
 if [ ! -d "$FONPATH" ]
 then 
-  echo "*** [$FONPATH] not exist! Exit now. ***"
+  echo "××× [$FONPATH] not exist! Exit now. ***"
   exit
+else
+  echo "√√√ FONPATH = $FONPATH"
 fi
 
 pushd $FONPATH

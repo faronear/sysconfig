@@ -24,8 +24,10 @@ set FONPATH=
 )
 
 if not exist "%FONPATH%" (
-  echo *** [%FONPATH%] not exist! Exit now. ***
+  echo ××× [%FONPATH%] not exist! Exit now. ***
   @ GOTO END
+) else (
+  echo √√√ FONPATH = %FONPATH%
 )
 
 pushd %FONPATH%
