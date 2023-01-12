@@ -3,20 +3,20 @@
 @REM 首先清除可能残留的变量
 set FONPATH=
 
-set CHOICE1=D:\faronear
-set CHOICE2=C:\faronear
-set CHOICE3=%HOMEDRIVE%%HOMEPATH%\faronear
+set FONPATH1=D:\faronear
+set FONPATH2=C:\faronear
+set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
 
 @ if not "" == "%1" (
   set FONPATH=%1
 ) else (
-  echo *** Testing Path [%CHOICE1%]  [%CHOICE2]  [%CHOICE3]
-  if exist "%CHOICE1" (
-    set FONPATH=%CHOICE1%
-  ) else (if exist "%CHOICE2%" (
-    set FONPATH=%CHOICE2%
-  ) else (if exist %CHOICE3% (
-    set FONPATH=%CHOICE3%
+  echo *** Testing Path [%FONPATH1%]  [%FONPATH2%]  [%FONPATH3%]
+  if exist "%FONPATH1" (
+    set FONPATH=%FONPATH1%
+  ) else (if exist "%FONPATH2%" (
+    set FONPATH=%FONPATH2%
+  ) else (if exist %FONPATH3% (
+    set FONPATH=%FONPATH3%
   ) else (
       echo === Enter [target path] or leave [blank] for default to '.'
       set /p FONPATH=">>> "

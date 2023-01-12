@@ -32,28 +32,51 @@ if not exist "%FONPATH%" (
   @ GOTO END
 )
 
+SCRIPTHOME1=%FONPATH%\fon\sysconfig
+SCRIPTHOME2=%FONPATH%\fon.git\sysconfig
+SCRIPTHOME3=%FONPATH%\fon\sysconfig.git
+SCRIPTHOME4=%FONPATH%\fon.git\sysconfig.git
+SCRIPTHOME5=`pwd`/nixhome
+
+if exist "%SCRIPTHOME1" (
+  set SCRIPTHOME=%SCRIPTHOME1%
+) else (if exist "%SCRIPTHOME2" (
+  set SCRIPTHOME=%SCRIPTHOME2%
+) else (if exist "%SCRIPTHOME3" (
+  set SCRIPTHOME=%SCRIPTHOME3%
+) else (if exist "%SCRIPTHOME4" (
+  set SCRIPTHOME=%SCRIPTHOME4%
+) else (if exist "%SCRIPTHOME5" (
+  set SCRIPTHOME=%SCRIPTHOME5%
+) else (
+  echo === Enter [nixhome path] or leave [blank] for default to '.'
+  set /p SCRIPTHOME=">>> "
+  echo;
+  if "" == "%FONPATH%" (
+    set SCRIPTHOME=.
+  )
+)))))
+
 pushd %FONPATH%
 echo *** Starting from [%CD%] ***
 echo;
 
 for /d /r %%r in (*) do (
-  @REM @ if not "%%r" == "node_modules" (
+  @REM @ if not "%%r" == ".vscode" (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\package.json" (
-      findstr "\"boot\"" "%%r\package.json" >NUL && (
-        pushd %%r
-        echo ---- npm booting [%FONPATH%\%%r] ----
-        npm run boot
-        echo;
-        popd
-      )
+    if exist "%%r\.git" (
+      pushd "%%r"
+      echo ---- updating seafile-ignore.txt in [%%r] ----
+      copy %SCRIPTHOME%\.gitignore %%r\
+      echo;
+      popd
     )
   )
 )
+
 
 popd
 
 :END
 
 pause
-
