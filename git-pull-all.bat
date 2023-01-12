@@ -11,21 +11,23 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   set FONPATH=%1
 ) else (
   echo *** Testing Path [%FONPATH1%]  [%FONPATH2%]  [%FONPATH3%]
-  if exist "%FONPATH1" (
+  if exist "%FONPATH1%" (
     set FONPATH=%FONPATH1%
-  ) else (if exist "%FONPATH2%" (
+  ) else if exist "%FONPATH2%" (
     set FONPATH=%FONPATH2%
-  ) else (if exist %FONPATH3% (
+  ) else if exist "%FONPATH3%" (
     set FONPATH=%FONPATH3%
   ) else (
-      echo === Enter [target path] or leave [blank] for default to '.'
+      echo === none of the testing path is valid.
+      echo === Enter [fonpath] or leave [blank] for default to '.'
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
         set FONPATH=.
       )
-  )))
+  )
 )
+
 
 if not exist "%FONPATH%" (
   echo *** [%FONPATH%] not exist! Exit now. ***
