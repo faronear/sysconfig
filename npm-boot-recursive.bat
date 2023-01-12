@@ -39,16 +39,39 @@ pushd %FONPATH%
 echo *** Starting from [%CD%] ***
 echo;
 
-for /d /r %%r in (*) do (
-  @REM @ if not "%%r" == "node_modules" (
-  echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\package.json" (
-      findstr "\"boot\"" "%%r\package.json" >NUL && (
-        pushd %%r
-        echo ---- npm booting [%FONPATH%\%%r] ----
-        npm run boot
-        echo;
-        popd
+@ if "%2" == "hier" (
+  @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
+  for /d %%o in (*) do (
+    @ if not "%%o" == ".vscode" (
+      echo ======== entering [%FONPATH%\%%o] ========
+      echo;
+      pushd %%o 
+      for /d %%g in (*) do (
+        @ if exist "%%g\package.json" (
+          findstr "\"boot\"" %%g\package.json >NUL && (
+            pushd %%g 
+            echo ---- npm booting [%FONPATH%\%%o\%%g] ----
+            npm run boot
+            echo;
+            popd
+          )
+        ) 
+      ) 
+      popd
+    )
+  )
+) else (
+  for /d /r %%r in (*) do (
+    @REM @ if not "%%r" == "node_modules" (
+    echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
+      if exist "%%r\package.json" (
+        findstr "\"boot\"" "%%r\package.json" >NUL && (
+          pushd %%r
+          echo ---- npm booting [%FONPATH%\%%r] ----
+          npm run boot
+          echo;
+          popd
+        )
       )
     )
   )

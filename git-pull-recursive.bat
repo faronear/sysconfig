@@ -39,19 +39,39 @@ pushd %FONPATH%
 echo *** Starting from [%CD%] ***
 echo;
 
-for /d /r %%r in (*) do (
-  @REM @ if not "%%r" == ".vscode" (
-  echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\.git" (
-      pushd "%%r"
-      echo ---- git pulling [%%r] ----
-      git pull --all
+@ if "%2" == "hier" (
+  @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
+  for /d %%o in (*) do (
+    @ if not "%%o" == ".vscode" (
+      echo ======== entering [%FONPATH%\%%o] ========
       echo;
+      pushd %%o
+      for /d %%g in (*) do (
+        if exist "%%g\.git" (
+          pushd %%g
+          echo ---- git pulling [%FONPATH%\%%o\%%g] ----
+          git pull --all
+          echo;
+          popd
+        )
+      )
       popd
     )
   )
+) else (
+  for /d /r %%r in (*) do (
+    @REM @ if not "%%r" == ".vscode" (
+    echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
+      if exist "%%r\.git" (
+        pushd "%%r"
+        echo ---- git pulling [%%r] ----
+        git pull --all
+        echo;
+        popd
+      )
+    )
+  )
 )
-
 
 popd
 
