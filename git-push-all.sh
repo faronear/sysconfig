@@ -1,25 +1,25 @@
 #!/bin/bash
 
-testpath1=/faronear
-testpath2=~/faronear.git
-testpath3=~/faronear
-testpath4=/mnt/d/faronear
+FONPATH1=/faronear
+FONPATH2=~/faronear.git
+FONPATH3=~/faronear
+FONPATH4=/mnt/d/faronear
 
 if [ "$1" ]
 then
   FONPATH=$1
-elif [ -d $testpath1 ]
+elif [ -d $FONPATH1 ]
 then 
-  FONPATH=$testpath1
-elif [ -d $testpath2 ]
+  FONPATH=$FONPATH1
+elif [ -d $FONPATH2 ]
 then
-  FONPATH=$testpath2
-elif [ -d $testpath3 ]
+  FONPATH=$FONPATH2
+elif [ -d $FONPATH3 ]
 then
-  FONPATH=$testpath3
-elif [ -d $testpath4 ]
+  FONPATH=$FONPATH3
+elif [ -d $FONPATH4 ]
 then
-  FONPATH=$testpath4
+  FONPATH=$FONPATH4
 else
   echo "=== Enter [target path] or leave [blank] for default to '.'"
   read -p ">>> " FONPATH

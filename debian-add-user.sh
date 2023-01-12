@@ -35,37 +35,37 @@ else
 fi
 echo
 
-testpath0=/faronear/sysconfig
-testpath1=/faronear/fon/sysconfig
-testpath2=~/faronear/fon/sysconfig
-testpath3=~/faronear/fon.git/sysconfig
-testpath4=~/faronear.git/fon.git/sysconfig
+SCRIPTHOME0=/faronear/sysconfig
+SCRIPTHOME1=/faronear/fon/sysconfig
+SCRIPTHOME2=~/faronear/fon/sysconfig
+SCRIPTHOME3=~/faronear/fon.git/sysconfig
+SCRIPTHOME4=~/faronear.git/fon.git/sysconfig
 
-if [ -d $testpath0 ]
+if [ -d $SCRIPTHOME0 ]
 then
-  SourcePath=$0
-elif [ -d $testpath1 ]
+  SCRIPTHOME=$0
+elif [ -d $SCRIPTHOME1 ]
 then 
-  SourcePath=$testpath1
-elif [ -d $testpath2 ]
+  SCRIPTHOME=$SCRIPTHOME1
+elif [ -d $SCRIPTHOME2 ]
 then
-  SourcePath=$testpath2
-elif [ -d $testpath3 ]
+  SCRIPTHOME=$SCRIPTHOME2
+elif [ -d $SCRIPTHOME3 ]
 then
-  SourcePath=$testpath3
-elif [ -d $testpath4 ]
+  SCRIPTHOME=$SCRIPTHOME3
+elif [ -d $SCRIPTHOME4 ]
 then
-  SourcePath=$testpath4
-elif [ -d $testpath5 ]
+  SCRIPTHOME=$SCRIPTHOME4
+elif [ -d $SCRIPTHOME5 ]
 then
-  SourcePath=$testpath5
+  SCRIPTHOME=$SCRIPTHOME5
 else
-  echo "=== Enter [nixhome path] or leave [blank] to exit"
-  read -p ">>> " SourcePath
+  echo "=== Enter [script path] or leave [blank] to exit"
+  read -p ">>> " SCRIPTHOME
   echo ""
-  if [ ! -d "$SourcePath" ]
+  if [ ! -d "$SCRIPTHOME" ]
   then 
-    echo "*** nixhome path [$SourcePath] not available! Exit now. ***"
+    echo "*** nixhome path [$SCRIPTHOME] not available! Exit now. ***"
     exit
   fi
 fi
@@ -74,7 +74,7 @@ echo "=== Configure $NewUser's home with standard scripts? <y> for yes, <anythin
 read -p ">>> " ConfigHome
 if [ "$ConfigHome" == 'y' ]
 then
-  source $SourcePath/home-config.sh $SourcePath/nixhome $NewUser
+  source $SCRIPTHOME/home-config.sh $SCRIPTHOME/nixhome $NewUser
 else
   echo "--- Nothing configured."
 fi

@@ -1,40 +1,40 @@
 #!/bin/bash
 
-testpath0=/faronear/sysconfig/nixhome
-testpath1=/faronear/fon/sysconfig/nixhome
-testpath2=~/faronear/fon/sysconfig/nixhome
-testpath3=~/faronear/fon.git/sysconfig/nixhome
-testpath4=~/faronear.git/fon.git/sysconfig/nixhome
-testpath5=`pwd`/nixhome
+NIXHOME0=/faronear/sysconfig/nixhome
+NIXHOME1=/faronear/fon/sysconfig/nixhome
+NIXHOME2=~/faronear/fon/sysconfig/nixhome
+NIXHOME3=~/faronear/fon.git/sysconfig/nixhome
+NIXHOME4=~/faronear.git/fon.git/sysconfig/nixhome
+NIXHOME5=`pwd`/nixhome
 
 if [ "$1" ]
 then
-  SourcePath=$1
-elif [ -d $testpath0 ]
+  NIXHOME=$1
+elif [ -d $NIXHOME0 ]
 then
-  SourcePath=$testpath0
-elif [ -d $testpath1 ]
+  NIXHOME=$NIXHOME0
+elif [ -d $NIXHOME1 ]
 then 
-  SourcePath=$testpath1
-elif [ -d $testpath2 ]
+  NIXHOME=$NIXHOME1
+elif [ -d $NIXHOME2 ]
 then
-  SourcePath=$testpath2
-elif [ -d $testpath3 ]
+  NIXHOME=$NIXHOME2
+elif [ -d $NIXHOME3 ]
 then
-  SourcePath=$testpath3
-elif [ -d $testpath4 ]
+  NIXHOME=$NIXHOME3
+elif [ -d $NIXHOME4 ]
 then
-  SourcePath=$testpath4
-elif [ -d $testpath5 ]
+  NIXHOME=$NIXHOME4
+elif [ -d $NIXHOME5 ]
 then
-  SourcePath=$testpath5
+  NIXHOME=$NIXHOME5
 else
   echo "=== Enter [nixhome path] or leave [blank] to exit"
-  read -p ">>> " SourcePath
+  read -p ">>> " NIXHOME
   echo ""
-  if [ ! -d "$SourcePath" ]
+  if [ ! -d "$NIXHOME" ]
   then 
-    echo "*** nixhome path [$SourcePath] not available! Exit now. ***"
+    echo "*** nixhome path [$NIXHOME] not available! Exit now. ***"
     exit
   fi
 fi
@@ -71,8 +71,8 @@ then
       then
         mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
       fi
-      echo "--- Linking $SourcePath/$homescript to $HomePath/$homescript ..."
-      ln -s $SourcePath/$homescript ./
+      echo "--- Linking $NIXHOME/$homescript to $HomePath/$homescript ..."
+      ln -s $NIXHOME/$homescript ./
     done
   elif [ "$CopyOrLinkScripts" == 'c' ]
   then
@@ -82,8 +82,8 @@ then
       then
         mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
       fi
-      echo "--- Copying $SourcePath/$homescript to $HomePath/$homescript ..."
-      cp -r $SourcePath/$homescript ./
+      echo "--- Copying $NIXHOME/$homescript to $HomePath/$homescript ..."
+      cp -r $NIXHOME/$homescript ./
     done
   else
     echo '--- Home scripts not changed.'
@@ -111,13 +111,13 @@ then
 
     if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
     then
-      echo "--- Linking $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-      ln -s $SourcePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
+      echo "--- Linking $NIXHOME/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      ln -s $NIXHOME/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
       sudo chmod 644 $HomePath/.ssh/authorized_keys # 确保其他用户能读取 nixhome/.ssh/authorized_keys
     elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
     then
-      echo "--- Copying $SourcePath/authorized_keys to $HomePath/.ssh/authorized_keys ..."
-      cat $SourcePath/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
+      echo "--- Copying $NIXHOME/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      cat $NIXHOME/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
       chmod 600 $HomePath/.ssh/authorized_keys
     fi
     echo
