@@ -41,13 +41,13 @@ then
 fi
 echo 
 
-echo "=== Configure /etc/sudoers: includedir /etc/sudoers.d"
+echo "=== Configure /etc/sudoers to includedir /etc/sudoers.d"
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
 DebianVersionMain=`cat /etc/debian_version | sed -r 's/^([0-9]+)\..*$/\1/'`
 if [ "$DebianVersionMain" == '10' ]
 then
   chmod o+w /etc/sudoers
-  ## Debian 10 上，不存在 @includedir，需要自己添加。而 Debian 11.1 上，已经存在 @includedir
+  ## Debian 10 上，不存在 includedir，需要自己添加。而 Debian 11.1 上，已经存在 @includedir
   sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
   chmod o-w /etc/sudoers
 fi

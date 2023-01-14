@@ -1,3 +1,5 @@
+#!/bin/bash
+
 read -p "Enter root password (default to 'MoeClub.org') >> " ROOTPWD
 
 read -p "Enter debian version to install (default to 11)>> " DEBIAN_VERSION
