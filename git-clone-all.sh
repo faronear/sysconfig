@@ -22,7 +22,7 @@ pushd npm.git
 git clone https://git.faronear.org/npm/wo-base-fileloader
 git clone https://git.faronear.org/npm/wo-base-deployer
 git clone https://git.faronear.org/npm/wo-base-envar
-git clone https://git.faronear.org/npm/wo-base-cocon
+git clone https://git.faronear.org/npm/wo-core-coco
 git clone https://git.faronear.org/npm/wo-base-messenger
 git clone https://git.faronear.org/npm/wo-base-netinfo
 git clone https://git.faronear.org/npm/wo-base-webserver
