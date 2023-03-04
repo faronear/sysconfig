@@ -84,7 +84,6 @@ fi
 echo "# make sure to sudo autostart.sh, otherwise for example pm2 list can't find it as root." >> /etc/rc.local
 echo 'sudo bash /faronear/autostart.sh' >> /etc/rc.local
 touch /faronear/autostart.sh
-echo "# make sure to sudo in autostart.sh, otherwise for example pm2 list can't find it as root." >> /faronear/autostart.sh
 chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
