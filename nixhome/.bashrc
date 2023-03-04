@@ -58,6 +58,7 @@ then
   alias ll='ls -lGA' # show .xxx 
   alias dir='ls -lGA'
   alias lll='ls -lGa' # show .xxx and . and ..
+  alias sedi='sed -i ""'
   export HOMEBREW_NO_AUTO_UPDATE=true
   export BASH_SILENCE_DEPRECATION_WARNING=1
 else
@@ -65,6 +66,7 @@ else
   alias ll='ls -lA --color=auto'
   alias dir='ls -lA --color=auto'
   alias lll='ls -la --color=auto'
+  alias sedi='sed -i'
   export TIME_STYLE='+%Y-%m-%d--%H:%M:%S' 
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色

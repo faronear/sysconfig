@@ -1,4 +1,4 @@
-defaultVERSION=0.17.0
+defaultVERSION=0.18.1
 
 if [ $1 ]
 then
