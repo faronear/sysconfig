@@ -51,16 +51,17 @@ alias emacst='emacs -nw'
 
 alias myip='ifconfig | grep netmask'
 
-# Always list long directory and time.
+# Set aliases
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias su='su -'
 if [[ "$(uname)" = "Darwin" ]];
 then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
   alias dir='ls -lGA'
   alias lll='ls -lGa' # show .xxx and . and ..
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
   alias sedi='sed -i ""'
   export HOMEBREW_NO_AUTO_UPDATE=true
   export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -69,9 +70,6 @@ else
   alias ll='ls -lA --color=auto'
   alias dir='ls -lA --color=auto'
   alias lll='ls -la --color=auto'
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
   alias sedi='sed -i'
   export TIME_STYLE='+%Y-%m-%d--%H:%M:%S' 
 fi
@@ -165,6 +163,7 @@ tp3=/faronear/fon/sysconfig
 tp4=/faronear/fon.git/sysconfig
 tp5=/mnt/c/faronear/fon.git/sysconfig
 tp6=/mnt/d/faronear/fon.git/sysconfig
+tp7=/faronear/sysconfig
 if [ -d $tp1 ]
 then
   export PATH=$tp1:$PATH
@@ -183,6 +182,9 @@ then
 elif [ -d $tp6 ]
 then
   export PATH=$tp6:$PATH
+elif [ -d $tp7 ]
+then
+  export PATH=$tp7:$PATH
 fi
 
 if [ -f ~/.bashrc_custom ]

@@ -3,7 +3,7 @@
 echo "Thanks https://github.com/bohanyang/debi"
 echo
 
-echo "=== Enter debian version [8,9,10,11,12] or [leave blank] for 11"
+echo "=== Enter debian version [8,9,10,11] or [leave blank] for 11"
 read -p ">>> " DEBIAN_VERSION
 if [ -z "${DEBIAN_VERSION}" ]
 then
@@ -28,5 +28,5 @@ sudo curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh
 sudo chmod a+rx debi.sh
 sudo ./debi.sh --version $DEBIAN_VERSION --architecture $DEBIAN_ARCH --user root --$PRESET # --architecture 可参略，默认为 amd64；--password 可省略，则脚本启动后会问你要密码
 
-echo "=== Shutdown now, wait for about 30 seconds, then try to ssh"
+echo "=== Shutdown now, wait for about 30 minutes (the project's github says 30 seconds), then try to ssh"
 sudo shutdown -r now
