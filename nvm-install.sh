@@ -16,7 +16,7 @@
 
 git clone https://github.com/nvm-sh/nvm.git ~/.nvm
 
-echo If in China, set mirror before nvm install 
-echo ########################################################################
+echo
+echo '############## If in China, set mirror before nvm install ##############'
 echo export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
-echo ########################################################################
+echo '########################################################################'

@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-config.sh > ~/debian-config.sh && bash ~/debian-config.sh"
+echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-setup.sh > ~/debian-setup.sh && bash ~/debian-setup.sh"
 
 if [ "$1" ]
 then
