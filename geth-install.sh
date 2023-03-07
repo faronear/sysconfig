@@ -15,31 +15,34 @@ else
   fi
 fi
 
-ARCH=amd64
+# 用 dpkg --print-architecture 更直接
+ARCH=`dpkg --print-architecture`
+# if [[ "$(uname -m)" = "aarch64" ]];
+# then
+#   ARCH=arm64
+# elif [[ "$(uname -m)" = "armv7l" ]];
+# then
+#   ARCH=arm
+# elif [[ "$(uname -m)" = "x86_64" ]];
+# then
+#   ARCH=amd64
+# fi
+
+OS=`uname | tr 'A-Z' 'a-z'`
 
 echo "=== Install geth：[b] for 二进制， [s] for 源代码，[anything else or leave blank] for no change"
 read -p ">>> " BINARY_OR_SOURCE
 if [ "$BINARY_OR_SOURCE" == 'b' ]
 then
-  echo "--- 下载二进制 geth (https://geth.ethereum.org/downloads)"
-  # mkdir -p ./geth-temp/
-  # cd ./geth-temp
-  if [ "$VERSION" == '1.10.26' ]
-  then
-    wget https://gethstore.blob.core.windows.net/builds/geth-linux-$ARCH-$VERSION-e5eb32ac.tar.gz -O geth-linux.tgz
-  elif [ "$VERSION" == '1.10.25' ]
-  then
-    wget https://gethstore.blob.core.windows.net/builds/geth-linux-$ARCH-$VERSION-69568c55.tar.gz -O geth-linux.tgz
-  else
-    echo "=== please find the download link in https://geth.ethereum.org/downloads"
-    read -p ">>> " DOWNLINK
-    wget $DOWNLINK -O geth-linux.tgz
-  fi
-  tar xzf ./geth-linux.tgz # --strip-components 1 ## 去掉tar包中顶级目录，因为顶级目录含有checksum，不方便在下一步进入
+  echo "--- 下载二进制 geth (https://geth.ethereum.org/downloads) with correct hash"
+  read -p ">>> " DOWNLINK
+  # wget https://gethstore.blob.core.windows.net/builds/geth-$OS-$ARCH-$VERSION-$HASH.tar.gz -O geth-$OS-$ARCH-$VERSION.tgz
+  wget $DOWNLINK -O geth-$OS-$ARCH-$VERSION.tgz
+  tar xzf ./geth-$OS-$ARCH-$VERSION.tgz # --strip-components 1 ## 去掉tar包中顶级目录，因为顶级目录含有checksum，不方便在下一步进入
   echo "--- 安装到 /usr/local/bin/geth"
-  mv ./geth-linux-*/geth /usr/local/bin/
+  mv ./geth-$OS-$ARCH-$VERSION-*/geth /usr/local/bin/
   echo "--- 删除原始文件"
-  rm -fr ./geth-linux.tgz ./geth-linux-$ARCH-$VERSION-*/
+  rm -fr ./geth-$OS-$ARCH-$VERSION.tgz ./geth-$OS-$ARCH-$VERSION-*/
 elif [ "$BINARY_OR_SOURCE" == 's' ]
 then
   echo "--- 克隆并编译 geth"
