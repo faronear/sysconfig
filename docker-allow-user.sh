@@ -1,0 +1,16 @@
+echo "=== Add a non-root user to run docker"
+if [ "$1" ]
+then
+  DOCKERUSER=$1
+else
+  echo "Enter the <user name> or <leave blank> for default 'adot'"
+  read -p ">>> " DOCKERUSER
+  if [ ! "$DOCKERUSER" ]
+  then
+    DOCKERUSER=adot
+  fi
+fi
+
+sudo usermod -aG docker $DOCKERUSER
+sudo newgrp docker
+sudo systemctl restart docker
