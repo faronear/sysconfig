@@ -34,8 +34,8 @@ done
 
 if [ "$RUNPM2" == 'y' ]
 then
-  pm2 start -x 'geth' --name $DATADIR -- --datadir ./$DATADIR/ --http --http.addr 0.0.0.0 --http.port 6$KEYCODE --http.api eth,net,web3,personal,admin,miner,debug,txpool,shh --http.corsdomain "*" --nodiscover --networkid 6$KEYCODE --port 60$KEYCODE --allow-insecure-unlock  -unlock 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --password ./keystore-password.txt --mine --miner.etherbase 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --miner.threads 1
+  pm2 start -x 'geth' --name=$DATADIR -- --datadir=./$DATADIR/ --http --http.addr=0.0.0.0 --http.port=6$KEYCODE --http.api=eth,net,web3,personal,admin,miner,debug,txpool,shh --http.vhosts=* --http.corsdomain=* --nodiscover --networkid=6$KEYCODE --port=60$KEYCODE --allow-insecure-unlock --unlock 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --password ./keystore-password.txt --mine --miner.etherbase 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --miner.threads=1
 else
   # 如果不是用 pm2 而是直接用 geth，那么可以在最后加 console。不提供password也可以，那就会在命令行提示输入。
-  geth --datadir ./$DATADIR/ --http --http.addr 0.0.0.0 --http.port 6$KEYCODE --http.api eth,net,web3,personal,admin,miner,debug,txpool --http.corsdomain "*" --nodiscover --networkid 6$KEYCODE --port 60$KEYCODE --allow-insecure-unlock  -unlock 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --password ./keystore-password.txt --mine --miner.etherbase 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --miner.threads 1 console
+  geth --datadir=./$DATADIR/ --http --http.addr=0.0.0.0 --http.port=6$KEYCODE --http.api=eth,net,web3,personal,admin,miner,debug,txpool --http.vhosts=* --http.corsdomain=* --nodiscover --networkid=6$KEYCODE --port=60$KEYCODE --allow-insecure-unlock --unlock 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --password=./keystore-password.txt --mine --miner.etherbase 0xbC0ab80eef0A86eF248993D3f59B73F142278fbc --miner.threads=1 console
 fi
