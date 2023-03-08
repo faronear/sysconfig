@@ -29,7 +29,7 @@ sudo ./setup-seafile.sh # to setup seafile+sqlite (setup-seafile-mysql.sh is for
 sudo ./seafile.sh start
 
 ## changed "127.0.0.1:8000" to "0.0.0.0:8000", otherwise it can only be accessed on the localhost, unless using nginx/apache to proxy
-# sudo sed -i "s/127\.0\.0\.1/0.0.0.0/g" ../conf/gunicorn.conf.py
+# sudo sed -i "s|127.0.0.1|0.0.0.0|g" ../conf/gunicorn.conf.py
 ## to change seahub port, to edit gunicorn.conf.py, it works although it still promts "Starting seahub at port 8000 ...". 
 ## (Directly `./seahub.sh start <PORT>` prompts "Starting seahub at port <PORT> ..." but it actually doesn't listen on <PORT>.)
 sudo ./seahub.sh start # the first run will asks to setup an admin account

@@ -48,7 +48,9 @@ if [ "$DebianVersionMain" == '10' ]
 then
   chmod o+w /etc/sudoers
   ## Debian 10 上，不存在 includedir，需要自己添加。而 Debian 11.1 上，已经存在 @includedir
-  sed -i "s|#includedir /etc/sudoers.d|includedir /etc/sudoers.d|g" /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
+  echo >> /etc/sudoers
+  echo includedir /etc/sudoers.d >> /etc/sudoers  # allow users in /etc/sudoers.d/ folder to sudo
+  echo >> /etc/sudoers
   chmod o-w /etc/sudoers
 fi
 echo

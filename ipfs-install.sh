@@ -14,7 +14,7 @@ else
   fi
 fi
 
-if [[ "$(uname)" = "linux" ]]
+if [[ "$(uname)" = "Linux" ]]
 then
   # 用 dpkg --print-architecture 更直接
   ARCH=`dpkg --print-architecture`

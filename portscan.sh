@@ -6,4 +6,9 @@ else
   read -p ">>> " PORT
 fi
 
-netstat -tunlp | grep $PORT
+if [[ "$(uname)" = "Darwin" ]]
+then
+  lsof -i tcp:$PORT
+else
+  netstat -tunlp | grep $PORT
+fi

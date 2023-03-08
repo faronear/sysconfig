@@ -5,13 +5,13 @@ function proxy(){
     read -p ">>> " proxySwitch
     if [ $proxySwitch ] && [ $proxySwitch == "s" ]
     then
-        export ALL_PROXY=socks5://127.0.0.1:1086
-        export http_proxy=http://127.0.0.1:8090
-        export https_proxy=https://127.0.0.1:8090
+        export all_proxy=socks5://127.0.0.1:1086
+        export http_proxy=socks5://127.0.0.1:1086
+        export https_proxy=socks5://127.0.0.1:1086
         echo -e "--- 已开启网络代理"
     elif [ $proxySwitch ] && [ $proxySwitch == "t" ]
     then
-        unset ALL_PROXY
+        unset all_proxy
         unset http_proxy
         unset https_proxy
         echo -e "--- 已关闭网络代理"

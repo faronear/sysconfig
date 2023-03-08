@@ -12,5 +12,6 @@ else
 fi
 
 sudo usermod -aG docker $DOCKERUSER
-sudo newgrp docker
 sudo systemctl restart docker
+groups $DOCKERUSER
+newgrp docker  # run as the docker group in the current shell

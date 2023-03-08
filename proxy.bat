@@ -5,7 +5,7 @@ echo === Enter [s] to start, [t] to terminate or [anything else] for no change
 set /p TODOMODE=">>> "
 echo;
 if "s" == "%TODOMODE%" (
-  set ALL_PROXY=socks5://127.0.0.1:1080
+  set all_proxy=socks5://127.0.0.1:1080
   echo "--- 已开启网络代理"
 ) else if "t" == "%TODOMODE%" (
   set all_proxy=
