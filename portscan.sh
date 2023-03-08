@@ -6,7 +6,7 @@ else
   read -p ">>> " PORT
 fi
 
-if [[ "$(uname)" = "Darwin" ]]
+if [ "$(uname)" = "Darwin" ]
 then
   lsof -i tcp:$PORT
 else

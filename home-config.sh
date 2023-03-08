@@ -92,7 +92,7 @@ then
 
   echo
 
-  if [ "$TheUser" != 'root' ] && [[ "$(uname)" != "Darwin" ]] # 仅允许 non-root 用户进行远程密钥登录
+  if [ "$TheUser" != 'root' ] && [ "$(uname)" != "Darwin" ] # 仅允许 non-root 用户进行远程密钥登录
   then
 
     mkdir -p $HomePath/.ssh

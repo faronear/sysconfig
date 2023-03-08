@@ -57,7 +57,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias su='su -'
 alias npmc='npm --registry https://registry.npm.taobao.org'
-if [[ "$(uname)" = "Darwin" ]];
+if [ "$(uname)" = "Darwin" ]
 then
   alias l='ls -lG'
   alias ll='ls -lGA' # show .xxx 
