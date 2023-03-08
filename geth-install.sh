@@ -42,17 +42,17 @@ then
   wget https://gethstore.blob.core.windows.net/builds/`curl -s -L -o - 'https://geth.ethereum.org/downloads' | grep -o -m 1 "geth-$OS-$ARCH-$VERSION-[0-9a-f]*.tar.gz" | head -n 1` -O geth-binary-temp.tgz
   tar xzf ./geth-binary-temp.tgz # --strip-components 1 ## 去掉tar包中顶级目录，因为顶级目录含有checksum，不方便在下一步进入
   echo "--- 安装到 /usr/local/bin/geth"
-  mv ./geth-$OS-$ARCH-*/geth /usr/local/bin/
+  sudo mv ./geth-$OS-$ARCH-*/geth /usr/local/bin/
   echo "--- 删除原始文件"
   rm -fr ./geth-binary-temp.tgz ./geth-$OS-$ARCH-*/
 elif [ "$BINARY_OR_SOURCE" == 's' ]
 then
   echo "--- 克隆并编译 geth"
-  git clone -b v$VERSION https://github.com/ethereum/go-ethereum ./geth-temp/go-ethereum
-  mkdir -p ./geth-temp/
-  pushd ./geth-temp/go-ethereum && make geth && popd # 或者 make all
-  mv ./geth-temp/go-ethereum/build/bin/geth /usr/local/bin/
-  rm -fr ./geth-temp/
+  mkdir -p ./geth-source-$VERSION/
+  git clone -b v$VERSION https://github.com/ethereum/go-ethereum ./geth-source-$VERSION/go-ethereum
+  pushd ./geth-source-$VERSION/go-ethereum && make geth && popd # 或者 make all
+  sudo mv ./geth-source-$VERSION/go-ethereum/build/bin/geth /usr/local/bin/
+  rm -fr ./geth-source-$VERSION/
 else
   echo "--- Nothing changed."
 fi
