@@ -14,18 +14,18 @@ else
   fi
 fi
 
-if [[ "$(uname)" = "Linux" ]]
+if [ "$(uname)" = "Linux" ]
 then
   # 用 dpkg --print-architecture 更直接
   ARCH=`dpkg --print-architecture`
 else
-  if [[ "$(uname -m)" = "aarch64" ]];
+  if [ "$(uname -m)" = "aarch64" ]
   then
     ARCH=arm64
-  elif [[ "$(uname -m)" = "armv7l" ]];
+  elif [ "$(uname -m)" = "armv7l" ]
   then
     ARCH=arm
-  elif [[ "$(uname -m)" = "x86_64" ]];
+  elif [ "$(uname -m)" = "x86_64" ]
   then
     ARCH=amd64
   fi
