@@ -3,6 +3,7 @@ LABEL org.opencontainers.image.authors="luk"
 
 RUN npm i -g --registry https://registry.npm.taobao.org @vue/cli@4
 RUN cd / && echo -e "\n" | vue create --registry https://registry.npm.taobao.org -p dcloudio/uni-preset-vue uniapp-cli
+# 上一行自动选择了第一个空模板，因此需要额外按照 sass
 RUN cd /uniapp-cli && npm i -D --registry https://registry.npm.taobao.org sass@1.49.8 sass-loader@8.0.2
 
 EXPOSE 8080
