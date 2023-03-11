@@ -8,7 +8,9 @@
 
 # 自定义的后缀名，凡有 sfignore 后缀的都不进行同步
 *.sfignore
+*.sfignore.*
 *.sfignore/
+*.sfignore.*/
 
 .DS_Store
 */.DS_Store

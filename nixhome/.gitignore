@@ -70,7 +70,7 @@ _desktop.ini
 /db.json
 
 # wo
-envar-*.gitignore.js
+*.gitignore.*
 # 服务端
 /_archive/*
 /_datastore/*
