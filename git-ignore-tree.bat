@@ -39,8 +39,10 @@ set NIXHOME1=%FONPATH%\fon\sysconfig\nixhome
 set NIXHOME2=%FONPATH%\fon.git\sysconfig\nixhome
 set NIXHOME3=%FONPATH%\fon\sysconfig.git\nixhome
 set NIXHOME4=%FONPATH%\fon.git\sysconfig.git\nixhome
-set NIXHOME5=%CD%\nixhome
-echo *** Testing Path [%NIXHOME1%] [%NIXHOME2%] [%NIXHOME3%] [%NIXHOME4%] [%NIXHOME5%]
+set NIXHOME5=%FONPATH%\sysconfig.git\nixhome
+set NIXHOME6=%FONPATH%\sysconfig\nixhome
+set NIXHOME7=%CD%\nixhome
+echo *** Testing Path [%NIXHOME1%] [%NIXHOME2%] [%NIXHOME3%] [%NIXHOME4%] [%NIXHOME5%] [%NIXHOME6%] [%NIXHOME7%]
 if exist "%NIXHOME1%" (
   set NIXHOME=%NIXHOME1%
 ) else if exist "%NIXHOME2%" (
@@ -51,6 +53,10 @@ if exist "%NIXHOME1%" (
   set NIXHOME=%NIXHOME4%
 ) else if exist "%NIXHOME5%" (
   set NIXHOME=%NIXHOME5%
+) else if exist "%NIXHOME6%" (
+  set NIXHOME=%NIXHOME6%
+) else if exist "%NIXHOME7%" (
+  set NIXHOME=%NIXHOME7%
 ) else (
   echo ××× none of the testing path is valid.
   echo;

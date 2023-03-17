@@ -38,6 +38,15 @@ then
 fi
 
 echo "---------------------------------------------"
+echo "Store pull rebase to true or false? (leave blank for no change)" 
+read -p ">>> " PullRebase
+if [ $PullRebase ]
+then
+  echo "git config --global pull.rebase $PullRebase"
+  git config --global pull.rebase $PullRebase
+fi
+
+echo "---------------------------------------------"
 echo "Path to global gitignore file? (For example ~/.gitignore, leave blank for no change)"
 read -p ">>> " ExcludesFile
 if [ $ExcludesFile ]
