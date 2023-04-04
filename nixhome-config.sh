@@ -105,7 +105,7 @@ then
       # 由 root 指定新用户而创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
       chown $TheUser:$TheUser $HomePath/.ssh
     fi
-    if [ -e "$HomePath/.ssh/authorized_keys" ]
+    if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]
     then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%dT%H%M%S)
     fi
