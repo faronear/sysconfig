@@ -158,12 +158,12 @@ fi
 export USERPROFILE=$HOME
 
 # add sysconfig to path
-tp1=/Users/luk.lu/faronear/fon/sysconfig
-tp2=/Users/luk.lu/faronear/fon.git/sysconfig
-tp3=/faronear/fon/sysconfig
-tp4=/faronear/fon.git/sysconfig
-tp5=/mnt/c/faronear/fon.git/sysconfig
-tp6=/mnt/d/faronear/fon.git/sysconfig
+tp1=/Users/luk.lu/faronear/npm/sysconfig
+tp2=/Users/luk.lu/faronear/npm.git/sysconfig
+tp3=/faronear/npm/sysconfig
+tp4=/faronear/npm.git/sysconfig
+tp5=/mnt/c/faronear/npm.git/sysconfig
+tp6=/mnt/d/faronear/npm.git/sysconfig
 tp7=/faronear/sysconfig
 if [ -d $tp1 ]
 then

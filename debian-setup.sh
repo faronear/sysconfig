@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl https://git.faronear.org/fon/sysconfig/raw/branch/main/debian-setup.sh > ~/debian-setup.sh && bash ~/debian-setup.sh"
+echo "curl https://git.faronear.org/npm/sysconfig/raw/branch/main/debian-setup.sh > ~/debian-setup.sh && bash ~/debian-setup.sh"
 
 if [ "$1" ]
 then
@@ -24,13 +24,13 @@ echo "=== Git cloning to /faronear/sysconfig"
 git config --global credential.helper cache
 if [ ! -d "/faronear/sysconfig" ]
 then
-  git clone https://git.faronear.org/fon/sysconfig /faronear/sysconfig
+  git clone https://git.faronear.org/npm/sysconfig /faronear/sysconfig
   chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/sysconfig/nixhome/*
 fi
 echo
 
 echo "=== Configure root home"
-source /faronear/sysconfig/home-config.sh /faronear/sysconfig/nixhome root
+source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
 echo
 
 echo "=== Change root password? <y> for yes, <anything else> for omit:"
@@ -105,7 +105,7 @@ read -p ">>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
   source /faronear/sysconfig/debian-add-user.sh $NewUser
-  source /faronear/sysconfig/home-config.sh /faronear/sysconfig/nixhome $NewUser
+  source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
 
   echo
   echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
