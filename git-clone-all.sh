@@ -1,13 +1,13 @@
 #!/bin/bash
 
-mkdir cup.git
-pushd cup.git
+mkdir cup.code
+pushd cup.code
 git clone https://git.faronear.org/cup/cmc-user-uniapp
 git clone https://git.faronear.org/cup/cmc-server-torm
 popd
 
-mkdir fon.git
-pushd fon.git
+mkdir fon.code
+pushd fon.code
 git clone https://git.faronear.org/npm/sysconfig
 git clone https://git.faronear.org/fon/dot.vscode
 git clone https://git.faronear.org/fon/www.faronear.com
@@ -17,8 +17,8 @@ git clone https://git.faronear.org/fon/www.faronear.org
 git clone https://git.faronear.org/fon/mail.faronear.org
 popd
 
-mkdir npm.git
-pushd npm.git
+mkdir npm.code
+pushd npm.code
 git clone https://git.faronear.org/npm/wo-base-fileloader
 git clone https://git.faronear.org/npm/wo-base-deployer
 git clone https://git.faronear.org/npm/wo-base-envar
@@ -43,8 +43,8 @@ git clone https://git.faronear.org/npm/tic-chaintool
 git clone https://git.faronear.org/npm/tic-traction
 popd
 
-mkdir sol.git
-pushd sol.git
+mkdir sol.code
+pushd sol.code
 git clone https://git.faronear.org/sol/sol-ling
 git clone https://git.faronear.org/sol/sol-data
 git clone https://git.faronear.org/sol/sol-base
@@ -52,8 +52,8 @@ git clone https://git.faronear.org/sol/solet
 git clone https://git.faronear.org/sol/soweb
 popd
 
-mkdir tic.git
-pushd tic.git
+mkdir tic.code
+pushd tic.code
 git clone https://git.faronear.org/tic/cloud-server
 git clone https://git.faronear.org/tic/cloud-user-vue
 git clone https://git.faronear.org/tic/star-core-torm
@@ -70,8 +70,8 @@ git clone https://git.faronear.org/tex/tex-user-vue
 
 popd
 
-mkdir tuc.git
-pushd tuc.git
+mkdir tuc.code
+pushd tuc.code
 
 git clone https://git.faronear.org/tuc/fork-tisch
 git clone https://git.faronear.org/tuc/fork-nesh

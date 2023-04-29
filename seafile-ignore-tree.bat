@@ -36,9 +36,9 @@ if not exist "%FONPATH%" (
 )
 
 set SCRIPTHOME1=%FONPATH%\fon\sysconfig\nixhome
-set SCRIPTHOME2=%FONPATH%\fon.git\sysconfig\nixhome
+set SCRIPTHOME2=%FONPATH%\fon.code\sysconfig\nixhome
 set SCRIPTHOME3=%FONPATH%\fon\sysconfig.git\nixhome
-set SCRIPTHOME4=%FONPATH%\fon.git\sysconfig.git\nixhome
+set SCRIPTHOME4=%FONPATH%\fon.code\sysconfig.git\nixhome
 set SCRIPTHOME5=%CD%\nixhome
 echo *** Testing Path [%SCRIPTHOME1%] [%SCRIPTHOME2%] [%SCRIPTHOME3%] [%SCRIPTHOME4%] [%SCRIPTHOME5%]
 if exist "%SCRIPTHOME1%" (

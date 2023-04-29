@@ -36,9 +36,9 @@ if not exist "%FONPATH%" (
 )
 
 set NIXHOME1=%FONPATH%\fon\sysconfig\nixhome
-set NIXHOME2=%FONPATH%\fon.git\sysconfig\nixhome
+set NIXHOME2=%FONPATH%\fon.code\sysconfig\nixhome
 set NIXHOME3=%FONPATH%\fon\sysconfig.git\nixhome
-set NIXHOME4=%FONPATH%\fon.git\sysconfig.git\nixhome
+set NIXHOME4=%FONPATH%\fon.code\sysconfig.git\nixhome
 set NIXHOME5=%FONPATH%\sysconfig.git\nixhome
 set NIXHOME6=%FONPATH%\sysconfig\nixhome
 set NIXHOME7=%CD%\nixhome

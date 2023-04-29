@@ -3,8 +3,8 @@
 NIXHOME0=/faronear/sysconfig/nixhome
 NIXHOME1=/faronear/npm/sysconfig/nixhome
 NIXHOME2=~/faronear/npm/sysconfig/nixhome
-NIXHOME3=~/faronear/npm.git/sysconfig/nixhome
-NIXHOME4=~/faronear.git/npm.git/sysconfig/nixhome
+NIXHOME3=~/faronear/npm.code/sysconfig/nixhome
+NIXHOME4=~/faronear.mycode/npm.code/sysconfig/nixhome
 NIXHOME5=`pwd`/nixhome
 
 if [ "$1" ]
@@ -94,7 +94,7 @@ then
 
   if [ "$(uname)" == "Darwin" ]
   then
-    echo '--- No need to run this script on Mac OS X. Exit now.'
+    echo '--- No need to configure ./ssh/authorized_keys on Mac OS X. Exit now.'
   elif [ "$TheUser" != 'root' ]  # 仅允许 non-root 用户进行远程密钥登录
   then
 

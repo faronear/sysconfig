@@ -157,36 +157,36 @@ fi
 # let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
 export USERPROFILE=$HOME
 
-# add sysconfig to path
-tp1=/Users/luk.lu/faronear/npm/sysconfig
-tp2=/Users/luk.lu/faronear/npm.git/sysconfig
-tp3=/faronear/npm/sysconfig
-tp4=/faronear/npm.git/sysconfig
-tp5=/mnt/c/faronear/npm.git/sysconfig
-tp6=/mnt/d/faronear/npm.git/sysconfig
-tp7=/faronear/sysconfig
-if [ -d $tp1 ]
-then
-  export PATH=$tp1:$PATH
-elif [ -d $tp2 ]
-then 
-  export PATH=$tp2:$PATH
-elif [ -d $tp3 ]
-then
-  export PATH=$tp3:$PATH
-elif [ -d $tp4 ]
-then 
-  export PATH=$tp4:$PATH
-elif [ -d $tp5 ]
-then
-  export PATH=$tp5:$PATH
-elif [ -d $tp6 ]
-then
-  export PATH=$tp6:$PATH
-elif [ -d $tp7 ]
-then
-  export PATH=$tp7:$PATH
-fi
+# # add sysconfig to path
+# tp1=/Users/luk.lu/faronear/npm/sysconfig
+# tp2=/Users/luk.lu/faronear/npm.code/sysconfig
+# tp3=/faronear/npm/sysconfig
+# tp4=/faronear/npm.code/sysconfig
+# tp5=/mnt/c/faronear/npm.code/sysconfig
+# tp6=/mnt/d/faronear/npm.code/sysconfig
+# tp7=/faronear/sysconfig
+# if [ -d $tp1 ]
+# then
+#   export PATH=$tp1:$PATH
+# elif [ -d $tp2 ]
+# then 
+#   export PATH=$tp2:$PATH
+# elif [ -d $tp3 ]
+# then
+#   export PATH=$tp3:$PATH
+# elif [ -d $tp4 ]
+# then 
+#   export PATH=$tp4:$PATH
+# elif [ -d $tp5 ]
+# then
+#   export PATH=$tp5:$PATH
+# elif [ -d $tp6 ]
+# then
+#   export PATH=$tp6:$PATH
+# elif [ -d $tp7 ]
+# then
+#   export PATH=$tp7:$PATH
+# fi
 
 if [ -f ~/.bashrc_custom ]
 then

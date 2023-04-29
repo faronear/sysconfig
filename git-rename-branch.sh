@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FONPATH1=/faronear
-FONPATH2=~/faronear.git
+FONPATH2=~/faronear.mycode
 FONPATH3=~/faronear
 FONPATH4=/mnt/d/faronear
 
