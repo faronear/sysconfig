@@ -32,7 +32,14 @@ fi
 
 sudo curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh
 sudo chmod a+rx debi.sh
-sudo ./debi.sh --version $DEBIAN_VERSION --architecture $ARCH --user root --$PRESET # --architecture 可参略或者[amd64（默认）, i386, arm64, armhf]；--password 可省略，则脚本启动后会问你要密码
+sudo ./debi.sh --version $DEBIAN_VERSION --architecture `dpkg --print-architecture` --user root --$PRESET # --architecture 可参略或者[amd64（默认）, i386, arm64, armhf]；--password 可省略，则脚本启动后会问你要密码
 
-echo "=== Shutdown now, wait for about 30 minutes (the project's github says 30 seconds), then try to ssh"
-sudo shutdown -r now
+echo "=== Last chance!!! Enter [r] to reboot to new system, or [anything else] to cancel all changes"
+read -p ">>> " LAST
+if [ 'r' = "$LAST" ]
+then 
+  echo "=== Shutdown now, wait for about 30 minutes (the project's github says 30 seconds), then try to ssh"
+  sudo shutdown -r now
+else
+  sudo rm -rf debi.sh /etc/default/grub.d/zz-debi.cfg /boot/debian-* && { sudo update-grub || sudo grub2-mkconfig -o /boot/grub2/grub.cfg; }
+fi
