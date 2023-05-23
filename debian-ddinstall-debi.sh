@@ -34,6 +34,7 @@ sudo curl -fLO https://raw.githubusercontent.com/bohanyang/debi/master/debi.sh
 sudo chmod a+rx debi.sh
 sudo ./debi.sh --version $DEBIAN_VERSION --architecture `dpkg --print-architecture` --user root --$PRESET # --architecture 可参略或者[amd64（默认）, i386, arm64, armhf]；--password 可省略，则脚本启动后会问你要密码
 
+echo
 echo "=== Last chance!!! Enter [r] to reboot to new system, or [anything else] to cancel all changes"
 read -p ">>> " LAST
 if [ 'r' = "$LAST" ]

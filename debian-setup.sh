@@ -13,7 +13,7 @@ fi
 
 echo "=== Installing basic tools"
 apt update
-apt install -y emacs git wget curl screen sudo automake rsync dnsutils gcc g++ make python jq
+apt install -y emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python jq
 echo
 
 echo "=== Making dir /faronear/"
