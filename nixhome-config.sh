@@ -1,13 +1,10 @@
 #!/bin/bash
 
 NIXHOME0=/faronear/sysconfig/nixhome
-NIXHOME1=/faronear/npm/sysconfig/nixhome
-NIXHOME2=~/faronear/npm/sysconfig/nixhome
-NIXHOME3=~/faronear/npm.code/sysconfig/nixhome
-NIXHOME4=~/faronear.mycode/npm.code/sysconfig/nixhome
-NIXHOME5=`pwd`/nixhome
+NIXHOME1=~/sysconfig/nixhome
+NIXHOME2=`pwd`/nixhome
 
-if [ "$1" ]
+if [ -d "$1" ]
 then
   NIXHOME=$1
 elif [ -d $NIXHOME0 ]
@@ -19,15 +16,6 @@ then
 elif [ -d $NIXHOME2 ]
 then
   NIXHOME=$NIXHOME2
-elif [ -d $NIXHOME3 ]
-then
-  NIXHOME=$NIXHOME3
-elif [ -d $NIXHOME4 ]
-then
-  NIXHOME=$NIXHOME4
-elif [ -d $NIXHOME5 ]
-then
-  NIXHOME=$NIXHOME5
 else
   echo ××× none of the testing path is valid.
   echo "=== Enter [nixhome path] or leave [blank] to exit"

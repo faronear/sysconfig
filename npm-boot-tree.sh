@@ -1,26 +1,8 @@
 #!/bin/bash
 
-FONPATH1=/faronear
-FONPATH2=~/faronear.mycode
-FONPATH3=~/faronear
-FONPATH4=/mnt/d/faronear
-
-echo "*** Testing [$1] [$FONPATH1] [$FONPATH2] [$FONPATH3] [$FONPATH4]"
-if [ "$1" ]
+if [ -d "$1" ]
 then
   FONPATH=$1
-elif [ -d $FONPATH1 ]
-then 
-  FONPATH=$FONPATH1
-elif [ -d $FONPATH2 ]
-then
-  FONPATH=$FONPATH2
-elif [ -d $FONPATH3 ]
-then
-  FONPATH=$FONPATH3
-elif [ -d $FONPATH4 ]
-then
-  FONPATH=$FONPATH4
 else
   echo "××× All testing path failed."
   echo ""

@@ -35,43 +35,17 @@ if not exist "%FONPATH%" (
   echo √√√ FONPATH = %FONPATH%
 )
 
-set NIXHOME1=%FONPATH%\fon\sysconfig\nixhome
-set NIXHOME2=%FONPATH%\fon.code\sysconfig\nixhome
-set NIXHOME3=%FONPATH%\fon\sysconfig.git\nixhome
-set NIXHOME4=%FONPATH%\fon.code\sysconfig.git\nixhome
-set NIXHOME5=%FONPATH%\sysconfig.git\nixhome
-set NIXHOME6=%FONPATH%\sysconfig\nixhome
-set NIXHOME7=%CD%\nixhome
-echo *** Testing Path [%NIXHOME1%] [%NIXHOME2%] [%NIXHOME3%] [%NIXHOME4%] [%NIXHOME5%] [%NIXHOME6%] [%NIXHOME7%]
-if exist "%NIXHOME1%" (
-  set NIXHOME=%NIXHOME1%
-) else if exist "%NIXHOME2%" (
-  set NIXHOME=%NIXHOME2%
-) else if exist "%NIXHOME3%" (
-  set NIXHOME=%NIXHOME3%
-) else if exist "%NIXHOME4%" (
-  set NIXHOME=%NIXHOME4%
-) else if exist "%NIXHOME5%" (
-  set NIXHOME=%NIXHOME5%
-) else if exist "%NIXHOME6%" (
-  set NIXHOME=%NIXHOME6%
-) else if exist "%NIXHOME7%" (
-  set NIXHOME=%NIXHOME7%
-) else (
-  echo ××× none of the testing path is valid.
-  echo;
-  echo === Enter [nixhome path] or leave [blank] for default to '.'
-  set /p NIXHOME=">>> "
-  echo;
-  if "" == "%NIXHOME%" (
-    set NIXHOME=.
-  )
+echo === Enter [path to .gitignore] or leave [blank] for default to '.'
+set /p GITIGNOREPATH=">>> "
+echo;
+if "" == "%GITIGNOREPATH%" (
+  set GITIGNOREPATH=.
 )
-if not exist "%NIXHOME%" (
-  echo ××× [%NIXHOME%] not exist! Exit now. ***
+if not exist "%GITIGNOREPATH%" (
+  echo ××× [%GITIGNOREPATH%] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo √√√ NIXHOME = %NIXHOME%
+  echo √√√ GITIGNOREPATH = %GITIGNOREPATH%
 )
 
 pushd %FONPATH%
@@ -84,7 +58,7 @@ for /d /r %%r in (*) do (
     if exist "%%r\.gitignore" (
       pushd "%%r"
       echo ---- updating .gitignore in [%%r] ----
-      copy %NIXHOME%\.gitignore %%r\
+      copy %GITIGNOREPATH%\.gitignore %%r\
       echo;
       popd
     )

@@ -2,13 +2,13 @@
 
 echo "Usage: this-script.sh [VERSION]"
 
-defaultVERSION=18
+defaultVERSION=18.12.1
 
 if [ $1 ]
 then
   VERSION=$1
 else
-  echo "=== Enter nodejs version (leave blank for default $defaultVERSION) or 'tools'" 
+  echo "=== Enter <nodejs version> or 'tools' or <leave blank> for default $defaultVERSION" 
   read -p ">>> " VERSION
   if [ ! $VERSION ]
   then
