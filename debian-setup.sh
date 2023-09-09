@@ -2,7 +2,7 @@
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl https://git.faronear.org/npm/sysconfig/raw/branch/main/debian-setup.sh > ~/debian-setup.sh && bash ~/debian-setup.sh"
+echo "curl https://git.faronear.org/npm/sysconfig/raw/branch/main/debian-setup.sh -o ~/debian-setup.sh && bash ~/debian-setup.sh"
 
 if [ "$1" ]
 then
@@ -13,7 +13,8 @@ fi
 
 echo "=== Installing basic tools"
 apt update
-apt install -y emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python jq
+apt install -y emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python3 jq
+# Debian 12.0 has no python package, However the following packages replace it:  python-is-python3 2to3
 echo
 
 echo "=== Making dir /faronear/"

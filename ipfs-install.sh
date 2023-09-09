@@ -1,6 +1,6 @@
 ## https://dist.ipfs.tech/
 
-defaultVERSION=0.18.1
+defaultVERSION=0.22.0
 
 if [ $1 ]
 then
