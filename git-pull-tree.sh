@@ -6,7 +6,7 @@ then
 else
   echo "××× All testing path failed."
   echo ""
-  echo "=== Enter [fonpath] or leave [blank] for default to '.'"
+  echo "=== Enter <fonpath> or leave <blank> for default to '.'"
   read -p ">>> " FONPATH
   echo ""
   if [ ! "$FONPATH" ]
@@ -17,7 +17,7 @@ fi
 
 if [ ! -d "$FONPATH" ]
 then 
-  echo "××× [$FONPATH] not exist! Exit now. ***"
+  echo "××× <$FONPATH> not exist! Exit now. ***"
   exit
 else
   echo "√√√ FONPATH = $FONPATH"

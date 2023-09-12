@@ -20,7 +20,7 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
       echo ××× none of the testing path is valid.
       echo;
-      echo === Enter [fonpath] or leave [blank] for default to '.'
+      echo === Enter <fonpath> or leave <blank> for default to '.'
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
