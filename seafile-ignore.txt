@@ -47,14 +47,8 @@ pages4loader.json5
 .deploy_git/
 */.deploy_git/
 
-unpackage/dist/
-*/unpackage/dist/
-
-unpackage/release/
-*/unpackage/release/
-
-unpackage/cache/
-*/unpackage/cache/
+unpackage/
+*/unpackage/
 
 Icon
 OneDrive/Icon

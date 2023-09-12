@@ -50,7 +50,7 @@ then
   
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   echo
-  echo "=== Copy or link scripts? <l> to link, <c> to copy, <anything else> to omit:"
+  echo "=== Copy or link scripts? <l> to link, <c> to copy, <g> to git import, <anything else> to omit:"
   read -p ">>> " CopyOrLinkScripts
   if [ "$CopyOrLinkScripts" == 'l' ]
   then
@@ -67,12 +67,22 @@ then
   then
     for homescript in $homescriptlist
     do
-      if [ -e "$homescript" ]
+      if [ -e "$homescript" ] || [ -L "$homescript" ]
       then
         mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
       fi
       echo "--- Copying $NIXHOME/$homescript to $HomePath/$homescript ..."
       cp -r $NIXHOME/$homescript ./
+    done
+  elif [ "$CopyOrLinkScripts" == 'g' ]
+  then
+    for homescript in $homescriptlist
+    do
+      if [ -e "$homescript" ] || [ -L "$homescript" ]
+      then
+        mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
+      fi
+      curl -sSLO https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/$homescript
     done
   else
     echo '--- Home scripts not changed.'
