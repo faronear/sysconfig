@@ -108,9 +108,9 @@
 (setq next-line-add-newlines nil)
 
 ;; query before exit:
-(setq kill-emacs-query-functions
-     (cons (lambda () (yes-or-no-p "Really kill Emacs?"))
-     kill-emacs-query-functions))
+;(setq kill-emacs-query-functions
+;     (cons (lambda () (yes-or-no-p "Really kill Emacs?"))
+;     kill-emacs-query-functions))
 
 ;; select a tags table:
 ; (setq tags-table-list '("path1" "path2"))
