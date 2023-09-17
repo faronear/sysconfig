@@ -58,7 +58,7 @@ then
     do
       if [ -e "$homescript" ] || [ -L "$homescript" ]
       then
-        mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
+        mv $homescript $homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)
       fi
       echo "--- Linking $NIXHOME/$homescript to $HomePath/$homescript ..."
       ln -s $NIXHOME/$homescript ./
@@ -69,7 +69,7 @@ then
     do
       if [ -e "$homescript" ] || [ -L "$homescript" ]
       then
-        mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
+        mv $homescript $homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)
       fi
       echo "--- Copying $NIXHOME/$homescript to $HomePath/$homescript ..."
       cp -r $NIXHOME/$homescript ./
@@ -80,7 +80,7 @@ then
     do
       if [ -e "$homescript" ] || [ -L "$homescript" ]
       then
-        mv $homescript $homescript.backup-$(date +%Y%m%dT%H%M%S)
+        mv $homescript $homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)
       fi
       curl -sSLO https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/$homescript
     done
@@ -105,7 +105,7 @@ then
     fi
     if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]
     then
-      mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date +%Y%m%dT%H%M%S)
+      mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)
     fi
 
     echo "=== Append or link or omit [$HomePath/.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <anything else> for omit:"
