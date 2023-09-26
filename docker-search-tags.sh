@@ -39,7 +39,7 @@ page_index=0
 while true; do 
   page_index=$((page_index+1))
   results=`curl -L -s "https://registry.hub.docker.com/v2/repositories/$OWNER/$IMAGE/tags?page=$page_index&page_size=$page_size" | jq -r 'select(.results != null) | .results[]["name"]'`
-  if [ "$?" != '0' ] or [ "$results" == "" ]
+  if [ "$results" == "" ]
   then
     break
   fi
