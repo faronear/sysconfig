@@ -4,7 +4,6 @@ if [ -d "$1" ]
 then
   FONPATH=$1
 else
-  echo "××× All testing path failed."
   echo ""
   echo "=== Enter <fonpath> or leave <blank> for default to '.'"
   read -p ">>> " FONPATH
