@@ -9,19 +9,26 @@ sudo apt-get install python3 python3-setuptools python3-pip python3-ldap sqlite3
 ## for seafile 9.*: 
 # sudo pip3 install --timeout=3600 django==3.2.* future Pillow pylibmc captcha jinja2 sqlalchemy==1.4.3 psd-tools django-pylibmc django-simple-captcha pycryptodome==3.12.0
 
-echo "=== Enter <version number> to install, or <leave blank> for default 9.0.10:"
+echo "=== Enter <version number> to install, or <leave blank> for default 10.0.1:"
 read -p ">>> " SFVERSION
 if [ ! "$SFVERSION" ]
 then
-  SFVERSION="9.0.10"
+  SFVERSION="10.0.1"
 fi
 
+echo "=== Enter <installation path> for seafile installation, or <leave blank> for default to `pwd`:"
+read -p ">>> " INSTALL_PATH
+if [ ! "$INSTALL_PATH" ]
+then
+  INSTALL_PATH=`pwd`
+fi
 
-pushd /faronear
-sudo mkdir bin-seafile
+sudo mkdir -p "$INSTALL_PATH"
+pushd "$INSTALL_PATH"
+
 cd bin-seafile
-sudo wget https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_$SFVERSION_x86-64.tar.gz
-sudo tar -xzf seafile-server_$SFVERSION_x86-64.tar.gz
+sudo wget https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_${SFVERSION}_x86-64.tar.gz
+sudo tar -xzf seafile-server_${SFVERSION}_x86-64.tar.gz
 ln -s seafile-server-$SFVERSION sea
 cd sea
 sudo ./setup-seafile.sh # to setup seafile+sqlite (setup-seafile-mysql.sh is for mysql). this will create ccnet,conf,seafile-data,seahub-data,seahub.db inside the parent folder /faronear/bin-seafile

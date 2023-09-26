@@ -12,7 +12,7 @@ mkdir $SETTINGS_FOLDER
 seaf-cli init -d $SETTINGS_FOLDER
 seaf-cli start
 
-echo To sync a librarcy, run commands like:
+echo To sync a library, run commands like:
 echo Download a new folder to sync with:
 echo   seaf-cli download -l "library_id" -s "server_url" [-d "parent_folder"] -u "user_name"
 echo   seaf-cli download-by-name -L "library_id" -s "server_url" [-d "target_folder_not_parent"] -u "user_name"
