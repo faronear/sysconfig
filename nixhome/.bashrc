@@ -51,6 +51,8 @@ alias emacst='emacs -nw'
 
 alias myip='ifconfig | grep netmask'
 
+alias rclone='rclone -P'
+
 # Set aliases
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
