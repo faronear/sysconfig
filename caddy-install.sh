@@ -7,4 +7,4 @@ sudo apt update
 sudo apt install caddy
 
 echo Certificates will be saved automatically in ~/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/
-echo Systemctl's caddy config file: /etc/caddy/Caddyfile
+echo Config file of caddy started by systemctl : /etc/caddy/Caddyfile

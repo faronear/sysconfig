@@ -29,7 +29,7 @@ sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg lsb-release -y
 sudo apt-get remove docker docker-engine docker.io containerd runc -y
 
-echo Add Docker’s official GPG key ...
+echo Add official GPG key ...
 sudo mkdir -p /etc/apt/keyrings
 sudo curl -fsSL $GPG_URL | sudo gpg --dearmor -o /etc/apt/keyrings/docker-archive-keyring.gpg
 
