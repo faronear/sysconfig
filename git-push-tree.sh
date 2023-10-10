@@ -30,7 +30,7 @@ echo "=== Enter [commit message] or [leave blank] for default to 'updated'"
 read -p ">>> " COMMIT_MESSAGE
 if [ ! "$COMMIT_MESSAGE" ]
 then
-  COMMIT_MESSAGE="updated"
+  COMMIT_MESSAGE="Update"
 fi
 echo ""
 
