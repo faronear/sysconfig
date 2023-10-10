@@ -34,7 +34,7 @@ echo "=== Configure root home"
 source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
 echo
 
-echo "=== Change root password? <y> for yes, <anything else> for omit:"
+echo "=== Change root password? [y] for yes, [anything else] for omit:"
 read -p ">>> " ChangeRootPassword
 if [ "$ChangeRootPassword" == 'y' ]
 then
@@ -66,7 +66,7 @@ then
   echo
 fi
 
-echo "=== Set <hostname> or <leave blank> for no change"
+echo "=== Set [new hostname] or [leave blank] for no change"
 read -p ">>> " NewHostname
 if [ $NewHostname ]
 then
@@ -93,7 +93,7 @@ chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
 
-echo "=== Configure locales: <y> for yes, <anything else> for no change:"
+echo "=== Configure locales: [y] for yes, [anything else] for no change:"
 read -p ">>> " ConfigLocales
 if [ "$ConfigLocales" == 'y' ]
 then
@@ -101,7 +101,7 @@ then
 fi
 echo
 
-echo "=== Add a new user [$NewUser]? <y> for yes, <anything else> for no change:"
+echo "=== Add a new user [[$NewUser]]? [y] for yes, [anything else] for no change:"
 read -p ">>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
@@ -109,13 +109,13 @@ then
   source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
 
   echo
-  echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: <y> for autologin as [$NewUser] or <anything else> for no change:"
+  echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"
   read -p ">>> " XfceAutologin
   if [ "$XfceAutologin" == "y" ]
   then
     sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
     sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
-    echo "--- Successfully configured autologin as $NewUser"
+    echo "--- Successfully configured autologin as [[$NewUser]]"
   else
     echo '--- Nothing changed.'
   fi

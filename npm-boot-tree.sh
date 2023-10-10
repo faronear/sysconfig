@@ -5,25 +5,25 @@ then
   FONPATH=$1
 else
   echo ""
-  echo "=== Enter <fonpath> or leave <blank> for default to '.'"
+  echo "=== Enter [start path] or [leave blank] for default to [[`pwd`]]"
   read -p ">>> " FONPATH
   echo ""
   if [ ! "$FONPATH" ]
   then
-    FONPATH=.
+    FONPATH=`pwd`
   fi
 fi
 
 if [ ! -d "$FONPATH" ]
 then 
-  echo "××× <$FONPATH> not exist! Exit now. ***"
+  echo "××× [[$FONPATH]] not exist! Exit now. ***"
   exit
 else
-  echo "√√√ FONPATH = $FONPATH"
+  echo "√√√ FONPATH = [[$FONPATH]]"
 fi
 
 pushd $FONPATH
-echo "*** Starting from [`pwd`] ***"
+echo "*** Starting from [[`pwd`]] ***"
 echo ""
 
 if [ "$2" == 'hier' ]
@@ -31,17 +31,17 @@ then
   # for org in `ls -F | grep '/$' | grep -v '~'` ## 首先过滤出所有子目录，然后过滤出所有不含 ~ 的子目录。注意 for ??? in `ls ???` 是按照空行以及空格进行分割的，因此最后筛选出的目录名不能含有空格，否则就被分割成多个了。
   ls -F | grep '/$' | grep -v '=' | while read org ## 换用这种方法，可以成功过滤出含有空格的完整目录名
   do 
-    echo "======== entering [$FONPATH/$org] ========"
+    echo "======== entering [[$FONPATH/$org]] ========"
     echo ""
     cd "$org";
     for repo in * ## for ??? in * 是分割成一个个目录名的，即使目录名含有空格
     do
       if ( [ -f "$repo/package.json" ] && grep -q '"boot"' "$repo/package.json" )
       then
-        echo "<<<< npm booting: [$org/$repo] <<<<"
+        echo "<<<< npm booting: [[$org/$repo]] <<<<"
         cd "$repo"
         npm run boot
-        echo ">>>> npm booted: [$org/$repo] >>>>"
+        echo ">>>> npm booted: [[$org/$repo]] >>>>"
         echo ""
         cd ..
       fi
@@ -54,12 +54,12 @@ else
     if ( [ -f "$repo/package.json" ] && grep -q '"boot"' "$repo/package.json" )
     then
       echo ""
-      echo "---- npm booting: [$repo] ----"
+      echo "---- npm booting: [[$repo]] ----"
       echo ""
       pushd "$repo"
       npm run boot
       echo ""
-      echo "---- npm booted: [$repo] ----"
+      echo "---- npm booted: [[$repo]] ----"
       echo ""
       popd
     fi

@@ -23,7 +23,7 @@ else
   echo ""
   if [ ! -d "$NIXHOME" ]
   then 
-    echo "××× nixhome path [$NIXHOME] not available! Exit now. ×××"
+    echo "××× nixhome path [[$NIXHOME]] not available! Exit now. ×××"
     exit
   fi
 fi
@@ -50,7 +50,7 @@ then
   
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore"
   echo
-  echo "=== Copy or link scripts? <l> to link, <c> to copy, <g> to git import, <anything else> to omit:"
+  echo "=== Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
   read -p ">>> " CopyOrLinkScripts
   if [ "$CopyOrLinkScripts" == 'l' ]
   then
@@ -60,7 +60,7 @@ then
       then
         mv $homescript $homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)
       fi
-      echo "--- Linking $NIXHOME/$homescript to $HomePath/$homescript ..."
+      echo "--- Linking [[$NIXHOME/$homescript]] to [[$HomePath/$homescript]] ..."
       ln -s $NIXHOME/$homescript ./
     done
   elif [ "$CopyOrLinkScripts" == 'c' ]
@@ -71,7 +71,7 @@ then
       then
         mv $homescript $homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)
       fi
-      echo "--- Copying $NIXHOME/$homescript to $HomePath/$homescript ..."
+      echo "--- Copying [[$NIXHOME/$homescript]] to [[$HomePath/$homescript]] ..."
       cp -r $NIXHOME/$homescript ./
     done
   elif [ "$CopyOrLinkScripts" == 'g' ]
@@ -108,17 +108,17 @@ then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)
     fi
 
-    echo "=== Append or link or omit [$HomePath/.ssh/authorized_keys] to config ssh server? <a> for append, <l> for link, <anything else> for omit:"
+    echo "=== Append or link or omit [[$HomePath/.ssh/authorized_keys]] to config ssh server? [a] for append, [l] for link, [anything else] for omit:"
     read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
 
     if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
     then
-      echo "--- Linking $NIXHOME/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      echo "--- Linking [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       ln -s $NIXHOME/.ssh/authorized_keys $HomePath/.ssh/authorized_keys
       sudo chmod 644 $HomePath/.ssh/authorized_keys # 确保其他用户能读取 nixhome/.ssh/authorized_keys
     elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]
     then
-      echo "--- Copying $NIXHOME/authorized_keys to $HomePath/.ssh/authorized_keys ..."
+      echo "--- Copying [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       cat $NIXHOME/.ssh/authorized_keys >> $HomePath/.ssh/authorized_keys
       chmod 600 $HomePath/.ssh/authorized_keys
     fi
@@ -129,5 +129,5 @@ then
   popd
   
 else
-  echo "!!! Not existing $HomePath, please try again."
+  echo "!!! Not found [[$HomePath]], please try again."
 fi

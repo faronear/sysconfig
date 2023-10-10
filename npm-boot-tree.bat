@@ -10,7 +10,7 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
 @ if not "" == "%1" (
   set FONPATH=%1
 ) else (
-  echo *** Testing Path [%FONPATH1%]  [%FONPATH2%]  [%FONPATH3%]
+echo *** Testing Path [[%FONPATH1%]]  [[%FONPATH2%]]  [[%FONPATH3%]]
   if exist "%FONPATH1%" (
     set FONPATH=%FONPATH1%
   ) else if exist "%FONPATH2%" (
@@ -20,38 +20,38 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
   ) else (
       echo ××× none of the testing path is valid.
       echo;
-      echo === Enter <fonpath> or leave <blank> for default to '.'
+      echo === Enter [start path] or [leave blank] for default to [[%CD%]]
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
-        set FONPATH=.
+        set FONPATH=%CD%
       )
   )
 )
 
 if not exist "%FONPATH%" (
-  echo ××× [%FONPATH%] not exist! Exit now. ***
+  echo ××× [[%FONPATH%]] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo √√√ FONPATH = %FONPATH%
+  echo √√√ FONPATH = [[%FONPATH%]]
 )
 
 pushd %FONPATH%
-echo *** Starting from [%CD%] ***
+echo *** Starting from [[%CD%]] ***
 echo;
 
 @ if "%2" == "hier" (
   @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do if exist %%d/package.json ( pushd %%d & echo --- npm booting: %%d ... & npm run boot & popd ) ) & popd )
   for /d %%o in (*) do (
     @ if not "%%o" == ".vscode" (
-      echo ======== entering [%FONPATH%\%%o] ========
+      echo ======== entering [[%FONPATH%\%%o]] ========
       echo;
       pushd %%o 
       for /d %%g in (*) do (
         @ if exist "%%g\package.json" (
           findstr "\"boot\"" %%g\package.json >NUL && (
             pushd %%g 
-            echo ---- npm booting [%FONPATH%\%%o\%%g] ----
+            echo ---- npm booting [[%FONPATH%\%%o\%%g]] ----
             npm run boot
             echo;
             popd
@@ -68,7 +68,7 @@ echo;
       if exist "%%r\package.json" (
         findstr "\"boot\"" "%%r\package.json" >NUL && (
           pushd %%r
-          echo ---- npm booting [%FONPATH%\%%r] ----
+          echo ---- npm booting [[%FONPATH%\%%r]] ----
           npm run boot
           echo;
           popd

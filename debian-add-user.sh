@@ -22,7 +22,7 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
-echo "=== Allow the new user [$NewUser] to sudo without password? <y> for yes, <anything else> for no"
+echo "=== Allow the new user [[$NewUser]] to sudo without password? [y] for yes, [anything else] for no"
 read -p ">>> " AllowSudo
 if [ "$AllowSudo" == "y" ]
 then

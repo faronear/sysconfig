@@ -3,7 +3,7 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https:/
 sudo apt update
 sudo apt install -y seafile-cli
 
-echo "To initialze the client, create a settings folder <path> or <leave blank> for default '~/seafile-client'"
+echo "To initialze the client, create a settings folder at [settings path] or [leave blank] for default '~/seafile-client'"
 read -p ">>> " SETTINGS_FOLDER
 if [ ! $SETTINGS_FOLDER ]
 then

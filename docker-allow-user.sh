@@ -3,7 +3,7 @@ if [ "$1" ]
 then
   DOCKERUSER=$1
 else
-  echo "Enter the <user name> or <leave blank> for default to '`whoami`'"
+  echo "Enter the [user name] or [leave blank] for default to '`whoami`'"
   read -p ">>> " DOCKERUSER
   if [ ! "$DOCKERUSER" ]
   then

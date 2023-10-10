@@ -15,24 +15,24 @@ set FONPATH=
   ) else (
       echo ××× none of the testing path is valid.
       echo;
-      echo === Enter <fonpath> or leave <blank> for default to '.'
+      echo === Enter [start path] or [leave blank] for default to [[%CD%]]
       set /p FONPATH=">>> "
       echo;
       if "" == "%FONPATH%" (
-        set FONPATH=.
+        set FONPATH=%CD%
       )
   )))
 )
 
 if not exist "%FONPATH%" (
-  echo ××× [%FONPATH%] not exist! Exit now. ***
+  echo ××× [[%FONPATH%]] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo √√√ FONPATH = %FONPATH%
+  echo √√√ FONPATH = [[%FONPATH%]]
 )
 
 pushd %FONPATH%
-echo *** Starting from [%CD%] ***
+echo *** Starting from [[%CD%]] ***
 echo;
 
 for /d /r %%r in (*) do (
@@ -40,7 +40,7 @@ for /d /r %%r in (*) do (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
     if exist "%%r\node_modules" (
       pushd "%%r"
-      echo ---- Deleting [%FONPATH%\%%r] ----
+      echo ---- Deleting [[%FONPATH%\%%r]] ----
       rd /s /q node_modules
       echo;
       popd

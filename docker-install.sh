@@ -6,7 +6,7 @@
 # 安装自带版本 apt install docker.io && apt install docker-compose
 # sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-echo "=== Choose docker source: <a> 阿里云, <z> 中科大, <leave blank> for default" 
+echo "=== Choose docker source: [a] 阿里云, [z] 中科大, [leave blank] for default" 
 read -p ">>> " DOCKER_SOURCE
 if [ "$DOCKER_SOURCE" = 'a' ]
 then
@@ -48,7 +48,7 @@ docker compose version
 # sudo curl -L $COMPOSE_URL/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 # sudo chmod +x /usr/local/bin/docker-compose
 
-echo "=== Enter <y> to 配置中国加速镜像源 /etc/docker/daemon.json, <anything else> for no mirror:"
+echo "=== Enter [y] to 配置中国加速镜像源 /etc/docker/daemon.json, [anything else] for no mirror:"
 read -p ">>> "  DOCKER_MIRROR
 if [ "$DOCKER_MIRROR" = 'y' ]
 then
@@ -61,7 +61,7 @@ then
   echo '] }' >> /etc/docker/daemon.json
 fi
 
-echo "=== 启动docker服务？<y> for yes, <anything else> for no"
+echo "=== 启动docker服务？[y] for yes, [anything else] for no"
 read -p ">>> " StartDockerDaemon
 if [ "$StartDockerDaemon" = 'y' ]
 then

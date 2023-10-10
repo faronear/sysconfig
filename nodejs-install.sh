@@ -8,7 +8,7 @@ if [ $1 ]
 then
   VERSION=$1
 else
-  echo "=== Enter <nodejs version> or 'tools' or <leave blank> for default $defaultVERSION" 
+  echo "=== Enter [nodejs version] or [leave blank] for default $defaultVERSION, enter [tools] to install C++ build tools" 
   read -p ">>> " VERSION
   if [ ! $VERSION ]
   then

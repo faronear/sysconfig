@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "=== rclone <i> to install, <s> to sync, <c> to copy, <w> to web gui" 
+echo "=== rclone [i] to install, [s] to sync, [c] to copy, [w] to web gui" 
 read -p ">>> " ACTION_TYPE
 if [ "$ACTION_TYPE" = 'i' ]
 then
@@ -23,7 +23,7 @@ then
   echo "*****************************"
   echo "rclone $RC_CMD $SOURCE_PATH $TARGET_PATH -P -L --create-empty-src-dirs --exclude=._* --exclude=.DS_Store --exclude={node_modules/,.deploy_git/,unpackage/,$EXCLUDING}"
   echo "*****************************"
-  echo "Starting? <y> for yes, <anything else> for quit"
+  echo "Starting? [y] for yes, [anything else] for quit"
   read -p ">>> " YES_OR_NOT
   if [ "$YES_OR_NOT" = 'y' ]
   then

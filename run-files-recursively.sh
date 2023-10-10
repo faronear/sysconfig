@@ -2,7 +2,7 @@ echo "***************************************"
 echo "find \$FOLDER -mindepth \$MINDEPTH -maxdepth \$MAXDEPTH -type d_f_l -name \"\$PATTERN\" | while read item; do echo \"\$item\"; done"
 echo "***************************************"
 
-echo "To find in which path? Enter <path> or <leave blank> for the current path:"
+echo "To find in which path? Enter [start path] or [leave blank] for the current path:"
 read -p ">>> " FIND_FOLDER
 if [ ! "$FIND_FOLDER" ]
 then
@@ -20,21 +20,21 @@ then
   MAXDEPTH_CLAUSE="-mindepth $MAXDEPTH"
 fi
 
-echo "To find file or directory? <f> for file, <d> for directory, <l> for link, <leave blank> for all:"
+echo "To find file or directory? [f] for file, [d] for directory, [l] for link, [leave blank] for all:"
 read -p ">>> " FIND_TYPE
 if [ "$FIND_TYPE" ]
 then
   FIND_TYPE_CLAUSE="-type $FIND_TYPE"
 fi
 
-echo "To match pattern: <pattern> (e.g. '._*', '.*.js') or or <leave blank> for all:"
+echo "To match pattern: [regex pattern] (e.g. '._*', '.*.js') or or [leave blank] for all:"
 read -p ">>> " FIND_PATTERN
 if [ ! "$FIND_PATTERN" ]
 then
   FIND_PATTERN="*"
 fi
 
-echo "To do something on each: <command> or <leave blank> for 'echo':"
+echo "To do something on each: [command line] or [leave blank] for 'echo':"
 read -p ">>> " FIND_ACTION
 if [ ! "$FIND_ACTION" ]
 then

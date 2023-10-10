@@ -6,7 +6,7 @@ if [ $1 ]
 then
   VERSION=$1
 else
-  echo "=== Enter kubo <VERSION> or <leave blank> for default $defaultVERSION" 
+  echo "=== Enter kubo [version number] or [leave blank] for default $defaultVERSION" 
   read -p ">>> " VERSION
   if [ ! $VERSION ]
   then

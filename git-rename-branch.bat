@@ -10,7 +10,7 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
 @ if not "" == "%1" (
   set FONPATH=%1
 ) else (
-  echo *** Testing Path [%FONPATH1%]  [%FONPATH2%]  [%FONPATH3%]
+echo *** Testing Path [[%FONPATH1%]]  [[%FONPATH2%]]  [[%FONPATH3%]]
   if exist "%FONPATH1%" (
     set FONPATH=%FONPATH1%
   ) else if exist "%FONPATH2%" (
@@ -23,21 +23,21 @@ set FONPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
 )
 
 if not exist %FONPATH% (
-  echo ××× [%FONPATH%] not exist! Exit now. ***
+  echo ××× [[%FONPATH%]] not exist! Exit now. ***
   @ GOTO END
 ) else (
-  echo √√√ FONPATH = %FONPATH%
+  echo √√√ FONPATH = [[%FONPATH%]]
 )
 
 pushd %FONPATH%
-echo *** Current path = [%CD%] ***
+echo *** Current path = [[%CD%]] ***
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 
 for /d %%o in (*) do (
   @REM windows的链接文件会造成路径错误，从而终止该循环，从而导致下一轮乃至所有循环的工作目录错误。因此要过滤掉 .vscode 这个符号链接目录。
   if not %%o == .vscode (
-      echo   entering [%FONPATH%\%%o]
+      echo   entering [[%FONPATH%\%%o]]
       pushd %%o
       for /d %%g in (*) do (
         if exist %%g\.git (
