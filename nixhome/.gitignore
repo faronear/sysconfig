@@ -71,6 +71,9 @@ _desktop.ini
 
 # wo
 *.gitignore.*
+*.gitignore.*/
+*.gitignore
+*.gitignore/
 # 服务端
 /_archive/*
 /_datastore/*
