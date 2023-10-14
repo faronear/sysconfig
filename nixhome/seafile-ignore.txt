@@ -41,14 +41,18 @@ package-lock.json
 
 pages4loader.json5
 
-.svn/
-*/.svn/
-
 .deploy_git/
 */.deploy_git/
 
-unpackage/
-*/unpackage/
+# HBuilder 目录
+unpackage/cache/
+unpackage/debug/
+unpackage/dist/
+unpackage/resources/
+*/unpackage/cache/
+*/unpackage/debug/
+*/unpackage/dist/
+*/unpackage/resources/
 
 Icon
 OneDrive/Icon

@@ -22,10 +22,6 @@ else
   echo "√√√ FONPATH = [[$FONPATH]]"
 fi
 
-cd $FONPATH
-echo "*** Starting from [[`pwd`]] ***"
-echo ""
-
 echo "=== Enter [path-to-seafile-ignore.txt]"
 read -p ">>> " SFIGNOREPATH
 echo ""
@@ -34,6 +30,10 @@ then
   echo "××× Not found [[$SFIGNOREPATH/seafile-ignore.txt]]. Exit now..."
   exit
 fi
+
+cd $FONPATH
+echo "*** Starting from [[`pwd`]] ***"
+echo ""
 
 find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl' | while read repo
 do 
