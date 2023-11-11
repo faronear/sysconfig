@@ -18,9 +18,8 @@ function proxy(){
     else
         echo "--- Nothing changed."
     fi
-
-    echo 测试 ip.gs, ip.sb, ipinfo.io
-    curl ipinfo.io
-
 }
 proxy
+echo 测试 ip.gs, ip.sb, ipinfo.io
+curl ipinfo.io
+echo " "

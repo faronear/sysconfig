@@ -17,7 +17,7 @@ fi
 read -p "maxdepth >>> " MAXDEPTH
 if [ "$MAXDEPTH" ]
 then
-  MAXDEPTH_CLAUSE="-mindepth $MAXDEPTH"
+  MAXDEPTH_CLAUSE="-maxdepth $MAXDEPTH"
 fi
 
 echo "To find file or directory? [f] for file, [d] for directory, [l] for link, [leave blank] for all:"
