@@ -6,7 +6,7 @@ echo "To find in which path? Enter [start path] or [leave blank] for the current
 read -p ">>> " FIND_FOLDER
 if [ ! "$FIND_FOLDER" ]
 then
-  FIND_FOLDER="."
+  FIND_FOLDER=`pwd`
 fi
 
 read -p "mindepth >>> " MINDEPTH

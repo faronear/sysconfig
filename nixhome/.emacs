@@ -247,12 +247,15 @@
   (global-set-key (kbd "C-s") 'save-buffer) ; windows style
     (global-set-key [C-f1] 'save-as-file) ; ps-print-to-file
     (global-set-key [f25] 'save-as-file)
-;; F2 buffer
-(global-set-key [f2] 'rotate-buffer)
-  (global-set-key [S-f2] 'list-buffers) ; switch-to-buffer
-  (global-set-key [f14] 'list-buffers)
-    (global-set-key [C-f2] 'kill-this-buffer) ; kill-buffer prompts before killing.
-    (global-set-key [f26] 'kill-this-buffer)
+;; F2 undo&redo
+(global-set-key [f2] 'undo)
+(global-set-key (kbd "C-z") 'undo) ; windows style. [C-z] doesn't work, maybe because it's default to suspend-frame
+  (global-set-key [S-f2] 'redo)
+  (global-set-key [f14] 'redo)
+  (global-set-key (kbd "C-y") 'redo) ; windows style. [C-y] doesn't work.
+  (global-set-key (kbd "C-S-z") 'redo) ; mac style. [C-S-z] doesn't work.
+;    (global-set-key [C-f2] ')
+;    (global-set-key [f26] ')
 ;; F3 search
 (global-set-key [f3] 'isearch-forward)
 (global-set-key (kbd "C-f") 'isearch-forward) ; windows style
@@ -276,32 +279,30 @@
   (global-set-key [f17] 'yank-top)
 ;    (global-set-key [C-f5] ')
 ;    (global-set-key [f29] ')
-;; F6 go
-(global-set-key [f6] 'goto-line)
-  (global-set-key [S-f6] 'match-paren)
-  (global-set-key [f18] 'match-paren)
-    (global-set-key [C-f6] 'other-window)
-    (global-set-key [f30] 'other-window)
+;; F6 shell
+(global-set-key [f6] 'eshell)
+  (global-set-key [S-f6] 'new-eshell)
+  (global-set-key [f18] 'new-eshell)
+    (global-set-key [C-f6] 'browse-web)
+    (global-set-key [f30] 'browse-web)
 ;; F7 internationalization
 (global-set-key [f7] 'toggle-input-method)
   (global-set-key [S-f7] 'what-cursor-position) ; switch-truncation-continuation
   (global-set-key [f19] 'what-cursor-position)
     (global-set-key [C-f7] 'describe-char)
     (global-set-key [f31] 'describe-char)
-;; F8 undo&redo
-(global-set-key [f8] 'undo) ; default: C-_ , C-x u; or entering M-x undo
-(global-set-key (kbd "C-z") 'undo) ; windows style. [C-z] doesn't work, maybe because it's default to suspend-frame
-  (global-set-key [S-f8] 'redo)
-  (global-set-key [f20] 'redo)
-  (global-set-key (kbd "C-y") 'redo) ; windows style. [C-y] doesn't work.
-  (global-set-key (kbd "C-S-z") 'redo) ; mac style. [C-S-z] doesn't work.
-;    (global-set-key [f32] ')
-;; F9 shell
-(global-set-key [f9] 'eshell)
-  (global-set-key [S-f9] 'new-eshell)
-  (global-set-key [f21] 'new-eshell)
-    (global-set-key [C-f9] 'browse-web)
-    (global-set-key [f33] 'browse-web)
+;; F8 buffer
+(global-set-key [f8] 'rotate-buffer) ; default: C-_ , C-x u; or entering M-x undo
+  (global-set-key [S-f8] 'list-buffers) ; switch-to-buffer
+  (global-set-key [f20] 'list-buffers)
+    (global-set-key [C-f8] 'kill-this-buffer) ; kill-buffer prompts before killing.
+    (global-set-key [f32] 'kill-this-buffer)
+;; F9 quick go
+(global-set-key [f9] 'goto-line)
+  (global-set-key [S-f9] 'match-paren)
+  (global-set-key [f21] 'match-paren)
+    (global-set-key [C-f9] 'beginning-of-line)
+    (global-set-key [f33] 'beginning-of-line)
 ;; F10 
 ;(global-set-key [f10] ')
 ;  (global-set-key [S-f10] ')

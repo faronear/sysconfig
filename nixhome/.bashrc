@@ -17,7 +17,7 @@ then
 fi
 
 # Define primary prompt (default is '$'):
-export PS1='<\u@\h::\w::\t> ' # \w shows absolute path, \W shows current folder.
+export PS1='<\u@\h::\w> ' # \w shows absolute path, \W shows current folder.
 
 # Always use ssh to connect to CVS repositories:
 export CVS_RSH=ssh
@@ -33,32 +33,20 @@ export CVS_RSH=ssh
 
 # Define aliases:
 
-# Think twice before deletion. Though troublesome but strongly recommended!
-alias rm='rm -i'
-
-# Request X tunneling for SSH:
-alias ssh='ssh -C -X'
-
-# Do not verify Host Key change:
-alias sshtrust='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-
-# Always use compression for CVS:
-alias cvs='cvs -z9'
-
+alias rm='rm -i' # Think twice before deletion. Though troublesome but strongly recommended!
+alias ssh='ssh -C -X' # Request X tunneling for SSH:
+alias sshtrust='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' # Do not verify Host Key change:
+alias cvs='cvs -z9' # Always use compression for CVS:
 alias ps='ps -elf'
-
 alias emacst='emacs -nw'
-
 alias myip='ifconfig | grep netmask'
-
 alias rclone='rclone -P'
-
-# Set aliases
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias su='su -'
 alias npmc='npm --registry https://registry.npm.taobao.org'
+alias npmr='npm --silent run'
 if [ "$(uname)" = "Darwin" ]
 then
   alias l='ls -lG'
@@ -88,7 +76,7 @@ umask 022 # rwxr-xr-x
 # PROMPT_COMMAND is expanded only when used.
 case "$TERM" in
     xterm*|rxvt*)
-	PROMPT_COMMAND='echo -ne "\033]0;[${USER}@${HOSTNAME}::${PWD}]B\007"'
+	PROMPT_COMMAND='echo -ne "\033]0;<${USER}@${HOSTNAME}::${PWD}>B\007"'
 	;;
     dumb*)
 	;;
@@ -124,7 +112,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='<${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]::\[\033[01;34m\]\w\[\033[00m\]::\t> '
+    PS1='<${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;95m\]\h\[\033[00m\]::\[\033[01;34m\]\w\[\033[00m\]> '
 else
     PS1='<${debian_chroot:+($debian_chroot)}\u@\h::\w::\t> '
 fi
@@ -133,7 +121,7 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h::\w\a\]$PS1"
     ;;
 *)
     ;;
