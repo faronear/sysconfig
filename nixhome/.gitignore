@@ -2,11 +2,18 @@
 
 ### 目录 #################################################################
 
+# 自定义的后缀名，凡有 gitignore 后缀的都不进行同步
+*.gitignore.*
+*.gitignore.*/
+*.gitignore
+*.gitignore/
+
 # 通用
 .svn/
 .deploy_git/
 .idea/
 .sass-cache/
+.wrangler
 /test/unit/coverage/
 /test/e2e/reports/
 node_modules/
@@ -70,10 +77,6 @@ _desktop.ini
 /db.json
 
 # wo
-*.gitignore.*
-*.gitignore.*/
-*.gitignore
-*.gitignore/
 # 服务端
 /_archive/*
 /_datastore/*

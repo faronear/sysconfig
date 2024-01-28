@@ -47,7 +47,7 @@ alias egrep='egrep --color=auto'
 alias su='su -'
 alias npmc='npm --registry https://registry.npm.taobao.org'
 alias npmr='npm --silent run'
-alias curlw='curl -sSL -w "%{url_effective}\n  --- %{http_code} | %{time_total} s | %{size_download} bytes\n\n"'
+alias curlw='curl -sSL -o /dev/null -w "%{http_code} | %{time_total} s | %{size_download} bytes | %{url_effective}\n"'
 if [ "$(uname)" = "Darwin" ]
 then
   alias l='ls -lG'
