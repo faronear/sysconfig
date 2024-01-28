@@ -41,6 +41,7 @@ then
 else
   echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
 fi
+echo ""
 
 echo "=== Enter [y] to start updating, or [anything else] to quit"
 read -p ">>> " YESNO
