@@ -34,7 +34,7 @@ then
 else
   IGNOREPATH=`pwd`/.gitignore_global
 fi
-if [ ! -f "$IGNOREPATH/.gitignore_global" ]
+if [ ! -f "$IGNOREPATH" ]
 then
   echo "××× Not found [[$IGNOREPATH]]. Exit now..."
   exit
