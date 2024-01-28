@@ -1,12 +1,18 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# how to include another gitignore? 
+#   https://stackoverflow.com/questions/7005142/can-i-include-other-gitignore-file-in-a-gitignore-file-like-include-in-c-li
+#   https://github.com/github/gitignore
+#   https://github.com/SlideWave/gitignore-include?tab=readme-ov-file#examples
+#   https://gitignore.io
 
-### 目录 #################################################################
+### .gitignore_global ###
 
-# 自定义的后缀名，凡有 gitignore 后缀的都不进行同步
+# Self defined extension to ignore all files/folders containing .gitignore
 *.gitignore.*
 *.gitignore.*/
 *.gitignore
 *.gitignore/
+!.gitignore
 
 # 通用
 .svn/
@@ -92,3 +98,6 @@ pages4loader.json5
 
 # 保留
 !.gitkeep
+
+### .gitignore_local ###
+

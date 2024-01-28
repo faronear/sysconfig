@@ -20,7 +20,7 @@ echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
   ) else (
     echo ××× none of the testing path is valid.
     echo;
-    echo === Enter [start path] or [leave blank] for default to [[%CD%]]
+    echo === Enter [root path] or [leave blank] for default [[%CD%]] to start tree search for seafile-ignore.txt files
     set /p ROOTPATH=">>> "
     echo;
     if "" == "%ROOTPATH%" (
@@ -35,7 +35,7 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo === Enter [path to seafile-ignore.txt] or leave [blank] for default to [[%CD%]]
+echo === Enter [path to global seafile-ignore.txt] or [leave blank] for default [[%CD%]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
@@ -55,9 +55,9 @@ echo;
 for /d /r %%r in (*) do (
   @REM @ if not "%%r" == ".vscode" (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\.git" (
+    if exist "%%r\seafile-ignore.txt" (
       echo ---- updating seafile-ignore.txt in [[%%r]] ----
-      copy %IGNOREPATH%\seafile-ignore.txt %%r\
+      cat %IGNOREPATH%\seafile-ignore.txt %%r\seafile-ignore_local.txt > %%r\seafile-ignore.txt
       echo;
     )
   )

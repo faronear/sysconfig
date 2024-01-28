@@ -2,7 +2,7 @@ echo "***************************************"
 echo "find \$FOLDER -mindepth \$MINDEPTH -maxdepth \$MAXDEPTH -type d_f_l -name \"\$PATTERN\" | while read item; do echo \"\$item\"; done"
 echo "***************************************"
 
-echo "To find in which path? Enter [start path] or [leave blank] for the current path:"
+echo "To find in which path? Enter [root path] or [leave blank] for the current path:"
 read -p ">>> " FIND_FOLDER
 if [ ! "$FIND_FOLDER" ]
 then

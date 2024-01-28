@@ -20,7 +20,7 @@ echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
   ) else (
     echo ××× none of the testing path is valid.
     echo;
-    echo === Enter [start path] or [leave blank] for default to [[%CD%]]
+    echo === Enter [root path] or [leave blank] for default [[%CD%]] to start tree search for .gitignore files
     set /p ROOTPATH=">>> "
     echo;
     if "" == "%ROOTPATH%" (
@@ -39,7 +39,7 @@ pushd %ROOTPATH%
 echo *** Starting from [[%CD%]] ***
 echo;
 
-echo === Enter [path to .gitignore] or [leave blank] for default to [[%CD%]]
+echo === Enter [path to global .gitignore] or [leave blank] for default [[%CD%]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
@@ -55,10 +55,10 @@ if not exist "%IGNOREPATH%" (
 for /d /r %%r in (*) do (
   @REM @ if not "%%r" == ".vscode" (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
-    if exist "%%r\.gitignore" (
+    if exist "%%r\.git" (
       pushd "%%r"
       echo ---- updating .gitignore in [[%%r]] ----
-      copy %IGNOREPATH%\.gitignore %%r\
+      cat %IGNOREPATH%\.gitignore %%r\.gitignore_local > %%r\.gitignore
       echo;
       popd
     )

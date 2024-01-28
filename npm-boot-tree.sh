@@ -5,7 +5,7 @@ then
   ROOTPATH=$1
 else
   echo ""
-  echo "=== Enter [start path] or [leave blank] for default to [[`pwd`]]"
+  echo "=== Enter [root path] or [leave blank] for default to [[`pwd`]]"
   read -p ">>> " ROOTPATH
   echo ""
   if [ ! "$ROOTPATH" ]

@@ -20,7 +20,7 @@ echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
   ) else (
       echo ××× none of the testing path is valid.
       echo;
-      echo === Enter [start path]> or [leave blank] for default to [[%CD%]]
+      echo === Enter [root path]> or [leave blank] for default to [[%CD%]]
       set /p ROOTPATH=">>> "
       echo;
       if "" == "%ROOTPATH%" (

@@ -1,19 +1,22 @@
 #!/bin/bash
 
+echo ""
+echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore_global] and [ROOTPATH/*/.gitignore_local] files to [seafile-ignore.txt]"
+echo ""
+
 if [ -d "$1" ]
 then
   ROOTPATH=$1
 else
-  echo ""
-  echo "=== Enter [start path] or [leave blank] for default to [[`pwd`]]"
+  echo "=== Enter [root path] or [leave blank] for default [[`pwd`]] to start tree search for git repositories"
   read -p ">>> " ROOTPATH
-  echo ""
-  if [ ! "$ROOTPATH" ]
+  if [ "$ROOTPATH" ]
   then
+    ROOTPATH=$(realpath $ROOTPATH)
+  else
     ROOTPATH=`pwd`
   fi
 fi
-
 if [ ! -d "$ROOTPATH" ]
 then 
   echo "××× [[$ROOTPATH]] not exist! Exit now. ***"
@@ -21,13 +24,29 @@ then
 else
   echo "√√√ ROOTPATH = [[$ROOTPATH]]"
 fi
-
-echo "=== Enter [path to .gitignore]"
-read -p ">>> " IGNOREPATH
 echo ""
-if [ ! -f "$IGNOREPATH/.gitignore" ]
+
+echo "=== Enter [path to .gitignore_global] or [leave blank] for default [[`pwd`]]" 
+read -p ">>> " IGNOREPATH
+if [ "$IGNOREPATH" ]
 then
-  echo "××× Not found [[$IGNOREPATH/.gitignore]]. Exit now..."
+  IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore_global
+else
+  IGNOREPATH=`pwd`/.gitignore_global
+fi
+if [ ! -f "$IGNOREPATH/.gitignore_global" ]
+then
+  echo "××× Not found [[$IGNOREPATH]]. Exit now..."
+  exit
+else
+  echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
+fi
+echo ""
+
+echo "=== Enter [y] to start updating, or [anything else] to quit"
+read -p ">>> " YESNO
+if [ "$YESNO" != 'y' ]
+then
   exit
 fi
 
@@ -40,7 +59,7 @@ do
   if [ -d "$repo/.git" ]
   then
     echo "---- updating .gitignore in [[$repo]] ----"
-    cp $IGNOREPATH/.gitignore $repo/
+    cat $IGNOREPATH $repo/.gitignore_local 2>/dev/null > $repo/.gitignore
     echo ""
   fi
 done

@@ -6,6 +6,8 @@
 # 文件在服务器端的后续更改会被同步到客户端，如果客户端也同时修改了这些文件，系统会生成冲突文件。
 # seafile-ignore.txt 只能忽略还没有被同步的文件。对于已经被同步的文件，如果后来把它添加到 seafile-ignore.txt 中，系统只会忽略后续更改，已经上传的版本不会受影响。
 
+### seafile-ignore_global ###
+
 # 自定义的后缀名，凡有 sfignore 后缀的都不进行同步
 *.sfignore
 *.sfignore.*
@@ -50,3 +52,6 @@ unpackage/
 
 Icon
 OneDrive/Icon
+
+### seafile-ignore_local ###
+
