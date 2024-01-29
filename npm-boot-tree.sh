@@ -7,13 +7,11 @@ else
   echo ""
   echo "=== Enter [root path] or [leave blank] for default to [[`pwd`]]"
   read -p ">>> " ROOTPATH
-  echo ""
   if [ ! "$ROOTPATH" ]
   then
     ROOTPATH=`pwd`
   fi
 fi
-
 if [ ! -d "$ROOTPATH" ]
 then 
   echo "××× [[$ROOTPATH]] not exist! Exit now. ***"
@@ -21,6 +19,7 @@ then
 else
   echo "√√√ ROOTPATH = [[$ROOTPATH]]"
 fi
+echo ""
 
 pushd $ROOTPATH
 echo "*** Starting from [[`pwd`]] ***"

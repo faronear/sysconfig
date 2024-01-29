@@ -25,6 +25,8 @@ echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
     echo;
     if "" == "%ROOTPATH%" (
       set ROOTPATH=%CD%
+    ) else (
+      for %P in (%ROOTPATH%) do set "ROOTPATH=%~dpnxP"
     )
   )
 )
@@ -35,15 +37,13 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-pushd %ROOTPATH%
-echo *** Starting from [[%CD%]] ***
-echo;
-
-echo === Enter [path to global .gitignore] or [leave blank] for default [[%CD%]]
+echo === Enter [path to .gitignore_global] or [leave blank] for default [[%CD%]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=%CD%
+  set IGNOREPATH=%CD%/.gitignore_global
+) else (
+  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore_global"
 )
 if not exist "%IGNOREPATH%" (
   echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
@@ -51,6 +51,10 @@ if not exist "%IGNOREPATH%" (
 ) else (
   echo √√√ IGNOREPATH = [[%IGNOREPATH%]]
 )
+
+pushd %ROOTPATH%
+echo *** Starting from [[%CD%]] ***
+echo;
 
 for /d /r %%r in (*) do (
   @REM @ if not "%%r" == ".vscode" (

@@ -56,7 +56,7 @@ echo ""
 
 find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
 do 
-  if [ -d "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
+  if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then
     echo "---- updating .gitignore in [[$repo]] ----"
     cat $IGNOREPATH $repo/.gitignore_local 2>/dev/null > $repo/.gitignore
