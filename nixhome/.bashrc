@@ -112,17 +112,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style$Type$Code`, for example, $Style=01; means text in bold, $Type=3 means text color, $Type=4 means background color, $Code could be 0-7 for pre-defined colors.
 if [ "$color_prompt" = yes ]; then
-    PS1='<${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;95m\]\h\[\033[00m\]::\[\033[01;34m\]\w\[\033[00m\]> '
+    PS1='<\[\033[01;44m\]\u\[\033[00m\]@\[\033[01;46m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]#\[\033[01;42m\]\t\[\033[00m\]> '
 else
-    PS1='<${debian_chroot:+($debian_chroot)}\u@\h::\w::\t> '
+    PS1='<\u@\h:\w#\t> '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h::\w\a\]$PS1"
+    PS1="\[\e]0;\u@\h::\w\a\]$PS1"
     ;;
 *)
     ;;
