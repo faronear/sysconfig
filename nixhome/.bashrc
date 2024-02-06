@@ -114,9 +114,9 @@ fi
 
 # color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style$Type$Code`, for example, $Style=01; means text in bold, $Type=3 means text color, $Type=4 means background color, $Code could be 0-7 for pre-defined colors.
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[01;44m\]\u\[\033[00m\]@\[\033[01;46m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]#\[\033[01;42m\]\t\[\033[00m\]> '
+    PS1='<\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;44m\]\u\[\033[00m\]@\[\033[01;46m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]> '
 else
-    PS1='<\u@\h:\w#\t> '
+    PS1='<\t#\u@\h:\w> '
 fi
 unset color_prompt force_color_prompt
 
