@@ -64,12 +64,6 @@ then
   echo
 fi
 
-# if [ "$ISSUEMODE" == 'c' ]
-# then
-#   echo "   === DNS API provider, for instance yuanjin.cc"
-#   read -p "   >>> " CHALLENGE_ALIAS
-# fi
-
 echo "*** Issue Certificate:"
 echo "*** ~/.acme.sh/acme.sh --issue -d $TARGET_HOSTNAME $ISSUEPARM $DNSAPI"
 echo "***"
