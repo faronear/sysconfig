@@ -9,9 +9,9 @@ fi
 
 # function proxy() {
     if [ "$proxySwitch" == "s" ] || [ "$proxySwitch" == "1" ]; then
-        export all_proxy=socks5://127.0.0.1:1086
-        export http_proxy=socks5://127.0.0.1:1086
-        export https_proxy=socks5://127.0.0.1:1086
+        export all_proxy=socks5://127.0.0.1:7898
+        export http_proxy=socks5://127.0.0.1:7898
+        export https_proxy=socks5://127.0.0.1:7898
         echo -e "--- 已开启网络代理"
     elif [ "$proxySwitch" == "t" ] || [ "$proxySwitch" == "0" ]; then
         unset all_proxy

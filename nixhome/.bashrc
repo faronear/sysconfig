@@ -77,7 +77,7 @@ umask 022 # rwxr-xr-x
 # PROMPT_COMMAND is expanded only when used.
 case "$TERM" in
     xterm*|rxvt*)
-	PROMPT_COMMAND='echo -ne "\033]0;<${USER}@${HOSTNAME}::${PWD}>B\007"'
+	PROMPT_COMMAND='echo -ne "\033]0;<${USER}@${HOSTNAME}:${PWD}>B\007"'
 	;;
     dumb*)
 	;;
@@ -130,6 +130,17 @@ xterm*|rxvt*)
 esac
 ############## above settings copied from amazon's debian ####################
 
+if [ "$(uname)" = "Darwin" ]
+then
+  if [ "$(uname -m)" = "arm64" ] && [ -f /opt/homebrew/bin/brew ]
+  then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [ "$(uname -m)" = "x86_64" ] && [ -f /usr/local/homebrew/bin/brew ]
+  then 
+    eval "$(/usr/local/homebrew/bin/brew shellenv)"
+  fi
+fi
+
 # nvm settings
 if [ -d $HOME/.nvm ]
 then
@@ -138,6 +149,12 @@ then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
+
+# fnm settings
+# if [ $(which fnm) ]
+# then
+#   eval "$(fnm env --use-on-cd)"
+# fi
 
 # acme.sh settings
 if [ -f $HOME/.acme.sh/acme.sh.env ]
@@ -150,15 +167,10 @@ fi
 export USERPROFILE=$HOME
 
 # # add sysconfig to path
-# tp1=/faronear/sysconfig
-# tp2=~/sysconfig
-# if [ -d $tp1 ]
-# then
-#   export PATH=$tp1:$PATH
-# elif [ -d $tp2 ]
-# then 
-#   export PATH=$tp2:$PATH
-# fi
+if [ -e ~/sysconfig ]
+then
+  export PATH=~/sysconfig:$PATH
+fi
 
 if [ -f ~/.bashrc_custom ]
 then

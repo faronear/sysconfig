@@ -20,7 +20,7 @@ then
   # 用 dpkg --print-architecture 更直接
   ARCH=`dpkg --print-architecture`
 else
-  if [ "$(uname -m)" = "aarch64" ]
+  if [ "$(uname -m)" = "aarch64" ] || [ "$(uname -m)" = "arm64" ] # on MacBook Air M2, $(uname -m) returns 'arm64'
   then
     ARCH=arm64
   elif [ "$(uname -m)" = "armv7l" ]
