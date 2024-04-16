@@ -47,17 +47,8 @@ pages4loader.json5
 */.deploy_git/
 
 # HBuilder 目录
-unpackage/cache/
-unpackage/debug/
-unpackage/dist/
-unpackage/release/
-unpackage/resources/
-*/unpackage/cache/
-*/unpackage/debug/
-*/unpackage/dist/
-*/unpackage/release/
-*/unpackage/resources/
-
+unpackage/
+*/unpackage/
 
 Icon
 OneDrive/Icon
