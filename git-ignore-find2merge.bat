@@ -3,22 +3,9 @@
 @REM 首先清除可能残留的变量
 set ROOTPATH=
 
-set ROOTPATH1=D:\faronear
-set ROOTPATH2=C:\faronear
-set ROOTPATH3=%HOMEDRIVE%%HOMEPATH%\faronear
-
 @ if not "" == "%1" (
   set ROOTPATH=%1
 ) else (
-echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
-  if exist "%ROOTPATH1%" (
-    set ROOTPATH=%ROOTPATH1%
-  ) else if exist "%ROOTPATH2%" (
-    set ROOTPATH=%ROOTPATH2%
-  ) else if exist "%ROOTPATH3%" (
-    set ROOTPATH=%ROOTPATH3%
-  ) else (
-    echo ××× none of the testing path is valid.
     echo;
     echo === Enter [root path] or [leave blank] for default [[%CD%]] to start tree search for .gitignore files
     set /p ROOTPATH=">>> "
@@ -28,7 +15,6 @@ echo *** Testing Path [[%ROOTPATH1%]]  [[%ROOTPATH2%]]  [[%ROOTPATH3%]]
     ) else (
       for %P in (%ROOTPATH%) do set "ROOTPATH=%~dpnxP"
     )
-  )
 )
 if not exist "%ROOTPATH%" (
   echo ××× [[%ROOTPATH%]] not exist! Exit now. ***
@@ -53,7 +39,7 @@ if not exist "%IGNOREPATH%" (
 )
 
 pushd %ROOTPATH%
-echo *** Starting from [[%CD%]] ***
+echo === Starting from [[%CD%]] ===
 echo;
 
 for /d /r %%r in (*) do (

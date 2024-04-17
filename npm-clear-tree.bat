@@ -6,24 +6,14 @@ set ROOTPATH=
 @ if not "" == "%1" (
   set ROOTPATH=%1
 ) else (
-  if exist D:\faronear (
-    set ROOTPATH=D:\faronear
-  ) else (if exist C:\faronear (
-    set ROOTPATH=C:\faronear
-  ) else (if exist %HOMEDRIVE%%HOMEPATH%\faronear (
-    set ROOTPATH=%HOMEDRIVE%%HOMEPATH%\faronear
-  ) else (
-      echo ××× none of the testing path is valid.
-      echo;
-      echo === Enter [root path] or [leave blank] for default to [[%CD%]]
-      set /p ROOTPATH=">>> "
-      echo;
-      if "" == "%ROOTPATH%" (
-        set ROOTPATH=%CD%
-      )
-  )))
+  echo;
+  echo === Enter [root path] or [leave blank] for default to [[%CD%]]
+  set /p ROOTPATH=">>> "
+  echo;
+  if "" == "%ROOTPATH%" (
+    set ROOTPATH=%CD%
+  )
 )
-
 if not exist "%ROOTPATH%" (
   echo ××× [[%ROOTPATH%]] not exist! Exit now. ***
   @ GOTO END
@@ -32,7 +22,7 @@ if not exist "%ROOTPATH%" (
 )
 
 pushd %ROOTPATH%
-echo *** Starting from [[%CD%]] ***
+echo === Starting from [[%CD%]] ===
 echo;
 
 for /d /r %%r in (*) do (

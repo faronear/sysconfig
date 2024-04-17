@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-echo *** 把 HBuilder 创建的 uniapp 应用转换成 vue-cli 应用的脚手架。
-echo *** More info at https://uniapp.dcloud.net.cn/quickstart-cli.html
+echo === 把 HBuilder 创建的 uniapp 应用转换成 vue-cli 应用的脚手架。
+echo === More info at https://uniapp.dcloud.net.cn/quickstart-cli.html
 
 echo === CLI project name? 
 read -p '>>> ' PROJECT
@@ -16,11 +16,11 @@ then
   echo === Originial Repository URL?
   read -p '>>> ' $url
   echo 
-  echo *** 下载一个 HBuilderX 创建的项目下载存为 src 目录:
+  echo === 下载一个 HBuilderX 创建的项目下载存为 src 目录:
   echo
   git clone $url src
   echo
-  echo *** 进入 src 安装依赖库
+  echo === 进入 src 安装依赖库
   cd src
   npm run boot
   cd ..

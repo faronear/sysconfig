@@ -23,7 +23,9 @@
 /test/unit/coverage/
 /test/e2e/reports/
 node_modules/
+*.aab
 *.apk
+*.ipa
 *.min.js
 *.min.css
 *.min.html
