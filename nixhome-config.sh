@@ -48,7 +48,7 @@ then
 
   pushd $HomePath
   
-  homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore_global"
+  homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore.global.txt"
   echo
   echo "=== Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
   read -p ">>> " CopyOrLinkScripts

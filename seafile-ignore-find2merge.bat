@@ -23,13 +23,13 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo === Enter [path to seafile-ignore_global] or [leave blank] for default [[%CD%]]
+echo === Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[%CD%]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=%CD%/seafile-ignore_global
+  set IGNOREPATH=%CD%/seafile-ignore.global.txt
 ) else (
-  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/seafile-ignore_global"
+  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/seafile-ignore.global.txt"
 )
 if not exist "%IGNOREPATH%" (
   echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
@@ -47,7 +47,7 @@ for /d /r %%r in (*) do (
   echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
     if exist "%%r\seafile-ignore.txt" (
       echo ---- updating seafile-ignore.txt in [[%%r]] ----
-      cat %IGNOREPATH% %%r\seafile-ignore_local > %%r\seafile-ignore.txt
+      cat %IGNOREPATH% %%r\seafile-ignore.local.txt > %%r\seafile-ignore.txt
       echo;
     )
   )

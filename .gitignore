@@ -5,7 +5,7 @@
 #   https://github.com/SlideWave/gitignore-include?tab=readme-ov-file#examples
 #   https://gitignore.io
 
-### .gitignore_global ###
+### .gitignore.global.txt ###
 
 # Self defined extension to ignore all files/folders containing .gitignore
 *.gitignore.*
@@ -99,5 +99,5 @@ pages4loader.json5
 # 保留
 !.gitkeep
 
-### .gitignore_local ###
+### .gitignore.local.txt ###
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "Search in [ROOTPATH], Merge [IGNOREPATH/seafile-ignore_global] and [ROOTPATH/*/seafile-ignore_local] files to [seafile-ignore.txt]"
+echo "Search in [ROOTPATH], Merge [IGNOREPATH/seafile-ignore.global.txt] and [ROOTPATH/*/seafile-ignore.local.txt] files to [seafile-ignore.txt]"
 echo ""
 
 if [ -d "$1" ]
@@ -26,13 +26,13 @@ else
 fi
 echo ""
 
-echo "=== Enter [path to seafile-ignore_global] or [leave blank] for default [[`pwd`]]"
+echo "=== Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[`pwd`]]"
 read -p ">>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
-  IGNOREPATH=$(realpath $IGNOREPATH)/seafile-ignore_global
+  IGNOREPATH=$(realpath $IGNOREPATH)/seafile-ignore.global.txt
 else
-  IGNOREPATH=`pwd`/seafile-ignore_global
+  IGNOREPATH=`pwd`/seafile-ignore.global.txt
 fi
 if [ ! -f "$IGNOREPATH" ]
 then
@@ -59,7 +59,7 @@ do
   if [ -f "$repo/seafile-ignore.txt" ]
   then
     echo "---- updating seafile-ignore.txt in [[$repo]] ----"
-    cat $IGNOREPATH $repo/seafile-ignore_local 2>/dev/null > $repo/seafile-ignore.txt
+    cat $IGNOREPATH $repo/seafile-ignore.local.txt 2>/dev/null > $repo/seafile-ignore.txt
     echo ""
   fi
 done

@@ -20,9 +20,9 @@ then
   MAXDEPTH_CLAUSE="-maxdepth $MAXDEPTH"
 fi
 
-echo "To find file or directory? [f] for file, [d] for directory, [l] for link, [leave blank] for all:"
+echo "To find file or directory? [f] for file, [d] for directory, [l] for link, [anything else] for all:"
 read -p ">>> " FIND_TYPE
-if [ "$FIND_TYPE" ]
+if [ "$FIND_TYPE" = 'f' ] || [ "$FIND_TYPE" = 'd' ] || [ "$FIND_TYPE" = 'l' ]
 then
   FIND_TYPE_CLAUSE="-type $FIND_TYPE"
 fi

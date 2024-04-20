@@ -47,7 +47,7 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "Path to global gitignore file? (For example ~/.gitignore_global, leave blank for no change)"
+echo "Path to global gitignore file? (For example ~/.gitignore.global.txt, leave blank for no change)"
 read -p ">>> " ExcludesFile
 if [ $ExcludesFile ]
 then

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore_global] and [ROOTPATH/*/.gitignore_local] files to [seafile-ignore.txt]"
+echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore.global.txt] and [ROOTPATH/*/.gitignore.local.txt] files to [seafile-ignore.txt]"
 echo ""
 
 if [ -d "$1" ]
@@ -26,13 +26,13 @@ else
 fi
 echo ""
 
-echo "=== Enter [path to .gitignore_global] or [leave blank] for default [[`pwd`]]" 
+echo "=== Enter [path to .gitignore.global.txt] or [leave blank] for default [[`pwd`]]" 
 read -p ">>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
-  IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore_global
+  IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore.global.txt
 else
-  IGNOREPATH=`pwd`/.gitignore_global
+  IGNOREPATH=`pwd`/.gitignore.global.txt
 fi
 if [ ! -f "$IGNOREPATH" ]
 then
@@ -59,7 +59,7 @@ do
   if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then
     echo "---- updating .gitignore in [[$repo]] ----"
-    cat $IGNOREPATH $repo/.gitignore_local 2>/dev/null > $repo/.gitignore
+    cat $IGNOREPATH $repo/.gitignore.local.txt 2>/dev/null > $repo/.gitignore
     echo ""
   fi
 done

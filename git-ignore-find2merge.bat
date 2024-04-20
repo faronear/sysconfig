@@ -23,13 +23,13 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo === Enter [path to .gitignore_global] or [leave blank] for default [[%CD%]]
+echo === Enter [path to .gitignore.global.txt] or [leave blank] for default [[%CD%]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=%CD%/.gitignore_global
+  set IGNOREPATH=%CD%/.gitignore.global.txt
 ) else (
-  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore_global"
+  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore.global.txt"
 )
 if not exist "%IGNOREPATH%" (
   echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
@@ -48,7 +48,7 @@ for /d /r %%r in (*) do (
     if exist "%%r\.git" (
       pushd "%%r"
       echo ---- updating .gitignore in [[%%r]] ----
-      cat %IGNOREPATH%\.gitignore %%r\.gitignore_local > %%r\.gitignore
+      cat %IGNOREPATH%\.gitignore %%r\.gitignore.local.txt > %%r\.gitignore
       echo;
       popd
     )
