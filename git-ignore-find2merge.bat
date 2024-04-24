@@ -23,19 +23,19 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo === Enter [path to .gitignore.global.txt] or [leave blank] for default [[%CD%]]
+echo === Enter [path to .gitignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=%CD%/.gitignore.global.txt
+  set IGNOREPATH=https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt
 ) else (
   for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore.global.txt"
-)
-if not exist "%IGNOREPATH%" (
-  echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
-  @ GOTO END
-) else (
-  echo √√√ IGNOREPATH = [[%IGNOREPATH%]]
+  if not exist "%IGNOREPATH%" (
+    echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
+    @ GOTO END
+  ) else (
+    echo √√√ IGNOREPATH = [[%IGNOREPATH%]]
+  )
 )
 
 pushd %ROOTPATH%

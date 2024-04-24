@@ -26,20 +26,20 @@ else
 fi
 echo ""
 
-echo "=== Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[`pwd`]]"
+echo "=== Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]"
 read -p ">>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
   IGNOREPATH=$(realpath $IGNOREPATH)/seafile-ignore.global.txt
+  if [ ! -f "$IGNOREPATH" ]
+  then
+    echo "××× Not found [[$IGNOREPATH]]. Exit now..."
+    exit
+  else
+    echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
+  fi
 else
-  IGNOREPATH=`pwd`/seafile-ignore.global.txt
-fi
-if [ ! -f "$IGNOREPATH" ]
-then
-  echo "××× Not found [[$IGNOREPATH]]. Exit now..."
-  exit
-else
-  echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
+  IGNOREPATH=https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt
 fi
 echo ""
 

@@ -137,7 +137,7 @@ then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   elif [ "$(uname -m)" = "x86_64" ] && [ -f /usr/local/homebrew/bin/brew ]
   then 
-    eval "$(/usr/local/homebrew/bin/brew shellenv)"
+    eval "$(echo $(/usr/local/homebrew/bin/brew shellenv) | sed 's#HOMEBREW_CELLAR=.*$#HOMEBREW_CELLAR=/usr/local/Cellar#')"
   fi
 fi
 
