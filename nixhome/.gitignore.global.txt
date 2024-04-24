@@ -7,12 +7,17 @@
 
 ### .gitignore.global.txt ###
 
-# Self defined extension to ignore all files/folders containing .gitignore
-*.gitignore.*
-*.gitignore.*/
-*.gitignore
-*.gitignore/
-!.gitignore
+# Self defined pattern to ignore
+?*.gitignore
+?*.gitignore/
+?*.gitignore.*
+?*.gitignore.*/
+*.gitomit
+*.gitomit/
+*.gitomit.*
+*.gitomit.*/
+# 保留
+!.gitkeep
 
 # 通用
 .svn/
@@ -23,7 +28,9 @@
 /test/unit/coverage/
 /test/e2e/reports/
 node_modules/
+*.aab
 *.apk
+*.ipa
 *.min.js
 *.min.css
 *.min.html
@@ -95,9 +102,6 @@ _desktop.ini
 !/unpackage/res/
 package-lock.json
 pages4loader.json5
-
-# 保留
-!.gitkeep
 
 ### .gitignore.local.txt ###
 

@@ -30,7 +30,10 @@ echo "=== Enter [path to seafile-ignore.global.txt] or [leave blank] for default
 read -p ">>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
-  IGNOREPATH=$(realpath $IGNOREPATH)/seafile-ignore.global.txt
+  if [ -d "$IGNOREPATH" ]
+  then
+    IGNOREPATH=$(realpath $IGNOREPATH)/seafile-ignore.global.txt
+  fi
   if [ ! -f "$IGNOREPATH" ]
   then
     echo "××× Not found [[$IGNOREPATH]]. Exit now..."
@@ -58,8 +61,14 @@ find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|
 do 
   if [ -f "$repo/seafile-ignore.txt" ]
   then
-    echo "---- updating seafile-ignore.txt in [[$repo]] ----"
-    cat $IGNOREPATH $repo/seafile-ignore.local.txt 2>/dev/null > $repo/seafile-ignore.txt
+    echo "---- updating [[$repo/seafile-ignore.txt]] ----"
+    if [ -f "$IGNOREPATH" ]
+    then
+      cat $IGNOREPATH > $repo/seafile-ignore.txt
+    else
+      curl -sSL $IGNOREPATH | cat > $repo/seafile-ignore.txt
+    fi
+    cat $repo/seafile-ignore.local.txt 2>/dev/null >> $repo/seafile-ignore.txt
     echo ""
   fi
 done

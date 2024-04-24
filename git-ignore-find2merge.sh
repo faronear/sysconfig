@@ -30,7 +30,10 @@ echo "=== Enter [path to .gitignore.global.txt] or [leave blank] for default [[h
 read -p ">>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
-  IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore.global.txt
+  if [ -d "$IGNOREPATH" ]
+  then
+    IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore.global.txt
+  fi
   if [ ! -f "$IGNOREPATH" ]
   then
     echo "××× Not found [[$IGNOREPATH]]. Exit now..."
@@ -56,10 +59,16 @@ echo ""
 
 find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
 do 
-  if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
+  if [ -f "$repo/.gitignore.local.txt" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then
-    echo "---- updating .gitignore in [[$repo]] ----"
-    cat $IGNOREPATH $repo/.gitignore.local.txt 2>/dev/null > $repo/.gitignore
+    echo "---- updating [[$repo/.gitignore]] ----"
+    if [ -f "$IGNOREPATH" ]
+    then
+      cat $IGNOREPATH > $repo/.gitignore
+    else
+      curl -sSL $IGNOREPATH | cat > $repo/.gitignore
+    fi
+    cat $repo/.gitignore.local.txt 2>/dev/null > $repo/.gitignore
     echo ""
   fi
 done
