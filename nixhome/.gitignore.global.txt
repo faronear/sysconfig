@@ -17,6 +17,8 @@
 *.gitomit.*
 *.gitomit.*/
 # 保留
+!.gitignore
+!.gitignore.*
 !.gitkeep
 
 # 通用

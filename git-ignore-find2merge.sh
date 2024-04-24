@@ -59,7 +59,7 @@ echo ""
 
 find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
 do 
-  if [ -f "$repo/.gitignore.local.txt" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
+  if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then
     echo "---- updating [[$repo/.gitignore]] ----"
     if [ -f "$IGNOREPATH" ]
@@ -68,7 +68,7 @@ do
     else
       curl -sSL $IGNOREPATH | cat > $repo/.gitignore
     fi
-    cat $repo/.gitignore.local.txt 2>/dev/null > $repo/.gitignore
+    cat $repo/.gitignore.local.txt 2>/dev/null >> $repo/.gitignore
     echo ""
   fi
 done
