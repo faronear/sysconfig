@@ -19,16 +19,10 @@ read -p ">>> " RUNPM2
 echo "--- Creating ./$DATADIR/geth.ipc ..."
 # http.addr 默认为 127.0.0.1 => 无法从远处连接。要用 0.0.0.0 才能从远处用 IP 连接。
 # shh 是 whisper 协议，好像要先启动 websocket 接口才能启用。
-# 我的 PEX 链的默认端口：
-# - pex=739
-# - chainid 6739
-# - networkid 6739
-# - rpc 端口/http.port 6739
-# - 网络端口/port 60739
 
 while [ ! "$KEYCODE" ]
 do
-  echo "=== Define chain keycode, for instance '739' for pexchain:"
+  echo "=== Define chain keycode, for instance '882' for tuc chain:"
   read -p ">>> " KEYCODE
 done
 

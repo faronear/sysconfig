@@ -61,7 +61,7 @@ then
   echo "=== Deny root login: PermitRootLogin no"
   sed -i "s|PermitRootLogin |#PermitRootLogin |g" /etc/ssh/sshd_config && echo 'PermitRootLogin no' >> /etc/ssh/sshd_config
   echo "=== Allow password login: PasswordAuthentication yes"
-  sed -i "s|PasswordAuthentication |PasswordAuthentication |g" /etc/ssh/sshd_config && echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
+  sed -i "s|PasswordAuthentication |#PasswordAuthentication |g" /etc/ssh/sshd_config && echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
   service sshd restart
   echo
 fi
