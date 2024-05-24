@@ -1,9 +1,11 @@
 #!/bin/bash
 
+echo "=== Please run with 'source proxy.sh', otherwise it has no effect on the current shell"
+
 if [ -n "$1" ]; then
     proxySwitch="$1"
 else
-    echo "=== 开启或关闭网络代理？ s or 1 for start, t or 0 for terminate, anything else for no change."
+    echo "=== 开启或关闭网络代理？ [s/1] for start, [t/0] for terminate, [anything else] for no change."
     read -p ">>> " proxySwitch
 fi
 

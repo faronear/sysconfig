@@ -4,6 +4,8 @@ echo "Installing Homebrew on MacOS"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # default brew path: /opt/homebrew for Apple Silicon, /usr/local/Homebrew for macOS Intel and /home/linuxbrew/.linuxbrew for Linux
 
+echo "if `brew --repo homebrew/core` not exists, you may need to git clone https://github.com/Homebrew/homebrew-core.git as well as for homebrew-cask"
+
 # add brew to path on Apple Silicon:
 # (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/luk/.bash_profile
 # eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -18,4 +20,4 @@ echo "Installing Homebrew on MacOS"
 
 # uninstall: https://github.com/homebrew/install#uninstall-homebrew
 #   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-# install emacs: brew cask install emacs
+
