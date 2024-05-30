@@ -4,12 +4,12 @@ echo "Installing Homebrew on MacOS"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # default brew path: /opt/homebrew for Apple Silicon, /usr/local/Homebrew for macOS Intel and /home/linuxbrew/.linuxbrew for Linux
 
-echo "if `brew --repo homebrew/core` not exists, you may need to git clone https://github.com/Homebrew/homebrew-core.git as well as for homebrew-cask"
+# echo "if `brew --repo homebrew/core` not exists, you may need to git clone https://github.com/Homebrew/homebrew-core.git as well as for homebrew-cask"
 
-# add brew to path on Apple Silicon:
-# (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/luk/.bash_profile
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-# 实际上执行了：
+# add brew to path:
+# (echo; echo 'eval "$(brew shellenv)"') >> ~/.bash_profile
+# eval "$(brew shellenv)"
+# 实际上执行了 on Apple Silicon：
 # export HOMEBREW_PREFIX="/opt/homebrew";
 # export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 # export HOMEBREW_REPOSITORY="/opt/homebrew";
@@ -20,4 +20,3 @@ echo "if `brew --repo homebrew/core` not exists, you may need to git clone https
 
 # uninstall: https://github.com/homebrew/install#uninstall-homebrew
 #   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-

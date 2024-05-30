@@ -26,13 +26,16 @@
 .deploy_git/
 .idea/
 .sass-cache/
-.wrangler
+.wrangler/
 /test/unit/coverage/
 /test/e2e/reports/
 node_modules/
 *.aab
 *.apk
 *.ipa
+*.rar
+*.tgz
+*.zip
 *.min.js
 *.min.css
 *.min.html
