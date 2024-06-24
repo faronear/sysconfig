@@ -65,6 +65,7 @@ _desktop.ini
 
 # hexo
 /public/
+/db.json
 
 # Hardhat
 /artifacts/
@@ -72,7 +73,6 @@ _desktop.ini
 
 # seafile 临时文件
 ._*
-
 .$*
 
 # office 暂存文件
@@ -90,9 +90,6 @@ _desktop.ini
 # local env files
 .env.local
 .env.*.local
-
-# hexo
-/db.json
 
 # wo
 # 服务端
