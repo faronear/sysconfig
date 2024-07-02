@@ -1,18 +1,11 @@
 #!/bin/bash
 
-defaultVERSION=1.11.2
-
 if [ $1 ]
 then
   VERSION=$1
 else
-  echo "=== Enter geth [version number] or [leave blank] for default $defaultVERSION" 
+  echo "=== Enter geth \n [version number] for example 1.10.26 \n [leave blank] for the latest version" 
   read -p ">>> " VERSION
-  if [ ! "$VERSION" ]
-  then
-    VERSION=$defaultVERSION
-    echo Use default version $defaultVERSION
-  fi
 fi
 
 if [ "$(uname)" = "Linux" ]
@@ -39,7 +32,12 @@ read -p ">>> " BINARY_OR_SOURCE
 if [ "$BINARY_OR_SOURCE" == 'b' ]
 then
   echo "--- Extracting download link with correct hash from https://geth.ethereum.org/downloads"
-  wget https://gethstore.blob.core.windows.net/builds/`curl -s -L -o - 'https://geth.ethereum.org/downloads' | grep -o -m 1 "geth-$OS-$ARCH-$VERSION-[0-9a-f]*.tar.gz" | head -n 1` -O geth-binary-temp.tgz
+  if [ "$VERSION" != '' ]
+  then
+    wget https://gethstore.blob.core.windows.net/builds/`curl -s -L -o - 'https://geth.ethereum.org/downloads' | grep -o -m 1 "geth-$OS-$ARCH-$VERSION-[0-9a-f]*.tar.gz" | head -n 1` -O geth-binary-temp.tgz
+  else
+    wget https://gethstore.blob.core.windows.net/builds/`curl -s -L -o - 'https://geth.ethereum.org/downloads' | grep -o -m 1 "geth-$OS-$ARCH-[0-9.]*-[0-9a-f]*.tar.gz" | head -n 1` -O geth-binary-temp.tgz
+  fi
   tar xzf ./geth-binary-temp.tgz # --strip-components 1 ## 去掉tar包中顶级目录，因为顶级目录含有checksum，不方便在下一步进入
   echo "--- 安装到 /usr/local/bin/geth"
   sudo mv ./geth-$OS-$ARCH-*/geth /usr/local/bin/

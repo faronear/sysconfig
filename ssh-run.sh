@@ -30,7 +30,7 @@ privateKeyPaths=($(jq -r '.["sshfs.configs"][] | .privateKeyPath' "$SETTINGS_FIL
 
 if [ "$1" -ge 0 ] 2>/dev/null && [ "$1" -le ${#hosts[@]} ] 2>/dev/null
 then
-  selected_index=$1
+  selected_index=$1-1
 else
   echo "Select a target to connect via SSH:"
   select target in "${labels[@]}"
