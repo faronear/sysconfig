@@ -11,10 +11,14 @@ fi
 
 # function proxy() {
   if [ "$proxySwitch" == "s" ] || [ "$proxySwitch" == "1" ]; then
-    echo "=== Proxy server running on port number: "
+    echo "=== Proxy server running on [port number] or [leave blank] for default 7897"
     while [ ! "$PORT" ]
     do
       read -p ">>> " PORT
+      if [ ! "$PORT" ]
+      then
+        PORT=7897
+      fi
     done
     export all_proxy=socks5://127.0.0.1:$PORT
     export http_proxy=socks5://127.0.0.1:$PORT
@@ -30,7 +34,10 @@ fi
   fi
 # }
 
-echo all_proxy="$all_proxy"
+echo all_proxy=$all_proxy
+echo http_proxy=$http_proxy
+echo https_proxy=$https_proxy
+
 # ip.gs, ip.sb, ipinfo.io
 curl ipinfo.io
 echo " "

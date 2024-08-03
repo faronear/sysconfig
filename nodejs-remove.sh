@@ -2,7 +2,7 @@
 
 echo "Usage: this-script.sh [VERSION]"
 
-rm -fr /usr/local/bin/node
-rm -fr /usr/local/bin/npm
-rm -fr /usr/local/lib/node_modules
-rm -fr /usr/local/include/node
+sudo rm -fr /usr/local/bin/node
+sudo rm -fr /usr/local/bin/npm
+sudo rm -fr /usr/local/lib/node_modules
+sudo rm -fr /usr/local/include/node

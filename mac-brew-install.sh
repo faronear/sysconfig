@@ -20,3 +20,5 @@ echo "Installing Homebrew on MacOS"
 
 # uninstall: https://github.com/homebrew/install#uninstall-homebrew
 #   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+
+# update brew itself: brew update
