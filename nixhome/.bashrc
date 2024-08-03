@@ -45,7 +45,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias su='su -'
-alias npmc='npm --registry https://registry.npm.taobao.org'
+alias npmc='npm --registry https://registry.npmmirror.com'
 alias npmr='npm --silent run'
 alias curlw='curl -sSL -o /dev/null -w "%{http_code} | %{time_total} s | %{size_download} bytes | %{url_effective}\n"'
 if [ "$(uname)" = "Darwin" ]

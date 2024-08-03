@@ -10,7 +10,7 @@
 ## '########################################################################'
 
 ## 取消被默认添加到 .bashrc 的设置（already integrated in nixhome/.bashrc）
-# pushd /faronear/sysconfig
+# pushd ~/sysconfig
 # git reset . && git checkout .
 # popd
 
@@ -18,5 +18,5 @@ git clone https://github.com/nvm-sh/nvm.git ~/.nvm
 
 echo
 echo '############## If in China, set mirror before nvm install ##############'
-echo export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+echo export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node
 echo '########################################################################'

@@ -1,10 +1,10 @@
 FROM amd64/node:16.18-bullseye
 LABEL org.opencontainers.image.authors="luk"
 
-RUN npm i -g --registry https://registry.npm.taobao.org @vue/cli@4
-RUN cd / && echo -e "\n" | vue create --registry https://registry.npm.taobao.org -p dcloudio/uni-preset-vue uniapp-cli
+RUN npm i -g --registry https://registry.npmmirror.com @vue/cli@4
+RUN cd / && echo -e "\n" | vue create --registry https://registry.npmmirror.com -p dcloudio/uni-preset-vue uniapp-cli
 # 上一行自动选择了第一个空模板，因此需要额外安装 sass
-RUN cd /uniapp-cli && npm i -D --registry https://registry.npm.taobao.org sass@1.49.8 sass-loader@8.0.2
+RUN cd /uniapp-cli && npm i -D --registry https://registry.npmmirror.com sass@1.49.8 sass-loader@8.0.2
 
 EXPOSE 8080
 

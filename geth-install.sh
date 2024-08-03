@@ -4,7 +4,7 @@ if [ $1 ]
 then
   VERSION=$1
 else
-  echo "=== Enter geth \n [version number] for example 1.10.26 \n [leave blank] for the latest version" 
+  echo "=== Install geth version of \n [version number] for example 1.10.26 \n [leave blank] for the latest version"
   read -p ">>> " VERSION
 fi
 
