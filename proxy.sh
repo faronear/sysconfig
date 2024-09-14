@@ -9,6 +9,9 @@ else
   read -p ">>> " proxySwitch
 fi
 
+# to reset port to empty, otherwise the second run of this script will not ask for port.
+PORT=
+
 # function proxy() {
   if [ "$proxySwitch" == "s" ] || [ "$proxySwitch" == "1" ]; then
     echo "=== Proxy server running on [port number] or [leave blank] for default 7897"
