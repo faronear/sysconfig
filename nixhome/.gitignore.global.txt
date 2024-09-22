@@ -16,6 +16,10 @@
 *.gitomit/
 *.gitomit.*
 *.gitomit.*/
+*.nogit
+*.nogit/
+*.nogit.*
+*.nogit.*/
 # 保留
 !.gitignore
 !.gitignore.*

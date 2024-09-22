@@ -17,6 +17,10 @@
 *.sfomit.*
 *.sfomit/
 *.sfomit.*/
+*.nosf
+*.nosf.*
+*.nosf/
+*.nosf.*/
 
 .DS_Store
 */.DS_Store
