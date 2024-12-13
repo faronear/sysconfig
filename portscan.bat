@@ -1,7 +1,7 @@
 @ if not "" == "%1" (
   set PORT=%1
 ) else (
-  echo === Enter [port] to scan:
+  echo #<<< Enter [port] to scan:
   set /p PORT=">>> "
   echo;
 )

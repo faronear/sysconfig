@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo Usage: this_script.sh [selected_index] [to_run_cmd]
+
 # Ensure jq is installed
 if ! command -v jq &> /dev/null; then
     echo "jq is required but not installed. Please install jq and run the script again."
@@ -24,8 +26,10 @@ fi
 # Parse the JSON to get labels and corresponding details
 labels=($(jq -r '.["sshfs.configs"][] | .label' "$SETTINGS_FILE"))
 hosts=($(jq -r '.["sshfs.configs"][] | .host' "$SETTINGS_FILE"))
+ports=($(jq -r '.["sshfs.configs"][] | .port' "$SETTINGS_FILE"))
 names=($(jq -r '.["sshfs.configs"][] | .name' "$SETTINGS_FILE"))
 usernames=($(jq -r '.["sshfs.configs"][] | .username' "$SETTINGS_FILE"))
+passwords=($(jq -r '.["sshfs.configs"][] | .password' "$SETTINGS_FILE"))
 privateKeyPaths=($(jq -r '.["sshfs.configs"][] | .privateKeyPath' "$SETTINGS_FILE"))
 
 if [ "$1" -ge 0 ] 2>/dev/null && [ "$1" -le ${#hosts[@]} ] 2>/dev/null
@@ -47,9 +51,23 @@ fi
 label="${labels[$selected_index]}"
 name="${names[$selected_index]}"
 host="${hosts[$selected_index]}"
+port="${ports[$selected_index]}"
 username="${usernames[$selected_index]}"
+password="${passwords[$selected_index]}"
 privateKeyPath="${privateKeyPaths[$selected_index]}"
 
-echo "=== Coonecting to ${label}"
-echo ">>> ssh $username@$host"
-ssh "$username@$host"
+if [ "$port" = "null" ]
+then
+  port=22
+fi
+
+if [ "$password" != "" ] & [ "$(which sshpass)" != "" ]
+then
+  echo "#<<< Coonecting to ${label} with password"
+  echo "#>>> ssh -X -p $port $username@$host"
+  sshpass -p $password ssh -X -p $port "$username@$host" $2
+else
+  echo "#<<< Coonecting to ${label} with private key"
+  echo "#>>> ssh -X -p $port $username@$host"
+  ssh -X -p $port "$username@$host" $2
+fi

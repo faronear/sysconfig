@@ -9,8 +9,8 @@ echo
 IMAGE=$1
 while [ ! "$IMAGE" ] 
 do
-  echo "=== Enter [image name]:"
-  read -p ">>> " IMAGE
+  echo "#<<< Enter [image name]:"
+  read -p "#>>> " IMAGE
   echo
 done
 
@@ -21,8 +21,8 @@ then
   then
     OWNER="library"
   else
-    echo "=== Enter [owner name] or [empty] for default 'library':"
-    read -p ">>> " OWNER
+    echo "#<<< Enter [owner name] or [empty] for default 'library':"
+    read -p "#>>> " OWNER
     if [ ! "$OWNER" ]
     then
       OWNER="library"
@@ -31,7 +31,7 @@ then
 fi
 
 echo
-echo "=== Searching $OWNER/$IMAGE ......"
+echo "#<<< Searching $OWNER/$IMAGE ......"
 echo
 
 page_size=100

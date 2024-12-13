@@ -4,7 +4,7 @@ sudo apt update
 sudo apt install -y seafile-cli
 
 echo "To initialze the client, create a settings folder at [settings path] or [leave blank] for default '~/seafile-client'"
-read -p ">>> " SETTINGS_FOLDER
+read -p "#>>> " SETTINGS_FOLDER
 if [ ! $SETTINGS_FOLDER ]
 then
   SETTINGS_FOLDER = ~/seafile-client

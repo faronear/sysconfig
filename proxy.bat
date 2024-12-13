@@ -1,7 +1,7 @@
 @REM 在 powershell 里，只要 ssr 打开全局模式，不需要设置 proxy 就可以。
 @REM 在 cmd 里，需要设置 proxy 才可以。
 
-echo === Enter [s] to start, [t] to terminate or [anything else] for no change
+echo #<<< Enter [s] to start, [t] to terminate or [anything else] for no change
 set /p TODOMODE=">>> "
 echo;
 if "s" == "%TODOMODE%" (

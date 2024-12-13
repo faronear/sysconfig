@@ -11,17 +11,17 @@ else
   NewUser=adot
 fi
 
-echo "=== Installing basic tools"
+echo "#<<< Installing basic tools"
 apt update
 apt install -y emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python3 jq
 # Debian 12.0 has no python package, However the following packages replace it:  python-is-python3 2to3
 echo
 
-echo "=== Making dir /faronear/"
+echo "#<<< Making dir /faronear/"
 mkdir -p /faronear/
 echo
 
-echo "=== Git cloning to /faronear/sysconfig"
+echo "#<<< Git cloning to /faronear/sysconfig"
 git config --global credential.helper cache
 if [ ! -d "/faronear/sysconfig" ]
 then
@@ -30,19 +30,19 @@ then
 fi
 echo
 
-echo "=== Configure root home"
+echo "#<<< Configure root home"
 source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
 echo
 
-echo "=== Change root password? [y] for yes, [anything else] for omit:"
-read -p ">>> " ChangeRootPassword
+echo "#<<< Change root password? [y] for yes, [anything else] for omit:"
+read -p "#>>> " ChangeRootPassword
 if [ "$ChangeRootPassword" == 'y' ]
 then
   passwd
 fi
 echo 
 
-echo "=== Configure /etc/sudoers to includedir /etc/sudoers.d"
+echo "#<<< Configure /etc/sudoers to includedir /etc/sudoers.d"
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
 DebianVersionMain=`cat /etc/debian_version | sed -r 's/^([0-9]+)\..*$/\1/'`
 if [ "$DebianVersionMain" == '10' ]
@@ -58,16 +58,16 @@ echo
 
 if [ -e /etc/ssh/sshd_config ]
 then
-  echo "=== Deny root login: PermitRootLogin no"
+  echo "#<<< Deny root login: PermitRootLogin no"
   sed -i "s|PermitRootLogin |#PermitRootLogin |g" /etc/ssh/sshd_config && echo 'PermitRootLogin no' >> /etc/ssh/sshd_config
-  echo "=== Allow password login: PasswordAuthentication yes"
+  echo "#<<< Allow password login: PasswordAuthentication yes"
   sed -i "s|PasswordAuthentication |#PasswordAuthentication |g" /etc/ssh/sshd_config && echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
   service sshd restart
   echo
 fi
 
-echo "=== Set [new hostname] or [leave blank] for no change"
-read -p ">>> " NewHostname
+echo "#<<< Set [new hostname] or [leave blank] for no change"
+read -p "#>>> " NewHostname
 if [ $NewHostname ]
 then
   sed -i "s|\b`hostname`\b|$NewHostname|g" /etc/hosts # echo "127.0.0.1 $NewHostname" >> /etc/hosts
@@ -77,7 +77,7 @@ else
 fi
 echo
 
-echo "=== Configure autostart"
+echo "#<<< Configure autostart"
 if [ -f /etc/rc.local ]
 then
   # 在腾讯云的 Debian 11.1 里，/etc/rc.local 第一行是 "#!bin/bash"，应当是错误的。
@@ -93,24 +93,24 @@ chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
 
-echo "=== Configure locales: [y] for yes, [anything else] for no change:"
-read -p ">>> " ConfigLocales
+echo "#<<< Configure locales: [y] for yes, [anything else] for no change:"
+read -p "#>>> " ConfigLocales
 if [ "$ConfigLocales" == 'y' ]
 then
   dpkg-reconfigure locales
 fi
 echo
 
-echo "=== Add a new user [[$NewUser]]? [y] for yes, [anything else] for no change:"
-read -p ">>> " AddNewUser
+echo "#<<< Add a new user [[$NewUser]]? [y] for yes, [anything else] for no change:"
+read -p "#>>> " AddNewUser
 if [ "$AddNewUser" == 'y' ]
 then
   source /faronear/sysconfig/debian-add-user.sh $NewUser
   source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
 
   echo
-  echo "=== Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"
-  read -p ">>> " XfceAutologin
+  echo "#<<< Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"
+  read -p "#>>> " XfceAutologin
   if [ "$XfceAutologin" == "y" ]
   then
     sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
@@ -122,4 +122,4 @@ then
 fi
 echo
 
-echo "=== Debian System Setup Completed."
+echo "#<<< Debian System Setup Completed."

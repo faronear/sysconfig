@@ -8,8 +8,8 @@ if [ -d "$1" ]
 then
   ROOTPATH=$1
 else
-  echo "=== Enter [root path] or [leave blank] for default [[`pwd`]] to start tree search for seafile-ignore.txt files"
-  read -p ">>> " ROOTPATH
+  echo "#<<< Enter [root path] or [leave blank] for default [[`pwd`]] to start tree search for seafile-ignore.txt files"
+  read -p "#>>> " ROOTPATH
   if [ "$ROOTPATH" ]
   then
     ROOTPATH=$(realpath $ROOTPATH)
@@ -26,8 +26,8 @@ else
 fi
 echo ""
 
-echo "=== Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]"
-read -p ">>> " IGNOREPATH
+echo "#<<< Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]"
+read -p "#>>> " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
   if [ -d "$IGNOREPATH" ]
@@ -46,8 +46,8 @@ else
 fi
 echo ""
 
-echo "=== Enter [y] to start updating, or [anything else] to quit"
-read -p ">>> " YESNO
+echo "#<<< Enter [y] to start updating, or [anything else] to quit"
+read -p "#>>> " YESNO
 if [ "$YESNO" != 'y' ]
 then
   exit

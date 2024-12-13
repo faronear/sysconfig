@@ -46,7 +46,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias su='su -'
 alias npmc='npm --registry https://registry.npmmirror.com'
-alias npmr='npm --silent run'
+alias npmr='npm -s run'
 alias curlw='curl -sSL -o /dev/null -w "%{http_code} | %{time_total} s | %{size_download} bytes | %{url_effective}\n"'
 if [ "$(uname)" = "Darwin" ]
 then
@@ -112,9 +112,28 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style$Type$Code`, for example, $Style=01; means text in bold, $Type=3 means text color, $Type=4 means background color, $Code could be 0-7 for pre-defined colors.
+# color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style;$Type$Color`:
+# $Style: text style
+# - `00`: Default style
+# - `01`: Bold/Bright
+# - `04`: Underlined
+# - `05`: Blink (may not work in all terminals)
+# - `07`: Inverse
+# - `08`: Hidden
+# $Type:
+# - `3`: text
+# - `4`: background
+# $Color: color
+# - `0`: Black
+# - `1`: Red
+# - `2`: Green
+# - `3`: Yellow
+# - `4`: Blue
+# - `5`: Magenta
+# - `6`: Cyan
+# - `7`: White
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;43m\]\u\[\033[00m\]@\[\033[01;46m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]> '
+    PS1='<\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;45m\]\u\[\033[00m\]@\[\033[01;41m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]> '
 else
     PS1='<\t#\u@\h:\w> '
 fi

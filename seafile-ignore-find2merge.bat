@@ -7,7 +7,7 @@ set ROOTPATH=
   set ROOTPATH=%1
 ) else (
   echo;
-  echo === Enter [root path] or [leave blank] for default [[%CD%]] to start tree search for seafile-ignore.txt files
+  echo #<<< Enter [root path] or [leave blank] for default [[%CD%]] to start tree search for seafile-ignore.txt files
   set /p ROOTPATH=">>> "
   echo;
   if "" == "%ROOTPATH%" (
@@ -23,7 +23,7 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo === Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]
+echo #<<< Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
@@ -39,7 +39,7 @@ if "" == "%IGNOREPATH%" (
 )
 
 pushd %ROOTPATH%
-echo === Starting from [[%CD%]] ===
+echo #<<< Starting from [[%CD%]]
 echo;
 
 for /d /r %%r in (*) do (

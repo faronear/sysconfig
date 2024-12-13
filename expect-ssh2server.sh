@@ -23,8 +23,8 @@ else
   echo "  sh  : $sh"
   echo "  wx  : $wx"
   echo
-  echo "=== Enter target (leave blank to specify host/user/pwd):"
-  read -p ">>> " TARGET
+  echo "#<<< Enter target (leave blank to specify host/user/pwd):"
+  read -p "#>>> " TARGET
   if [ ! $TARGET ]
   then
     TARGET=other
@@ -59,5 +59,5 @@ else
     read -p "root password = " ROOT_SU
   done
 
-  expect ~/faronear/npm/sysconfig/expect-ssh.sh $HOST $USER $PWD_USER $PWD_SU
+  expect ~/sysconfig/expect-ssh.sh $HOST $USER $PWD_USER $PWD_SU
 fi

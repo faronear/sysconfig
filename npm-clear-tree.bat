@@ -7,7 +7,7 @@ set ROOTPATH=
   set ROOTPATH=%1
 ) else (
   echo;
-  echo === Enter [root path] or [leave blank] for default to [[%CD%]]
+  echo #<<< Enter [root path] or [leave blank] for default to [[%CD%]]
   set /p ROOTPATH=">>> "
   echo;
   if "" == "%ROOTPATH%" (
@@ -22,7 +22,7 @@ if not exist "%ROOTPATH%" (
 )
 
 pushd %ROOTPATH%
-echo === Starting from [[%CD%]] ===
+echo #<<< Starting from [[%CD%]]
 echo;
 
 for /d /r %%r in (*) do (

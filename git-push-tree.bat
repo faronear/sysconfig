@@ -7,7 +7,7 @@ set ROOTPATH=
   set ROOTPATH=%1
 ) else (
   echo;
-  echo === Enter [root path] or [leave blank] for default to [[%CD%]]
+  echo #<<< Enter [root path] or [leave blank] for default to [[%CD%]]
   set /p ROOTPATH=">>> "
   echo;
   if "" == "%ROOTPATH%" (
@@ -23,10 +23,10 @@ if not exist "%ROOTPATH%" (
 )
 
 pushd %ROOTPATH%
-echo === Starting from [[%CD%]] ===
+echo #<<< Starting from [[%CD%]]
 echo;
 
-echo === Enter [commit message] or [leave blank] for default to 'updated'
+echo #<<< Enter [commit message] or [leave blank] for default to 'updated'
 set /p COMMIT_MESSAGE=">>> "
 @ if "" == "%COMMIT_MESSAGE%" (
   set COMMIT_MESSAGE="updated"
@@ -37,13 +37,13 @@ echo;
   @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
   for /d %%o in (*) do (
     @ if not "%%o" == ".vscode" (
-      echo ======== entering [[%ROOTPATH%\%%o]] ========
+      echo #<<<== entering [[%ROOTPATH%\%%o]]
       echo;
       pushd "%%o"
       for /d %%g in (*) do (
         if exist %%g\.git (
           pushd "%%g"
-          echo ---- git commit and push [[%ROOTPATH%\%%o\%%g]] ----
+          echo #---- git commit and push [[%ROOTPATH%\%%o\%%g]]
           git add . && git commit -m "%COMMIT_MESSAGE%" && git push
           echo;
           popd
@@ -58,7 +58,7 @@ echo;
     echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
       if exist "%%r\.git" (
         pushd "%%r"
-        echo ---- git commit and push [[%%r]] ----
+        echo #<<<== git commit and push [[%%r]]
         git add . && git commit -m "%COMMIT_MESSAGE%" && git push
         echo;
         popd

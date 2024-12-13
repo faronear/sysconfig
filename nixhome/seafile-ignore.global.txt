@@ -22,6 +22,8 @@
 *.nosf/
 *.nosf.*/
 
+.Trash/
+
 .DS_Store
 */.DS_Store
 
@@ -53,6 +55,9 @@ pages4loader.json5
 
 .deploy_git/
 */.deploy_git/
+
+# next.js 项目
+.next/
 
 # HBuilder 目录
 unpackage/

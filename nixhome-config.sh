@@ -1,32 +1,28 @@
 #!/bin/bash
 
-NIXHOME0=/faronear/sysconfig/nixhome
-NIXHOME1=~/sysconfig/nixhome
-NIXHOME2=`pwd`/nixhome
-
 if [ -d "$1" ]
 then
   NIXHOME=$1
-elif [ -d $NIXHOME0 ]
+else if [ -d "`pwd`/nixhome" ]
 then
-  NIXHOME=$NIXHOME0
-elif [ -d $NIXHOME1 ]
-then 
-  NIXHOME=$NIXHOME1
-elif [ -d $NIXHOME2 ]
-then
-  NIXHOME=$NIXHOME2
+  NIXHOME=`pwd`/nixhome
 else
-  echo ××× none of the testing path is valid.
-  echo "=== Enter [nixhome path] or leave [blank] to exit"
-  read -p ">>> " NIXHOME
   echo ""
-  if [ ! -d "$NIXHOME" ]
-  then 
-    echo "××× nixhome path [[$NIXHOME]] not available! Exit now. ×××"
-    exit
+  echo "#<<< Enter [root path] or [leave blank] for default to [[`pwd`]]"
+  read -p "#>>> " NIXHOME
+  if [ ! "$NIXHOME" ]
+  then
+    NIXHOME=`pwd`
   fi
 fi
+if [ ! -e "$NIXHOME/.bashrc" ]
+then 
+  echo "××× [[$NIXHOME/.bashrc]] not exist! Exit now. ***"
+  exit
+else
+  echo "√√√ NIXHOME = [[$NIXHOME]]"
+fi
+echo ""
 
 # $2 应当为用户名
 if [ "$2" == 'root' ]
@@ -50,8 +46,8 @@ then
   
   homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore.global.txt"
   echo
-  echo "=== Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
-  read -p ">>> " CopyOrLinkScripts
+  echo "#<<< Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
+  read -p "#>>> " CopyOrLinkScripts
   if [ "$CopyOrLinkScripts" == 'l' ]
   then
     for homescript in $homescriptlist
@@ -108,8 +104,8 @@ then
       mv $HomePath/.ssh/authorized_keys $HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)
     fi
 
-    echo "=== Append or link or omit [[$HomePath/.ssh/authorized_keys]] to config ssh server? [a] for append, [l] for link, [anything else] for omit:"
-    read -p ">>> " CopyOrLinkOrOmitAuthorizedKeys
+    echo "#<<< Append or link or omit [[$HomePath/.ssh/authorized_keys]] to config ssh server? [a] for append, [l] for link, [anything else] for omit:"
+    read -p "#>>> " CopyOrLinkOrOmitAuthorizedKeys
 
     if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]
     then

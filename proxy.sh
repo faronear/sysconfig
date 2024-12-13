@@ -1,26 +1,26 @@
 #!/bin/bash
 
-echo "=== Please run with 'source proxy.sh', otherwise it has no effect on the current shell"
+echo "#<<< Please run with 'source proxy.sh', otherwise it has no effect on the current shell"
 
 if [ -n "$1" ]; then
   proxySwitch="$1"
 else
-  echo "=== 开启或关闭网络代理？ [s/1] for start, [t/0] for terminate, [anything else] for no change."
-  read -p ">>> " proxySwitch
+  echo "#<<< 开启或关闭网络代理？ [s/1] for start, [t/0] for terminate, [anything else] for no change."
+  read -p "#>>> " proxySwitch
 fi
 
 # to reset port to empty, otherwise the second run of this script will not ask for port.
 PORT=
-
+PORTDEFAULT=20170
 # function proxy() {
   if [ "$proxySwitch" == "s" ] || [ "$proxySwitch" == "1" ]; then
-    echo "=== Proxy server running on [port number] or [leave blank] for default 7897"
+    echo "#<<< Proxy server running on [port number] or [leave blank] for default $PORTDEFAULT (20170 for v2ray2, or 7897 for clash verge)"
     while [ ! "$PORT" ]
     do
-      read -p ">>> " PORT
+      read -p "#>>> " PORT
       if [ ! "$PORT" ]
       then
-        PORT=7897
+        PORT=$PORTDEFAULT
       fi
     done
     export all_proxy=socks5://127.0.0.1:$PORT

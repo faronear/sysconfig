@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "=== Enter Pi precision to calculate (leave blank for default to 5000): "
-read -p ">>> " precision
+echo "#<<< Enter Pi precision to calculate (leave blank for default to 5000): "
+read -p "#>>> " precision
 if [ ! $precision ]; then
   precision=5000
 fi

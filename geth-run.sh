@@ -4,8 +4,8 @@ DATADIR=$1
 
 while [ ! "$DATADIR" ] || [ ! -d "./$DATADIR" ]
 do
-  echo "=== Set [datadir] name, leave [blank] for default 'pex-data-poa'"
-  read -p ">>> " DATADIR
+  echo "#<<< Set [datadir] name, leave [blank] for default 'pex-data-poa'"
+  read -p "#>>> " DATADIR
   if [ ! "$DATADIR" ]
   then
     DATADIR=chain-poa
@@ -15,15 +15,15 @@ echo ""
 
 
 echo "Run geth in pm2? [y] for yes, [anything else] for raw geth:"
-read -p ">>> " RUNPM2
+read -p "#>>> " RUNPM2
 echo "--- Creating ./$DATADIR/geth.ipc ..."
 # http.addr 默认为 127.0.0.1 => 无法从远处连接。要用 0.0.0.0 才能从远处用 IP 连接。
 # shh 是 whisper 协议，好像要先启动 websocket 接口才能启用。
 
 while [ ! "$KEYCODE" ]
 do
-  echo "=== Define chain keycode, for instance '882' for tuc chain:"
-  read -p ">>> " KEYCODE
+  echo "#<<< Define chain keycode, for instance '882' for tuc chain:"
+  read -p "#>>> " KEYCODE
 done
 
 if [ "$RUNPM2" == 'y' ]
