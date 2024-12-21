@@ -34,13 +34,13 @@ echo "::*** Configure root home"
 source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
 echo
 
-echo "::*** Change root password? [y] for yes, [anything else] for omit:"
-read -p "***:: " ChangeRootPassword
-if [ "$ChangeRootPassword" == 'y' ]
-then
-  passwd
-fi
-echo 
+# echo "::*** Change root password? [y] for yes, [anything else] for omit:"
+# read -p "***:: " ChangeRootPassword
+# if [ "$ChangeRootPassword" == 'y' ]
+# then
+#   passwd
+# fi
+# echo 
 
 echo "::*** Configure /etc/sudoers to includedir /etc/sudoers.d"
 #sed -i "s|%sudo\s\+ALL=(ALL:ALL)\sALL|%sudo\tALL=(ALL:ALL) NOPASSWD:ALL|g" /etc/sudoers  # allow all users in %sudo group to sudo without password
@@ -66,16 +66,16 @@ then
   echo
 fi
 
-echo "::*** Set [new hostname] or [leave blank] for no change"
-read -p "***:: " NewHostname
-if [ $NewHostname ]
-then
-  sed -i "s|\b`hostname`\b|$NewHostname|g" /etc/hosts # echo "127.0.0.1 $NewHostname" >> /etc/hosts
-  hostnamectl set-hostname $NewHostname
-else
-  echo '--- Nothing changed.'
-fi
-echo
+# echo "::*** Set [new hostname] or [leave blank] for no change"
+# read -p "***:: " NewHostname
+# if [ $NewHostname ]
+# then
+#   sed -i "s|\b`hostname`\b|$NewHostname|g" /etc/hosts # echo "127.0.0.1 $NewHostname" >> /etc/hosts
+#   hostnamectl set-hostname $NewHostname
+# else
+#   echo '--- Nothing changed.'
+# fi
+# echo
 
 echo "::*** Configure autostart"
 if [ -f /etc/rc.local ]
@@ -93,33 +93,33 @@ chmod +x /faronear/autostart.sh
 echo 'Autostart is set to /faronear/autostart.sh. Run "systemctl start/stop/status rc-local" to manage it.'
 echo
 
-echo "::*** Configure locales: [y] for yes, [anything else] for no change:"
-read -p "***:: " ConfigLocales
-if [ "$ConfigLocales" == 'y' ]
-then
-  dpkg-reconfigure locales
-fi
-echo
+# echo "::*** Configure locales: [y] for yes, [anything else] for no change:"
+# read -p "***:: " ConfigLocales
+# if [ "$ConfigLocales" == 'y' ]
+# then
+#   dpkg-reconfigure locales
+# fi
+# echo
 
-echo "::*** Add a new user [[$NewUser]]? [y] for yes, [anything else] for no change:"
-read -p "***:: " AddNewUser
-if [ "$AddNewUser" == 'y' ]
-then
-  source /faronear/sysconfig/debian-add-user.sh $NewUser
-  source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
+# echo "::*** Add a new user [[$NewUser]]? [y] for yes, [anything else] for no change:"
+# read -p "***:: " AddNewUser
+# if [ "$AddNewUser" == 'y' ]
+# then
+#   source /faronear/sysconfig/debian-add-user.sh $NewUser
+#   source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
 
-  echo
-  echo "::*** Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"
-  read -p "***:: " XfceAutologin
-  if [ "$XfceAutologin" == "y" ]
-  then
-    sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
-    sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
-    echo "--- Successfully configured autologin as [[$NewUser]]"
-  else
-    echo '--- Nothing changed.'
-  fi
-fi
-echo
+#   echo
+#   echo "::*** Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"
+#   read -p "***:: " XfceAutologin
+#   if [ "$XfceAutologin" == "y" ]
+#   then
+#     sed -i "s/^.*autologin-user=.*$/autologin-user=$NewUser/g" /etc/lightdm/lightdm.conf
+#     sed -i "s/^.*autologin-user-timeout=.*$/autologin-user-timeout=0/g" /etc/lightdm/lightdm.conf
+#     echo "--- Successfully configured autologin as [[$NewUser]]"
+#   else
+#     echo '--- Nothing changed.'
+#   fi
+# fi
+# echo
 
 echo "::*** Debian System Setup Completed."

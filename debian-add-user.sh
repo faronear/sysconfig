@@ -34,3 +34,11 @@ else
   echo "--- Nothing changed."
 fi
 echo
+
+echo "::*** Config home with standard init files? [y] for yes, [anything else] for no"
+read -p "***:: " ConfigHome
+if [ "$ConfigHome" = "y" ]
+then
+  source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
+fi
+echo
