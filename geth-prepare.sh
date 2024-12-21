@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "#<<< Set [datadir] name, leave [blank] for default 'pex-data-poa'（可以尚未存在）:"
-read -p "#>>> " DATADIR
+echo "::*** Set [datadir] name, leave [blank] for default 'pex-data-poa'（可以尚未存在）:"
+read -p "***:: " DATADIR
 if [ ! "$DATADIR" ]
 then
   DATADIR=chain-poa
@@ -9,8 +9,8 @@ fi
 echo "*** DATADIR = $DATADIR "
 echo ""
 
-echo "#<<< Init accounts: [y] for yes, [anything else] for no change"
-read -p "#>>> " INIT_ACCOUNTS
+echo "::*** Init accounts: [y] for yes, [anything else] for no change"
+read -p "***:: " INIT_ACCOUNTS
 if [ $INIT_ACCOUNTS ] && [ $INIT_ACCOUNTS == 'y' ]
 then
   echo "--- 生成新账户，自动存放在 ./$DATADIR/keystore/"
@@ -24,8 +24,8 @@ else
 fi
 echo ""
 
-echo "#<<< Init chain from genesis-$DATADIR.json: [y] for yes, [anything else] for no change"
-read -p "#>>> " INIT_CHAIN
+echo "::*** Init chain from genesis-$DATADIR.json: [y] for yes, [anything else] for no change"
+read -p "***:: " INIT_CHAIN
 if [ $INIT_CHAIN ] && [ $INIT_CHAIN == 'y' ]
 then
   echo "--- 初始化链上数据，存放在 ./$DATADIR/geth/"

@@ -1,5 +1,5 @@
-echo #<<< Enter [g] to reset git source to github, [a] to 阿里云, [z] to 中科大, [q] to 清华, [anything else] to quit:
-read -p '#>>> ' TARGET
+echo ::*** Enter [g] to reset git source to github, [a] to 阿里云, [z] to 中科大, [q] to 清华, [anything else] to quit:
+read -p '***:: ' TARGET
 
 if [ "$TARGET" = 'g' ]
 then

@@ -7,7 +7,7 @@ set ROOTPATH=
   set ROOTPATH=%1
 ) else (
   echo;
-  echo #<<< Enter [root path]> or [leave blank] for default to [[%CD%]]
+  echo ::*** Enter [root path]> or [leave blank] for default to [[%CD%]]
   set /p ROOTPATH=">>> "
   echo;
   if "" == "%ROOTPATH%" (
@@ -23,7 +23,7 @@ if not exist %ROOTPATH% (
 )
 
 pushd %ROOTPATH%
-echo #<<< Current path = [[%CD%]]
+echo ::*** Current path = [[%CD%]]
 
 @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
 

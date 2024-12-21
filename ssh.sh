@@ -36,12 +36,14 @@ if [ "$1" -ge 0 ] 2>/dev/null && [ "$1" -le ${#hosts[@]} ] 2>/dev/null
 then
   selected_index=$1-1
 else
-  echo "Select a target to connect via SSH:"
+  echo "Select a target to connect via SSH, or press 0 to exit:"
   select target in "${labels[@]}"
   do
     if [[ -n "$target" ]]; then
       selected_index=$REPLY-1
       break
+    elif [ "$REPLY" = '0' ]; then
+      exit 0
     else
       echo "Invalid selection. Try again."
     fi
@@ -61,13 +63,18 @@ then
   port=22
 fi
 
-if [ "$password" != "" ] & [ "$(which sshpass)" != "" ]
+echo "::*** Coonecting to ${label}"
+if [ "$password" != "null" ]
 then
-  echo "#<<< Coonecting to ${label} with password"
-  echo "#>>> ssh -X -p $port $username@$host"
-  sshpass -p $password ssh -X -p $port "$username@$host" $2
+  if [ "$(which sshpass)" ]
+  then
+    echo "::*** sshpass -p $password -X -p $port $username@$host"
+    sshpass -p $password ssh -X -p $port "$username@$host" $2
+  else
+    echo "::*** ssh -X -p $port $username@$host"
+    ssh -X -p $port "$username@$host" $2
+  fi
 else
-  echo "#<<< Coonecting to ${label} with private key"
-  echo "#>>> ssh -X -p $port $username@$host"
+  echo "::*** ssh -X -p $port $username@$host"
   ssh -X -p $port "$username@$host" $2
 fi

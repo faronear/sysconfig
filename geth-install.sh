@@ -4,8 +4,8 @@ if [ $1 ]
 then
   VERSION=$1
 else
-  echo "#<<< Install geth version of \n [version number] for example 1.10.26 \n [leave blank] for the latest version"
-  read -p "#>>> " VERSION
+  echo "::*** Install geth version of \n [version number] for example 1.10.26 \n [leave blank] for the latest version"
+  read -p "***:: " VERSION
 fi
 
 if [ "$(uname)" = "Linux" ]
@@ -27,8 +27,8 @@ fi
 
 OS=`uname | tr 'A-Z' 'a-z'`
 
-echo "#<<< Install geth：[b] for 二进制， [s] for 源代码，[anything else or leave blank] for no change"
-read -p "#>>> " BINARY_OR_SOURCE
+echo "::*** Install geth：[b] for 二进制， [s] for 源代码，[anything else or leave blank] for no change"
+read -p "***:: " BINARY_OR_SOURCE
 if [ "$BINARY_OR_SOURCE" == 'b' ]
 then
   echo "--- Extracting download link with correct hash from https://geth.ethereum.org/downloads"

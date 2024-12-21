@@ -1,11 +1,11 @@
-echo "#<<< Install formulaes and casks, enter [y] for Yes, [anything else] for No:"
+echo "::*** Install formulaes and casks, enter [y] for Yes, [anything else] for No:"
 echo
 
 formulaeList=(cloudflared jq openssl pandoc rclone readline speedtest-cli hudochenkov/sshpass/sshpass v2ray v2raya/v2raya/v2raya yt-dlp)
 for APP in "${formulaeList[@]}"
 do
   echo "--- brew install $APP"
-  read -p "#>>> " YN
+  read -p "***:: " YN
   if [ "$YN" = 'y' ]
   then
     brew install $APP
@@ -19,7 +19,7 @@ caskList=(appcleaner avidemux baidunetdisk cloudflare-warp cursor discord douyin
 for APP in "${caskList[@]}"
 do
   echo "--- brew install $APP --cask"
-  read -p "#>>> " YN
+  read -p "***:: " YN
   if [ "$YN" = 'y' ]
   then
     brew install $APP

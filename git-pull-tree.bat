@@ -7,7 +7,7 @@ set ROOTPATH=
   set ROOTPATH=%1
 ) else (
   echo;
-  echo #<<< Enter [root path]> or [leave blank] for default to [[%CD%]]
+  echo ::*** Enter [root path]> or [leave blank] for default to [[%CD%]]
   set /p ROOTPATH=">>> "
   echo;
   if "" == "%ROOTPATH%" (
@@ -23,20 +23,20 @@ if not exist "%ROOTPATH%" (
 )
 
 pushd %ROOTPATH%
-echo #<<< Starting from [[%CD%]]
+echo ::*** Starting from [[%CD%]]
 echo;
 
 @ if "%2" == "hier" (
   @REM for /d %%d in (*) do ( pushd %%d & ( for /d %%d in (*) do ( if exist %%d/.git pushd %%d & echo ---  git pulling: %%d ... & git pull & popd ) ) & popd )
   for /d %%o in (*) do (
     @ if not "%%o" == ".vscode" (
-      echo #<<<===== entering [[%ROOTPATH%\%%o]]
+      echo ::******** entering [[%ROOTPATH%\%%o]]
       echo;
       pushd %%o
       for /d %%g in (*) do (
         if exist "%%g\.git" (
           pushd %%g
-          echo #<<<== git pulling [[%ROOTPATH%\%%o\%%g]]
+          echo ::***** git pulling [[%ROOTPATH%\%%o\%%g]]
           git pull --all
           echo;
           popd
@@ -51,7 +51,7 @@ echo;
     echo "%%r" | findstr "node_modules uni_modules .deploy_git .git .svn .vscode unpackage _webroot _logstore _datasotre _archive _filestore _ssl" >NUL || (
       if exist "%%r\.git" (
         pushd "%%r"
-        echo #<<<== git pulling [[%%r]]
+        echo ::***** git pulling [[%%r]]
         git pull --all
         echo;
         popd

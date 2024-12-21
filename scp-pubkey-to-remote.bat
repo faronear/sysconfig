@@ -1,6 +1,6 @@
 @echo off 
 
-echo #<<< Append ~/.ssh/id_rsa.pub to remote server
+echo ::*** Append ~/.ssh/id_rsa.pub to remote server
 
 @ if not "%1" == "" (
   set REMOTEHOST=%1

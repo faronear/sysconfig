@@ -9,10 +9,10 @@ echo   nrm ls
 echo   nrm current
 echo
 
-echo "#<<< npm config get registry ==> $(npm config get registry)"
+echo "::*** npm config get registry ==> $(npm config get registry)"
 echo
-echo "#<<< npm config set registry \n [c] China, \n [w] World, [anything else] to quit"
-read -p "#>>> " TARGET
+echo "::*** npm config set registry \n [c] China, \n [w] World, [anything else] to quit"
+read -p "***:: " TARGET
 if [ "$TARGET" = 'c' ]
 then
   npm config set registry https://registry.npmmirror.com
@@ -21,4 +21,4 @@ then
   npm config set registry https://registry.npmjs.org
 fi
 echo
-echo "#<<< npm config get registry ==> $(npm config get registry)"
+echo "::*** npm config get registry ==> $(npm config get registry)"

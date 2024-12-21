@@ -23,8 +23,8 @@ else
   echo "  sh  : $sh"
   echo "  wx  : $wx"
   echo
-  echo "#<<< Enter target (leave blank to specify host/user/pwd):"
-  read -p "#>>> " TARGET
+  echo "::*** Enter target (leave blank to specify host/user/pwd):"
+  read -p "***:: " TARGET
   if [ ! $TARGET ]
   then
     TARGET=other

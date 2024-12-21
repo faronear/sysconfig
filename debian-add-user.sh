@@ -5,8 +5,8 @@ echo
 NewUser=$1
 while [ ! "$NewUser" ]
 do
-  echo "#<<< To add a new user of name:"
-  read -p "#>>> " NewUser
+  echo "::*** To add a new user of name:"
+  read -p "***:: " NewUser
 done
 
 useradd $NewUser
@@ -22,8 +22,8 @@ sed -i "s|/home/$NewUser:/bin/sh$|/home/$NewUser:/bin/bash|g" /etc/passwd
 # Debian 9 default to empty
 sed -i "s|/home/$NewUser:$|/home/$NewUser:/bin/bash|g" /etc/passwd
 
-echo "#<<< Allow the new user [[$NewUser]] to sudo without password? [y] for yes, [anything else] for no"
-read -p "#>>> " AllowSudo
+echo "::*** Allow the new user [[$NewUser]] to sudo without password? [y] for yes, [anything else] for no"
+read -p "***:: " AllowSudo
 if [ "$AllowSudo" = "y" ]
 then
   #usermod -a -G sudo $NewUser # Add to sudo group # Option 1: add user to %sudo group
