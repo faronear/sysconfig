@@ -31,7 +31,7 @@ fi
 echo
 
 echo "::*** Configure root home"
-source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
+source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root <<< 'l\nl\n'
 echo
 
 # echo "::*** Change root password? [y] for yes, [anything else] for omit:"
