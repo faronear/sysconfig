@@ -2,10 +2,11 @@ FROM debian:11.5
 LABEL org.opencontainers.image.authors="luk"
 
 RUN apt update && apt install curl -y
-RUN curl https://git.tic.cc/npm/sysconfig/raw/branch/main/debian-setup.sh > ~/debian-setup.sh && echo -e "l\n\n\n\n\n" | bash ~/debian-setup.sh
+RUN curl -s https://git.tic.cc/npm/sysconfig/raw/branch/main/debian-setup.sh | bash
 
 CMD bash
 
+# mv $(basename "$0") Dockerfile
 # docker build -t debian-faronear .
 # docker tag debian-faronear anolaxy/debian-faronear:11.5-20221205
 # docker login
