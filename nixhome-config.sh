@@ -42,32 +42,20 @@ if [ -d "$HomePath" ]; then
   echo
   echo "::*** Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
   read -p "***:: " CopyOrLinkScripts
-  if [ "$CopyOrLinkScripts" == 'l' ]; then
-    for homescript in $homescriptlist; do
-      if [ -e "$homescript" ] || [ -L "$homescript" ]; then
-        mv "$homescript" "$homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
-      fi
+  for homescript in $homescriptlist; do
+    if [ -e "$homescript" ] || [ -L "$homescript" ]; then
+      mv "$homescript" "$homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
+    fi
+    if [ "$CopyOrLinkScripts" == 'l' ]; then
       echo "--- Linking [[$NIXHOME/$homescript]] to [[$HomePath/$homescript]] ..."
       ln -s "$NIXHOME/$homescript" ./
-    done
-  elif [ "$CopyOrLinkScripts" == 'c' ]; then
-    for homescript in $homescriptlist; do
-      if [ -e "$homescript" ] || [ -L "$homescript" ]; then
-        mv "$homescript" "$homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
-      fi
+    elif [ "$CopyOrLinkScripts" == 'c' ]; then
       echo "--- Copying [[$NIXHOME/$homescript]] to [[$HomePath/$homescript]] ..."
       cp -r "$NIXHOME/$homescript" ./
-    done
-  elif [ "$CopyOrLinkScripts" == 'g' ]; then
-    for homescript in $homescriptlist; do
-      if [ -e "$homescript" ] || [ -L "$homescript" ]; then
-        mv "$homescript" "$homescript.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
-      fi
+    elif [ "$CopyOrLinkScripts" == 'g' ]; then
       curl -sSLO "https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/$homescript"
-    done
-  else
-    echo '--- Home scripts not changed.'
-  fi
+    fi
+  done  
 
   echo
 
@@ -86,13 +74,13 @@ if [ -d "$HomePath" ]; then
     fi
 
     echo "::*** Append or link or omit [[$HomePath/.ssh/authorized_keys]] to config ssh server? [a] for append, [l] for link, [anything else] for omit:"
-    read -p "***:: " CopyOrLinkOrOmitAuthorizedKeys
+    read -p "***:: " AuthorizedKeys
 
-    if [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'l' ]; then
+    if [ "$AuthorizedKeys" = 'l' ]; then
       echo "--- Linking [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       ln -s "$NIXHOME/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys"
       sudo chmod 644 "$HomePath/.ssh/authorized_keys" # 确保其他用户能读取 nixhome/.ssh/authorized_keys
-    elif [ "$CopyOrLinkOrOmitAuthorizedKeys" = 'a' ]; then
+    elif [ "$AuthorizedKeys" = 'a' ]; then
       echo "--- Copying [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       cat "$NIXHOME/.ssh/authorized_keys" >> "$HomePath/.ssh/authorized_keys"
       chmod 600 "$HomePath/.ssh/authorized_keys"

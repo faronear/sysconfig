@@ -16,9 +16,6 @@ then
   . /etc/profile
 fi
 
-# Define primary prompt (default is '$'):
-export PS1='<\u@\h::\w> ' # \w shows absolute path, \W shows current folder.
-
 # Always use ssh to connect to CVS repositories:
 export CVS_RSH=ssh
 
@@ -33,8 +30,8 @@ export CVS_RSH=ssh
 
 # Define aliases:
 
-alias rm='rm -i' # Think twice before deletion. Though troublesome but strongly recommended!
-alias ssh='ssh -C -X' # Request X tunneling for SSH:
+alias rm='rm -i' # Think twice before deletion. Though troublesome but strongly recommended.
+alias sshx='ssh -C -X' # Request X tunneling for SSH:
 alias sshtrust='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' # Do not verify Host Key change:
 alias cvs='cvs -z9' # Always use compression for CVS:
 alias ps='ps -elf'
@@ -48,6 +45,13 @@ alias su='su -'
 alias npmc='npm --registry https://registry.npmmirror.com'
 alias npmr='npm -s run'
 alias curlw='curl -sSL -o /dev/null -w "%{http_code} | %{time_total} s | %{size_download} bytes | %{url_effective}\n"'
+if [ $(which aichat) ]
+then
+  alias ai='aichat'
+  alias air='aichat -e'
+  alias aic='aichat -c'
+  alias aif='aichat --file'
+fi
 if [ "$(uname)" = "Darwin" ]
 then
   alias l='ls -lG'
@@ -57,6 +61,8 @@ then
   alias sedi='sed -i ""'
   export HOMEBREW_NO_AUTO_UPDATE=true
   export BASH_SILENCE_DEPRECATION_WARNING=1
+  promptPrefix='<'
+  promptSuffix='>'
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -lA --color=auto'
@@ -64,6 +70,8 @@ else
   alias lll='ls -la --color=auto'
   alias sedi='sed -i'
   export TIME_STYLE='+%Y-%m-%d--%H:%M:%S' 
+  promptPrefix='['
+  promptSuffix=']'
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
 #export CLICOLOR='Yes'            #是否输出颜色
@@ -72,45 +80,31 @@ fi
 # Set default file permission mask:
 umask 022 # rwxr-xr-x
 
-# If this is an xterm set the title to user@host:dir
-# $USERNAME and $USER are both empty during execution of .bashrc. 
-# PROMPT_COMMAND is expanded only when used.
-case "$TERM" in
-    xterm*|rxvt*)
-	PROMPT_COMMAND='echo -ne "\033]0;<${USER}@${HOSTNAME}:${PWD}>B\007"'
-	;;
-    dumb*)
-	;;
-    *)
-	;;
-esac
-
 ############## following settings copied from amazon's debian ####################
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+## uncomment for a colored prompt, if the terminal has the capability; turned
+## off by default to not distract the user: the focus in a terminal window
+## should be on the output of commands, not on the prompt
+# force_color_prompt=yes
+# if [ -n "$force_color_prompt" ]; then
+#     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+# 	# We have color support; assume it's compliant with Ecma-48
+# 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+# 	# a case would tend to support setf rather than setaf.)
+# 	color_prompt=yes
+#     else
+# 	color_prompt=
+#     fi
+# fi
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
 
 # color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style;$Type$Color`:
 # $Style: text style
@@ -132,21 +126,15 @@ fi
 # - `5`: Magenta
 # - `6`: Cyan
 # - `7`: White
+# others:
+# \w shows absolute path, \W shows current folder.
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;45m\]\u\[\033[00m\]@\[\033[01;41m\]\h\[\033[00m\]:\[\033[01;41m\]\w\[\033[00m\]> '
+    PS1='$promptPrefix\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;45m\]\u\[\033[00m\]@\[\033[01;41m\]\h|$(uname)|$(uname -m)\[\033[00m\]::\[\033[01;44m\]\w\[\033[00m\]$promptSuffix '
 else
-    PS1='<\t#\u@\h:\w> '
+    PS1='$promptPrefix\t#\u@\h($(uname)-$(uname -m)):\w$promptSuffix ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;\u@\h::\w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 ############## above settings copied from amazon's debian ####################
 
 if [ "$(uname)" = "Darwin" ]
@@ -199,3 +187,6 @@ fi
 ################################################################################
 # End Of File: "~/.bashrc"
 ################################################################################
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/luk/.cache/lm-studio/bin"

@@ -1,8 +1,9 @@
 #!/bin/bash
 
+## "curl -s https://git.tic.cc/npm/sysconfig/raw/branch/main/debian-setup.sh | bash"
+
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
-echo "curl -s https://git.faronear.org/npm/sysconfig/raw/branch/main/debian-setup.sh | bash"
 
 if [ "$1" ]
 then
@@ -12,8 +13,8 @@ else
 fi
 
 echo "::*** Installing basic tools"
-apt update
-apt install -y emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python3 jq
+#apt update
+apt install -y nano emacs git wget curl screen sudo automake rsync net-tools dnsutils gcc g++ make python3 jq
 # Debian 12.0 has no python package, However the following packages replace it:  python-is-python3 2to3
 echo
 
@@ -25,13 +26,13 @@ echo "::*** Git cloning to /faronear/sysconfig"
 git config --global credential.helper cache
 if [ ! -d "/faronear/sysconfig" ]
 then
-  git clone https://git.faronear.org/npm/sysconfig /faronear/sysconfig
+  git clone https://git.tic.cc/npm/sysconfig /faronear/sysconfig
   chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/sysconfig/nixhome/*
 fi
 echo
 
 echo "::*** Configure root home"
-source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root <<< 'l\nl\n'
+source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
 echo
 
 # echo "::*** Change root password? [y] for yes, [anything else] for omit:"

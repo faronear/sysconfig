@@ -1,4 +1,4 @@
-FROM debian:11.5
+FROM debian:12.8
 LABEL org.opencontainers.image.authors="luk"
 
 RUN apt update && apt install curl -y
