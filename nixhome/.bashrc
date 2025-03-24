@@ -61,8 +61,6 @@ then
   alias sedi='sed -i ""'
   export HOMEBREW_NO_AUTO_UPDATE=true
   export BASH_SILENCE_DEPRECATION_WARNING=1
-  promptPrefix='<'
-  promptSuffix='>'
 else
   alias l='ls -l --color=auto' # --time-style=long-iso --color=auto'
   alias ll='ls -lA --color=auto'
@@ -70,8 +68,6 @@ else
   alias lll='ls -la --color=auto'
   alias sedi='sed -i'
   export TIME_STYLE='+%Y-%m-%d--%H:%M:%S' 
-  promptPrefix='['
-  promptSuffix=']'
 fi
 #export LS_OPTIONS='--color=auto' # 如果没有指定，则自动选择颜色
 #export CLICOLOR='Yes'            #是否输出颜色
@@ -106,7 +102,7 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# color starts with \[\033[${ColorCode}m\] and ends with \[\033[00m\], in which the $ColorCode is `$Style;$Type$Color`:
+# color starts with \[\033[${Style};${Type}${Color}m\] and ends with \[\033[00m\].
 # $Style: text style
 # - `00`: Default style
 # - `01`: Bold/Bright
@@ -129,9 +125,9 @@ esac
 # others:
 # \w shows absolute path, \W shows current folder.
 if [ "$color_prompt" = yes ]; then
-    PS1='$promptPrefix\[\033[01;42m\]\t\[\033[00m\]#\[\033[01;45m\]\u\[\033[00m\]@\[\033[01;41m\]\h|$(uname)|$(uname -m)\[\033[00m\]::\[\033[01;44m\]\w\[\033[00m\]$promptSuffix '
+    PS1='<\[\033[00;42m\]\t\[\033[00m\]#\[\033[00;45m\]\u\[\033[00m\]@\[\033[00;41m\]\h|$(uname)|$(uname -m)\[\033[00m\]::\[\033[00;44m\]\w\[\033[00m\]> '
 else
-    PS1='$promptPrefix\t#\u@\h($(uname)-$(uname -m)):\w$promptSuffix ' # \w shows absolute path, \W shows current folder.
+    PS1='<\t#\u@\h($(uname)-$(uname -m)):\w> ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
