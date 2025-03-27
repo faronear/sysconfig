@@ -46,7 +46,7 @@ do
       cd "$repo"
       # echo "    changing repo url to [[$ROOTPATH/$org/$repo]]"
       # git remote remove origin
-      # git remote add origin https://git.faronear.org/$org/$repo
+      # git remote add origin https://git.tic.cc/$org/$repo
       # git pull
       # git branch --set-upstream-to=origin/main main
       # git pull

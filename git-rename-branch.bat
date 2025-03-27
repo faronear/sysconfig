@@ -37,7 +37,7 @@ for /d %%o in (*) do (
           pushd %%g
           @REM echo    changing repo url 
           @REM git remote remove origin
-          @REM git remote add origin https://git.faronear.org/%%o/%%g
+          @REM git remote add origin https://git.tic.cc/%%o/%%g
           @REM git pull
           @REM git branch --set-upstream-to=origin/main main
           @REM git pull

@@ -26,7 +26,7 @@ else
 fi
 echo ""
 
-echo "::*** Enter [path to .gitignore.global.txt] or [leave blank] for default [[https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt]]" 
+echo "::*** Enter [path to .gitignore.global.txt] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt]]" 
 read -p "***:: " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
@@ -42,7 +42,7 @@ then
     echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
   fi
 else
-  IGNOREPATH=https://git.faronear.org/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt
+  IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt
 fi
 echo ""
 
