@@ -125,9 +125,9 @@ esac
 # others:
 # \w shows absolute path, \W shows current folder.
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[00;32m\]\t\[\033[00m\]#\[\033[00;35m\]\u\[\033[00m\]@\[\033[00;31m\]\h|$(uname)|$(uname -m)\[\033[00m\]::\[\033[00;34m\]\w\[\033[00m\]> '
+    PS1='[\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h|$(uname)|$(uname -m)\[\033[00m\]::\[\033[07;34m\]\w\[\033[00m\]] '
 else
-    PS1='<\t#\u@\h($(uname)-$(uname -m)):\w> ' # \w shows absolute path, \W shows current folder.
+    PS1='[\t#\u@\h($(uname)-$(uname -m)):\w] ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
