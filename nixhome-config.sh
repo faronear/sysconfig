@@ -6,7 +6,7 @@ elif [ -d "$(pwd)/nixhome" ]; then
   NIXHOME=$(pwd)/nixhome
 else
   echo ""
-  echo "::*** Enter [root path] or [leave blank] for default to [[$(pwd)]]"
+  echo "::*** Enter [root path of nixhome] or [leave blank] for current [[$(pwd)]]"
   read -p "***:: " NIXHOME
   if [ -z "$NIXHOME" ]; then
     NIXHOME=$(pwd)
@@ -38,7 +38,7 @@ if [ -d "$HomePath" ]; then
 
   pushd "$HomePath"
   
-  homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore.global.txt"
+  homescriptlist=".emacs .emacs.lisp .bashrc .bash_profile .gitignore_global"
   echo
   echo "::*** Copy or link scripts? [l] to link, [c] to copy, [g] to git import, [anything else] to omit:"
   read -p "***:: " CopyOrLinkScripts

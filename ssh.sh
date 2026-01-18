@@ -11,8 +11,11 @@ fi
 # Path to the settings.json file
 SETTINGS_FILE="$HOME/Library/Application Support/Code/User/settings.json"
 if [[ ! -f "$SETTINGS_FILE" ]]; then
+  SETTINGS_FILE="$HOME/product_产品/.vscode/settings.json"
+  if [[ ! -f "$SETTINGS_FILE" ]]; then
     echo "settings.json file not found!"
     exit 1
+  fi
 fi
 
 # 自定义的列表，但是测试有问题，只有第一行被select添加了序号

@@ -6,5 +6,6 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update
 sudo apt install caddy
 
+echo 
 echo Certificates will be saved automatically in ~/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/
 echo Config file of caddy started by systemctl : /etc/caddy/Caddyfile

@@ -47,7 +47,8 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "Path to global gitignore file? (For example ~/.gitignore.global.txt, leave blank for no change)"
+echo "Current global gitignore file = $(git config --get core.excludesfile)"
+echo "Set [path to global gitignore file]? (leave blank for no change)"
 read -p "***:: " ExcludesFile
 if [ $ExcludesFile ]
 then
@@ -65,3 +66,14 @@ then
   echo "git config --global init.defaultbranch $DefaultBranch"
   git config --global init.defaultbranch $DefaultBranch
 fi
+
+echo "---------------------------------------------"
+echo "Set postBuffer size? Suggesting 157286400 (leave blank for no change)"
+read -p "***:: " PostBufferSize
+if [ $PostBufferSize ]
+then
+  echo "git config --global http.postBuffer $PostBufferSize"
+  git config --global http.postBuffer $PostBufferSize
+fi
+
+

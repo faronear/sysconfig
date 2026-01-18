@@ -5,7 +5,7 @@
 #   https://github.com/SlideWave/gitignore-include?tab=readme-ov-file#examples
 #   https://gitignore.io
 
-### .gitignore.global.txt ###
+### .gitignore_global ###
 
 # Self defined pattern to ignore
 ?*.gitignore

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore.global.txt] and [ROOTPATH/*/.gitignore.local.txt] files to [seafile-ignore.txt]"
+echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore_global] and [ROOTPATH/*/.gitignore.local.txt] files to [seafile-ignore.txt]"
 echo ""
 
 if [ -d "$1" ]
@@ -26,13 +26,13 @@ else
 fi
 echo ""
 
-echo "::*** Enter [path to .gitignore.global.txt] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt]]" 
+echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global]]" 
 read -p "***:: " IGNOREPATH
 if [ "$IGNOREPATH" ]
 then
   if [ -d "$IGNOREPATH" ]
   then
-    IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore.global.txt
+    IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore_global
   fi
   if [ ! -f "$IGNOREPATH" ]
   then
@@ -42,7 +42,7 @@ then
     echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
   fi
 else
-  IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt
+  IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
 fi
 echo ""
 

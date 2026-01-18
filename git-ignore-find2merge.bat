@@ -23,13 +23,13 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo ::*** Enter [path to .gitignore.global.txt] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt]]
+echo ::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore.global.txt
+  set IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
 ) else (
-  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore.global.txt"
+  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore_global"
   if not exist "%IGNOREPATH%" (
     echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
     @ GOTO END
