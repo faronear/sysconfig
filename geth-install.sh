@@ -10,7 +10,6 @@ fi
 
 if [ "$(uname)" = "Linux" ]
 then
-  # 用 dpkg --print-architecture 更直接
   ARCH=`dpkg --print-architecture`
 else
   if [ "$(uname -m)" = "aarch64" ] || [ "$(uname -m)" = "arm64" ] # on MacBook Air M2, $(uname -m) returns 'arm64'
@@ -27,7 +26,7 @@ fi
 
 OS=`uname | tr 'A-Z' 'a-z'`
 
-echo "::*** Install geth：[b] for 二进制， [s] for 源代码，[anything else or leave blank] for no change"
+echo "::*** Install geth：[b] 二进制， [s] 源代码，[anything else] for no change"
 read -p "***:: " BINARY_OR_SOURCE
 if [ "$BINARY_OR_SOURCE" == 'b' ]
 then
