@@ -74,22 +74,21 @@ if [ -d "$HomePath" ]; then
     read -p "***:: " AuthorizedKeys
 
     if [ "$AuthorizedKeys" = 'l' ]; then
+      if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]; then
+        mv "$HomePath/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
+      fi
       echo "--- Linking [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       ln -s "$NIXHOME/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys"
       sudo chmod 644 "$HomePath/.ssh/authorized_keys" # 确保其他用户能读取 nixhome/.ssh/authorized_keys
     elif [ "$AuthorizedKeys" = 'a' ]; then
+      if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]; then
+        mv "$HomePath/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
+      fi
       echo "--- Copying [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       cat "$NIXHOME/.ssh/authorized_keys" >> "$HomePath/.ssh/authorized_keys"
       chmod 600 "$HomePath/.ssh/authorized_keys"
-    else
-      exit 0
     fi
     echo
-
-    if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]; then
-      mv "$HomePath/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
-    fi
-
 
   fi
 
