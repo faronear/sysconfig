@@ -69,9 +69,6 @@ if [ -d "$HomePath" ]; then
       # 由 root 指定新用户而创建的配置文件的 owner 是 root，而不是新用户，导致新用户无法读取该文件而密钥登录失败，因此要重设 owner。
       chown "$TheUser:$TheUser" "$HomePath/.ssh"
     fi
-    if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]; then
-      mv "$HomePath/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
-    fi
 
     echo "::*** Append or link or omit [[$HomePath/.ssh/authorized_keys]] to config ssh server? [a] for append, [l] for link, [anything else] for omit:"
     read -p "***:: " AuthorizedKeys
@@ -84,8 +81,15 @@ if [ -d "$HomePath" ]; then
       echo "--- Copying [[$NIXHOME/authorized_keys]] to [[$HomePath/.ssh/authorized_keys]] ..."
       cat "$NIXHOME/.ssh/authorized_keys" >> "$HomePath/.ssh/authorized_keys"
       chmod 600 "$HomePath/.ssh/authorized_keys"
+    else
+      exit 0
     fi
     echo
+
+    if [ -f "$HomePath/.ssh/authorized_keys" ] || [ -L "$HomePath/.ssh/authorized_keys" ]; then
+      mv "$HomePath/.ssh/authorized_keys" "$HomePath/.ssh/authorized_keys.backup-$(date -u +%Y%m%dT%H%M%Sutc)"
+    fi
+
 
   fi
 
