@@ -126,11 +126,11 @@ esac
 # \w shows absolute path, \W shows current folder.
 
 if [ "$(uname)" = "Darwin" ]; then
-    MYOSVERSION=mac`sw_vers -productVersion`
+    MYOSVERSION=Mac`sw_vers -productVersion`
 elif [ -f /etc/debian_version ]; then
-    MYOSVERSION=deb`cat /etc/debian_version 2>/dev/null`
+    MYOSVERSION=Deb`cat /etc/debian_version 2>/dev/null`
 elif [ -f /etc/ubuntu_version ]; then
-    MYOSVERSION=ubt`cat /etc/ubuntu_version 2>/dev/null`
+    MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
     PS1='[\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h=$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;34m\]\w\[\033[00m\]] '
