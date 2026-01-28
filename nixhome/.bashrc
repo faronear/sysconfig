@@ -133,9 +133,9 @@ elif [ -f /etc/ubuntu_version ]; then
     MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-    PS1='[\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h=$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;34m\]\w\[\033[00m\]] '
+    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]^\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;36m\]\w\[\033[00m\]> '
 else
-    PS1='[\t#\u@\h=$(uname -m),$(uname),$MYOSVERSION::\w] ' # \w shows absolute path, \W shows current folder.
+    PS1='[\t#\u@\h^$(uname -m),$(uname),$MYOSVERSION::\w] ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
