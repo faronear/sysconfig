@@ -136,9 +136,9 @@ if [[ -n "$SSH_CONNECTION" ]]; then
     IN_SSH="[ssh]"
 fi
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]^\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;36m\]\w\[\033[00m\]$IN_SSH> '
+    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]^\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:$IN_SSH:\[\033[07;36m\]\w\[\033[00m\]> '
 else
-    PS1='<\t#\u@\h^$(uname -m),$(uname),$MYOSVERSION::\w$IN_SSH> ' # \w shows absolute path, \W shows current folder.
+    PS1='<\t#\u@\h^$(uname -m),$(uname),$MYOSVERSION:$IN_SSH:\w> ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
