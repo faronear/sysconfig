@@ -24,17 +24,17 @@ if not exist "%ROOTPATH%" (
 )
 
 echo ::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global]]
-set /p IGNOREPATH=">>> "
+set /p GLOBALPATH=">>> "
 echo;
-if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
+if "" == "%GLOBALPATH%" (
+  set GLOBALPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
 ) else (
-  for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/.gitignore_global"
-  if not exist "%IGNOREPATH%" (
-    echo ××× [[%IGNOREPATH%]] not exist! Exit now. ***
+  for %P in (%GLOBALPATH%) do set "GLOBALPATH=%~dpnxP/.gitignore_global"
+  if not exist "%GLOBALPATH%" (
+    echo ××× [[%GLOBALPATH%]] not exist! Exit now. ***
     @ GOTO END
   ) else (
-    echo √√√ IGNOREPATH = [[%IGNOREPATH%]]
+    echo √√√ GLOBALPATH = [[%GLOBALPATH%]]
   )
 )
 
@@ -48,7 +48,7 @@ for /d /r %%r in (*) do (
     if exist "%%r\.git" (
       pushd "%%r"
       echo ---- updating .gitignore in [[%%r]] ----
-      cat %IGNOREPATH%\.gitignore %%r\.gitignore.local.txt > %%r\.gitignore
+      cat %GLOBALPATH%\.gitignore %%r\.gitignore.local.txt > %%r\.gitignore
       echo;
       popd
     )

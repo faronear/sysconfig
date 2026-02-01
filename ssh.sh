@@ -66,7 +66,7 @@ then
   port=22
 fi
 
-echo "::*** Coonecting to ${label}"
+echo "::*** Connecting to ${label}"
 if [ "$password" != "null" ]
 then
   if [ "$(which sshpass)" ]
@@ -75,7 +75,7 @@ then
     sshpass -p $password ssh -X -p $port "$username@$host" $2
   else
     echo "::*** ssh -X -p $port $username@$host"
-    ssh -X -p $port "$username@$host" $2
+    ssh -X -p $port "$username@$host" $2 # -X 在 linux 安装 xrdp 后连接时报错，改 -Y 就可。
   fi
 else
   echo "::*** ssh -X -p $port $username@$host"

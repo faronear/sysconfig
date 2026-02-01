@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "Search in [ROOTPATH], merge [IGNOREPATH/.gitignore_global] and [ROOTPATH/*/.gitignore.local.txt] files to [seafile-ignore.txt]"
+echo "Search in [ROOTPATH], merge [GLOBALPATH/.gitignore_global] and [ROOTPATH/*/.gitignore.local.txt] files to .gitignore"
 echo ""
 
 if [ -d "$1" ]
@@ -27,22 +27,22 @@ fi
 echo ""
 
 echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global]]" 
-read -p "***:: " IGNOREPATH
-if [ "$IGNOREPATH" ]
+read -p "***:: " GLOBALPATH
+if [ "$GLOBALPATH" ]
 then
-  if [ -d "$IGNOREPATH" ]
+  if [ -d "$GLOBALPATH" ]
   then
-    IGNOREPATH=$(realpath $IGNOREPATH)/.gitignore_global
+    GLOBALPATH=$(realpath $GLOBALPATH)/.gitignore_global
   fi
-  if [ ! -f "$IGNOREPATH" ]
+  if [ ! -f "$GLOBALPATH" ]
   then
-    echo "××× Not found [[$IGNOREPATH]]. Exit now..."
+    echo "××× Not found [[$GLOBALPATH]]. Exit now..."
     exit
   else
-    echo "√√√ IGNOREPATH = [[$IGNOREPATH]]"
+    echo "√√√ GLOBALPATH = [[$GLOBALPATH]]"
   fi
 else
-  IGNOREPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
+  GLOBALPATH=https://git.tic.cc/npm/sysconfig/raw/branch/main/nixhome/.gitignore_global
 fi
 echo ""
 
@@ -62,11 +62,11 @@ do
   if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then
     echo "---- updating [[$repo/.gitignore]] ----"
-    if [ -f "$IGNOREPATH" ]
+    if [ -f "$GLOBALPATH" ]
     then
-      cat $IGNOREPATH > $repo/.gitignore
+      cat $GLOBALPATH > $repo/.gitignore
     else
-      curl -sSL $IGNOREPATH | cat > $repo/.gitignore
+      curl -sSL $GLOBALPATH | cat > $repo/.gitignore
     fi
     cat $repo/.gitignore.local.txt 2>/dev/null >> $repo/.gitignore
     echo ""

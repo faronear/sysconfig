@@ -132,29 +132,28 @@ elif [ -f /etc/debian_version ]; then
 elif [ -f /etc/ubuntu_version ]; then
     MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
+if [[ -n "$SSH_CONNECTION" ]]; then
+    IN_SSH="[ssh]"
+fi
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]^\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;36m\]\w\[\033[00m\]> '
+    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]^\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]::\[\033[07;36m\]\w\[\033[00m\]$IN_SSH> '
 else
-    PS1='[\t#\u@\h^$(uname -m),$(uname),$MYOSVERSION::\w] ' # \w shows absolute path, \W shows current folder.
+    PS1='<\t#\u@\h^$(uname -m),$(uname),$MYOSVERSION::\w$IN_SSH> ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
 ############## above settings copied from amazon's debian ####################
 
-if [ "$(uname)" = "Darwin" ]
-then
-  if [ "$(uname -m)" = "arm64" ] && [ -f /opt/homebrew/bin/brew ]
-  then
+if [ "$(uname)" = "Darwin" ]; then
+  if [ "$(uname -m)" = "arm64" ] && [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [ "$(uname -m)" = "x86_64" ] && [ -f /usr/local/homebrew/bin/brew ]
-  then 
+  elif [ "$(uname -m)" = "x86_64" ] && [ -f /usr/local/homebrew/bin/brew ]; then 
     eval "$(echo $(/usr/local/homebrew/bin/brew shellenv) | sed 's#HOMEBREW_CELLAR=.*$#HOMEBREW_CELLAR=/usr/local/Cellar#')"
   fi
 fi
 
 # nvm settings
-if [ -d $HOME/.nvm ]
-then
+if [ -d $HOME/.nvm ]; then
   # 注意，这句 export 导致 `su` 会继承原用户的环境变量 NVM_DIR=/home/原用户/.nvm，可能导致不符合预期的行为。因此要 `su -` 更安全。
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
