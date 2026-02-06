@@ -37,7 +37,7 @@ if [ $targetUrl ]
 then
   read -p "Enter adot password (ROAD) >>" PWD_ADOT
   read -p "Enter root password (YU) >>" PWD_ROOT
-  expect ~/faronear/npm/sysconfig/expect-ssh.sh $targetUrl adot $PWD_ADOT $PWD_ADOT
+  expect ~/faronear/sysconfig/expect-ssh.sh $targetUrl adot $PWD_ADOT $PWD_ADOT
 else
   while [ ! "$HOST" ]
   do

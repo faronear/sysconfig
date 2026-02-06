@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## "curl -s https://git.tic.cc/npm/sysconfig/raw/branch/main/debian-setup.sh | bash"
+## "curl -s https://git.tic.cc/open/sysconfig/raw/branch/main/debian-setup.sh | bash"
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
@@ -26,7 +26,7 @@ echo "::*** Git cloning to /faronear/sysconfig"
 git config --global credential.helper cache
 if [ ! -d "/faronear/sysconfig" ]
 then
-  git clone https://git.tic.cc/npm/sysconfig /faronear/sysconfig
+  git clone https://git.tic.cc/open/sysconfig /faronear/sysconfig
   chmod -R 755 /faronear # 确保其他用户能够读取 /faronear/sysconfig/nixhome/*
 fi
 echo
