@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Usage: this-script.sh [VERSION]"
+echo "Usage: $(basename $0) [VERSION]"
 
 sudo rm -fr /usr/local/bin/node
 sudo rm -fr /usr/local/bin/npm

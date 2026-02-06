@@ -13,6 +13,6 @@ else
   diskutil apfs create ${DISKID} $DISKNAME
 fi
 
-# copy this script to some public folder, e.g. `sudo cp this-script.sh /etc/`, because in my test, it doesn't work in /Users/...
+# copy this script to some public folder, e.g. `sudo cp $(basename $0) /etc/`, because in my test, it doesn't work in /Users/...
 # copy the corresponding plist file to /Library/LaunchDaemons/,
 # optionally run `sudo launchctl load /Library/LaunchDaemons/my-launch-file.plist` immediately for test.

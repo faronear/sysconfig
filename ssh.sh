@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo Usage: this_script.sh [selected_index] [to_run_cmd]
+echo "Usage: $(basename $0) [selected_index] [to_run_cmd]"
 
 # Ensure jq is installed
 if ! command -v jq &> /dev/null; then
@@ -11,20 +11,12 @@ fi
 # Path to the settings.json file
 SETTINGS_FILE="$HOME/Library/Application Support/Code/User/settings.json"
 if [[ ! -f "$SETTINGS_FILE" ]]; then
-  SETTINGS_FILE="$HOME/product_产品/.vscode/settings.json"
-  if [[ ! -f "$SETTINGS_FILE" ]]; then
-    echo "settings.json file not found!"
-    exit 1
-  fi
+    SETTINGS_FILE="$HOME/product_产品/.vscode/settings.json"
+    if [[ ! -f "$SETTINGS_FILE" ]]; then
+        echo "settings.json file not found!"
+        exit 1
+    fi
 fi
-
-# 自定义的列表，但是测试有问题，只有第一行被select添加了序号
-# targets=$(jq -r '.["sshfs.configs"][] | "\(.name)"' "$SETTINGS_FILE")
-# if [ -z "$targets" ]
-# then
-#   echo "No configurations found in the settings.json file."
-#   exit 1
-# fi
 
 # Parse the JSON to get labels and corresponding details
 labels=($(jq -r '.["sshfs.configs"][] | .label' "$SETTINGS_FILE"))
@@ -35,22 +27,46 @@ usernames=($(jq -r '.["sshfs.configs"][] | .username' "$SETTINGS_FILE"))
 passwords=($(jq -r '.["sshfs.configs"][] | .password' "$SETTINGS_FILE"))
 privateKeyPaths=($(jq -r '.["sshfs.configs"][] | .privateKeyPath' "$SETTINGS_FILE"))
 
-if [ "$1" -ge 0 ] 2>/dev/null && [ "$1" -le ${#hosts[@]} ] 2>/dev/null
-then
-  selected_index=$1-1
+options=()
+prefixes=()
+for i in "${!labels[@]}"; do
+    option=$(echo "${labels[$i]}" | sed 's/[^[:alnum:]].*//')  # 提取前几个字母和数字
+    options+=("$option: ${labels[$i]}")  # 去掉序号，保留前缀和完整label
+    prefixes+=("$option")  # 保存前缀
+done
+
+# Check if a command-line argument is provided
+if [ "$1" != "" ]; then
+    # 如果提供了参数，则直接使用这个前缀
+    user_input=$1
 else
-  echo "Select a target to connect via SSH, or press 0 to exit:"
-  select target in "${labels[@]}"
-  do
-    if [[ -n "$target" ]]; then
-      selected_index=$REPLY-1
-      break
-    elif [ "$REPLY" = '0' ]; then
-      exit 0
-    else
-      echo "Invalid selection. Try again."
+    echo "Select a target to connect via SSH, or press 0 to exit:"
+    echo
+
+    # Display options without numbers
+    for opt in "${options[@]}"; do
+        echo "$opt"
+    done
+
+    echo
+    read -p "请输入要连接的主机前缀: " user_input
+fi
+
+echo
+
+# 查找用户输入对应的索引
+selected_index=-1
+for i in "${!prefixes[@]}"; do
+    if [[ "${prefixes[$i]}" == "$user_input" ]]; then
+        selected_index=$i
+        break
     fi
-  done
+done
+
+# 如果没有找到匹配的索引
+if [ "$selected_index" -eq -1 ]; then
+    echo "无效的选择，请重试。"
+    exit 1
 fi
 
 label="${labels[$selected_index]}"
@@ -61,23 +77,20 @@ username="${usernames[$selected_index]}"
 password="${passwords[$selected_index]}"
 privateKeyPath="${privateKeyPaths[$selected_index]}"
 
-if [ "$port" = "null" ]
-then
-  port=22
+if [ "$port" = "null" ]; then
+    port=22
 fi
 
 echo "::*** Connecting to ${label}"
-if [ "$password" != "null" ]
-then
-  if [ "$(which sshpass)" ]
-  then
-    echo "::*** sshpass -p $password -Y -p $port $username@$host"
-    sshpass -p $password ssh -Y -p $port "$username@$host" $2
-  else
-    echo "::*** ssh -Y -p $port $username@$host"
-    ssh -Y -p $port "$username@$host" $2 # -X 在 linux 安装 xrdp 后连接时报错，改 -Y 就可。
-  fi
+if [ "$password" != "null" ]; then
+    if command -v sshpass &> /dev/null; then
+        echo "::*** sshpass -p $password -Y -p $port $username@$host"
+        sshpass -p "$password" ssh -Y -p "$port" "$username@$host" $2
+    else
+        echo "::*** ssh -Y -p $port $username@$host"
+        ssh -Y -p "$port" "$username@$host" $2
+    fi
 else
-  echo "::*** ssh -Y -p $port $username@$host"
-  ssh -Y -p $port "$username@$host" $2
+    echo "::*** ssh -Y -p $port $username@$host"
+    ssh -Y -p "$port" "$username@$host" $2
 fi

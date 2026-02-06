@@ -6,7 +6,7 @@ RUN curl -s https://git.tic.cc/npm/sysconfig/raw/branch/main/debian-setup.sh | b
 
 CMD bash
 
-# mv $(basename "$0") Dockerfile
+# mv $(basename $0) Dockerfile
 # docker build -t debian-faronear .
 # docker tag debian-faronear anolaxy/debian-faronear:11.5-20221205
 # docker login

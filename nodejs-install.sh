@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Usage: this-script.sh [VERSION]"
+echo "Usage: $(basename $0) [VERSION]"
 
 defaultVERSION=18.12.1
 

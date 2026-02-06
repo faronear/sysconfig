@@ -1,9 +1,9 @@
 #!/bin/sh
 
 echo "Usage:"
-echo '  "this-script.sh [imageName]" to search library/[imageName]'
-echo '  "this-script.sh [imageName] [ownerName]" to search [ownerName]/[imageName]'
-echo '  "this.script.sh" to interactive enter [ownerName] and [imageName] to search'
+echo "  $(basename $0) [imageName] ===> to search library/[imageName]"
+echo "  $(basename $0) [imageName] [ownerName] ===> to search [ownerName]/[imageName]"
+echo "  $(basename $0) ===> to interactive enter [ownerName] and [imageName] to search"
 echo
 
 IMAGE=$1
