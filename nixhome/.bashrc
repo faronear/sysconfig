@@ -132,7 +132,7 @@ elif [ -f /etc/debian_version ]; then
 elif [ -f /etc/ubuntu_version ]; then
     MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
-if [ -n "$SSH_CONNECTION" ] || [ ! "$(uname)" = "Darwin" ]; then
+if [[ -n "$SSH_CONNECTION" ]] || [[ ! "$(uname)" = "Darwin" ]]; then
     IN_SSH="^ssh"
 fi
 if [ "$color_prompt" = yes ]; then
