@@ -128,7 +128,7 @@ esac
 if [ "$(uname)" = "Darwin" ]; then
     MYOSVERSION=Mac`sw_vers -productVersion`
 elif [ "$(uname)" = "FreeBSD" ]; then
-    MYOSVERSION=$(echo "$(freebsd_version)" | cut -d'-' -f1)
+    MYOSVERSION=$(echo "$(uname -r)" | cut -d'-' -f1)
 elif [ -f /etc/debian_version ]; then
     MYOSVERSION=Deb`cat /etc/debian_version 2>/dev/null`
 elif [ -f /etc/ubuntu_version ]; then
