@@ -127,13 +127,15 @@ esac
 
 if [ "$(uname)" = "Darwin" ]; then
     MYOSVERSION=Mac`sw_vers -productVersion`
+elif [ "$(uname)" = "FreeBSD" ]; then
+    MYOSVERSION=$(echo "$(freebsd_version)" | cut -d'-' -f1)
 elif [ -f /etc/debian_version ]; then
     MYOSVERSION=Deb`cat /etc/debian_version 2>/dev/null`
 elif [ -f /etc/ubuntu_version ]; then
     MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [[ -n "$SSH_CONNECTION" ]] || [[ "$(uname)" != "Darwin" ]]; then
-    IN_SSH="^ssh"
+    IN_SSH=">ssh"
 fi
 if [ "$color_prompt" = yes ]; then
     PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]=\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[07;36m\]\w\[\033[00m\]$IN_SSH> '
