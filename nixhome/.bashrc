@@ -138,7 +138,7 @@ if [[ -n "$SSH_CONNECTION" ]] || [[ "$(uname)" != "Darwin" ]]; then
     IN_SSH="ssh$"
 fi
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]=\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[07;36m\]\w\[\033[00m\]>$IN_SSH '
+    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]=\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[07;32m\]\w\[\033[00m\]>\[\033[07;37m\]$IN_SSH\[\033[00m\] '
 else
     PS1='<\t#\u@\h=$(uname -m),$(uname),$MYOSVERSION:\w>$IN_SSH ' # \w shows absolute path, \W shows current folder.
 fi

@@ -3,7 +3,7 @@
 set -e
 
 DISKNAME=vdisk
-DISKSIZE=33554432 # 磁盘扇区数，每个扇区大小是 512 字节，n*1024*1024*1024/512 = n Gigabytes. Do NOT set the formula to DISKSIZE.
+DISKSIZE=50331648  # 磁盘扇区数，每个扇区大小是 512 字节，1 Gigabytes 有 1024*1024*1024/512 = 2097152 扇区.
 # 虚拟磁盘并不是一创建就把内存空间划走，而是等到真正写入了虚拟磁盘的时候，才会使用对应的内存空间，所以给虚拟磁盘分配大一点的空间是没有问题的
 
 if [ -d /Volumes/$DISKNAME ]; then
