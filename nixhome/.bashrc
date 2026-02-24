@@ -124,7 +124,13 @@ esac
 # - `7`: White
 # others:
 # \w shows absolute path, \W shows current folder.
-
+if [ "$(whoami)" = "root" ]; then
+  PSTYLE=07
+  PTYPE=4
+else
+  PSTYLE=07
+  PTYPE=3
+fi
 if [ "$(uname)" = "Darwin" ]; then
     MYOSVERSION=Mac`sw_vers -productVersion`
 elif [ "$(uname)" = "FreeBSD" ]; then
@@ -138,7 +144,7 @@ if [[ -n "$SSH_CONNECTION" ]] || [[ "$(uname)" != "Darwin" ]]; then
     IN_SSH="ssh$"
 fi
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[07;32m\]\t\[\033[00m\]#\[\033[07;35m\]\u\[\033[00m\]@\[\033[07;31m\]\h\[\033[00m\]=\[\033[07;34m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[07;32m\]\w\[\033[00m\]>\[\033[07;37m\]$IN_SSH\[\033[00m\] '
+    PS1='<\[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\]#\[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\]@\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\]=\[\033[$PSTYLE;${PTYPE}4m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[$PSTYLE;${PTYPE}2m\]\w\[\033[00m\]>\[\033[$PSTYLE;${PTYPE}7m\]$IN_SSH\[\033[00m\] '
 else
     PS1='<\t#\u@\h=$(uname -m),$(uname),$MYOSVERSION:\w>$IN_SSH ' # \w shows absolute path, \W shows current folder.
 fi
@@ -192,3 +198,4 @@ fi
 ################################################################################
 # End Of File: "~/.bashrc"
 ################################################################################
+

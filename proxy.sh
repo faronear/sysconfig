@@ -11,10 +11,10 @@ fi
 
 # to reset port to empty, otherwise the second run of this script will not ask for port.
 PORT=
-PORTDEFAULT=17890
+PORTDEFAULT=7897
 # function proxy() {
   if [ "$proxySwitch" == "s" ] || [ "$proxySwitch" == "1" ]; then
-    echo "::*** Proxy server running on [port number] or [leave blank] for default $PORTDEFAULT (20170 for v2ray2, 17890 for 零点云, or 7897 for clash verge)"
+    echo "::*** Proxy server running on [port number] or [leave blank] for default $PORTDEFAULT (20170 for v2ray2, 7897 for 零点云 or clash verge)"
     while [ ! "$PORT" ]
     do
       read -p "***:: " PORT
