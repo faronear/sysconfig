@@ -79,7 +79,7 @@ umask 022 # rwxr-xr-x
 ############## following settings copied from amazon's debian ####################
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 ## uncomment for a colored prompt, if the terminal has the capability; turned
@@ -99,7 +99,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+  xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # color starts with \[\033[${Style};${Type}${Color}m\] and ends with \[\033[00m\].
@@ -124,29 +124,41 @@ esac
 # - `7`: White
 # others:
 # \w shows absolute path, \W shows current folder.
-if [ "$(whoami)" = "root" ]; then
+
+if [ "$(uname)" = "Darwin" ]; then
+  MYIPLAN=$(ifconfig en0 | grep "inet " | awk '{print $2}')
+else
+  MYIPLAN=$(echo `hostname -I` | awk '{print $1;}')
+fi
+MYIPPUB=$(curl -s ifconfig.me)
+
+if [ "$(uname)" = "Darwin" ]; then
+  PSTYLE=04
+  PTYPE=3
+elif [ "$(whoami)" = "root" ]; then
   PSTYLE=07
   PTYPE=4
+  AS_ROOT="#"
 else
   PSTYLE=07
   PTYPE=3
+  if [[ -n "$SSH_CONNECTION" ]]; then
+    IN_SSH="$"
+  fi
 fi
 if [ "$(uname)" = "Darwin" ]; then
-    MYOSVERSION=Mac`sw_vers -productVersion`
+  MYOSVERSION=Mac`sw_vers -productVersion`
 elif [ "$(uname)" = "FreeBSD" ]; then
-    MYOSVERSION=$(echo "$(uname -r)" | cut -d'-' -f1)
+  MYOSVERSION=$(echo "$(uname -r)" | cut -d'-' -f1)
 elif [ -f /etc/debian_version ]; then
-    MYOSVERSION=Deb`cat /etc/debian_version 2>/dev/null`
+  MYOSVERSION=Deb`cat /etc/debian_version 2>/dev/null`
 elif [ -f /etc/ubuntu_version ]; then
-    MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
-fi
-if [[ -n "$SSH_CONNECTION" ]] || [[ "$(uname)" != "Darwin" ]]; then
-    IN_SSH="ssh$"
+  MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-    PS1='<\[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\]#\[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\]@\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\]=\[\033[$PSTYLE;${PTYPE}4m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[$PSTYLE;${PTYPE}2m\]\w\[\033[00m\]>\[\033[$PSTYLE;${PTYPE}7m\]$IN_SSH\[\033[00m\] '
+  PS1='<\[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\]#\[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\]@\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\]=\[\033[$PSTYLE;${PTYPE}1m\]$MYIPPUB\[\033[00m\]~\[\033[$PSTYLE;${PTYPE}4m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\]:\[\033[$PSTYLE;${PTYPE}2m\]\w\[\033[00m\]>\[\033[$PSTYLE;${PTYPE}7m\]$IN_SSH$AS_ROOT\[\033[00m\] '
 else
-    PS1='<\t#\u@\h=$(uname -m),$(uname),$MYOSVERSION:\w>$IN_SSH ' # \w shows absolute path, \W shows current folder.
+  PS1='<\t#\u@\h=$MYIPPUB~$(uname -m),$(uname),$MYOSVERSION:\w>$IN_SSH$AS_ROOT ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 

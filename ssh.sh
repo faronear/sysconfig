@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Usage: $(basename $0) [selected_index] [to_run_cmd]"
+echo "Usage: $(basename $0) [host_to_ssh] [cmd_to_run]"
 
 # Ensure jq is installed
 if ! command -v jq &> /dev/null; then
@@ -38,7 +38,7 @@ done
 # Check if a command-line argument is provided
 if [ "$1" != "" ]; then
     # 如果提供了参数，则直接使用这个前缀
-    user_input=$1
+    host_to_ssh=$1
 else
     echo "Select a target to connect via SSH, or press 0 to exit:"
     echo
@@ -49,7 +49,7 @@ else
     done
 
     echo
-    read -p "请输入要连接的主机前缀: " user_input
+    read -p "请输入要连接的主机前缀: " host_to_ssh
 fi
 
 echo
@@ -57,7 +57,7 @@ echo
 # 查找用户输入对应的索引
 selected_index=-1
 for i in "${!prefixes[@]}"; do
-    if [[ "${prefixes[$i]}" == "$user_input" ]]; then
+    if [[ "${prefixes[$i]}" == "$host_to_ssh" ]]; then
         selected_index=$i
         break
     fi
@@ -84,13 +84,13 @@ fi
 echo "::*** Connecting to ${label}"
 if [ "$password" != "null" ]; then
     if command -v sshpass &> /dev/null; then
-        echo "::*** sshpass -p $password -Y -p $port $username@$host"
-        sshpass -p "$password" ssh -Y -p "$port" "$username@$host" $2
+        echo "::*** sshpass -p $password -Y -p $port $username@$host '$2'"
+        sshpass -p "$password" ssh -Y -p "$port" "$username@$host" "$2"
     else
-        echo "::*** ssh -Y -p $port $username@$host"
-        ssh -Y -p "$port" "$username@$host" $2
+        echo "::*** ssh -Y -p $port $username@$host '$2'"
+        ssh -Y -p "$port" "$username@$host" "$2"
     fi
 else
-    echo "::*** ssh -Y -p $port $username@$host"
-    ssh -Y -p "$port" "$username@$host" $2
+    echo "::*** ssh -Y -p $port $username@$host '$2'"
+    ssh -Y -p "$port" "$username@$host" "$2"
 fi
