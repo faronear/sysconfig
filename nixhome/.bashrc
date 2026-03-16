@@ -133,7 +133,7 @@ fi
 MYIPPUB=$(curl -s ifconfig.me)
 
 if [ "$(uname)" = "Darwin" ]; then
-  PSTYLE=04
+  PSTYLE=07
   PTYPE=3
 elif [ "$(whoami)" = "root" ]; then
   PSTYLE=07
@@ -186,11 +186,17 @@ fi
 #   eval "$(fnm env --use-on-cd)"
 # fi
 
-# acme.sh settings
+# acme.sh
 if [ -f $HOME/.acme.sh/acme.sh.env ]
 then
   . "$HOME/.acme.sh/acme.sh.env"
   alias acme=$HOME/.acme.sh/acme.sh
+fi
+
+# Added by OrbStack: command-line tools and integration
+if [ "$(uname)" = "Darwin" ] && [ -f $HOME/.orbstack/shell/init.bash ]
+then
+  source ~/.orbstack/shell/init.bash 2>/dev/null || :
 fi
 
 # let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
