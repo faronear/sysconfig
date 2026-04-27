@@ -6,3 +6,5 @@ fi
 
 echo Public IP: `curl -s ifconfig.me`
 echo
+
+curl ipinfo.io

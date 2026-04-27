@@ -26,7 +26,7 @@ else
 fi
 echo ""
 
-echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/.gitignore_global]]" 
+echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/.gitignore_global]]" 
 read -p "***:: " GLOBALPATH
 if [ "$GLOBALPATH" ]
 then
@@ -42,7 +42,7 @@ then
     echo "√√√ GLOBALPATH = [[$GLOBALPATH]]"
   fi
 else
-  GLOBALPATH=https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/.gitignore_global
+  GLOBALPATH=https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/.gitignore_global
 fi
 echo ""
 

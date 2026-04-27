@@ -7,9 +7,9 @@ else
   read -p "Please enter [root directory] to rename images recursively: " target_directory
 fi
 if [[ -d "$target_directory" ]]; then
-  echo Searching in $(realpath $target_directory);
+  echo Searching in $(realpath "$target_directory");
 else 
-  echo $target_directory is not a folder!
+  echo "$target_directory" is not a folder!
   exit 0
 fi;
 
@@ -18,10 +18,10 @@ read -p "Please enter [prod] to rename, or [anything else] to dry run: " user_in
 
 
 # 查找并遍历所有文件
-find "$target_directory" -type f | while read -r file; do
+find "$target_directory" -type f | while read -r fullpath; do
     # 获取文件的原名和扩展名
-    dir_name=$(dirname "$file")
-    base_name=$(basename "$file")
+    dir_name=$(dirname "$fullpath")
+    base_name=$(basename "$fullpath")
     extension="${base_name##*.}"
 
     if [[ "$extension" = "7z" ]] || [[ "$extension" = "DS_Store" ]] || [[ "$extension" = "aae" ]] ||  [[ "$base_name" == *"unkn#own"* ]]; then
@@ -35,7 +35,7 @@ find "$target_directory" -type f | while read -r file; do
           
       # 如果重命名后的文件名与原文件名不同，则进行重命名
       if [[ "$base_name" != "$new_name" ]]; then
-          if [[ "$user_input" == "prod" ]]; then mv "$file" "$dir_name/$new_name"; fi;
+          if [[ "$user_input" == "prod" ]]; then mv "$fullpath" "$dir_name/$new_name"; fi;
           echo "$base_name -> $new_name"
       fi
 
@@ -45,7 +45,7 @@ find "$target_directory" -type f | while read -r file; do
 
       # 获取文件的拍摄日期，假设日期以EXIF元数据存储
       # 需要安装 exiftool
-      date_taken=$(exiftool -ExtractEmbedded -d "%Y%m%d#%H%M%S" -DateTimeOriginal -CreationDate -s -s -s "$file")
+      date_taken=$(exiftool -ExtractEmbedded -d "%Y%m%d#%H%M%S" -DateTimeOriginal -CreationDate -s -s -s "$fullpath")
       
       # 检查日期是否为空和文件名格式
       if [ -n "$date_taken" ]; then
@@ -53,13 +53,13 @@ find "$target_directory" -type f | while read -r file; do
           new_name="${date_taken}_${base_name}"
           
           # 重命名文件
-          if [[ "$user_input" == "prod" ]]; then mv "$file" "$dir_name/$new_name"; fi;
+          if [[ "$user_input" == "prod" ]]; then mv "$fullpath" "$dir_name/$new_name"; fi;
           echo "$base_name -> $new_name"
       else
           new_name="unkn#own_${base_name}"
           
           # 重命名文件
-          if [[ "$user_input" == "prod" ]]; then mv "$file" "$dir_name/$new_name"; fi;
+          if [[ "$user_input" == "prod" ]]; then mv "$fullpath" "$dir_name/$new_name"; fi;
           echo "$base_name -> $new_name"
       fi
 

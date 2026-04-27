@@ -2,7 +2,7 @@ FROM debian:12.8
 LABEL org.opencontainers.image.authors="luk"
 
 RUN apt update && apt install curl -y
-RUN curl -s https://git.tic.cc/open/sysconfig/raw/branch/main/debian-setup.sh | bash
+RUN curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian-setup.sh | bash
 
 CMD bash
 

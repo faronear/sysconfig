@@ -53,7 +53,7 @@ if [ -d "$HomePath" ]; then
       echo "--- Copying [[$NIXHOME/$homescript]] to [[$HomePath/$homescript]] ..."
       cp -r "$NIXHOME/$homescript" ./
     elif [ "$CopyOrLinkScripts" == 'g' ]; then
-      curl -sSLO "https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/$homescript"
+      curl -sSLO "https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/$homescript"
     fi
   done  
 

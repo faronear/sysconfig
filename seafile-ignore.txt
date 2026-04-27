@@ -27,9 +27,11 @@ FETCH_HEAD
 */FETCH_HEAD
 
 .Trash/
+.Trashes/
 
 .DS_Store
 */.DS_Store
+*.aae # AAE 文件主要在苹果的照片应用程序中使用，保存对原始照片所做的编辑，比如，裁剪、旋转或调整亮度等操作的信息。
 
 .thumbnails
 */.thumbnails

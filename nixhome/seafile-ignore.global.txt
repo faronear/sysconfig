@@ -27,6 +27,7 @@ FETCH_HEAD
 */FETCH_HEAD
 
 .Trash/
+.Trashes/
 
 .DS_Store
 */.DS_Store

@@ -12,7 +12,7 @@ else
   read -p "***:: " ROOTPATH
   if [ "$ROOTPATH" ]
   then
-    ROOTPATH=$(realpath $ROOTPATH)
+    ROOTPATH=$(realpath "${ROOTPATH/#\~/$HOME}")
   else
     ROOTPATH=`pwd`
   fi
@@ -26,32 +26,30 @@ else
 fi
 echo ""
 
-echo "::*** Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]"
+echo "::*** Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]"
 read -p "***:: " GLOBALPATH
 if [ "$GLOBALPATH" ]
 then
+  GLOBALPATH=$(realpath "${GLOBALPATH/#\~/$HOME}")
+  echo $GLOBALPATH
   if [ -d "$GLOBALPATH" ]
   then
-    GLOBALPATH=$(realpath $GLOBALPATH)/seafile-ignore.global.txt
+    GLOBALPATH="$GLOBALPATH/seafile-ignore.global.txt"
   fi
-  if [ ! -f "$GLOBALPATH" ]
+  if [ -f "$GLOBALPATH" ]
   then
+    echo "√√√ GLOBALPATH = [[$GLOBALPATH]]"
+  else
     echo "××× Not found [[$GLOBALPATH]]. Exit now..."
     exit
-  else
-    echo "√√√ GLOBALPATH = [[$GLOBALPATH]]"
   fi
 else
-  GLOBALPATH=https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt
+  GLOBALPATH=https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt
 fi
 echo ""
 
-echo "::*** Enter [y] to start updating, or [anything else] to quit"
+echo "::*** Enter [y] to start updating, or [anything else] for dry-run"
 read -p "***:: " YESNO
-if [ "$YESNO" != 'y' ]
-then
-  exit
-fi
 
 cd $ROOTPATH
 echo "*** Starting from [[`pwd`]] ***"
@@ -62,13 +60,19 @@ do
   if [ -f "$repo/seafile-ignore.txt" ] || [ -d "$repo/.git" ]
   then
     echo "---- updating [[$repo/seafile-ignore.txt]] ----"
-    if [ -f "$GLOBALPATH" ]
+    if [ "$YESNO" = 'y' ]
     then
-      cat $GLOBALPATH > $repo/seafile-ignore.txt
-    else
-      curl -sSL $GLOBALPATH | cat > $repo/seafile-ignore.txt
+      if [ -f "$GLOBALPATH" ]
+      then
+        cat $GLOBALPATH > $repo/seafile-ignore.txt
+      else
+        curl -sSL $GLOBALPATH | cat > $repo/seafile-ignore.txt
+      fi
+      if [ -f "$repo/seafile-ignore.local.txt" ]
+      then
+        cat $repo/seafile-ignore.local.txt 2>/dev/null >> $repo/seafile-ignore.txt
+      fi
     fi
-    cat $repo/seafile-ignore.local.txt 2>/dev/null >> $repo/seafile-ignore.txt
     echo ""
   fi
 done

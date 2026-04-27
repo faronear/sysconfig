@@ -23,11 +23,11 @@ if not exist "%ROOTPATH%" (
   echo √√√ ROOTPATH = [[%ROOTPATH%]]
 )
 
-echo ::*** Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]
+echo ::*** Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt]]
 set /p IGNOREPATH=">>> "
 echo;
 if "" == "%IGNOREPATH%" (
-  set IGNOREPATH=https://git.tic.cc/open/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt
+  set IGNOREPATH=https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/seafile-ignore.global.txt
 ) else (
   for %P in (%IGNOREPATH%) do set "IGNOREPATH=%~dpnxP/seafile-ignore.global.txt"
   if not exist "%IGNOREPATH%" (
