@@ -125,11 +125,6 @@ esac
 # others:
 # \w shows absolute path, \W shows current folder.
 
-if [ "$(uname)" = "Darwin" ]; then
-  MYIPLAN=$(ifconfig en0 | grep "inet " | awk '{print $2}')
-else
-  MYIPLAN=$(echo `hostname -I` | awk '{print $1;}')
-fi
 MYIPPUB=$(curl -s ifconfig.me)
 
 if [ "$(uname)" = "Darwin" ]; then
