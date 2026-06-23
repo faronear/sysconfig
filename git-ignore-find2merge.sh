@@ -26,7 +26,9 @@ else
 fi
 echo ""
 
-echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/.gitignore_global]]" 
+GLOBALPATH_DEFAULT=https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/.gitignore_global
+
+echo "::*** Enter [path to .gitignore_global] or [leave blank] for default [[$GLOBALPATH_DEFAULT]]" 
 read -p "***:: " GLOBALPATH
 if [ "$GLOBALPATH" ]
 then
@@ -42,7 +44,7 @@ then
     echo "√√√ GLOBALPATH = [[$GLOBALPATH]]"
   fi
 else
-  GLOBALPATH=https://git.tic.cc/opx/sysconfig/raw/branch/main/nixhome/.gitignore_global
+  GLOBALPATH=GLOBALPATH_DEFAULT
 fi
 echo ""
 
@@ -57,7 +59,7 @@ cd $ROOTPATH
 echo "*** Starting from [[`pwd`]] ***"
 echo ""
 
-find . -mindepth 1 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
+find . -mindepth 0 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
 do 
   if [ -f "$repo/.gitignore" ] # some git repo need to keep privacy, therefore judge from .gitignore, not from .git
   then

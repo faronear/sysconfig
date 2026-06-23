@@ -5,7 +5,7 @@
 #   https://github.com/SlideWave/gitignore-include?tab=readme-ov-file#examples
 #   https://gitignore.io
 
-### .gitignore.global.txt ###
+### .gitignore_global ###
 
 # Self defined pattern to ignore
 ?*.gitignore
@@ -30,13 +30,16 @@
 .deploy_git/
 .idea/
 .sass-cache/
-.wrangler
+.wrangler/
 /test/unit/coverage/
 /test/e2e/reports/
 node_modules/
 *.aab
 *.apk
 *.ipa
+*.rar
+*.tgz
+*.zip
 *.min.js
 *.min.css
 *.min.html
@@ -58,22 +61,8 @@ Thumbs.db
 thumbs.db
 _desktop.ini
 
-# vue-cli 项目
-/dist/
-
-# 来自 vue-cli 创建项目的 .gitignore
-.project
-
-# hexo
-/public/
-
-# Hardhat
-/artifacts/
-/cache/
-
 # seafile 临时文件
 ._*
-
 .$*
 
 # office 暂存文件
@@ -91,23 +80,6 @@ _desktop.ini
 # local env files
 .env.local
 .env.*.local
-
-# hexo
-/db.json
-
-# wo
-# 服务端
-/_archive/*
-/_datastore/*
-/_filestore/*
-/_logstore/*
-/_webroot/*
-/_ssl/*
-# uniapp 客户端
-/unpackage/*
-!/unpackage/res/
-package-lock.json
-pages4loader.json5
 
 ### .gitignore.local.txt ###
 

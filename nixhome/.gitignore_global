@@ -61,20 +61,6 @@ Thumbs.db
 thumbs.db
 _desktop.ini
 
-# vue-cli 项目
-/dist/
-
-# 来自 vue-cli 创建项目的 .gitignore
-.project
-
-# hexo
-/public/
-/db.json
-
-# Hardhat
-/artifacts/
-/cache/
-
 # seafile 临时文件
 ._*
 .$*
@@ -94,20 +80,6 @@ _desktop.ini
 # local env files
 .env.local
 .env.*.local
-
-# wo
-# 服务端
-/_archive/*
-/_datastore/*
-/_filestore/*
-/_logstore/*
-/_webroot/*
-/_ssl/*
-# uniapp 客户端
-/unpackage/*
-!/unpackage/res/
-package-lock.json
-pages4loader.json5
 
 ### .gitignore.local.txt ###
 
