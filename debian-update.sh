@@ -3,8 +3,7 @@
 ## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian-update.sh | bash"
 
 echo "Update the current Debian major version to the next newer major version. For instance, update 11 to 12, or 12 to 13" 
-echo "Usage: this.sh"
-echo "Example: this.sh"
+echo
 
 if [ -f /etc/debian_version ]; then
   OsTypeNow="Debian"
@@ -37,10 +36,11 @@ else
   exit 1
 fi
 
-echo "Are you sure to update $OsTypeNow $CodeNameNow to $CodeNameNext?"
+echo "::*** Are you sure to update $OsTypeNow $CodeNameNow to $CodeNameNext?"
 echo "  [y] Yes, update now"
 echo "  [anything else] No, cancel update"
-read -r answer
+echo
+read -r "***:: " answer
 if [ "$answer" != "y" ]; then
   echo "Update canceled."
   exit 0
