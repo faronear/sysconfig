@@ -40,7 +40,7 @@ echo "::*** Are you sure to update $OsTypeNow $CodeNameNow to $CodeNameNext?"
 echo "  [y] Yes, update now"
 echo "  [anything else] No, cancel update"
 echo
-read -r "***:: " answer
+read -p "***:: " answer
 if [ "$answer" != "y" ]; then
   echo "Update canceled."
   exit 0
