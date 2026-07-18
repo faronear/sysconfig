@@ -14,10 +14,12 @@ if [ -f /etc/debian_version ]; then
 #   OsVersionNow=`cat /etc/ubuntu_version 2>/dev/null`
 else
   echo "Unsupported OS. Only Debian can be updated."
+  echo
   exit 1
 fi
 
 echo Current OS: $OsTypeNow $OsVersionNow
+echo
 
 # set CodeNameNow and CodeNameNext based on the current version
 if [ "$OsTypeNow" = "Debian" ]; then
@@ -29,10 +31,12 @@ if [ "$OsTypeNow" = "Debian" ]; then
     CodeNameNext="trixie"
   else
     echo "Unsupported Debian version: $OsVersionNow"
+    echo
     exit 1
   fi
 else
   echo "Unsupported OS type: $OsTypeNow"
+  echo
   exit 1
 fi
 
