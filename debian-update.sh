@@ -67,4 +67,5 @@ apt full-upgrade -y
 apt --purge autoremove -y
 apt clean
 
-echo "Updated! You can reboot now."
+echo
+echo "🎉 Successfully Updated! You can reboot now."
