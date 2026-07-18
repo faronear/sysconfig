@@ -19,15 +19,6 @@ fi
 # Always use ssh to connect to CVS repositories:
 export CVS_RSH=ssh
 
-# Define PATH:
-# Note 1: Do not export PATH, because 
-# 1. it is defined in startup script, so every shell gets it!
-# 2. only shell needs this variable, other programs normally don't need it.
-# Note 2: Add current directory to PATH is dangerous!
-#if [ -e ~/bin/addpath.sh ]  then 
-#  . ~/bin/addpath.sh ~/bin
-#fi
-
 # Define aliases:
 
 alias rm='rm -i' # Think twice before deletion. Though troublesome but strongly recommended.
@@ -199,10 +190,14 @@ fi
 # let MacOS uses the same variable so that vscode-sshfs can use "$USERPROFILE/.ssh/id_rsa" uniformly.
 export USERPROFILE=$HOME
 
-# # add sysconfig to path
+# add path
 if [ -e ~/sysconfig ]
 then
   export PATH=~/sysconfig:$PATH
+fi
+if [ -e ~/.local/bin ]
+then
+  export PATH=~/.local/bin:$PATH
 fi
 
 if [ -f ~/.bashrc_custom ]
