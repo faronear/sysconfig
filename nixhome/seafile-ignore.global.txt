@@ -82,5 +82,8 @@ OneDrive/Icon
 .wrangler/
 */.wrangler/
 
+.playwright-mcp/
+*/.playwright-mcp/
+
 ### seafile-ignore.local.txt ###
 
