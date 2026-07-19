@@ -2,7 +2,7 @@
 
 ## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian-update.sh | bash"
 
-echo "Update the current Debian major version to the next newer major version. For instance, update 11 to 12, or 12 to 13" 
+echo "Update Debian's currently-installed major version to the next newer major version. For instance, update 11 to 12, or 12 to 13"
 echo
 
 if [ -f /etc/debian_version ]; then
