@@ -1,6 +1,10 @@
 import 'dotenv/config'
 import { chromium } from 'playwright'
 
+// dotenv.config({
+//   path: '.env.local'
+// })
+
 const email = process.env.UNICLOUD_EMAIL
 const password = process.env.UNICLOUD_PASSWORD
 
@@ -11,7 +15,9 @@ if (!email || !password) {
 async function waitForLoginFrame (page, timeoutMs = 30000) {
   const start = Date.now()
   while (Date.now() - start < timeoutMs) {
-    const f = page.frames().find(fr => fr.url().includes('account.dcloud.net.cn'))
+    const f = page
+      .frames()
+      .find(fr => fr.url().includes('account.dcloud.net.cn'))
     if (f) return f
     await page.waitForTimeout(500)
   }
@@ -61,7 +67,10 @@ async function waitForUrl (page, predicate, timeoutMs = 30000) {
 
   await loginFrame.getByText('登录', { exact: true }).click()
 
-  await waitForUrl(page, u => u.includes('unicloud.dcloud.net.cn') && !u.includes('/login/login'))
+  await waitForUrl(
+    page,
+    u => u.includes('unicloud.dcloud.net.cn') && !u.includes('/login/login')
+  )
   await page.waitForTimeout(5000)
   console.log('Login successful. URL:', page.url())
 
@@ -88,11 +97,7 @@ async function waitForUrl (page, predicate, timeoutMs = 30000) {
   await buyBtn.waitFor({ timeout: 30000 })
   await buyBtn.click()
 
-  await waitForUrl(
-    orderPage,
-    u => u.includes('order-payment'),
-    30000
-  )
+  await waitForUrl(orderPage, u => u.includes('order-payment'), 30000)
   await orderPage.waitForTimeout(3000)
   console.log('Payment page ready:', orderPage.url())
 
