@@ -1,11 +1,20 @@
+Preparation:
+
 ```
 npm i
 npx playwright install-deps
 npx playwright install chromium
-HEADLESS=true node renew.mjs 'email' 'password'
 ```
 
-add to crontab to run automatically:
+Run the script with:
+`node renew.mjs 'EMAIL' 'PASSWORD'`
+
+you can also set environment variables directly:
+`HEADLESs=true UNICLOUD_EMAIL=... UNICLOUD_PASSWORD=... node renew.mjs`
+
+or set via `.env` file.
+
+Add to crontab to run automatically:
 
 ```
 # Renew DCloud uniCloud free-tier subscriptions.
