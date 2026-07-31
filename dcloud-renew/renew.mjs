@@ -79,18 +79,19 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
 }
 
 ;(async () => {
+  const isMac = process.platform === 'darwin'
+  
   // Set HEADLESS=false (or omit) to watch the browser; cron jobs should run
   // headless (HEADLESS=true or just leave it — defaults to true when no TTY).
   const headless =
     process.env.HEADLESS != null
       ? process.env.HEADLESS !== 'false' && process.env.HEADLESS !== '0'
-      : !process.stdout.isTTY
+      : isMac ? false : true
 
   // On macOS use the installed Microsoft Edge; on Linux (and elsewhere) fall
   // back to the Chromium bundled by Playwright (run `npx playwright install
   // // chromium` once there). Override by setting BROWSER_CHANNEL, e.g.
   // `BROWSER_CHANNEL=chrome` or `BROWSER_CHANNEL=`.
-  const isMac = process.platform === 'darwin'
   const launchOptions = { headless, slowMo: headless ? 0 : 200 }
   if (process.env.BROWSER_CHANNEL != null) {
     if (process.env.BROWSER_CHANNEL)
