@@ -80,13 +80,15 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
 
 ;(async () => {
   const isMac = process.platform === 'darwin'
-  
+
   // Set HEADLESS=false (or omit) to watch the browser; cron jobs should run
   // headless (HEADLESS=true or just leave it — defaults to true when no TTY).
   const headless =
     process.env.HEADLESS != null
       ? process.env.HEADLESS !== 'false' && process.env.HEADLESS !== '0'
-      : isMac ? false : true
+      : isMac
+      ? false
+      : true
 
   // On macOS use the installed Microsoft Edge; on Linux (and elsewhere) fall
   // back to the Chromium bundled by Playwright (run `npx playwright install
@@ -111,7 +113,7 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
     timeout: 60000
   })
 
-  console.log('<<<<<<<<<', new Date().toJSON(), 'Renew account', email)
+  console.log('\n<<<<<<<<<\n', new Date().toJSON(), 'Renew account', email)
   console.log('Page loaded, waiting for login iframe...')
 
   // 1. Login via the account.dcloud.net.cn iframe.
@@ -163,10 +165,10 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
   }
 
   console.log(
-    '>>>>>>>>>',
     new Date().toJSON(),
-    `Done. ${done} subscription(s) renewed for accouint`,
-    email
+    `Done. ${done} subscription(s) renewed for account`,
+    email,
+    '\n>>>>>>>>>\n'
   )
   await browser.close()
   process.exit(0)

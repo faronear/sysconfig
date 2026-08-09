@@ -10,7 +10,7 @@ Run the script with:
 `node renew.mjs 'EMAIL' 'PASSWORD'`
 
 you can also set environment variables directly:
-`HEADLESs=true UNICLOUD_EMAIL=... UNICLOUD_PASSWORD=... node renew.mjs`
+`HEADLESS=true UNICLOUD_EMAIL=... UNICLOUD_PASSWORD=... node renew.mjs`
 
 or set via `.env` file.
 
