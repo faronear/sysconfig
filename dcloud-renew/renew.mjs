@@ -91,8 +91,8 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
       : true
 
   // On macOS use the installed Microsoft Edge; on Linux (and elsewhere) fall
-  // back to the Chromium bundled by Playwright (run `npx playwright install
-  // // chromium` once there). Override by setting BROWSER_CHANNEL, e.g.
+  // back to the Chromium bundled by Playwright (run `npx playwright install chromium` once there).
+  // Override by setting BROWSER_CHANNEL, e.g.
   // `BROWSER_CHANNEL=chrome` or `BROWSER_CHANNEL=`.
   const launchOptions = { headless, slowMo: headless ? 0 : 200 }
   if (process.env.BROWSER_CHANNEL != null) {

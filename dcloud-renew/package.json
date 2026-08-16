@@ -5,6 +5,8 @@
   "description": "",
   "main": "renew.js",
   "scripts": {
+    "begin": "npm install && npx playwright install-deps && npx playwright install chromium",
+    "fire": "source renew-all.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
