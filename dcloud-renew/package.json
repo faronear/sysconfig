@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "renew.js",
+  "main": "renew.mjs",
   "scripts": {
     "begin": "npm install && npx playwright install-deps && npx playwright install chromium",
     "fire": "source renew-all.sh",

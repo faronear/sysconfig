@@ -88,7 +88,7 @@ async function main () {
 
   const existingAuthToken = existingEnv.ANTHROPIC_AUTH_TOKEN || ''
   const existingBaseUrl = existingEnv.ANTHROPIC_BASE_URL || ''
-  const existingModel = existingEnv.ANTHROPIC_MODEL || 'glm-5.2'
+  const existingModel = existingEnv.ANTHROPIC_MODEL || 'glm-5.3'
 
   const rl = readline.createInterface({
     input: process.stdin,

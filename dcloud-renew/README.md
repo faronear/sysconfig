@@ -22,5 +22,5 @@ Add to crontab to run automatically:
 #
 # Install with:  crontab /Users/Shared/product-产品/opx/sysconfig/dcloud-renew/crontab.txt
 # (That replaces your whole crontab; use `crontab -e` to merge with existing entries.)
-0 1 26 * *  /Users/Shared/product-产品/opx/sysconfig/dcloud-renew/renew-all.sh >> /tmp/dcloud-renew.log 2>&1
+0 1 26 * *  source renew-all.sh >> /tmp/dcloud-renew.log 2>&1
 ```

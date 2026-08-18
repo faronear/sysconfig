@@ -6,12 +6,12 @@ mkdir -p "$(dirname "$settings_file")"
 
 existing_auth_token=""
 existing_base_url=""
-existing_model="glm-5.2"
+existing_model="glm-5.3"
 
 if [ -f "$settings_file" ]; then
   existing_auth_token="$(jq -r '.env.ANTHROPIC_AUTH_TOKEN // empty' "$settings_file" 2>/dev/null)"
   existing_base_url="$(jq -r '.env.ANTHROPIC_BASE_URL // empty' "$settings_file" 2>/dev/null)"
-  existing_model="$(jq -r '.env.ANTHROPIC_MODEL // "glm-5.2"' "$settings_file" 2>/dev/null)"
+  existing_model="$(jq -r '.env.ANTHROPIC_MODEL // "glm-5.3"' "$settings_file" 2>/dev/null)"
 fi
 
 echo "Please provide your Anthropic configuration."
