@@ -121,17 +121,16 @@ esac
 MYIPPUB=$(curl -s ifconfig.me)
 
 if [ "$(uname)" = "Darwin" ]; then
-  PSTYLE=00
+  PSTYLE=00 # default
   PTYPE=4
 elif [ "$(whoami)" = "root" ]; then
-  PSTYLE=07
+  PSTYLE=01 # bold
   PTYPE=4
-  AS_ROOT="#"
 else
-  PSTYLE=03
-  PTYPE=3
+  PSTYLE=03 # italic
+  PTYPE=4
   if [[ -n "$SSH_CONNECTION" ]]; then
-    IN_SSH="$"
+    PSTYLE=05 # blink
   fi
 fi
 if [ "$(uname)" = "Darwin" ]; then
@@ -144,9 +143,9 @@ elif [ -f /etc/ubuntu_version ]; then
   MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-  PS1='<\[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}6m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}5m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}2m\]\w/\[\033[00m\]>\n\[\033[05;44m\]\W/\[\033[00m\] '
+  PS1='## \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}6m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}5m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}2m\]\w/\[\033[00m\] \n## \[\033[$PSTYLE;${PTYPE}7m\]\W/\[\033[00m\] '
 else
-  PS1='<\t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION \w/>\n\W/ ' # \w shows absolute path, \W shows current folder.
+  PS1='## \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION \w/ \n## \W/ ' # \w shows absolute path, \W shows current folder.
 fi
 unset color_prompt force_color_prompt
 
