@@ -25,15 +25,15 @@
 - 总是尽量采用有意义的完整单词，而不是 A, B, i, k 这样的单个字母。
 - 类名、模块名、仓库名、等等较大范围名称：CamelCase, 例如 `Creation`, `CommonTools`。
 - 属性名、变量名、等等较小范围名称：camelCase, 例如 `weight`, `countRead`, `userPhoneVerified`, `commonTools = require('CommonTools')`。
-- 常量名：UPPERCASE_SEPERATED_BY_UNDERSCORE，例如 `ERROR_USER_OFFLINE`。
-- 方法、函数名：do_something()，即小写动词开头+下划线分隔，例如 `update_user_avatar()`。可以使用 camelCase 作为组成部分，例如 `get_userName()` 以和 变量名 `userName` 保持一致。
+- 常量名：UPPERCASE_SEPARATED_BY_UNDERSCORE，例如 `ERROR_USER_OFFLINE`。
+- 方法、函数名：动词开头的 camelCase，例如 `updateUserAvatar()`, `getUserName()`。
+- HTML/CSS 的 class、id 名：kebab-case（dash 分隔），例如 `user-center`, `card-header`；JS 中通过 CSS Modules 访问样式时仍用 camelCase（如 `styles.userCenter`），两者由工具自动转换。
 - 目录和文件名：
-  - 首先，如果用来绑定某个名称的具体内容，目录或文件名应当跟随这个名称本身。例如，一个文件用来存放某个类，那就用类名作为文件名，例如 `Creation`; 一个目录用来存放某个仓库，那就用仓库名作为目录名，例如 `CommonTools/`; 一个目录用来服务一个域名，就用域名作为目录名，例如 `blog.tic.cc`; 一个文件用来记录某个日期，就用日期作为目录名，例如 `20260801`
-  - 其次，如果已有流行的规范或惯例，就遵循这种命名格式。例如，`AGENTS.md`, `.gitignore`, `blog`。
-  - 最后，如果上述规则都不适用，就遵循 camelCase 格式来命名目录或文件，例如 `source`, `frontend`, `userCenter.html`。
-  - 上述规则是特意不使用 - 或 \_ 来分隔，因为
-    - abc-xyz 在编辑器中双击不会被识别成一整个名称，并且有时在命名了文件后，又发现需要把文件和某个名称绑定起来，而这个名称通常是不应该含有 `-` 的。
-    - abc_xyz 虽然容易目视识别，但是大幅度增加了名称长度。
+  - 首先，我的主规则是用 camelCase 命名目录或文件，例如 `source`, `frontend`, `userCenter.vue`。
+  - 其次，如果用来绑定某个名称的具体内容，目录或文件名应当跟随这个名称本身。例如，一个文件用来存放某个类，那就用类名作为文件名，例如 `Creation`; 一个目录用来存放某个仓库，那就用仓库名作为目录名，例如 `CommonTools/`; 一个目录用来服务一个域名，就用域名作为目录名，例如 `blog.tic.cc`; 一个文件用来记录某个日期，就用日期作为文件名，例如 `20260801`。
+  - 最后，当与流行的规范或惯例有强烈冲突时，遵循该流行惯例。例如，`AGENTS.md`, `.gitignore`。
+  - 注意，目录、文件名仅大小写不同的（如 `userCenter` 与 `usercenter`）禁止在同一层级同时出现，以避免跨平台冲突，。
+- 存量代码保持既有命名，不强制迁移；新增代码遵循本规范。
 
 ## 主动交互
 
