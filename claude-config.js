@@ -106,7 +106,13 @@ async function main () {
   let model = existingModel
 
   if (filePath) {
-    const secret = readJsonIfExists(filePath)
+    const expandedFilePath = filePath.replace(
+      /^~(?=$|[\\/])/, 
+      os.homedir()
+    )
+    // Resolve relative paths from the directory where the command is run.
+    const absoluteFilePath = path.resolve(process.cwd(), expandedFilePath)
+    const secret = readJsonIfExists(absoluteFilePath)
     if (!secret || typeof secret !== 'object' || Array.isArray(secret)) {
       rl.close()
       console.error(

@@ -143,10 +143,11 @@ elif [ -f /etc/debian_version ]; then
 elif [ -f /etc/ubuntu_version ]; then
   MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
+# \w shows absolute path, \W shows current folder.
 if [ "$color_prompt" = yes ]; then
-  PS1='¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}3m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}5m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}4m\]\w/\[\033[00m\] \n§ \[\033[$PSTYLE;${PTYPE}4m\]\W/\[\033[00m\] '
+  PS1='¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}1m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}3m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}5m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}7m\]$(realpath \w)/\[\033[00m\] \n§ \[\033[00;47m\]\W/\[\033[00m\] '
 else
-  PS1='¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION \w/ \n§ \W/ ' # \w shows absolute path, \W shows current folder.
+  PS1='¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $(realpath \w)/ \n§ \W/ ' 
 fi
 unset color_prompt force_color_prompt
 
