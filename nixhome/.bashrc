@@ -144,9 +144,9 @@ elif [ -f /etc/ubuntu_version ]; then
   MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$(realpath \w)/\[\033[00m\] \n§ \[\033[00;41m\]\W/\[\033[00m\] '
+  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$PWD/\[\033[00m\] \n§ \[\033[00;41m\]\W/\[\033[00m\] '
 else
-  PS1='\n¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $(realpath \w)/ \n§ \W/ ' 
+  PS1='\n¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $PWD/ \n§ \W/ ' 
 fi
 unset color_prompt force_color_prompt
 
