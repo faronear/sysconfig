@@ -81,16 +81,23 @@ if [ "$port" = "null" ]; then
     port=22
 fi
 
+# 未提供 $2 时，默认在远程执行：若装有 tmux 则 tmux a（附加到已有会话），否则进入交互式 shell
+if [ -n "$2" ]; then
+    cmd="$2"
+else
+    cmd='if command -v tmux >/dev/null 2>&1; then tmux a || tmux new; else exec "${SHELL:-sh}"; fi'
+fi
+
 echo "::*** Connecting to ${label}"
 if [ "$password" != "null" ]; then
     if command -v sshpass &> /dev/null; then
-        echo "::*** sshpass -p $password -Y -p $port $username@$host '$2'"
-        sshpass -p "$password" ssh -Y -p "$port" "$username@$host" "$2"
+        echo "::*** sshpass -p $password -Y -p $port $username@$host '$cmd'"
+        sshpass -p "$password" ssh -Y -p "$port" "$username@$host" "$cmd"
     else
-        echo "::*** ssh -Y -p $port $username@$host '$2'"
-        ssh -Y -p "$port" "$username@$host" "$2"
+        echo "::*** ssh -Y -p $port $username@$host '$cmd'"
+        ssh -Y -p "$port" "$username@$host" "$cmd"
     fi
 else
-    echo "::*** ssh -Y -p $port $username@$host '$2'"
-    ssh -Y -p "$port" "$username@$host" "$2"
+    echo "::*** ssh -Y -p $port $username@$host '$cmd'"
+    ssh -Y -p "$port" "$username@$host" "$cmd"
 fi
