@@ -129,10 +129,10 @@ elif [ "$(whoami)" = "root" ]; then
   PSTYLE=07
   PTYPE=4
 else
-  PSTYLE=00
+  PSTYLE=01
   PTYPE=3
   if [[ -n "$SSH_CONNECTION" ]]; then
-    PSTYLE=03
+    PSTYLE=04
     PTYPE=3
   fi
 fi
