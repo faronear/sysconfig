@@ -97,12 +97,14 @@ esac
 # $Style: text style
 # - `00`: Default style
 # - `01`: Bold/Bright
-# - `02`: 
+# - `02`: Thin/Grey
 # - `03`: Italic
 # - `04`: Underlined
 # - `05`: Blink (may not work in all terminals)
+# - `06`: 看不出区别
 # - `07`: Inverse
 # - `08`: Hidden
+# - `09`: 中划线
 # $Type:
 # - `3`: text
 # - `4`: background
@@ -121,17 +123,17 @@ esac
 MYIPPUB=$(curl -s ifconfig.me)
 
 if [ "$(uname)" = "Darwin" ]; then
-  PSTYLE=00 # default
+  PSTYLE=00
   PTYPE=4
 elif [ "$(whoami)" = "root" ]; then
-  PSTYLE=01 # bold
+  PSTYLE=07
   PTYPE=4
 else
-  PSTYLE=03 # italic
-  PTYPE=4
+  PSTYLE=00
+  PTYPE=3
   if [[ -n "$SSH_CONNECTION" ]]; then
-    PSTYLE=05 # blink
-    PTYPE=4
+    PSTYLE=03
+    PTYPE=3
   fi
 fi
 if [ "$(uname)" = "Darwin" ]; then
@@ -144,7 +146,7 @@ elif [ -f /etc/ubuntu_version ]; then
   MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$PWD/\[\033[00m\] \n§ \[\033[00;41m\]\W/\[\033[00m\] '
+  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$PWD/\[\033[00m\] \n§ \[\033[05;46m\]\W/\[\033[00m\] '
 else
   PS1='\n¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $PWD/ \n§ \W/ ' 
 fi
