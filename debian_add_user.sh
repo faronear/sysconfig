@@ -39,6 +39,6 @@ echo "::*** Config home with standard init files? [y] for yes, [anything else] f
 read -p "***:: " ConfigHome
 if [ "$ConfigHome" = "y" ]
 then
-  source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
+  source /faronear/sysconfig/nixhome_config.sh /faronear/sysconfig/nixhome $NewUser
 fi
 echo

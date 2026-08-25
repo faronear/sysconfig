@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian-setup.sh | bash"
+## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian_setup.sh | bash"
 
 echo "Usage: this.sh [NewUser]"
 echo "Example: this.sh alice"
@@ -32,7 +32,7 @@ fi
 echo
 
 echo "::*** Configure root home"
-source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome root
+source /faronear/sysconfig/nixhome_config.sh /faronear/sysconfig/nixhome root
 echo
 
 # echo "::*** Change root password? [y] for yes, [anything else] for omit:"
@@ -106,8 +106,8 @@ echo
 # read -p "***:: " AddNewUser
 # if [ "$AddNewUser" == 'y' ]
 # then
-#   source /faronear/sysconfig/debian-add-user.sh $NewUser
-#   source /faronear/sysconfig/nixhome-config.sh /faronear/sysconfig/nixhome $NewUser
+#   source /faronear/sysconfig/debian_add_user.sh $NewUser
+#   source /faronear/sysconfig/nixhome_config.sh /faronear/sysconfig/nixhome $NewUser
 
 #   echo
 #   echo "::*** Enable xfce autologin [/etc/lightdm/lightdm.conf]: [y] for autologin as [[$NewUser]] or [anything else] for no change:"

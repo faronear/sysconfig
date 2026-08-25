@@ -6,7 +6,7 @@
   <string>mac-create-vdisk</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/etc/mac-create-vdisk.sh</string>
+    <string>/etc/mac_create_vdisk.sh</string>
   </array>
   <key>RunAtLoad</key>
   <true/>

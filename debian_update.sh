@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian-update.sh | bash"
+## "curl -s https://git.tic.cc/opx/sysconfig/raw/branch/main/debian_update.sh | bash"
 
 echo "Update Debian's currently-installed major version to the next newer major version. For instance, update 11 to 12, or 12 to 13"
 echo
