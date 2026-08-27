@@ -55,8 +55,6 @@ _desktop.ini
 
 node_modules/
 */node_modules/
-package-lock.json
-*/package-lock.json
 
 pages4loader.json5
 */pages4loader.json5
