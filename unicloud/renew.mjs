@@ -16,6 +16,17 @@ if (!email || !password) {
   )
 }
 
+// Match on the real page PATH, not a bare substring. The uni-trade SSO login
+// page URL contains `uniIdRedirectUrl=...create-order...` (URL-encoded) in its
+// query string, so `u.includes('create-order')` wrongly matches the login page
+// and the script would click 立即购买 before the redirect to the real order
+// page has finished — causing "Timed out waiting for URL condition".
+const ORDER_PATH = '/uni_modules/uni-trade/pages/create-order/create-order'
+const PAYMENT_PATH = '/uni_modules/uni-trade/pages/order-payment/order-payment'
+const isOrderPage = u => u.includes(ORDER_PATH)
+const isPaymentPage = u => u.includes(PAYMENT_PATH)
+const isDashboard = u => u.startsWith('https://unicloud.dcloud.net.cn')
+
 async function waitForLoginFrame (page, timeoutMs = 30000) {
   const start = Date.now()
   while (Date.now() - start < timeoutMs) {
@@ -37,31 +48,87 @@ async function waitForUrl (page, predicate, timeoutMs = 30000) {
   throw new Error(`Timed out waiting for URL condition. Current: ${page.url()}`)
 }
 
+// Wait until any of the named predicates matches. Resolves with the matching
+// name, or null on timeout. Predicates are checked in insertion order.
+async function waitForUrlAny (page, predicates, timeoutMs = 30000) {
+  const start = Date.now()
+  while (Date.now() - start < timeoutMs) {
+    const u = page.url()
+    for (const [name, pred] of Object.entries(predicates)) {
+      if (pred(u)) return name
+    }
+    await page.waitForTimeout(500)
+  }
+  return null
+}
+
+// Click "立即购买" and wait for the payment page. The first click can be a
+// no-op (page still initialising, a resource 403'd, etc.), so retry a few
+// times. Also accepts landing back on the dashboard as "order already
+// completed without a payment step".
+async function clickBuyAndWait (orderPage, index, attempts = 3) {
+  for (let i = 1; i <= attempts; i++) {
+    const buyBtn = orderPage.getByText('立即购买', { exact: true }).first()
+    await buyBtn.waitFor({ timeout: 30000 })
+    await buyBtn.click()
+    console.log(`[${index}] Clicked 立即购买 (attempt ${i}/${attempts})`)
+    const landed = await waitForUrlAny(
+      orderPage,
+      { payment: isPaymentPage, dashboard: isDashboard },
+      25000
+    )
+    if (landed) return landed
+    console.log(
+      `[${index}] Payment page not reached, current URL: ${orderPage.url()}`
+    )
+    await orderPage.waitForTimeout(3000)
+  }
+  throw new Error(`Timed out waiting for payment page. Current: ${orderPage.url()}`)
+}
+
 // Run the purchase flow for a single "续费" button that has already been
 // located on the dashboard. Resolves once the renewal is submitted and the
 // browser has returned to the dashboard (so the caller can re-query rows).
 async function renewOne (context, dashboardPage, renewLocator, index) {
-  // Clicking 续费 opens a NEW TAB that first goes through SSO, then lands on
-  // the uni-trade create-order page.
-  const newPagePromise = new Promise(resolve => context.once('page', resolve))
+  // Clicking 续费 opens a NEW TAB that first goes through SSO login, then
+  // lands on the uni-trade create-order page.
+  const newPagePromise = new Promise((resolve, reject) => {
+    const timer = setTimeout(
+      () => reject(new Error('No new tab opened after clicking 续费')),
+      30000
+    )
+    context.once('page', p => {
+      clearTimeout(timer)
+      resolve(p)
+    })
+  })
   await renewLocator.click()
   const orderPage = await newPagePromise
+  orderPage.setDefaultTimeout(30000)
 
-  // Wait for the OAuth redirect to settle on create-order.
-  await waitForUrl(
-    orderPage,
-    u => u.includes('uni-trade.dcloud.net.cn') && u.includes('create-order'),
-    45000
-  )
-  await orderPage.waitForTimeout(3000)
+  // Useful diagnostics: any JS errors / dialogs / navigations on the order tab.
+  orderPage.on('console', msg => {
+    if (msg.type() === 'error')
+      console.log(`  [console.error] ${msg.text()}`)
+  })
+  orderPage.on('dialog', d => {
+    console.log(`  [dialog ${d.type()}] ${d.message()}`)
+    d.accept().catch(() => {})
+  })
+
+  // Wait for the OAuth redirect to settle on the REAL create-order page, then
+  // give the page a moment to finish initialising.
+  await waitForUrl(orderPage, isOrderPage, 60000)
+  await orderPage.waitForTimeout(4000)
   console.log(`[${index}] Order page ready:`, orderPage.url())
 
   // Click "立即购买" — same tab navigates to /order-payment.
-  const buyBtn = orderPage.getByText('立即购买', { exact: true }).first()
-  await buyBtn.waitFor({ timeout: 30000 })
-  await buyBtn.click()
-
-  await waitForUrl(orderPage, u => u.includes('order-payment'), 30000)
+  const landed = await clickBuyAndWait(orderPage, index)
+  if (landed === 'dashboard') {
+    console.log(`[${index}] Order completed without a payment page.`)
+    await orderPage.close().catch(() => {})
+    return
+  }
   await orderPage.waitForTimeout(3000)
   console.log(`[${index}] Payment page ready:`, orderPage.url())
 
@@ -71,9 +138,14 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
   await confirmBtn.click()
   console.log(`[${index}] Clicked 确认开通. Renewal submitted.`)
 
-  // After confirmation the tab redirects back to unicloud.dcloud.net.cn and
-  // is no longer useful — close it and wait for the dashboard to settle.
-  await orderPage.waitForTimeout(5000)
+  // After confirmation the tab redirects back to unicloud.dcloud.net.cn.
+  // Don't fail the renewal if the redirect is not observed — the order may
+  // already be submitted.
+  try {
+    await waitForUrl(orderPage, isDashboard, 30000)
+  } catch (e) {
+    console.log(`[${index}] No dashboard redirect observed: ${orderPage.url()}`)
+  }
   await orderPage.close().catch(() => {})
   await dashboardPage.waitForTimeout(3000)
 }
@@ -140,12 +212,15 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
   console.log('Login successful. URL:', page.url())
 
   // 2. Renew every subscription that shows a "续费" button on the dashboard.
-  //    After renewOne() completes, the tab is closed and the dashboard
-  //    re-renders (the renewed row's 续费 button disappears), so we re-query
-  //    after each iteration. We keep going until no 续费 button remains, with
-  //    a safety cap to avoid an infinite loop if something goes wrong.
+  //    After renewOne() completes, the tab is closed and the dashboard is
+  //    reloaded so the renewed row's 续费 button disappears and the list is
+  //    fresh (avoids acting on a stale row). We keep going until no 续费
+  //    button remains, with a safety cap and a consecutive-failure limit so a
+  //    single broken row doesn't abort the whole account or loop forever.
   const MAX_RENEWALS = 50
+  const MAX_CONSECUTIVE_FAILURES = 3
   let done = 0
+  let consecutiveFailures = 0
   while (done < MAX_RENEWALS) {
     await page.waitForTimeout(1500)
     const renewBtns = page.getByText('续费', { exact: true })
@@ -159,9 +234,30 @@ async function renewOne (context, dashboardPage, renewLocator, index) {
     console.log(
       `Found ${count} subscription(s) still to renew. Renewing next...`
     )
-    // Always pick the first remaining row. After renewal the button disappears.
-    await renewOne(context, page, renewBtns.first(), done + 1)
-    done++
+    try {
+      // Always pick the first remaining row. After renewal the button disappears.
+      await renewOne(context, page, renewBtns.first(), done + 1)
+      consecutiveFailures = 0
+      done++
+    } catch (err) {
+      consecutiveFailures++
+      console.error(`[${done + 1}] Renewal FAILED: ${err.message}`)
+      // Close any stray tabs left open by the failed attempt.
+      for (const p of context.pages()) {
+        if (p !== page) await p.close().catch(() => {})
+      }
+      if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+        console.error(
+          `${consecutiveFailures} consecutive failures, giving up on this account.`
+        )
+        break
+      }
+    }
+    // Reload the dashboard for a clean, fresh view before the next iteration.
+    await page
+      .reload({ waitUntil: 'domcontentloaded', timeout: 60000 })
+      .catch(() => {})
+    await page.waitForTimeout(5000)
   }
 
   console.log(
