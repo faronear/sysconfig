@@ -11,7 +11,7 @@ fi
 # Path to the settings.json file
 SETTINGS_FILE="$HOME/Library/Application Support/Code/User/settings.json"
 if [[ ! -f "$SETTINGS_FILE" ]]; then
-    SETTINGS_FILE="$HOME/product_产品/.vscode/settings.json"
+    SETTINGS_FILE="../../.vscode/settings.json"
     if [[ ! -f "$SETTINGS_FILE" ]]; then
         echo "settings.json file not found!"
         exit 1
