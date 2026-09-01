@@ -81,12 +81,12 @@ if [ "$port" = "null" ]; then
     port=22
 fi
 
-# 未提供 $2 时，默认在远程执行：若装有 tmux 则 tmux a（附加到已有会话），否则进入交互式 shell。
-# 此时必须加 -t 强制分配伪终端，否则 tmux 报 "open terminal failed: not a terminal"，回退 shell 也不显示提示符
 if [ -n "$2" ]; then
     cmd="$2"
-    ssh_opts="-Y"
+    ssh_opts="-Y -t" # 如果 $2=tmux 那么也需要 -t
 else
+    # 未提供 $2 时，默认在远程执行：若装有 tmux 则 tmux a（附加到已有会话），否则进入交互式 shell。
+    # 此时必须加 -t 强制分配伪终端，否则 tmux 报 "open terminal failed: not a terminal"，回退 shell 也不显示提示符
     cmd='if command -v tmux >/dev/null 2>&1; then tmux new -A; else exec "${SHELL:-sh}"; fi'
     ssh_opts="-Y -t"
 fi
