@@ -49,19 +49,6 @@ docker compose version
 # sudo curl -L $COMPOSE_URL/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 # sudo chmod +x /usr/local/bin/docker-compose
 
-echo "::*** Enter [y] to 配置中国加速镜像源 /etc/docker/daemon.json, [anything else] for no mirror:"
-read -p "***:: "  DOCKER_MIRROR
-if [ "$DOCKER_MIRROR" = 'y' ]
-then
-  echo '{  "registry-mirrors": [' > /etc/docker/daemon.json
-  echo '  "https://registry.docker-cn.com",' >> /etc/docker/daemon.json
-  echo '  "http://hub-mirror.c.163.com",' >> /etc/docker/daemon.json
-  echo '  "https://docker.mirrors.ustc.edu.cn",' >> /etc/docker/daemon.json
-  echo '  "https://mirror.ccs.tencentyun.com",' >> /etc/docker/daemon.json
-  echo '  "https://ung2thfc.mirror.aliyuncs.com"' >> /etc/docker/daemon.json
-  echo '] }' >> /etc/docker/daemon.json
-fi
-
 echo "::*** 启动docker服务？[y] for yes, [anything else] for no"
 read -p "***:: " StartDockerDaemon
 if [ "$StartDockerDaemon" = 'y' ]

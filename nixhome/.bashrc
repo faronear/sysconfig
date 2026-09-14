@@ -146,9 +146,9 @@ elif [ -f /etc/ubuntu_version ]; then
   MYOSVERSION=Ubt`cat /etc/ubuntu_version 2>/dev/null`
 fi
 if [ "$color_prompt" = yes ]; then
-  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$PWD/\[\033[00m\] \n§ \[\033[05;46m\]\W/\[\033[00m\] '
+  PS1='\n¶ \[\033[$PSTYLE;${PTYPE}2m\]\t\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]\u\[\033[00m\] @\[\033[$PSTYLE;${PTYPE}2m\]\h\[\033[00m\] =\[\033[$PSTYLE;${PTYPE}5m\]$MYIPPUB\[\033[00m\] #\[\033[$PSTYLE;${PTYPE}2m\]$(uname -m),$(uname),$MYOSVERSION\[\033[00m\] \[\033[$PSTYLE;${PTYPE}5m\]$PWD/\[\033[00m\] \n[ \[\033[05;31m\]\W/\[\033[00m\] ]§ '
 else
-  PS1='\n¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $PWD/ \n§ \W/ ' 
+  PS1='\n¶ \t \u @\h =$MYIPPUB #$(uname -m),$(uname),$MYOSVERSION $PWD/ \n[ \W/ ]§ ' 
 fi
 unset color_prompt force_color_prompt
 
@@ -193,6 +193,11 @@ fi
 export USERPROFILE=$HOME
 
 # add path
+if [ -e ~/development/flutter ]
+then
+  # Flutter SDK (位于 ~/development/flutter)，置于 brew 之前，使 dart/flutter 指向 SDK 自带的 Dart 3.13.2（与项目 pubspec.lock 匹配）
+  export PATH="$HOME/development/flutter/bin:$PATH"
+fi
 if [ -e ~/sysconfig ]
 then
   export PATH=~/sysconfig:$PATH
@@ -210,4 +215,3 @@ fi
 ################################################################################
 # End Of File: "~/.bashrc"
 ################################################################################
-
