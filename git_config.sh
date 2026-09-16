@@ -10,7 +10,7 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "User Email (leave blank for unchanged \"$(git config --get user.email))\"" 
+echo "User Email (leave blank for unchanged \"$(git config --get user.email)\"" 
 read -p "***:: " UserEmail
 if [ $UserEmail ]
 then
@@ -20,7 +20,7 @@ fi
 
 echo "---------------------------------------------"
 echo "如果 git 远程服务器的 ssl 证书过期，或者使用了自颁发的证书，连接时会出现验证错误 Cannot verify local issuer"
-echo "Verify ssl? (true, false, or leave blank for unchanged \"$(git config --get http.sslVerify))\"" 
+echo "Verify ssl? (true, false, or leave blank for unchanged \"$(git config --get http.sslVerify)\"" 
 read -p "***:: " HttpSslVerify
 if [ $HttpSslVerify ]
 then
@@ -29,7 +29,7 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "Store credential in [cache] or [store]? (leave blank for unchanged \"$(git config --get credential.helper))\"" 
+echo "Store credential in [cache] or [store]? (leave blank for unchanged \"$(git config --get credential.helper)\"" 
 read -p "***:: " CredentialHelper
 if [ $CredentialHelper ]
 then
@@ -38,7 +38,7 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "Store pull rebase to [true] or [false]? (leave blank for unchanged \"$(git config --get pull.rebase))\"" 
+echo "Store pull rebase to [true] or [false]? (leave blank for unchanged \"$(git config --get pull.rebase)\"" 
 read -p "***:: " PullRebase
 if [ $PullRebase ]
 then
@@ -58,7 +58,7 @@ else
 fi
 
 echo "---------------------------------------------"
-echo "Set default branch since git 2.28 to master or main? (leave blank for unchanged \"$(git config --get init.defaultbranch))\""
+echo "Set default branch since git 2.28 to master or main? (leave blank for unchanged \"$(git config --get init.defaultbranch)\""
 read -p "***:: " DefaultBranch
 if [ $DefaultBranch ]
 then
@@ -67,7 +67,7 @@ then
 fi
 
 echo "---------------------------------------------"
-echo "Set postBuffer size? Suggesting 157286400 (leave blank for unchanged \"$(git config --get http.postBuffer))\""
+echo "Set postBuffer size? Suggesting 157286400 (leave blank for unchanged \"$(git config --get http.postBuffer)\""
 read -p "***:: " PostBufferSize
 if [ $PostBufferSize ]
 then
