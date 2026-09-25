@@ -2,11 +2,11 @@ echo "***************************************"
 echo "find \$FOLDER -mindepth \$MINDEPTH -maxdepth \$MAXDEPTH -type d_f_l -name \"\$PATTERN\" | while read item; do echo \"\$item\"; done"
 echo "***************************************"
 
-echo "To find in which path? Enter [root path] or [leave blank] for the current path [[`pwd`]]:"
+echo "To find in which path? Enter [root path] or [leave blank] for the current path [[$(realpath `pwd`)]]:"
 read -p "path ***:: " FIND_FOLDER
 if [ ! "$FIND_FOLDER" ]
 then
-  FIND_FOLDER=`pwd`
+  FIND_FOLDER=$(realpath "`pwd`")
 fi
 
 read -p "mindepth ***:: " MINDEPTH
