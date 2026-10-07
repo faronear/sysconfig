@@ -6,6 +6,7 @@
 #   https://gitignore.io
 
 ### .gitignore_global ###
+### global ignore settings in opx/sysconfig/nixhome/.gitignore_global
 
 # Self defined pattern to ignore
 ?*.gitignore
@@ -83,4 +84,6 @@ _desktop.ini
 .env.*.local
 
 ### .gitignore.local.txt ###
+### Followings are project-specific ignore settings merged by opx/sysconfig/git_ignore_find2merge.js
+
 
