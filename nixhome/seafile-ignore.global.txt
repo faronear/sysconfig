@@ -94,6 +94,8 @@ OneDrive/Icon
 */.dart_tool/
 .flutter-plugins-dependencies
 */.flutter-plugins-dependencies
+build/
+*/build/
 
 # ---- iOS / macOS：CocoaPods 检出目录（Podfile.lock 仍提交共享，只忽略 Pods/ 实体）----
 Pods/
