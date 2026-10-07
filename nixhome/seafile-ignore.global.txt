@@ -7,6 +7,7 @@
 # seafile-ignore.txt 只能忽略还没有被同步的文件。对于已经被同步的文件，如果后来把它添加到 seafile-ignore.txt 中，系统只会忽略后续更改，已经上传的版本不会受影响。
 
 ### seafile-ignore.global.txt ###
+### global ignore settings in opx/sysconfig/nixhome/seafile-ignore.global.txt
 
 # 自定义的后缀名，凡有 sfignore 后缀的都不进行同步
 *.sfignore
@@ -83,5 +84,28 @@ OneDrive/Icon
 .playwright-mcp/
 */.playwright-mcp/
 
-### seafile-ignore.local.txt ###
+# Flutter/Dart 机器本地产物（各端由 `flutter pub get` / `pod install` / 构建在本机重生成，不跨机同步）。
+# 双机开发时 .dart_tool/package_config.json 内是绝对路径（file:///Users/<用户>/.pub-cache/...），同步过去会让另一台机器编译报 No such file or directory。
+# 注：pub 缓存在 ~/.pub-cache，位于资料库根之外，seafile 同步不到，无需在此列出。
+# 注：build/ 未全局忽略——tic-www-vue / cox-user-vue / cox-team-vue 等把 build/ 纳入 git 跟踪，全局忽略会波及；按需放各项目 seafile-ignore.local.txt。
 
+# ---- Dart / Flutter：包解析 + 构建产物（核心，换机必跑 `flutter pub get` 重生成）----
+.dart_tool/
+*/.dart_tool/
+.flutter-plugins-dependencies
+*/.flutter-plugins-dependencies
+
+# ---- iOS / macOS：CocoaPods 检出目录（Podfile.lock 仍提交共享，只忽略 Pods/ 实体）----
+Pods/
+*/Pods/
+
+# ---- Android：本机 SDK 路径 + 构建缓存（换机必跑 `flutter build` 重生成 local.properties）----
+local.properties
+*/local.properties
+.gradle/
+*/.gradle/
+.kotlin/
+*/.kotlin/
+
+### seafile-ignore.local.txt ###
+### Followings are project-specific ignore settings merged by opx/sysconfig/seafile_ignore_find2merge.js

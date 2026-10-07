@@ -55,9 +55,10 @@ cd $ROOTPATH
 echo "*** Starting from [[`pwd`]] ***"
 echo ""
 
-find . -mindepth 0 -maxdepth 3 -type d -name '[^.]*' | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
-do 
-  if [ -f "$repo/seafile-ignore.txt" ] || [ -d "$repo/.git" ]
+# 根目录自身也是候选（find -name '[^.]*' 匹配不到根目录 .，手动补上）
+{ echo "."; find . -mindepth 0 -maxdepth 3 -type d -name '[^.]*'; } | grep -E -v 'node_modules|uni_modules|\.deploy_git|\.git|.svn|\.vscode|\.wrangler|unpackage|_webroot|_logstore|_datasotre|_archive|_filestore|_ssl' | while read repo
+do
+  if [ -f "$repo/seafile-ignore.txt" ] || [ -f "$repo/seafile-ignore.local.txt" ]
   then
     echo "---- updating [[$repo/seafile-ignore.txt]] ----"
     if [ "$YESNO" = 'y' ]
