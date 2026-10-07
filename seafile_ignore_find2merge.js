@@ -20,6 +20,7 @@
 //   - the root dir itself is processed too (the .sh's find -name '[^.]*' never matched the root dir)
 //   - a dir is updated iff it has seafile-ignore.txt OR seafile-ignore.local.txt (the .sh's `.git` check was dropped)
 //   - tree search is max depth 3, skipping hidden dirs and the known build/dep dirs
+//   - blank globalPath falls back to the default URL, as in the .sh (first draft missed this → "Not found [[]]")
 //   - the .sh does `cat $GLOBALPATH` which fails when the default is a URL; here http(s) is fetched with fetch(),
 //     a local file / parent-dir keeps the original behavior.
 
@@ -41,7 +42,12 @@ function resolveHome (p) {
 
 async function ask (question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
-  const answer = await new Promise(resolve => rl.question(question, resolve))
+  const answer = await new Promise(resolve => {
+    let settled = false
+    const finish = value => { if (!settled) { settled = true; resolve(value) } }
+    rl.question(question, a => finish(a))
+    rl.on('close', () => finish('')) // stdin ended without input (EOF): treat as blank, like the .sh's `read`
+  })
   rl.close()
   return answer.trim()
 }
@@ -75,12 +81,20 @@ async function loadGlobalContent (globalPathInput) {
   const globalPath = resolveHome(globalPathInput)
   if (/^https?:\/\//i.test(globalPath)) {
     console.log('√√√ GLOBALPATH (url) = [[' + globalPath + ']]')
-    const response = await fetch(globalPath)
-    if (!response.ok) {
-      console.log('××× Fetch failed: HTTP ' + response.status + ' for [[' + globalPath + ']]. Exit now...')
-      process.exit(1)
+    // git.tic.cc's TCP connect can exceed node's default 10s connect timeout; allow 30s and retry once.
+    let lastError
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const response = await fetch(globalPath, { signal: AbortSignal.timeout(30000) })
+        if (!response.ok) throw new Error('HTTP ' + response.status)
+        return await response.text()
+      } catch (error) {
+        lastError = error
+        console.log('... fetch attempt ' + attempt + ' failed: ' + (error.cause?.code || error.message))
+      }
     }
-    return response.text()
+    console.log('××× Fetch failed: ' + (lastError.cause?.code || lastError.message) + ' for [[' + globalPath + ']]. Exit now...')
+    process.exit(1)
   }
   let globalFile = globalPath
   if (fs.existsSync(globalPath) && fs.statSync(globalPath).isDirectory()) {
@@ -119,6 +133,7 @@ async function main () {
   if (!globalPathInput) {
     console.log('::*** Enter [path to seafile-ignore.global.txt] or [leave blank] for default [[' + DEFAULT_GLOBAL_URL + ']]')
     globalPathInput = await ask('***:: ')
+    if (!globalPathInput) globalPathInput = DEFAULT_GLOBAL_URL // blank → default URL, as in the .sh
   }
   const globalContent = await loadGlobalContent(globalPathInput)
   console.log('')
